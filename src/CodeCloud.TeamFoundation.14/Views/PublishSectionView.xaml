@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="CodeCloud.TeamFoundation.Views.PublishSectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vms="clr-namespace:CodeCloud.TeamFoundation.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DataContext="{d:DesignInstance Type=vms:PublishSectionViewModel, IsDesignTimeCreatable=False}"
+             xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <StackPanel>
+        <Grid Margin="0,6,0,6"
+              Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="octokit"
+                   Height="32"
+                   Width="32"
+                   VerticalAlignment="Center"
+                   Margin="0,2,8,2"
+                   Source="/CodeCloud.TeamFoundation.14;component/Resources/logo.png" />
+
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Grid.Column="1">
+                <TextBlock TextTrimming="CharacterEllipsis"
+                           FontWeight="SemiBold"
+                           Text="{Binding Name}" />
+                <TextBlock TextTrimming="CharacterEllipsis"
+                           Foreground="{DynamicResource {x:Static shell:VsBrushes.GrayTextKey}}"
+                           Text="{Binding Provider}" />
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content="登录"
+                    Command="{Binding LoginCommand}"
+                    Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <TextBlock Grid.Column="1"
+                       Text="or"
+                       Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Grid.Column="2"
+                    Content="注册"
+                    Command="{Binding SignUpCommand}"
+                    Visibility="{Binding ShowSignUp, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button Grid.Column="3"
+                    HorizontalAlignment="Right"
+                    Content="开始"
+                    Command="{Binding GetStartedCommand}"
+                    Visibility="{Binding ShowGetStarted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
+
+        <Grid Visibility="{Binding IsStarted, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0"
+                     VerticalAlignment="Center"
+                     Text="{Binding RepositoryName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding RepositoryDescription}" />
+            
+            <ComboBox x:Name="LicensesComboBox"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding Licenses}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding SelectedLicense}" />
+            
+            <CheckBox Grid.Row="3"
+                      Background="Transparent"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding IsPrivate}"
+                      Content="私有" />
+            <Button Grid.Row="3"
+                    Width="75"
+                    Command="{Binding PublishCommand}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Content="发布" />
+        </Grid>
+    </StackPanel>
+</UserControl>
