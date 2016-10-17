@@ -112,7 +112,13 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
         {
             var path = System.IO.Path.Combine(BaseRepositoryPath, SelectedRepository.Name);
 
-            _messenger.Send("OnClone", SelectedRepository.Url, path);
+            var repository = new Repository
+            {
+                Name = SelectedRepository.Name,
+                Path = path,
+                Icon = SelectedRepository.Icon
+            };
+            _messenger.Send("OnClone", SelectedRepository.Url, repository);
 
             _dialog.Close();
         }

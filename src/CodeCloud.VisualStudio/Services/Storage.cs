@@ -175,7 +175,8 @@ namespace CodeCloud.VisualStudio.Services
 
         public string GetBaseRepositoryDirectory()
         {
-            return @"C:\Users\jiang.hongfei\Source\Repos";
+            var user = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            return Path.Combine(user, "Source", "Repos");
         }
     }
 }

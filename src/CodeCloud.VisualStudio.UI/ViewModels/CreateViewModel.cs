@@ -155,7 +155,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
         {
             CreateResult result = null;
             string error = null;
-
+            string clonePath = null;
             IsBusy = true;
 
             Task.Run(() =>
@@ -165,11 +165,9 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
                     result = _web.CreateProject(Name, Description, IsPrivate);
                     if (result.Project != null)
                     {
-                        var clonePath = System.IO.Path.Combine(Path, result.Project.Name);
+                        clonePath = System.IO.Path.Combine(Path, result.Project.Name);
 
                         InitialCommit(result.Project.Url);
-
-                        _messenger.Send("OnClone", result.Project.Url, clonePath);
                     }
                 }
                 catch (Exception ex)
@@ -189,6 +187,15 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
                 }
                 else
                 {
+                    var repository = new Repository
+                    {
+                        Name = result.Project.Name,
+                        Path = clonePath,
+                        Icon = result.Project.Icon
+                    };
+
+                    _messenger.Send("OnClone", result.Project.Url, repository);
+
                     _dialog.Close();
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());

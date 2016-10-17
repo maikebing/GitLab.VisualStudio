@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace CodeCloud.TeamFoundation.ViewModels
 {
-    public class ConnectSectionViewModel : Bindable
+    public class ConnectSectionViewModel : Bindable, IDisposable
     {
         public ObservableCollection<Repository> Repositories { get; }
 
@@ -27,6 +27,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
         public ConnectSectionViewModel(IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
+            messenger.Register<string, Repository>("OnClone", OnRepositoryCloned);
 
             _messenger = messenger;
             _registry = registry;
@@ -184,6 +185,23 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 }
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        public void OnRepositoryCloned(string url, Repository repository)
+        {
+            Repositories.Add(repository);
+            foreach (var r in Repositories)
+            {
+                r.IsActived = false;
+            }
+
+            repository.IsActived = true;
+        }
+
+        public void Dispose()
+        {
+            _messenger.UnRegister(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

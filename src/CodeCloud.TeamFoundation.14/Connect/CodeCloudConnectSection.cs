@@ -21,18 +21,20 @@ namespace CodeCloud.TeamFoundation.Connect
         public const string ConnectSectionId = "519B47D3-F2A9-4E19-8491-8C9FA25ABE90";
 
         private readonly IVisualStudioService _vs;
+        private readonly IMessenger _messenger;
 
         [ImportingConstructor]
         public CodeCloudConnectSection(IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
             messenger.Register("OnSignOuted", OnSignOuted);
-            messenger.Register<string, string>("OnClone", OnClone);
+            messenger.Register<string, Repository>("OnClone", OnClone);
             messenger.Register<string>("OnOpenSolution", OnOpenSolution);
             Title = "Code Cloud";
             IsExpanded = true;
             IsVisible = storage.IsLogined;
 
+            _messenger = messenger;
             _vs = vs;
             SectionContent = new ConnectSectionView(messenger, registry, shell, storage, teamexplorer, viewFactory, vs, web);
         }
@@ -54,11 +56,11 @@ namespace CodeCloud.TeamFoundation.Connect
             _vs.ServiceProvider = _serviceProvider;
         }
 
-        public void OnClone(string url, string path)
+        public void OnClone(string url, Repository repository)
         {
             var gitExt = _serviceProvider.GetService<IGitRepositoriesExt>();
 
-            gitExt.Clone(url, path, CloneOptions.RecurseSubmodule);
+            gitExt.Clone(url, repository.Path, CloneOptions.RecurseSubmodule);
         }
 
         public void OnOpenSolution(string path)
@@ -70,9 +72,10 @@ namespace CodeCloud.TeamFoundation.Connect
             }
         }
 
-        public override void Refresh()
+        public override void Dispose()
         {
-            base.Refresh();
+            _messenger.UnRegister(this);
+            GC.SuppressFinalize(this);
         }
     }
 }
