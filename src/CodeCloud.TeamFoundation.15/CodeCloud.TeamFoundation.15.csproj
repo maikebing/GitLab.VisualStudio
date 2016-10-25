@@ -6,11 +6,11 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">$(MSBuildToolsVersion)</VisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{161DBF01-1DBF-4B00-8551-C5C00F26720D}</ProjectGuid>
+    <ProjectGuid>{C7EF7CBE-77AD-41B7-8DDE-C685D63D2EB3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeCloud.TeamFoundation</RootNamespace>
-    <AssemblyName>CodeCloud.TeamFoundation.14</AssemblyName>
+    <AssemblyName>CodeCloud.TeamFoundation.15</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\build\$(Configuration)\</OutputPath>
@@ -40,23 +40,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.TeamFoundation.Common">
-      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Common.dll</HintPath>
+      <HintPath>..\..\lib\15.0\Microsoft.TeamFoundation.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Client">
-      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Client.dll</HintPath>
+      <HintPath>..\..\lib\15.0\Microsoft.TeamFoundation.Client.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Controls">
-      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
+      <HintPath>..\..\lib\15.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Git.Controls">
-      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Git.Controls.dll</HintPath>
+      <HintPath>..\..\lib\15.0\Microsoft.TeamFoundation.Git.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Git.Provider">
-      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Git.Provider.dll</HintPath>
+      <HintPath>..\..\lib\15.0\Microsoft.TeamFoundation.Git.Provider.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -82,40 +82,74 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colors.cs" />
-    <Compile Include="Connect\CodeCloudConnectSection.cs" />
-    <Compile Include="Connect\CodeCloudInvitationSection.cs" />
-    <Compile Include="Home\CodeCloudHomeSection.cs" />
-    <Compile Include="Home\GraphsNavigationItem.cs" />
-    <Compile Include="Home\HomeView.xaml.cs">
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Colors.cs">
+      <Link>Colors.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Connect\CodeCloudConnectSection.cs">
+      <Link>Connect\CodeCloudConnectSection.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Connect\CodeCloudInvitationSection.cs">
+      <Link>Connect\CodeCloudInvitationSection.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\CodeCloudHomeSection.cs">
+      <Link>Home\CodeCloudHomeSection.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\GraphsNavigationItem.cs">
+      <Link>Home\GraphsNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\HomeView.xaml.cs">
+      <Link>Home\HomeView.xaml.cs</Link>
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Home\IssuesNavigationItem.cs" />
-    <Compile Include="Home\PullRequestsNavigationItem.cs" />
-    <Compile Include="Services\TeamExplorerServices.cs" />
-    <Compile Include="Home\PulseNavigationItem.cs" />
-    <Compile Include="Home\WikiNavigationItem.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Sync\CodeCloudPublishSection.cs" />
-    <Compile Include="ViewModels\ConnectSectionViewModel.cs" />
-    <Compile Include="ViewModels\PublishSectionViewModel.cs" />
-    <Compile Include="Views\ConnectSectionView.xaml.cs">
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\IssuesNavigationItem.cs">
+      <Link>Home\IssuesNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\PullRequestsNavigationItem.cs">
+      <Link>Home\PullRequestsNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\TeamExplorerServices.cs">
+      <Link>Services\TeamExplorerServices.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\PulseNavigationItem.cs">
+      <Link>Home\PulseNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\WikiNavigationItem.cs">
+      <Link>Home\WikiNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Settings.cs">
+      <Link>Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Sync\CodeCloudPublishSection.cs">
+      <Link>Sync\CodeCloudPublishSection.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\ViewModels\ConnectSectionViewModel.cs">
+      <Link>ViewModels\ConnectSectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\ViewModels\PublishSectionViewModel.cs">
+      <Link>ViewModels\PublishSectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Views\ConnectSectionView.xaml.cs">
+      <Link>Views\ConnectSectionView.xaml.cs</Link>
       <DependentUpon>ConnectSectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PublishSectionView.xaml.cs">
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Views\PublishSectionView.xaml.cs">
+      <Link>Views\PublishSectionView.xaml.cs</Link>
       <DependentUpon>PublishSectionView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Home\HomeView.xaml">
+    <Page Include="..\CodeCloud.TeamFoundation.14\Home\HomeView.xaml">
+      <Link>Home\HomeView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ConnectSectionView.xaml">
+    <Page Include="..\CodeCloud.TeamFoundation.14\Views\ConnectSectionView.xaml">
+      <Link>Views\ConnectSectionView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PublishSectionView.xaml">
+    <Page Include="..\CodeCloud.TeamFoundation.14\Views\PublishSectionView.xaml">
+      <Link>Views\PublishSectionView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -128,9 +162,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeCloud.VisualStudio.Shared\CodeCloud.VisualStudio.Shared.csproj">
@@ -139,7 +171,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\logo.png" />
+    <Resource Include="..\CodeCloud.TeamFoundation.14\Resources\logo.png">
+      <Link>Resources\logo.png</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

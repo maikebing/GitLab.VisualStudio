@@ -1,8 +1,5 @@
-﻿using CodeCloud.VisualStudio.UI;
-using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace CodeCloud.VisualStudio

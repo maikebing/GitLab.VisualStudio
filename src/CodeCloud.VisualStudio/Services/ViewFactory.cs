@@ -19,9 +19,6 @@ namespace CodeCloud.VisualStudio.Services
         [Import]
         private IMessenger _messenger;
 
-        [Import(typeof(SVsServiceProvider))]
-        private IServiceProvider _provider;
-
         [Import]
         private IRegistry _registry;
 

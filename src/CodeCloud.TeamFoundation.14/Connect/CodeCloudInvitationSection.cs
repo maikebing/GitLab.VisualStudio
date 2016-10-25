@@ -1,12 +1,10 @@
-﻿using CodeCloud.TeamFoundation.Base;
-using CodeCloud.VisualStudio.Shared;
+﻿using CodeCloud.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
-using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System;
 using System.ComponentModel.Composition;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -14,20 +12,23 @@ namespace CodeCloud.TeamFoundation.Connect
 {
     [TeamExplorerServiceInvitation(InvitationSectionId, InvitationSectionPriority)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CodeCloudInvitationSection : TeamExplorerInvitation
+    public class CodeCloudInvitationSection : TeamExplorerServiceInvitationBase
     {
         public const string InvitationSectionId = "C2443FCC-6D62-4D31-B08A-C4DE70109C7F";
         public const int InvitationSectionPriority = 100;
-        readonly IShellService _shell;
-        readonly IViewFactory _viewFactory;
-        readonly IMessenger _messenger;
+
+        private readonly IMessenger _messenger;
+        private readonly IShellService _shell;
+        private readonly IStorage _storage;
+        private readonly IViewFactory _viewFactory;
 
         [ImportingConstructor]
-        public CodeCloudInvitationSection(IViewFactory viewFactory, IStorage storage, IMessenger messenger, IShellService shell)
+        public CodeCloudInvitationSection(IMessenger messenger, IShellService shell, IStorage storage, IViewFactory viewFactory)
         {
-            _viewFactory = viewFactory;
             _messenger = messenger;
             _shell = shell;
+            _storage = storage;
+            _viewFactory = viewFactory;
 
             _messenger.Register("OnLogined", OnLogined);
             _messenger.Register("OnSignOuted", OnSignOuted);
@@ -43,7 +44,14 @@ namespace CodeCloud.TeamFoundation.Connect
             var assembly = Assembly.GetExecutingAssembly().GetName().Name;
             var image = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute));;
 
-            Icon = new ImageBrush(image);
+            var drawing = new DrawingGroup();
+            drawing.Children.Add(new GeometryDrawing
+            {
+                Brush = new ImageBrush(image),
+                Geometry = new RectangleGeometry(new Rect(new Size(image.Width, image.Height)))
+            });
+
+            Icon = new DrawingBrush(drawing);
 
             IsVisible = !storage.IsLogined;
         }
@@ -67,6 +75,14 @@ namespace CodeCloud.TeamFoundation.Connect
         public void OnSignOuted()
         {
             IsVisible = true;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            _messenger.UnRegister(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

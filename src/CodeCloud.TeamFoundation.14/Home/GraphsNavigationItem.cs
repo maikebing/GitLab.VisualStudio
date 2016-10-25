@@ -1,16 +1,16 @@
-﻿using CodeCloud.TeamFoundation;
-using CodeCloud.TeamFoundation.Base;
-using CodeCloud.VisualStudio.Shared;
+﻿using CodeCloud.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CodeCloud.TeamFoundation.Home
 {
     [TeamExplorerNavigationItem(GraphsNavigationItemId, NavigationItemPriority.Graphs)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class GraphsNavigationItem : TeamExplorerNavigationItem
+    public class GraphsNavigationItem : TeamExplorerNavigationItemBase
     {
         public const string GraphsNavigationItemId = "5245767A-B657-4F8E-BFEE-F04159F1DDA5";
 
@@ -21,8 +21,12 @@ namespace CodeCloud.TeamFoundation.Home
         {
             this.browser = browser;
             Text = "Graph";
-            ArgbColor = Colors.LightBlueNavigationItem.ToInt32();
             this.IsVisible = true;
+        }
+
+        protected override void SetDefaultColors()
+        {
+            m_defaultArgbColorBrush = new SolidColorBrush(Colors.LightBlueNavigationItem);
         }
 
         public override void Execute()

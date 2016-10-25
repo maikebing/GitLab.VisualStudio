@@ -1,5 +1,6 @@
 ﻿using CodeCloud.TeamFoundation.ViewModels;
 using CodeCloud.VisualStudio.Shared;
+using System;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
 
@@ -16,14 +17,9 @@ namespace CodeCloud.TeamFoundation.Views
             System.Console.WriteLine(typeof(Interaction));
         }
 
-        public ConnectSectionView(IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public ConnectSectionView()
         {
             InitializeComponent();
-
-            var vm = new ConnectSectionViewModel(messenger, registry, shell, storage, teamexplorer, viewFactory, vs, web);
-
-            DataContext = vm;
         }
     }
-
 }

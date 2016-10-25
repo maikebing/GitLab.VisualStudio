@@ -1,16 +1,9 @@
 ﻿using CodeCloud.VisualStudio.Shared;
 using CodeCloud.VisualStudio.Shared.Helpers;
 using CodeCloud.VisualStudio.Shared.Helpers.Commands;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace CodeCloud.TeamFoundation.ViewModels

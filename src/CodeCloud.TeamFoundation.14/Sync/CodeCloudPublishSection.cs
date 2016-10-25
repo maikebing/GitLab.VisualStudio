@@ -1,37 +1,71 @@
-﻿using CodeCloud.TeamFoundation.Base;
+﻿using CodeCloud.TeamFoundation.ViewModels;
 using CodeCloud.TeamFoundation.Views;
 using CodeCloud.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System;
 using System.ComponentModel.Composition;
+using System.Windows;
 
 namespace CodeCloud.TeamFoundation.Sync
 {
-
-
     [TeamExplorerSection(PublishSectionId, TeamExplorerPageIds.GitCommits, 10)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CodeCloudPublishSection : TeamExplorerSection, INotifyPropertySource, IDisposable
+    public class CodeCloudPublishSection : TeamExplorerSectionBase
     {
         public const string PublishSectionId = "92655B52-360D-4BF5-95C5-D9E9E596AC76";
 
+        private readonly IMessenger _messenger;
+        private readonly IGitService _git;
+        private readonly IShellService _shell;
+        private readonly IStorage _storage;
+        private readonly ITeamExplorerServices _tes;
+        private readonly IViewFactory _viewFactory;
         private readonly IVisualStudioService _vs;
+        private readonly IWebService _web;
 
         [ImportingConstructor]
         public CodeCloudPublishSection(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
+            _messenger = messenger;
+            _git = git;
+            _shell = shell;
+            _storage = storage;
+            _tes = tes;
+            _viewFactory = viewFactory;
             _vs = vs;
-
-            Title = "发布到码云";
-            IsVisible = true;
-            IsExpanded = true;
-
-            SectionContent = new PublishSectionView(messenger, git, shell, storage, tes, viewFactory, vs, web);
+            _web = web;
         }
 
-        public override void Initialize(object sender, SectionInitializeEventArgs e)
+        protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {
-            //_vs.ServiceProvider = e.ServiceProvider;
+            var temp = new TeamExplorerSectionViewModelBase
+            {
+                Title = "发布到码云"
+            };
+
+            return temp;
+        }
+        public override void Refresh()
+        {
+            base.Refresh();
+
+            IsExpanded = true;
+            IsVisible = _storage.IsLogined;
+        }
+
+        protected override object CreateView(SectionInitializeEventArgs e)
+        {
+            return new PublishSectionView();
+        }
+
+        protected override void InitializeView(SectionInitializeEventArgs e)
+        {
+            var view = this.SectionContent as FrameworkElement;
+            if (view != null)
+            {
+                view.DataContext = new PublishSectionViewModel(_messenger, _git, _shell, _storage, _tes, _viewFactory, _vs, _web);
+            }
         }
 
         public void ShowPublish()
@@ -41,13 +75,13 @@ namespace CodeCloud.TeamFoundation.Sync
 
         public override void Dispose()
         {
-            var disposable = SectionContent as IDisposable;
+            base.Dispose();
+
+            var disposable = ViewModel as IDisposable;
             if (disposable != null)
             {
                 disposable.Dispose();
             }
-
-            GC.SuppressFinalize(this);
         }
     }
 }

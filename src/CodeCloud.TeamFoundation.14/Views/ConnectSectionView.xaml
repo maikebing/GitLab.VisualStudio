@@ -258,27 +258,23 @@
                    DockPanel.Dock="Top">
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="0"
-                    x:Name="cloneLink"
                     Command="{Binding CloneCommand}"
                     Content="克隆" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="1"
-                    x:Name="createLink"
                     Command="{Binding CreateCommand}"
                     Content="创建" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="2"
-                    x:Name="signOut"
                     Command="{Binding SignOutCommand}"
-                    Content="Sign out" />
+                    Content="退出" />
         </WrapPanel>
 
-        <ListView x:Name="repositories"
-                  ItemsSource="{Binding Repositories}"
+        <ListView ItemsSource="{Binding Repositories}"
                   SelectedItem="{Binding Path=SelectedRepository, Mode=TwoWay}"
                   Margin="5,0,6,0"
                   ItemContainerStyle="{StaticResource RepositoriesListItemContainerStyle}"

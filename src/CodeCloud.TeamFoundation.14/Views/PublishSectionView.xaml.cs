@@ -9,7 +9,7 @@ namespace CodeCloud.TeamFoundation.Views
     /// <summary>
     /// Interaction logic for PublishSectionView.xaml
     /// </summary>
-    public partial class PublishSectionView : UserControl, IDisposable
+    public partial class PublishSectionView : UserControl
     {
         static PublishSectionView()
         {
@@ -17,24 +17,9 @@ namespace CodeCloud.TeamFoundation.Views
             System.Console.WriteLine(typeof(Interaction));
         }
 
-        public PublishSectionView(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public PublishSectionView()
         {
             InitializeComponent();
-
-            var vm = new PublishSectionViewModel(messenger, git, shell, storage, tes, viewFactory, vs, web);
-
-            DataContext = vm;
-        }
-
-        public void Dispose()
-        {
-            var disposable = DataContext as IDisposable;
-            if (disposable != null)
-            {
-                disposable.Dispose();
-            }
-
-            GC.SuppressFinalize(this);
         }
     }
 }

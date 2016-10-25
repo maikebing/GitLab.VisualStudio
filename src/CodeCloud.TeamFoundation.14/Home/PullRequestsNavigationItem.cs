@@ -1,13 +1,14 @@
-﻿using CodeCloud.TeamFoundation.Base;
-using Microsoft.TeamFoundation.Controls;
+﻿using Microsoft.TeamFoundation.Controls;
+using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CodeCloud.TeamFoundation.Home
 {
     [TeamExplorerNavigationItem(PullRequestsNavigationItemId, NavigationItemPriority.PullRequests)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class PullRequestsNavigationItem : TeamExplorerNavigationItem
+    public class PullRequestsNavigationItem : TeamExplorerNavigationItemBase
     {
         public const string PullRequestsNavigationItemId = "5245767A-B657-4F8E-BFEE-F04159F1DDA3";
 
@@ -15,8 +16,12 @@ namespace CodeCloud.TeamFoundation.Home
         public PullRequestsNavigationItem()
         {
             Text = "Pull";
-            ArgbColor = Colors.RedNavigationItem.ToInt32();
-            this.IsVisible = true;
+            IsVisible = true;
+        }
+
+        protected override void SetDefaultColors()
+        {
+            m_defaultArgbColorBrush = new SolidColorBrush(Colors.RedNavigationItem);
         }
 
         public override void Execute()

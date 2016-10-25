@@ -35,6 +35,8 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
             GitIgnores = new Dictionary<string, string>();
             Licenses = new Dictionary<string, string>();
 
+            _path = storage.GetBaseRepositoryDirectory();
+
             LoadResources();
 
             _newCommand = new DelegateCommand(OnSave, CanSave);
