@@ -53,13 +53,6 @@ namespace CodeCloud.TeamFoundation.Connect
 
             return temp;
         }
-        public override void Refresh()
-        {
-            base.Refresh();
-
-            IsExpanded = true;
-            IsVisible = _storage.IsLogined;
-        }
 
         public override void Initialize(object sender, SectionInitializeEventArgs e)
         {

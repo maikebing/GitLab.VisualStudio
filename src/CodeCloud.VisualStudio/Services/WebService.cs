@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -37,7 +38,27 @@ namespace CodeCloud.VisualStudio.Services
                 throw new Exception("Not login yet");
             }
 
-            var url = $"https://git.oschina.net/api/v3/projects?page=1&private_token={user.Token}";
+            var result = new List<Project>();
+
+            var page = 1;
+            while (true)
+            {
+                var projects = GetProjectsOfPage(page, user.Token);
+                if (!projects.Any())
+                {
+                    break;
+                }
+
+                page++;
+
+                result.AddRange(projects);
+            }
+            return result;
+        }
+
+        private IReadOnlyList<Project> GetProjectsOfPage(int page, string token)
+        {
+            var url = $"https://git.oschina.net/api/v3/projects?page={page}&private_token={token}";
 
             var request = GetRequest(url);
             request.Method = "GET";
@@ -60,25 +81,6 @@ namespace CodeCloud.VisualStudio.Services
 
                 throw new Exception($"错误代码: {statusCode}");
             }
-
-            //var result = new List<Project>();
-
-            //result.Add(new Project
-            //{
-            //    Name = "ui",
-            //    Path = @"C:\Users\jiang.hongfei\Source\Repos\ui",
-            //    Public = true,
-            //    Fork = true
-            //});
-
-            //result.Add(new Project
-            //{
-            //    Name = "bs",
-            //    Path = @"C:\Users\jiang.hongfei\Source\Repos\bs",
-            //    Public = false
-            //});
-
-            //return result;
         }
 
         public User Login(string email, string password)

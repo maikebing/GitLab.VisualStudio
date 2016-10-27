@@ -157,14 +157,17 @@ namespace CodeCloud.TeamFoundation.ViewModels
 
                     var valid = new List<Repository>();
 
-                    foreach (var k in known)
+                    if (known != null)
                     {
-                        var r = remotes.FirstOrDefault(o => o.Name == k.Name);
-                        if (r != null)
+                        foreach (var k in known)
                         {
-                            k.Icon = r.Icon;
+                            var r = remotes.FirstOrDefault(o => o.Name == k.Name);
+                            if (r != null)
+                            {
+                                k.Icon = r.Icon;
 
-                            valid.Add(k);
+                                valid.Add(k);
+                            }
                         }
                     }
 

@@ -24,6 +24,11 @@ namespace CodeCloud.VisualStudio.Services
         {
             using (var key = OpenGitKey("Repositories"))
             {
+                if (key == null)
+                {
+                    return null;
+                }
+
                 return key.GetSubKeyNames().Select(x =>
                 {
                     using (var subkey = key.OpenSubKey(x))
