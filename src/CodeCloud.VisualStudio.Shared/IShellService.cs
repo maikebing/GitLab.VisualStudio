@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.PlatformUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeCloud.VisualStudio.Shared
+﻿namespace CodeCloud.VisualStudio.Shared
 {
     /// <summary>
     /// A service used to navigate to URLs such as CodeCloud issues, pull requests, etc.

@@ -17,6 +17,7 @@ namespace CodeCloud.VisualStudio.Shared.Controls
         arrow_small_right,
         arrow_small_up,
         arrow_up,
+        attachment,
         beaker,
         bell,
         bold,

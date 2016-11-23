@@ -9,11 +9,10 @@ using System.Windows;
 
 namespace CodeCloud.TeamFoundation.Sync
 {
-    [TeamExplorerSection(PublishSectionId, TeamExplorerPageIds.GitCommits, 10)]
+    [TeamExplorerSection(Settings.PublishSectionId, TeamExplorerPageIds.GitCommits, Settings.PublishSectionPriority)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudPublishSection : TeamExplorerSectionBase
     {
-        public const string PublishSectionId = "92655B52-360D-4BF5-95C5-D9E9E596AC76";
 
         private readonly IMessenger _messenger;
         private readonly IGitService _git;
@@ -41,17 +40,46 @@ namespace CodeCloud.TeamFoundation.Sync
         {
             var temp = new TeamExplorerSectionViewModelBase
             {
-                Title = "发布到码云"
+                Title = string.Format(Strings.Publish_Title, Strings.Common_Name)
             };
 
             return temp;
         }
-        public override void Refresh()
-        {
-            base.Refresh();
 
-            IsExpanded = true;
-            IsVisible = _storage.IsLogined;
+        public override void Initialize(object sender, SectionInitializeEventArgs e)
+        {
+            base.Initialize(sender, e);
+
+            IsVisible = _storage.IsLogined && !IsCodeCloudRepo();
+
+            _vs.ServiceProvider = ServiceProvider;
+        }
+
+        private bool IsCodeCloudRepo()
+        {
+            var projects = _web.GetProjects();
+            var repo = _vs.GetActiveRepository();
+            if (repo == null)
+            {
+                return false;
+            }
+
+            var path = repo.Path;
+            var url = _git.GetRemote(path);
+
+            var visible = false;
+
+            foreach (var project in projects)
+            {
+                if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
+                {
+                    visible = true;
+
+                    break;
+                }
+            }
+
+            return visible;
         }
 
         protected override object CreateView(SectionInitializeEventArgs e)

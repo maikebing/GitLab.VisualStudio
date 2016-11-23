@@ -11,12 +11,10 @@ using System.Windows;
 
 namespace CodeCloud.TeamFoundation.Connect
 {
-    [TeamExplorerSection(ConnectSectionId, TeamExplorerPageIds.Connect, 10)]
+    [TeamExplorerSection(Settings.ConnectSectionId, TeamExplorerPageIds.Connect, Settings.ConnectSectionPriority)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudConnectSection : TeamExplorerSectionBase
     {
-        public const string ConnectSectionId = "519B47D3-F2A9-4E19-8491-8C9FA25ABE90";
-
         private readonly IMessenger _messenger;
         private readonly IRegistry _registry;
         private readonly IShellService _shell;
@@ -48,7 +46,7 @@ namespace CodeCloud.TeamFoundation.Connect
         {
             var temp = new TeamExplorerSectionViewModelBase
             {
-                Title = "Code Cloud"
+                Title = Strings.Common_Name
             };
 
             return temp;
@@ -57,6 +55,8 @@ namespace CodeCloud.TeamFoundation.Connect
         public override void Initialize(object sender, SectionInitializeEventArgs e)
         {
             base.Initialize(sender, e);
+
+            IsVisible = _storage.IsLogined;
 
             _vs.ServiceProvider = ServiceProvider;
         }

@@ -1,11 +1,8 @@
 ﻿using CodeCloud.VisualStudio.Shared;
 using CodeCloud.VisualStudio.UI;
 using CodeCloud.VisualStudio.UI.Views;
-using Microsoft.VisualStudio.Shell;
-using System;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 
 namespace CodeCloud.VisualStudio.Services
 {

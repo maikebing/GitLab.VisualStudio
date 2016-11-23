@@ -73,8 +73,9 @@ namespace CodeCloud.VisualStudio.Services
                         while (!froms.EndOfStream)
                         {
                             var line = froms.ReadLine();
-                            line.Replace("[fullname]", fullname);
-                            line.Replace("[email]", email);
+                            line = line.Replace("[year]", DateTime.Now.Year.ToString());
+                            line = line.Replace("[fullname]", fullname);
+                            line = line.Replace("[email]", email);
 
                             target.WriteLine(line);
                         }
@@ -215,6 +216,19 @@ namespace CodeCloud.VisualStudio.Services
             }
 
             return result;
+        }
+
+        public string GetRemote(string path)
+        {
+            try
+            {
+                var repository = new LibGit2Sharp.Repository(path);
+                return repository.Network.Remotes["origin"].Url;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

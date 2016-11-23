@@ -151,6 +151,15 @@ namespace CodeCloud.VisualStudio.Shared.Controls.Octicons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to F 1 M 528,192 L 576,192 576,559.5 C 576,657 498,736.5 400.5,736.5 303,736.5 223.5,657 223.5,559.5 L 223.5,160.5 C 223.5,90 282,31.5 352.5,31.5 423,31.5 480,90 480,160.5 L 480,496.5 C 480,540 444,576 400.5,576 357,576 319.5,540 319.5,496.5 L 319.5,192 367.5,192 367.5,496.5 C 367.5,514.5 382.5,528 400.5,528 418.5,528 432,514.5 432,496.5 L 432,160.5 C 432,117 396,79.5 352.5,79.5 309,79.5 271.5,117 271.5,160.5 L 271.5,559.5 C 271.5,630 330,688.5 400.5,688.5 471,688.5 528,630 528,559.5 L 528,192 Z.
+        /// </summary>
+        internal static string attachment {
+            get {
+                return ResourceManager.GetString("attachment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to M14.38 14.59L11 7V3h1v-1H3v1h1v4L0.63 14.59c-0.3 0.66 0.19 1.41 0.91 1.41h11.94c0.72 0 1.2-0.75 0.91-1.41zM3.75 10l1.25-3V3h5v4l1.25 3H3.75z m4.25-2h1v1h-1v-1z m-1-1h-1v-1h1v1z m0-3h1v1h-1v-1z m0-3h-1V0h1v1z.
         /// </summary>
         internal static string beaker {

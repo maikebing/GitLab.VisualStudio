@@ -8,6 +8,7 @@ namespace CodeCloud.VisualStudio.Shared
 {
     public interface IGitService
     {
+        string GetRemote(string path);
         IReadOnlyList<string> GetGitIgnores();
         IReadOnlyList<string> GetLicenses();
         void FillAccessories(string fullname, string email, string path, string gitignore, string license);

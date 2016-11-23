@@ -91,15 +91,14 @@
     <Compile Include="..\CodeCloud.TeamFoundation.14\Connect\CodeCloudInvitationSection.cs">
       <Link>Connect\CodeCloudInvitationSection.cs</Link>
     </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\AttachmentsNavigationItem.cs">
+      <Link>Home\AttachmentsNavigationItem.cs</Link>
+    </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Home\CodeCloudHomeSection.cs">
       <Link>Home\CodeCloudHomeSection.cs</Link>
     </Compile>
-    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\GraphsNavigationItem.cs">
-      <Link>Home\GraphsNavigationItem.cs</Link>
-    </Compile>
-    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\HomeView.xaml.cs">
-      <Link>Home\HomeView.xaml.cs</Link>
-      <DependentUpon>HomeView.xaml</DependentUpon>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\CodeCloudNavigationItem.cs">
+      <Link>Home\CodeCloudNavigationItem.cs</Link>
     </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Home\IssuesNavigationItem.cs">
       <Link>Home\IssuesNavigationItem.cs</Link>
@@ -107,14 +106,17 @@
     <Compile Include="..\CodeCloud.TeamFoundation.14\Home\PullRequestsNavigationItem.cs">
       <Link>Home\PullRequestsNavigationItem.cs</Link>
     </Compile>
-    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\TeamExplorerServices.cs">
-      <Link>Services\TeamExplorerServices.cs</Link>
-    </Compile>
-    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\PulseNavigationItem.cs">
-      <Link>Home\PulseNavigationItem.cs</Link>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Home\StatisticsNavigationItem.cs">
+      <Link>Home\StatisticsNavigationItem.cs</Link>
     </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Home\WikiNavigationItem.cs">
       <Link>Home\WikiNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\TeamExplorerServices.cs">
+      <Link>Services\TeamExplorerServices.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\VisualStudioService.cs">
+      <Link>Services\VisualStudioService.cs</Link>
     </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Settings.cs">
       <Link>Settings.cs</Link>
@@ -138,11 +140,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\CodeCloud.TeamFoundation.14\Home\HomeView.xaml">
-      <Link>Home\HomeView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="..\CodeCloud.TeamFoundation.14\Views\ConnectSectionView.xaml">
       <Link>Views\ConnectSectionView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -162,7 +159,6 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeCloud.VisualStudio.Shared\CodeCloud.VisualStudio.Shared.csproj">

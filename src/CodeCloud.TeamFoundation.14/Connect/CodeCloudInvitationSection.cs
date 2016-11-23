@@ -10,13 +10,10 @@ using System.Windows.Media.Imaging;
 
 namespace CodeCloud.TeamFoundation.Connect
 {
-    [TeamExplorerServiceInvitation(InvitationSectionId, InvitationSectionPriority)]
+    [TeamExplorerServiceInvitation(Settings.InvitationSectionId, Settings.InvitationSectionPriority)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudInvitationSection : TeamExplorerServiceInvitationBase
     {
-        public const string InvitationSectionId = "C2443FCC-6D62-4D31-B08A-C4DE70109C7F";
-        public const int InvitationSectionPriority = 100;
-
         private readonly IMessenger _messenger;
         private readonly IShellService _shell;
         private readonly IStorage _storage;
@@ -35,11 +32,11 @@ namespace CodeCloud.TeamFoundation.Connect
 
             CanConnect = true;
             CanSignUp = true;
-            ConnectLabel = "Connect";
-            SignUpLabel = "Sign up";
-            Name = "CodeCloud";
-            Provider = "CodeCloud, Inc.";
-            Description = "Description xxx";
+            ConnectLabel = Strings.Invitation_Connect;
+            SignUpLabel = Strings.Invitation_SignUp;
+            Name = Strings.Common_Name;
+            Provider = Strings.Common_Provider;
+            Description = Strings.Common_Description;
 
             var assembly = Assembly.GetExecutingAssembly().GetName().Name;
             var image = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute));;
@@ -59,7 +56,7 @@ namespace CodeCloud.TeamFoundation.Connect
         public override void Connect()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-            _shell.ShowDialog("连接到码云", dialog);
+            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
         }
 
         public override void SignUp()

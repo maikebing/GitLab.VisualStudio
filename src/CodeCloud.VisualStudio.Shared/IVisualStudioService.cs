@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeCloud.VisualStudio.Shared
 {
+    public class RepositoryInfo
+    {
+        public string Branch { get; set; }
+        public string Path { get; set; }
+    }
+
     public interface IVisualStudioService
     {
         IServiceProvider ServiceProvider { get; set; }
-        string GetActiveRepository();
+        RepositoryInfo GetActiveRepository();
 
         string GetSolutionPath();
     }

@@ -32,7 +32,7 @@ namespace CodeCloud.TeamFoundation
         {
             var te = serviceProvider.TryGetService<ITeamExplorer>();
             var foo = te.NavigateToPage(new Guid(TeamExplorerPageIds.GitCommits), null);
-            var publish = foo?.GetSection(new Guid(CodeCloudPublishSection.PublishSectionId)) as CodeCloudPublishSection;
+            var publish = foo?.GetSection(new Guid(Settings.PublishSectionId)) as CodeCloudPublishSection;
             publish?.ShowPublish();
         }
 
