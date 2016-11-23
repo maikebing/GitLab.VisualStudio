@@ -1,27 +1,20 @@
 ﻿using CodeCloud.VisualStudio.Shared;
+using CodeCloud.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
-using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
-using System;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Media;
 
 namespace CodeCloud.TeamFoundation.Home
 {
-    [TeamExplorerNavigationItem(IssuesNavigationItemId, NavigationItemPriority.Issues)]
+    [TeamExplorerNavigationItem(Settings.IssuesNavigationItemId, Settings.Issues)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class IssuesNavigationItem : TeamExplorerNavigationItemBase
+    public class IssuesNavigationItem : CodeCloudNavigationItem
     {
-        public const string IssuesNavigationItemId = "5245767A-B657-4F8E-BFEE-F04159F1DDA4";
-
-        readonly Lazy<IShellService> browser;
-
         [ImportingConstructor]
-        public IssuesNavigationItem(Lazy<IShellService> browser)
+        public IssuesNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
+           : base(Octicon.issue_opened, git, shell, storage, vs, ws)
         {
-            this.browser = browser;
-            Text = "Issue";
-            this.IsVisible = true;
+            Text = Strings.Items_Issues;
         }
 
         protected override void SetDefaultColors()
@@ -29,9 +22,16 @@ namespace CodeCloud.TeamFoundation.Home
             m_defaultArgbColorBrush = new SolidColorBrush(Colors.LightBlueNavigationItem);
         }
 
+        public override void Invalidate()
+        {
+            base.Invalidate();
+
+            IsVisible = IsVisible && Project.IsIssueEnabled;
+        }
+
         public override void Execute()
         {
-            MessageBox.Show("Issue");
+            OpenInBrowser("issues");
         }
     }
 }

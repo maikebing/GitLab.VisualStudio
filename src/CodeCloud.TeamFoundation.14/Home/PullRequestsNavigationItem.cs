@@ -1,22 +1,29 @@
-﻿using Microsoft.TeamFoundation.Controls;
-using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
+﻿using CodeCloud.VisualStudio.Shared;
+using CodeCloud.VisualStudio.Shared.Controls;
+using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 
 namespace CodeCloud.TeamFoundation.Home
 {
-    [TeamExplorerNavigationItem(PullRequestsNavigationItemId, NavigationItemPriority.PullRequests)]
+    [TeamExplorerNavigationItem(Settings.PullRequestsNavigationItemId, Settings.PullRequests)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class PullRequestsNavigationItem : TeamExplorerNavigationItemBase
+    public class PullRequestsNavigationItem : CodeCloudNavigationItem
     {
-        public const string PullRequestsNavigationItemId = "5245767A-B657-4F8E-BFEE-F04159F1DDA3";
 
         [ImportingConstructor]
-        public PullRequestsNavigationItem()
+        public PullRequestsNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
+           : base(Octicon.git_pull_request, git, shell, storage, vs, ws)
         {
-            Text = "Pull";
-            IsVisible = true;
+            Text = Strings.Items_PullRequests;
+        }
+
+        public override void Invalidate()
+        {
+            base.Invalidate();
+
+            IsVisible = IsVisible && Project.IsPullRequestsEnabled;
         }
 
         protected override void SetDefaultColors()
@@ -26,7 +33,7 @@ namespace CodeCloud.TeamFoundation.Home
 
         public override void Execute()
         {
-            MessageBox.Show("Pull");
+            OpenInBrowser("pulls");
         }
     }
 }

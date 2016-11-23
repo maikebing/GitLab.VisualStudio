@@ -1,11 +1,8 @@
 ﻿using CodeCloud.VisualStudio.Shared;
 using CodeCloud.VisualStudio.UI;
 using CodeCloud.VisualStudio.UI.Views;
-using Microsoft.VisualStudio.Shell;
-using System;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 
 namespace CodeCloud.VisualStudio.Services
 {
@@ -19,8 +16,8 @@ namespace CodeCloud.VisualStudio.Services
         [Import]
         private IMessenger _messenger;
 
-        [Import]
-        private IRegistry _registry;
+        //[Import]
+        //private IRegistry _registry;
 
         [Import]
         private IStorage _storage;
@@ -28,11 +25,11 @@ namespace CodeCloud.VisualStudio.Services
         [Import]
         private IShellService _shell;
 
-        [Import]
-        private ITeamExplorerServices _teamexplorer;
+        //[Import]
+        //private ITeamExplorerServices _teamexplorer;
 
-        [Import]
-        private IVisualStudioService _vs;
+        //[Import]
+        //private IVisualStudioService _vs;
 
         [Import]
         private IWebService _web;

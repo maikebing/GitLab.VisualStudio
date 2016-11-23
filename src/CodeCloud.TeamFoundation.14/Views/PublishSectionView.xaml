@@ -49,14 +49,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Content="登录"
+            <Button Content="{Binding LoginLabel}"
                     Command="{Binding LoginCommand}"
                     Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBlock Grid.Column="1"
                        Text="or"
                        Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Button Grid.Column="2"
-                    Content="注册"
+                    Content="{Binding SignUpLabel}"
                     Command="{Binding SignUpCommand}"
                     Visibility="{Binding ShowSignUp, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
@@ -96,13 +96,13 @@
                       Background="Transparent"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsPrivate}"
-                      Content="私有" />
+                      Content="{Binding PrivateLabel}" />
             <Button Grid.Row="3"
                     Width="75"
                     Command="{Binding PublishCommand}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Content="发布" />
+                    Content="{Binding PublishLabel}" />
         </Grid>
     </StackPanel>
 </UserControl>

@@ -74,7 +74,6 @@
     <Compile Include="Services\ViewFactory.cs" />
     <Compile Include="Services\VisualStudioService.cs" />
     <Compile Include="Services\WebService.cs" />
-    <Compile Include="Settings\Guids.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\packages\libgit2sharp.nativebinaries.1.0.129\libgit2\windows\amd64\git2-785d8c4.dll">
@@ -326,12 +325,6 @@
       <Project>{EC0FA794-798E-4949-A9A1-608E0B5E5EEA}</Project>
       <Name>CodeCloud.VisualStudio.UI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="VSPackage.resx">
-      <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

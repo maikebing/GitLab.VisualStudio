@@ -2,15 +2,14 @@
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System.ComponentModel.Composition;
+using System.Windows.Controls;
 
 namespace CodeCloud.TeamFoundation.Home
 {
-    [TeamExplorerSection(HomeSectionId, TeamExplorerPageIds.Home, 10)]
+    [TeamExplorerSection(Settings.HomeSectionId, TeamExplorerPageIds.Home, Settings.HomeSectionPriority)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudHomeSection : TeamExplorerSectionBase
     {
-        public const string HomeSectionId = "72008232-2104-4FA0-A189-61B0C6F91198";
-
         private readonly ITeamExplorerServices _service;
 
         private readonly IMessenger _messenger;
@@ -40,7 +39,7 @@ namespace CodeCloud.TeamFoundation.Home
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {
             var temp = new TeamExplorerSectionViewModelBase();
-            temp.Title = "Code Cloud";
+            temp.Title = Strings.Common_Name;
 
             IsVisible = true;
 
@@ -49,7 +48,11 @@ namespace CodeCloud.TeamFoundation.Home
 
         protected override object CreateView(SectionInitializeEventArgs e)
         {
-            return new HomeView(_service);
+            return new TextBlock
+            {
+                Text = Strings.Common_Description,
+                TextWrapping = System.Windows.TextWrapping.Wrap
+            };
         }
     }
 }

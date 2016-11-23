@@ -95,9 +95,34 @@ namespace CodeCloud.TeamFoundation.ViewModels
             get { return Repositories.Count > 0; }
         }
 
+        public string CloneLabel
+        {
+            get { return Strings.Common_Clone; }
+        }
+
+        public string CreateLabel
+        {
+            get { return Strings.Common_CreateRepository; }
+        }
+
+        public string QuitLabel
+        {
+            get { return Strings.Common_Quit; }
+        }
+
+        public string NameLabel
+        {
+            get { return Strings.Repository_Name + ":"; }
+        }
+
+        public string PathLabel
+        {
+            get { return Strings.Repository_Path + ":"; }
+        }
+
         private void OnSignOut()
         {
-            if (MessageBox.Show("确定要退出吗？", "退出码云", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(Strings.Confirm_Quit, Strings.Common_Quit + Strings.Common_Name, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 _storage.Erase();
                 _messenger.Send("OnSignOuted");
@@ -107,13 +132,13 @@ namespace CodeCloud.TeamFoundation.ViewModels
         private void OnClone()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Clone);
-            _shell.ShowDialog("克隆", dialog);
+            _shell.ShowDialog(Strings.Common_Clone, dialog);
         }
 
         private void OnCreate()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Create);
-            _shell.ShowDialog("创建仓库", dialog);
+            _shell.ShowDialog(Strings.Common_CreateRepository, dialog);
         }
 
         private void OnOpenRepository(Repository repo)
@@ -123,8 +148,8 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 return;
             }
 
-            var path = _vs.GetActiveRepository();
-            if (path == null || repo.Path != path)
+            var activeRepository = _vs.GetActiveRepository();
+            if (activeRepository == null || string.Equals(repo.Path, activeRepository.Path, StringComparison.OrdinalIgnoreCase))
             {
                 _messenger.Send("OnOpenSolution", repo.Path);
             }
@@ -153,7 +178,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 {
                     Repositories.Clear();
 
-                    var actived = _vs.GetActiveRepository();
+                    var activeRepository = _vs.GetActiveRepository();
 
                     var valid = new List<Repository>();
 
@@ -171,9 +196,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
                         }
                     }
 
-                    if (actived != null)
+                    if (activeRepository != null)
                     {
-                        var matched = valid.FirstOrDefault(o => o.Path == actived);
+                        var matched = valid.FirstOrDefault(o => string.Equals(o.Path, activeRepository.Path, StringComparison.OrdinalIgnoreCase));
                         if (matched != null)
                         {
                             matched.IsActived = true;

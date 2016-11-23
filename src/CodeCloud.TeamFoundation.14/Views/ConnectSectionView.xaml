@@ -259,19 +259,19 @@
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="0"
                     Command="{Binding CloneCommand}"
-                    Content="克隆" />
+                    Content="{Binding CloneLabel}" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="1"
                     Command="{Binding CreateCommand}"
-                    Content="创建" />
+                    Content="{Binding CreateLabel}" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="2"
                     Command="{Binding SignOutCommand}"
-                    Content="退出" />
+                    Content="{Binding QuitLabel}" />
         </WrapPanel>
 
         <ListView ItemsSource="{Binding Repositories}"
@@ -339,14 +339,14 @@
                                     <TextBlock Grid.Row="0"
                                                Grid.Column="0"
                                                Margin="0,0,6,0"
-                                               Text="名称：" />
+                                               Text="{Binding DataContext.NameLabel, RelativeSource={RelativeSource AncestorType=ListBox}}" />
                                     <TextBlock Grid.Row="0"
                                                Grid.Column="1"
                                                Text="{Binding Name}" />
                                     <TextBlock Grid.Row="1"
                                                Grid.Column="0"
                                                Margin="0,0,6,0"
-                                               Text="路径：" />
+                                               Text="{Binding DataContext.PathLabel, RelativeSource={RelativeSource AncestorType=ListBox}}" />
                                     <TextBlock Grid.Row="1"
                                                Grid.Column="1"
                                                Text="{Binding Path=Path}" />

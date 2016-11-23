@@ -32,9 +32,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
             _vs = vs;
             _web = web;
 
-            Name = "CodeCloud";
-            Provider = "Code Cloud, Inc";
-            Description = "Powerful collaboration, code review, and code management for open source and private projects.";
+            Name = Strings.Common_Name;
+            Provider = Strings.Common_Provider;
+            Description = Strings.Common_Description;
 
             _loginCommand = new DelegateCommand(OnLogin);
             _signUpCommand = new DelegateCommand(OnSignUp);
@@ -48,7 +48,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
 
         private void LoadResources()
         {
-            Licenses.Add(string.Empty, "Add a license");
+            Licenses.Add(string.Empty, Strings.Common_ChooseALicense);
             SelectedLicense = string.Empty;
             foreach (var line in _git.GetLicenses())
             {
@@ -160,10 +160,30 @@ namespace CodeCloud.TeamFoundation.ViewModels
             set { SetProperty(ref _repositoryDescription, value); }
         }
 
+        public string LoginLabel
+        {
+            get { return Strings.Publish_Login; }
+        }
+
+        public string SignUpLabel
+        {
+            get { return Strings.Publish_SignUp; }
+        }
+
+        public string PublishLabel
+        {
+            get { return Strings.Publish_Publish; }
+        }
+
+        public string PrivateLabel
+        {
+            get { return Strings.Common_Private; }
+        }
+
         private void OnLogin()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-            _shell.ShowDialog("连接到码云", dialog);
+            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
         }
 
         public void OnLogined()
@@ -192,7 +212,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
             if (!_storage.IsLogined)
             {
                 var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-                _shell.ShowDialog("连接到码云", dialog);
+                _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
             }
 
             if (_storage.IsLogined)
@@ -216,11 +236,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
                     result = _web.CreateProject(RepositoryName, RepositoryDescription, IsPrivate);
                     if (result.Project != null)
                     {
-                        var path = _vs.GetActiveRepository();
-                        if (path == null)
-                        {
-                            path = _vs.GetSolutionPath();
-                        }
+                        var activeRepository = _vs.GetActiveRepository();
+
+                        var path = activeRepository == null ? _vs.GetSolutionPath() : activeRepository.Path;
 
                         var user = _storage.GetUser();
                         var password = _storage.GetPassword();

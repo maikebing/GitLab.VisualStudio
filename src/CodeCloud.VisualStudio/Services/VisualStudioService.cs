@@ -3,11 +3,8 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeCloud.VisualStudio.Services
 {
@@ -18,7 +15,7 @@ namespace CodeCloud.VisualStudio.Services
         public int IGitExt { get; private set; }
         public IServiceProvider ServiceProvider { get; set; }
 
-        public string GetActiveRepository()
+        public RepositoryInfo GetActiveRepository()
         {
             if (ServiceProvider == null)
             {
@@ -27,12 +24,16 @@ namespace CodeCloud.VisualStudio.Services
 
             var git = ServiceProvider.GetService<IGitExt>();
             var repo = git.ActiveRepositories.FirstOrDefault();
-            if (repo == null)
-            {
-                return null;
-            }
 
-            return repo.RepositoryPath;
+            if (repo != null)
+            {
+                return new RepositoryInfo
+                {
+                    Path = repo.RepositoryPath,
+                    Branch = repo.CurrentBranch.Name
+                };
+            }
+            return null;
         }
 
         public string GetSolutionPath()

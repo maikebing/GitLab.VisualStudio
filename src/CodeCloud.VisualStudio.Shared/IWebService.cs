@@ -34,16 +34,31 @@ namespace CodeCloud.VisualStudio.Shared
     {
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("path_with_namespace")]
         public string Path { get; set; }
+
         [JsonProperty("public")]
         public bool Public { get; set; }
+
         [JsonProperty("owner")]
         public User Owner { get; set; }
+
         [JsonProperty("fork?")]
         public bool Fork { get; set; }
+
+        [JsonProperty("issues_enabled")]
+        public bool IsIssueEnabled { get; set; }
+
+        [JsonProperty("pull_requests_enabled")]
+        public bool IsPullRequestsEnabled { get; set; }
+
+        [JsonProperty("wiki_enabled")]
+        public bool IsWikiEnabled { get; set; }
+
         public string Url
         {
             get { return $"https://git.oschina.net/{Path}.git"; }

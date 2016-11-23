@@ -1,14 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-    VS SDK Notes: This resx file contains the resources that will be consumed from your package by Visual Studio.
-    For example, Visual Studio will attempt to load resource '400' from this resource stream when it needs to
-    load your package's icon. Because Visual Studio will always look in the VSPackage.resources stream first for
-    resources it needs, you should put additional resources that Visual Studio will load directly into this resx 
-    file. 
-
-    Resources that you would like to access directly from your package in a strong-typed fashion should be stored 
-    in Resources.resx or another resx file.
--->
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -127,14 +117,108 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="110" xml:space="preserve">
-    <value>CodeCloud.VisualStudio</value>
+  <data name="CloneView_Search" xml:space="preserve">
+    <value>搜索</value>
   </data>
-  <data name="112" xml:space="preserve">
-    <value>A Visual Studio Extension that brings the CodeCloud Flow into Visual Studio.</value>
+  <data name="Common_Browse" xml:space="preserve">
+    <value>浏览</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="301" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\logo_32x32@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Common_ChooseAGitIgnore" xml:space="preserve">
+    <value>选择一个.gitignore</value>
+  </data>
+  <data name="Common_ChooseALicense" xml:space="preserve">
+    <value>选择一个协议</value>
+  </data>
+  <data name="Common_Clone" xml:space="preserve">
+    <value>克隆</value>
+  </data>
+  <data name="Common_CreateRepository" xml:space="preserve">
+    <value>创建仓库</value>
+  </data>
+  <data name="Common_Description" xml:space="preserve">
+    <value>Powerful collaboration, code review, and code management for open source and private projects.</value>
+  </data>
+  <data name="Common_GitIgnore" xml:space="preserve">
+    <value>Git ignore</value>
+  </data>
+  <data name="Common_License" xml:space="preserve">
+    <value>协议</value>
+  </data>
+  <data name="Common_Name" xml:space="preserve">
+    <value>CodeCloud</value>
+  </data>
+  <data name="Common_New" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="Common_Path" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="Common_Private" xml:space="preserve">
+    <value>私有</value>
+  </data>
+  <data name="Common_Property" xml:space="preserve">
+    <value>产权</value>
+  </data>
+  <data name="Common_Provider" xml:space="preserve">
+    <value>OSChina.Net</value>
+  </data>
+  <data name="Common_Quit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="Confirm_Quit" xml:space="preserve">
+    <value>确定要退出吗？</value>
+  </data>
+  <data name="CreateView_Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="CreateView_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Invitation_Connect" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="Invitation_SignUp" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Items_Attachments" xml:space="preserve">
+    <value>附件</value>
+  </data>
+  <data name="Items_Issues" xml:space="preserve">
+    <value>Issues</value>
+  </data>
+  <data name="Items_PullRequests" xml:space="preserve">
+    <value>Pull Requests</value>
+  </data>
+  <data name="Items_Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
+  <data name="Items_Wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
+  <data name="Login_ConnectTo" xml:space="preserve">
+    <value>连接到{0}</value>
+    <comment>0 = Common_Name</comment>
+  </data>
+  <data name="Publish_Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Publish_Publish" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="Publish_SignUp" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Publish_Title" xml:space="preserve">
+    <value>发布到{0}</value>
+    <comment>0 = Common_Name</comment>
+  </data>
+  <data name="Repository_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Repository_Path" xml:space="preserve">
+    <value>路径</value>
   </data>
 </root>

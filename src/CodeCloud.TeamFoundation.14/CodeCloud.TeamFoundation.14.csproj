@@ -85,15 +85,13 @@
     <Compile Include="Colors.cs" />
     <Compile Include="Connect\CodeCloudConnectSection.cs" />
     <Compile Include="Connect\CodeCloudInvitationSection.cs" />
+    <Compile Include="Home\AttachmentsNavigationItem.cs" />
     <Compile Include="Home\CodeCloudHomeSection.cs" />
-    <Compile Include="Home\GraphsNavigationItem.cs" />
-    <Compile Include="Home\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Home\CodeCloudNavigationItem.cs" />
     <Compile Include="Home\IssuesNavigationItem.cs" />
     <Compile Include="Home\PullRequestsNavigationItem.cs" />
+    <Compile Include="Home\StatisticsNavigationItem.cs" />
     <Compile Include="Services\TeamExplorerServices.cs" />
-    <Compile Include="Home\PulseNavigationItem.cs" />
     <Compile Include="Home\WikiNavigationItem.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Sync\CodeCloudPublishSection.cs" />
@@ -107,10 +105,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Home\HomeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\ConnectSectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,9 +122,6 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeCloud.VisualStudio.Shared\CodeCloud.VisualStudio.Shared.csproj">

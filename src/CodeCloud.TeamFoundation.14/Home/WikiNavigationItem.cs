@@ -1,27 +1,27 @@
 ﻿using CodeCloud.VisualStudio.Shared;
+using CodeCloud.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
-using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
-using System;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Media;
 
 namespace CodeCloud.TeamFoundation.Home
 {
-    [TeamExplorerNavigationItem(WikiNavigationItemId, NavigationItemPriority.Wiki)]
+    [TeamExplorerNavigationItem(Settings.WikiNavigationItemId, Settings.Wiki)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class WikiNavigationItem : TeamExplorerNavigationItemBase
+    public class WikiNavigationItem : CodeCloudNavigationItem
     {
-        public const string WikiNavigationItemId = "5245767A-B657-4F8E-BFEE-F04159F1DDA1";
-
-        readonly Lazy<IShellService> browser;
-
         [ImportingConstructor]
-        public WikiNavigationItem(Lazy<IShellService> browser)
+        public WikiNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
+           : base(Octicon.book, git, shell, storage, vs, ws)
         {
-            this.browser = browser;
-            Text = "Wiki";
-            this.IsVisible = true;
+            Text = Strings.Items_Wiki;
+        }
+
+        public override void Invalidate()
+        {
+            base.Invalidate();
+
+            IsVisible = IsVisible && Project.IsWikiEnabled;
         }
 
         protected override void SetDefaultColors()
@@ -31,7 +31,7 @@ namespace CodeCloud.TeamFoundation.Home
 
         public override void Execute()
         {
-            MessageBox.Show("Wiki");
+            OpenInBrowser("wikis");
         }
     }
 }
