@@ -148,8 +148,8 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 return;
             }
 
-            var activeRepository = _vs.GetActiveRepository();
-            if (activeRepository == null || string.Equals(repo.Path, activeRepository.Path, StringComparison.OrdinalIgnoreCase))
+            var solution = _vs.GetSolutionPath();
+            if (solution == null || !string.Equals(repo.Path, solution.TrimEnd('\\'), StringComparison.OrdinalIgnoreCase))
             {
                 _messenger.Send("OnOpenSolution", repo.Path);
             }
