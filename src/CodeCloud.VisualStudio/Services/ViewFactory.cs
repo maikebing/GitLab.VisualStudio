@@ -16,8 +16,8 @@ namespace CodeCloud.VisualStudio.Services
         [Import]
         private IMessenger _messenger;
 
-        [Import]
-        private IRegistry _registry;
+        //[Import]
+        //private IRegistry _registry;
 
         [Import]
         private IStorage _storage;
@@ -25,11 +25,11 @@ namespace CodeCloud.VisualStudio.Services
         [Import]
         private IShellService _shell;
 
-        [Import]
-        private ITeamExplorerServices _teamexplorer;
+        //[Import]
+        //private ITeamExplorerServices _teamexplorer;
 
-        [Import]
-        private IVisualStudioService _vs;
+        //[Import]
+        //private IVisualStudioService _vs;
 
         [Import]
         private IWebService _web;

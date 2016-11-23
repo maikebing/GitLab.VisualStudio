@@ -115,9 +115,6 @@
     <Compile Include="..\CodeCloud.TeamFoundation.14\Services\TeamExplorerServices.cs">
       <Link>Services\TeamExplorerServices.cs</Link>
     </Compile>
-    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\VisualStudioService.cs">
-      <Link>Services\VisualStudioService.cs</Link>
-    </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Settings.cs">
       <Link>Settings.cs</Link>
     </Compile>

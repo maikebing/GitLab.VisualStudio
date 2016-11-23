@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace CodeCloud.TeamFoundation.Services
+namespace CodeCloud.VisualStudio.Services
 {
     [Export(typeof(IVisualStudioService))]
     [PartCreationPolicy(CreationPolicy.Shared)]

@@ -93,7 +93,6 @@
     <Compile Include="Home\StatisticsNavigationItem.cs" />
     <Compile Include="Services\TeamExplorerServices.cs" />
     <Compile Include="Home\WikiNavigationItem.cs" />
-    <Compile Include="Services\VisualStudioService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Sync\CodeCloudPublishSection.cs" />
     <Compile Include="ViewModels\ConnectSectionViewModel.cs" />
