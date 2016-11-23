@@ -3,6 +3,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
@@ -13,6 +14,11 @@ namespace CodeCloud.VisualStudio.Services
     public class VisualStudioService : IVisualStudioService
     {
         public int IGitExt { get; private set; }
+
+        public IReadOnlyList<Project> Projects { get; set; }
+
+        public IEnumerable<Repository> Repositories { get; set; }
+
         public IServiceProvider ServiceProvider { get; set; }
 
         public RepositoryInfo GetActiveRepository()

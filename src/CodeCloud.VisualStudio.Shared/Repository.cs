@@ -1,6 +1,5 @@
 ﻿using CodeCloud.VisualStudio.Shared.Controls;
 using CodeCloud.VisualStudio.Shared.Helpers;
-using System.Collections.Generic;
 
 namespace CodeCloud.VisualStudio.Shared
 {
@@ -17,9 +16,5 @@ namespace CodeCloud.VisualStudio.Shared
         }
 
         public Octicon Icon { get; set; }
-    }
-    public interface IRegistry
-    {
-        IReadOnlyList<Repository> GetKnownRepositories();
     }
 }

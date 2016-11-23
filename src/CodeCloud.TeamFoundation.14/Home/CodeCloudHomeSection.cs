@@ -10,30 +10,19 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudHomeSection : TeamExplorerSectionBase
     {
-        private readonly ITeamExplorerServices _service;
-
-        private readonly IMessenger _messenger;
-        private readonly IRegistry _registry;
-        private readonly IShellService _shell;
-        private readonly IStorage _storage;
-        private readonly ITeamExplorerServices _teamexplorer;
-        private readonly IViewFactory _viewFactory;
         private readonly IVisualStudioService _vs;
-        private readonly IWebService _web;
 
         [ImportingConstructor]
-        public CodeCloudHomeSection(ITeamExplorerServices service, IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public CodeCloudHomeSection(IVisualStudioService vs)
         {
-            _service = service;
-
-            _messenger = messenger;
-            _registry = registry;
-            _shell = shell;
-            _storage = storage;
-            _teamexplorer = teamexplorer;
-            _viewFactory = viewFactory;
             _vs = vs;
-            _web = web;
+        }
+
+        public override void Initialize(object sender, SectionInitializeEventArgs e)
+        {
+            base.Initialize(sender, e);
+
+            _vs.ServiceProvider = ServiceProvider;
         }
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)

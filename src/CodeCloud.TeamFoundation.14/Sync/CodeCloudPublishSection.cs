@@ -57,9 +57,9 @@ namespace CodeCloud.TeamFoundation.Sync
 
         private bool IsCodeCloudRepo()
         {
-            var projects = _web.GetProjects();
+            var projects = _vs.Projects;
             var repo = _vs.GetActiveRepository();
-            if (repo == null)
+            if (repo == null || projects == null)
             {
                 return false;
             }

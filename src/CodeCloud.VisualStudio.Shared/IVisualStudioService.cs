@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CodeCloud.VisualStudio.Shared
 {
@@ -10,6 +11,10 @@ namespace CodeCloud.VisualStudio.Shared
 
     public interface IVisualStudioService
     {
+        IReadOnlyList<Project> Projects { get; set; }
+
+        IEnumerable<Repository> Repositories { get; set; }
+
         IServiceProvider ServiceProvider { get; set; }
         RepositoryInfo GetActiveRepository();
 

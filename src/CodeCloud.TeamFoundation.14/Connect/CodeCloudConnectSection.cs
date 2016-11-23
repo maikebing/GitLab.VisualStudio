@@ -16,7 +16,6 @@ namespace CodeCloud.TeamFoundation.Connect
     public class CodeCloudConnectSection : TeamExplorerSectionBase
     {
         private readonly IMessenger _messenger;
-        private readonly IRegistry _registry;
         private readonly IShellService _shell;
         private readonly IStorage _storage;
         private readonly ITeamExplorerServices _teamexplorer;
@@ -25,10 +24,9 @@ namespace CodeCloud.TeamFoundation.Connect
         private readonly IWebService _web;
 
         [ImportingConstructor]
-        public CodeCloudConnectSection(IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public CodeCloudConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
             _messenger = messenger;
-            _registry = registry;
             _shell = shell;
             _storage = storage;
             _teamexplorer = teamexplorer;
@@ -71,7 +69,7 @@ namespace CodeCloud.TeamFoundation.Connect
 
             if (view != null)
             {
-                view.DataContext = new ConnectSectionViewModel(_messenger, _registry, _shell, _storage, _teamexplorer, _viewFactory, _vs, _web);
+                view.DataContext = new ConnectSectionViewModel(_messenger, _shell, _storage, _teamexplorer, _viewFactory, _vs, _web);
             }
         }
 

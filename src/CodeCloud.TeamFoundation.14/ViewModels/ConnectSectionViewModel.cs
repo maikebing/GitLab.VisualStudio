@@ -1,4 +1,5 @@
-﻿using CodeCloud.VisualStudio.Shared;
+﻿using CodeCloud.TeamFoundation.Services;
+using CodeCloud.VisualStudio.Shared;
 using CodeCloud.VisualStudio.Shared.Helpers;
 using CodeCloud.VisualStudio.Shared.Helpers.Commands;
 using System;
@@ -16,7 +17,6 @@ namespace CodeCloud.TeamFoundation.ViewModels
         public ObservableCollection<Repository> Repositories { get; }
 
         private readonly IMessenger _messenger;
-        private readonly IRegistry _registry;
         private readonly IShellService _shell;
         private readonly IStorage _storage;
         private readonly ITeamExplorerServices _teamexplorer;
@@ -24,13 +24,12 @@ namespace CodeCloud.TeamFoundation.ViewModels
         private readonly IVisualStudioService _vs;
         private readonly IWebService _web;
 
-        public ConnectSectionViewModel(IMessenger messenger, IRegistry registry, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public ConnectSectionViewModel(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
             messenger.Register<string, Repository>("OnClone", OnRepositoryCloned);
 
             _messenger = messenger;
-            _registry = registry;
             _shell = shell;
             _storage = storage;
             _teamexplorer = teamexplorer;
@@ -38,7 +37,15 @@ namespace CodeCloud.TeamFoundation.ViewModels
             _vs = vs;
             _web = web;
 
-            Repositories = new ObservableCollection<Repository>();
+            if (_vs.Repositories == null)
+            {
+                Repositories = new ObservableCollection<Repository>();
+            }
+            else
+            {
+                Repositories = new ObservableCollection<Repository>(_vs.Repositories);
+            }
+
             Repositories.CollectionChanged += OnRepositoriesChanged;
 
             _signOutCommand = new DelegateCommand(OnSignOut);
@@ -166,7 +173,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 try
                 {
                     remotes = _web.GetProjects();
-                    known = _registry.GetKnownRepositories();
+                    known = Registry.GetKnownRepositories();
                 }
                 catch (Exception ex)
                 {
@@ -176,6 +183,8 @@ namespace CodeCloud.TeamFoundation.ViewModels
             {
                 if (error == null)
                 {
+                    _vs.Projects = remotes;
+
                     Repositories.Clear();
 
                     var activeRepository = _vs.GetActiveRepository();
@@ -206,6 +215,8 @@ namespace CodeCloud.TeamFoundation.ViewModels
                     }
 
                     valid.Each(o => Repositories.Add(o));
+
+                    _vs.Repositories = Repositories;
                 }
                 else
                 {

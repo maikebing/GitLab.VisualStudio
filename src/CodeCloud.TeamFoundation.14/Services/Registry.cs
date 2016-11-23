@@ -2,25 +2,19 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CodeCloud.VisualStudio.Services
+namespace CodeCloud.TeamFoundation.Services
 {
-    [Export(typeof(IRegistry))]
-    [PartCreationPolicy(CreationPolicy.Shared)]
-    public class Registry : IRegistry
+    public partial  class Registry
     {
-        const string TEGitKey = @"Software\Microsoft\VisualStudio\14.0\TeamFoundation\GitSourceControl";
         static RegistryKey OpenGitKey(string path)
         {
             return Microsoft.Win32.Registry.CurrentUser.OpenSubKey(TEGitKey + "\\" + path, true);
         }
 
-        public IReadOnlyList<Repository> GetKnownRepositories()
+        public static IReadOnlyList<Repository> GetKnownRepositories()
         {
             using (var key = OpenGitKey("Repositories"))
             {

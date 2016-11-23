@@ -69,7 +69,6 @@
     <Compile Include="Services\Credential.cs" />
     <Compile Include="Services\Messenger.cs" />
     <Compile Include="Helpers\PersistenceType.cs" />
-    <Compile Include="Services\Registry.cs" />
     <Compile Include="Services\Storage.cs" />
     <Compile Include="Services\ViewFactory.cs" />
     <Compile Include="Services\VisualStudioService.cs" />

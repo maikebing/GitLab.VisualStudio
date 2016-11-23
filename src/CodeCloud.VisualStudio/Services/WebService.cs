@@ -19,11 +19,6 @@ namespace CodeCloud.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class WebService : IWebService
     {
-#if DEBUG
-        const int CACHE_TIME_IN_SECONDS = 60;
-#else
-        const int CACHE_TIME_IN_SECONDS = 5;
-#endif
         [Import]
         private IStorage _storage;
 
@@ -35,8 +30,6 @@ namespace CodeCloud.VisualStudio.Services
             return request;
         }
 
-        private IReadOnlyList<Project> _cached;
-        private DateTime _cachedTime;
         public IReadOnlyList<Project> GetProjects()
         {
             var user = _storage.GetUser();
@@ -45,30 +38,23 @@ namespace CodeCloud.VisualStudio.Services
                 throw new Exception("Not login yet");
             }
 
-            if (_cached == null || (DateTime.Now - _cachedTime) > TimeSpan.FromSeconds(CACHE_TIME_IN_SECONDS))
+            var result = new List<Project>();
+
+            var page = 1;
+            while (true)
             {
-                var result = new List<Project>();
-
-                var page = 1;
-                while (true)
+                var projects = GetProjectsOfPage(page, user.Token);
+                if (!projects.Any())
                 {
-                    var projects = GetProjectsOfPage(page, user.Token);
-                    if (!projects.Any())
-                    {
-                        break;
-                    }
-
-                    page++;
-
-                    result.AddRange(projects);
+                    break;
                 }
 
-                _cached = result;
-                _cachedTime = DateTime.Now;
-                return result;
+                page++;
+
+                result.AddRange(projects);
             }
 
-            return _cached;
+            return result;
         }
 
         private IReadOnlyList<Project> GetProjectsOfPage(int page, string token)

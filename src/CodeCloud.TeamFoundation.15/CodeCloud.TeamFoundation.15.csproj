@@ -112,6 +112,9 @@
     <Compile Include="..\CodeCloud.TeamFoundation.14\Home\WikiNavigationItem.cs">
       <Link>Home\WikiNavigationItem.cs</Link>
     </Compile>
+    <Compile Include="..\CodeCloud.TeamFoundation.14\Services\Registry.cs">
+      <Link>Services\Registry.cs</Link>
+    </Compile>
     <Compile Include="..\CodeCloud.TeamFoundation.14\Services\TeamExplorerServices.cs">
       <Link>Services\TeamExplorerServices.cs</Link>
     </Compile>
@@ -135,6 +138,7 @@
       <Link>Views\PublishSectionView.xaml.cs</Link>
       <DependentUpon>PublishSectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Registry.key.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\CodeCloud.TeamFoundation.14\Views\ConnectSectionView.xaml">

@@ -91,6 +91,10 @@
     <Compile Include="Home\IssuesNavigationItem.cs" />
     <Compile Include="Home\PullRequestsNavigationItem.cs" />
     <Compile Include="Home\StatisticsNavigationItem.cs" />
+    <Compile Include="Services\Registry.cs" />
+    <Compile Include="Services\Registry.key.cs">
+      <DependentUpon>Registry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\TeamExplorerServices.cs" />
     <Compile Include="Home\WikiNavigationItem.cs" />
     <Compile Include="Settings.cs" />
