@@ -35,7 +35,7 @@ namespace CodeCloud.VisualStudio.Services
             var user = _storage.GetUser();
             if (user == null)
             {
-                throw new Exception("Not login yet");
+                throw new UnauthorizedAccessException("Not login yet");
             }
 
             var result = new List<Project>();
@@ -117,7 +117,7 @@ namespace CodeCloud.VisualStudio.Services
             var user = _storage.GetUser();
             if (user == null)
             {
-                throw new Exception("Not login yet");
+                throw new UnauthorizedAccessException("Not login yet");
             }
 
             var result = new CreateResult();

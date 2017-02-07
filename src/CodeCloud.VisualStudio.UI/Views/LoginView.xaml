@@ -65,15 +65,15 @@
                 <RowDefinition Height="55" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="55" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="80" />
+                <!--<RowDefinition Height="auto" />-->
+                <!--<RowDefinition Height="80" />-->
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <controls:IconedTextBox x:Name="UsernameTextBox"
                                     Height="40"
                                     VerticalAlignment="Top"
                                     Icon="/CodeCloud.VisualStudio.UI;component/Resources/images/user.png"
-                                    Wartermark="Email"
+                                    Wartermark="邮箱"
                                     Text="{Binding Email}" />
             <controls:IconedTextBox x:Name="PasswordTextBox"
                                     Height="40"
@@ -81,11 +81,11 @@
                                     IsPassword="True"
                                     VerticalAlignment="Top"
                                     Icon="/CodeCloud.VisualStudio.UI;component/Resources/Images/password.png"
-                                    Wartermark="Password"
+                                    Wartermark="密码"
                                     Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="2"
-                    Content="Forgot password?"
+                    Content="忘记密码?"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="0,0,0,15"
@@ -96,7 +96,7 @@
                     Foreground="#ffffff"
                     FontWeight="Bold"
                     FontSize="14"
-                    Content="Sign in"
+                    Content="登陆"
                     VerticalAlignment="Top"
                     Grid.Row="3"
                     Command="{Binding LoginCommand}">
@@ -143,10 +143,12 @@
                        VerticalAlignment="Bottom"
                        Foreground="#888"
                        FontSize="15"
+                       Visibility="Hidden"
                        Text="Login in using any of the following services:" />
 
             <StackPanel Orientation="Horizontal"
-                        Grid.Row="5">
+                        Grid.Row="5"
+                        Visibility="Hidden">
                 <StackPanel.Resources>
                     <Style TargetType="Button">
                         <Setter Property="Background"
@@ -182,13 +184,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Command="{Binding ActiveAccountCommand}"
-                    Content="Resend email to active acccount" />
+                    Content="重发邮件以激活账号" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="6"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Command="{Binding SignupCommand}"
-                    Content="Sign up" />
+                    Content="注册" />
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

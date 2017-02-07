@@ -30,56 +30,16 @@ namespace CodeCloud.TeamFoundation.Home
             m_icon = SharedResources.GetDrawingForIcon(icon, brush);
         }
 
-        protected Project Project
-        {
-            get { return _project; }
-        }
-
-        protected string Branch
-        {
-            get { return _branch; }
-        }
-
         public override void Invalidate()
         {
-            IsVisible = IsCodeCloudRepo();
-        }
-
-        private bool IsCodeCloudRepo()
-        {
-            var projects = _vs.Projects;
-            var repo = _vs.GetActiveRepository();
-            if (repo == null || projects == null)
-            {
-                return false;
-            }
-
-            var path = repo.Path;
-            var url = _git.GetRemote(path);
-
-            var visible = false;
-
-            foreach (var project in projects)
-            {
-                if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
-                {
-                    visible = true;
-
-                    _project = project;
-                    _branch = repo.Branch;
-
-                    break;
-                }
-            }
-
-            return visible;
+            IsVisible = _vs.IsCodeCloudProject;
         }
 
         protected void OpenInBrowser(string endpoint)
         {
             var user = _storage.GetUser();
 
-            var url = $"https://git.oschina.net/{user.Username}/{_project.Name}/{endpoint}";
+            var url = $"https://git.oschina.net/{user.Username}/{_vs.Current.Name}/{endpoint}";
 
             _shell.OpenUrl(url);
         }

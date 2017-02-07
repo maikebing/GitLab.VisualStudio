@@ -1,7 +1,6 @@
 ﻿using CodeCloud.VisualStudio.Shared;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -13,55 +12,65 @@ namespace CodeCloud.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class VisualStudioService : IVisualStudioService
     {
+        [Import]
+        private IGitService _git;
+
+        [Import]
+        private ITeamExplorerServices _tes;
+
         public int IGitExt { get; private set; }
+        public string Branch { get; private set; }
+        public Project Current { get; private set; }
+
+        public bool IsCodeCloudProject { get; private set; }
 
         public IReadOnlyList<Project> Projects { get; set; }
 
         public IEnumerable<Repository> Repositories { get; set; }
 
-        public IServiceProvider ServiceProvider { get; set; }
+        private IServiceProvider _serviceProvider;
 
-        public RepositoryInfo GetActiveRepository()
+        public event Action SolutionChanged;
+
+        public IServiceProvider ServiceProvider
         {
-            if (ServiceProvider == null)
+            get
             {
-                return null;
+                return _serviceProvider;
             }
-
-            var git = ServiceProvider.GetService<IGitExt>();
-            var repo = git.ActiveRepositories.FirstOrDefault();
-
-            if (repo != null)
+            set
             {
-                return new RepositoryInfo
-                {
-                    Path = repo.RepositoryPath,
-                    Branch = repo.CurrentBranch.Name
-                };
+                _serviceProvider = value;
+
+                IsCodeCloudProject = CheckIsCodeCloudProject();
             }
-            return null;
         }
 
-        public string GetSolutionPath()
+        private bool CheckIsCodeCloudProject()
         {
-            if (ServiceProvider == null)
+            var repo = _tes.GetActiveRepository();
+            if (repo == null || Projects == null)
             {
-                return null;
-            }
-            var solution = (IVsSolution)ServiceProvider.GetService(typeof(SVsSolution));
-
-            string solutionDir, solutionFile, userFile;
-            if (!ErrorHandler.Succeeded(solution.GetSolutionInfo(out solutionDir, out solutionFile, out userFile)))
-            {
-                return null;
+                return false;
             }
 
-            if (solutionDir == null)
+            var path = repo.Path;
+            var url = _git.GetRemote(path);
+
+            foreach (var project in Projects)
             {
-                return null;
+                if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
+                {
+                    Current = project;
+                    Branch = repo.Branch;
+
+                    SolutionChanged?.Invoke();
+
+                    return true;
+                }
             }
 
-            return solutionDir;
+            return false;
         }
     }
 }

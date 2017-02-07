@@ -10,10 +10,13 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class IssuesNavigationItem : CodeCloudNavigationItem
     {
+        private readonly IVisualStudioService _vs;
+
         [ImportingConstructor]
         public IssuesNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
            : base(Octicon.issue_opened, git, shell, storage, vs, ws)
         {
+            _vs = vs;
             Text = Strings.Items_Issues;
         }
 
@@ -26,7 +29,7 @@ namespace CodeCloud.TeamFoundation.Home
         {
             base.Invalidate();
 
-            IsVisible = IsVisible && Project.IsIssueEnabled;
+            IsVisible = IsVisible && _vs.Current.IsIssueEnabled;
         }
 
         public override void Execute()

@@ -67,32 +67,26 @@
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsMouseOver"
-                                                   Value="True" />
+                                        <Condition Property="IsMouseOver" Value="True"/>
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Background"
-                                            Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarHoverKey}}" />
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarHoverKey}}" />
                                 </MultiTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="Selector.IsSelectionActive"
-                                                   Value="True" />
-                                        <Condition Property="IsSelected"
-                                                   Value="True" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                        <Condition Property="IsSelected" Value="True"/>
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Background"
-                                            Value="#FF3399FF" />
+                                    <Setter Property="Background" Value="{DynamicResource SelectedItemBackground}" />
                                 </MultiTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="Selector.IsSelectionActive"
-                                                   Value="True" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                        <Condition Property="IsSelected" Value="True"/>
                                     </MultiTrigger.Conditions>
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static shell:VsBrushes.InactiveBorderKey}}" />
                                 </MultiTrigger>
-                                <Trigger Property="IsEnabled"
-                                         Value="False">
-                                    <Setter Property="Opacity"
-                                            Value="0.3" />
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.3"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -102,10 +96,8 @@
 
             <Style x:Key="VerticalSeparator"
                    TargetType="{x:Type Separator}">
-                <!--<Setter Property="Background"
-                        Value="{DynamicResource GitHubHeaderSeparatorBrush}" />-->
                 <Setter Property="Background"
-                        Value="Pink" />
+                        Value="{DynamicResource {x:Static shell:VsBrushes.GrayTextKey}}" />
                 <Setter Property="Margin"
                         Value="3,0,3,0" />
                 <Setter Property="LayoutTransform">
@@ -117,19 +109,43 @@
 
             <Style x:Key="RepoNameStyle"
                    TargetType="{x:Type TextBlock}">
-                <!--<Setter Property="Foreground"
-                        Value="{DynamicResource GitHubVsToolWindowText}" />-->
                 <Setter Property="Foreground"
-                        Value="Red" />
+                        Value="{DynamicResource {x:Static shell:VsBrushes.CaptionTextKey}}" />
                 <Setter Property="Margin"
                         Value="0,0,6,3" />
                 <Setter Property="Text"
                         Value="{Binding Name}" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsActived}"
-                                 Value="True">
-                        <Setter Property="TextBlock.FontWeight"
-                                Value="Bold" />
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                       Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsFocused}"
+                                       Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <!--<Setter Property="Foreground"
+                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
+                                       Value="true" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                       Value="False" />
+                        </MultiDataTrigger.Conditions>
+                        <!--<Setter Property="Foreground"
+                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
+                    </MultiDataTrigger>
+                    <DataTrigger Value="True"
+                                 Binding="{Binding IsActived}">
+                        <!--<Setter Property="Foreground"
+                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                        <!--<Setter Property="Foreground"
+                                Value="#000000" />-->
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -149,35 +165,25 @@
                 <Style.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
-                                       Value="True" />
-                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsFocused}"
-                                       Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}" Value="True"/>
                         </MultiDataTrigger.Conditions>
-                        <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
-                        <Setter Property="Foreground"
-                                Value="{DynamicResource {x:Static shell:VsBrushes.HighlightTextKey}}" />
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
                     </MultiDataTrigger>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}"
-                                       Value="true" />
-                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
-                                       Value="False" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsMouseOver}" Value="true" />
                         </MultiDataTrigger.Conditions>
-                        <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
-                        <Setter Property="Foreground"
-                                Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarTextHoverKey}}" />
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
                     </MultiDataTrigger>
-                    <DataTrigger Value="True"
-                                 Binding="{Binding IsActived}">
-                        <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
-                        <!--<Setter Property="Foreground"
-                                Value="#000000" />-->
-                    </DataTrigger>
+                    <!--<DataTrigger Value="True">
+                        <DataTrigger.Binding>
+                            <MultiBinding Converter="{StaticResource IsCurrentRepositoryConverter}" ConverterParameter="IsCurrentRepository">
+                                <Binding/>
+                                <Binding Path="ViewModel" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:GitHubConnectContent}}" />
+                            </MultiBinding>
+                        </DataTrigger.Binding>
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
+                    </DataTrigger>-->
                 </Style.Triggers>
             </Style>
         </ResourceDictionary>
@@ -255,7 +261,7 @@
         </DockPanel.Resources>
         <WrapPanel Orientation="Horizontal"
                    Margin="6,0,0,6"
-                   DockPanel.Dock="Top">
+                   DockPanel.Dock="Top" VerticalAlignment="Center">
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="0"
                     Command="{Binding CloneCommand}"
@@ -272,6 +278,7 @@
                     KeyboardNavigation.TabIndex="2"
                     Command="{Binding SignOutCommand}"
                     Content="{Binding QuitLabel}" />
+            <!--<Button Content="test" Click="Button_Click" />-->
         </WrapPanel>
 
         <ListView ItemsSource="{Binding Repositories}"
@@ -313,7 +320,7 @@
                                                Margin="11,1,6,1"
                                                Width="16"
                                                Height="16"
-                                               Foreground="Red"
+                                               Foreground="#F05033"
                                                Icon="{Binding Path=Icon}" />
                         <!--<TextBlock       Grid.Column="1"
                                          Style="{StaticResource RepoNameStyle}" />-->

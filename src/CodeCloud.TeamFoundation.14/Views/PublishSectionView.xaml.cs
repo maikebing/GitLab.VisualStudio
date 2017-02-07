@@ -1,8 +1,10 @@
 ﻿using CodeCloud.TeamFoundation.ViewModels;
 using CodeCloud.VisualStudio.Shared;
 using System;
+using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
+using System.Windows.Media.Imaging;
 
 namespace CodeCloud.TeamFoundation.Views
 {
@@ -20,6 +22,11 @@ namespace CodeCloud.TeamFoundation.Views
         public PublishSectionView()
         {
             InitializeComponent();
+
+            var assembly = Assembly.GetExecutingAssembly().GetName().Name;
+            var bi = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute)); ;
+
+            octokit.Source = bi;
         }
     }
 }

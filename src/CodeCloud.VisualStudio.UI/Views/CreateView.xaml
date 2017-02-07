@@ -34,22 +34,20 @@
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <Label Content="Name"
+            <Label Content="名称"
                    VerticalAlignment="Center" />
-            <controls:IconedTextBox x:Name="UsernameTextBox"
-                                    Grid.Column="1"
+            <controls:IconedTextBox Grid.Column="1"
                                     Height="40"
                                     VerticalAlignment="Top"
-                                    Wartermark="Name"
+                                    Wartermark="名称"
                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Description"
+            <Label Content="描述"
                    Grid.Row="2" />
-            <controls:IconedTextBox x:Name="PasswordTextBox"
-                                    Grid.Row="2"
+            <controls:IconedTextBox Grid.Row="2"
                                     Grid.Column="1"
                                     VerticalContentAlignment="Top"
-                                    Wartermark="Awesome project(optional)"
+                                    Wartermark="这是个很酷的项目(可选)"
                                     Text="{Binding Description}"
                                     TextWrapping="Wrap"
                                     AcceptsReturn="True"
@@ -66,7 +64,7 @@
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedGitIgnore}" />
 
-            <Label Content="License"
+            <Label Content="协议"
                    Grid.Row="4" />
             <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="4"
@@ -77,17 +75,17 @@
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedLicense}" />
 
-            <Label Content="Property"
+            <Label Content="所有权"
                    Grid.Row="5"
                    VerticalAlignment="Center" />
             <CheckBox Grid.Row="5"
-                      Content="private?"
+                      Content="私有?"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsPrivate}"
                       Grid.Column="1"
                       Margin="0,7" />
 
-            <Label Content="Path"
+            <Label Content="路径"
                    Grid.Row="6"
                    VerticalAlignment="Center" />
             <DockPanel Grid.Row="6"
@@ -107,10 +105,10 @@
                         VerticalAlignment="Center"
                         Margin="0,17,0,18">
                 <Button Width="60"
-                        Content="New"
+                        Content="创建"
                         Command="{Binding NewCommand}" />
                 <Button Width="60"
-                        Content="Cancel"
+                        Content="取消"
                         Margin="10,0,0,0"
                         Click="OnCancel" />
             </StackPanel>

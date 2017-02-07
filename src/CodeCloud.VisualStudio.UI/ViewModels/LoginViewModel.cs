@@ -40,16 +40,16 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
         }
 
         private string _email;
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "邮箱地址为必填")]
+        [EmailAddress(ErrorMessage = "不是合法的邮箱地址")]
         public string Email
         {
             get { return _email; }
             set { SetProperty(ref _email, value); }
         }
 
-        [Required]
-        [MinLength(6)]
+        [Required(ErrorMessage = "密码为必填")]
+        [MinLength(6, ErrorMessage ="密码至少为6位")]
         public string Password
         {
             get { return _mediator?.Password; }

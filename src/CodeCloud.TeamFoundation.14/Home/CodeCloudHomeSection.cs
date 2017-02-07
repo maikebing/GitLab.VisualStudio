@@ -1,7 +1,9 @@
-﻿using CodeCloud.VisualStudio.Shared;
+﻿using CodeCloud.TeamFoundation.Views;
+using CodeCloud.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CodeCloud.TeamFoundation.Home
@@ -23,14 +25,14 @@ namespace CodeCloud.TeamFoundation.Home
             base.Initialize(sender, e);
 
             _vs.ServiceProvider = ServiceProvider;
+
+            IsVisible = _vs.IsCodeCloudProject;
         }
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {
             var temp = new TeamExplorerSectionViewModelBase();
             temp.Title = Strings.Common_Name;
-
-            IsVisible = true;
 
             return temp;
         }

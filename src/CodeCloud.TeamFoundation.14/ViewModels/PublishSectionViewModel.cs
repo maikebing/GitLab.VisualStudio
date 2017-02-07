@@ -1,8 +1,10 @@
 ﻿using CodeCloud.VisualStudio.Shared;
 using CodeCloud.VisualStudio.Shared.Helpers;
 using CodeCloud.VisualStudio.Shared.Helpers.Commands;
+using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -236,9 +238,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
                     result = _web.CreateProject(RepositoryName, RepositoryDescription, IsPrivate);
                     if (result.Project != null)
                     {
-                        var activeRepository = _vs.GetActiveRepository();
+                        var activeRepository = _tes.GetActiveRepository();
 
-                        var path = activeRepository == null ? _vs.GetSolutionPath() : activeRepository.Path;
+                        var path = activeRepository == null ? _tes.GetSolutionPath() : activeRepository.Path;
 
                         var user = _storage.GetUser();
                         var password = _storage.GetPassword();

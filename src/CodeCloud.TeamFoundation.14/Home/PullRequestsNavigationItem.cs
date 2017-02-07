@@ -11,11 +11,13 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class PullRequestsNavigationItem : CodeCloudNavigationItem
     {
+        private readonly IVisualStudioService _vs;
 
         [ImportingConstructor]
         public PullRequestsNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
            : base(Octicon.git_pull_request, git, shell, storage, vs, ws)
         {
+            _vs = vs;
             Text = Strings.Items_PullRequests;
         }
 
@@ -23,7 +25,7 @@ namespace CodeCloud.TeamFoundation.Home
         {
             base.Invalidate();
 
-            IsVisible = IsVisible && Project.IsPullRequestsEnabled;
+            IsVisible = IsVisible && _vs.Current.IsPullRequestsEnabled;
         }
 
         protected override void SetDefaultColors()

@@ -14,5 +14,7 @@ namespace CodeCloud.VisualStudio.Shared
     {
         void ShowPublishSection();
         void ClearNotifications();
+        RepositoryInfo GetActiveRepository();
+        string GetSolutionPath();
     }
 }

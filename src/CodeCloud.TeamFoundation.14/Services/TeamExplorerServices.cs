@@ -1,9 +1,13 @@
 using CodeCloud.TeamFoundation.Sync;
 using CodeCloud.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Windows.Input;
 
 namespace CodeCloud.TeamFoundation
@@ -65,5 +69,58 @@ namespace CodeCloud.TeamFoundation
             manager = serviceProvider.TryGetService<ITeamExplorer>() as ITeamExplorerNotificationManager;
             manager?.ClearNotifications();
         }
+        public RepositoryInfo GetActiveRepository()
+        {
+            if (serviceProvider == null)
+            {
+                return null;
+            }
+
+            var git = serviceProvider.GetService<IGitExt>();
+            if (git == null)
+            {
+                throw new Exception("git is null");
+            }
+
+            if (git.ActiveRepositories == null)
+            {
+                throw new Exception("git.activeRepositories is null");
+            }
+
+            var repo = git.ActiveRepositories.FirstOrDefault();
+
+            if (repo != null)
+            {
+                return new RepositoryInfo
+                {
+                    Path = repo.RepositoryPath,
+                    Branch = repo.CurrentBranch.Name
+                };
+            }
+            return null;
+        }
+
+        public string GetSolutionPath()
+        {
+            if (serviceProvider == null)
+            {
+                return null;
+            }
+            var solution = (IVsSolution)serviceProvider.GetService(typeof(SVsSolution));
+
+            string solutionDir, solutionFile, userFile;
+            if (!ErrorHandler.Succeeded(solution.GetSolutionInfo(out solutionDir, out solutionFile, out userFile)))
+            {
+                return null;
+            }
+
+            if (solutionDir == null)
+            {
+                return null;
+            }
+
+            return solutionDir;
+        }
+
     }
 }

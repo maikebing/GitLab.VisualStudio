@@ -155,7 +155,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 return;
             }
 
-            var solution = _vs.GetSolutionPath();
+            var solution = _teamexplorer.GetSolutionPath();
             if (solution == null || !string.Equals(repo.Path, solution.TrimEnd('\\'), StringComparison.OrdinalIgnoreCase))
             {
                 _messenger.Send("OnOpenSolution", repo.Path);
@@ -167,7 +167,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
             IReadOnlyList<Repository> known = null;
             IReadOnlyList<Project> remotes = null;
 
-            string error = null;
+            Exception ex = null;
             Task.Run(() =>
             {
                 try
@@ -175,19 +175,19 @@ namespace CodeCloud.TeamFoundation.ViewModels
                     remotes = _web.GetProjects();
                     known = Registry.GetKnownRepositories();
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    error = ex.Message;
+                    ex = e;
                 }
             }).ContinueWith(task =>
             {
-                if (error == null)
+                if (ex == null)
                 {
                     _vs.Projects = remotes;
 
                     Repositories.Clear();
 
-                    var activeRepository = _vs.GetActiveRepository();
+                    var activeRepository = _teamexplorer.GetActiveRepository();
 
                     var valid = new List<Repository>();
 
@@ -218,9 +218,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
 
                     _vs.Repositories = Repositories;
                 }
-                else
+                else if (!(ex is UnauthorizedAccessException))
                 {
-                    _teamexplorer.ShowMessage(error);
+                    _teamexplorer.ShowMessage(ex.Message);
                 }
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
