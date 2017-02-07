@@ -44,7 +44,7 @@ namespace CodeCloud.TeamFoundation.Connect
         {
             var temp = new TeamExplorerSectionViewModelBase
             {
-                Title = Strings.Common_Name
+                Title = Strings.Name
             };
 
             return temp;

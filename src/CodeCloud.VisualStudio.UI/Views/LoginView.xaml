@@ -73,7 +73,7 @@
                                     Height="40"
                                     VerticalAlignment="Top"
                                     Icon="/CodeCloud.VisualStudio.UI;component/Resources/images/user.png"
-                                    Wartermark="邮箱"
+                                    Wartermark="{x:Static shared:Strings.Login_Email}"
                                     Text="{Binding Email}" />
             <controls:IconedTextBox x:Name="PasswordTextBox"
                                     Height="40"
@@ -81,11 +81,11 @@
                                     IsPassword="True"
                                     VerticalAlignment="Top"
                                     Icon="/CodeCloud.VisualStudio.UI;component/Resources/Images/password.png"
-                                    Wartermark="密码"
+                                    Wartermark="{x:Static shared:Strings.Login_Password}"
                                     Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="2"
-                    Content="忘记密码?"
+                    Content="{x:Static shared:Strings.Login_ForgetPassword}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="0,0,0,15"
@@ -96,7 +96,7 @@
                     Foreground="#ffffff"
                     FontWeight="Bold"
                     FontSize="14"
-                    Content="登陆"
+                    Content="{x:Static shared:Strings.Login_Login}"
                     VerticalAlignment="Top"
                     Grid.Row="3"
                     Command="{Binding LoginCommand}">
@@ -184,13 +184,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Command="{Binding ActiveAccountCommand}"
-                    Content="重发邮件以激活账号" />
+                    Content="{x:Static shared:Strings.Login_ReSendEmail}" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="6"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Command="{Binding SignupCommand}"
-                    Content="注册" />
+                    Content="{x:Static shared:Strings.Login_SignUp}" />
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

@@ -40,7 +40,7 @@ namespace CodeCloud.TeamFoundation.Sync
         {
             var temp = new TeamExplorerSectionViewModelBase
             {
-                Title = string.Format(Strings.Publish_Title, Strings.Common_Name)
+                Title = string.Format(Strings.Publish_Title, Strings.Name)
             };
 
             return temp;
@@ -50,7 +50,7 @@ namespace CodeCloud.TeamFoundation.Sync
         {
             base.Initialize(sender, e);
 
-            IsVisible = _storage.IsLogined && !IsCodeCloudRepo();
+            IsVisible = !IsCodeCloudRepo();
 
             _vs.ServiceProvider = ServiceProvider;
         }

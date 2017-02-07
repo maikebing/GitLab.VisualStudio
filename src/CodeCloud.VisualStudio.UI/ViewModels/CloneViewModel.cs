@@ -137,7 +137,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    error = "加载失败";
+                    error = Strings.CloneView_FailedToLoadProjects;
                 }
             }).ContinueWith(task =>
             {
@@ -148,7 +148,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
                 {
                     if (loaded == null)
                     {
-                        Message = "No repository";
+                        Message = Strings.CloneView_NoProjects;
                     }
                     else
                     {
@@ -171,106 +171,6 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
         private IReadOnlyList<Project> LoadRepositories()
         {
             return _web.GetProjects();
-        }
-
-        private IReadOnlyList<Project> LoadRepositories2()
-        {
-            var repositories = new List<Project>();
-
-            var hongfei = new User
-            {
-                Name = "Jiang Hongfei",
-                Avatar = "https://avatars0.githubusercontent.com/u/304166?v=3&s=40"
-            };
-
-            var jie = new User
-            {
-                Name = "Sun Jie",
-                Avatar = "https://avatars0.githubusercontent.com/u/13102552?v=3&s=40"
-            };
-
-            repositories.Add(new Project
-            {
-                Name = "AAA",
-                Owner = hongfei,
-                Public = false,
-                Fork = false
-            });
-
-            repositories.Add(new Project
-            {
-                Name = "BBB",
-                Owner = hongfei,
-                Public = true,
-                Fork = true
-            });
-
-            repositories.Add(new Project
-            {
-                Name = "CCC",
-                Owner = hongfei,
-                Public = false,
-                Fork = true
-            });
-
-            repositories.Add(new Project
-            {
-                Name = "DDD",
-                Owner = hongfei,
-                Public = true,
-                Fork = false
-            });
-
-            repositories.Add(new Project
-            {
-                Name = "EEE",
-                Owner = hongfei,
-                Public = true,
-                Fork = true
-            });
-
-            /* ------------------------------------ */
-            //repositories.Add(new Repository
-            //{
-            //    Name = "AAA",
-            //    Owner = jie,
-            //    Public = false,
-            //    Fork = false
-            //});
-
-            //repositories.Add(new Repository
-            //{
-            //    Name = "BBB",
-            //    Owner = jie,
-            //    Public = false,
-            //    Fork = true
-            //});
-
-            //repositories.Add(new Repository
-            //{
-            //    Name = "CCC",
-            //    Owner = jie,
-            //    Public = true,
-            //    Fork = false
-            //});
-
-            //repositories.Add(new Repository
-            //{
-            //    Name = "DDD",
-            //    Owner = jie,
-            //    Public = true,
-            //    Fork = true
-            //});
-
-            //repositories.Add(new Repository
-            //{
-            //    Name = "EEE",
-            //    Owner = hongfei,
-            //    Public = false,
-            //    Fork = true
-            //});
-
-            return repositories;
         }
     }
 }

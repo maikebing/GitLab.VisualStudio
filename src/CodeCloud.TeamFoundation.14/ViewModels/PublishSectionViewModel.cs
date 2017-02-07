@@ -34,16 +34,17 @@ namespace CodeCloud.TeamFoundation.ViewModels
             _vs = vs;
             _web = web;
 
-            Name = Strings.Common_Name;
-            Provider = Strings.Common_Provider;
-            Description = Strings.Common_Description;
+            Name = Strings.Name;
+            Provider = Strings.Provider;
+            Description = Strings.Description;
 
             _loginCommand = new DelegateCommand(OnLogin);
             _signUpCommand = new DelegateCommand(OnSignUp);
             _getStartedCommand = new DelegateCommand(OnGetStarted);
             _publishCommand = new DelegateCommand(OnPublish, CanPublish);
 
-            ShowGetStarted = true;
+            ShowGetStarted = storage.IsLogined;
+
             //IsStarted = true;
             LoadResources();
         }
@@ -162,37 +163,19 @@ namespace CodeCloud.TeamFoundation.ViewModels
             set { SetProperty(ref _repositoryDescription, value); }
         }
 
-        public string LoginLabel
-        {
-            get { return Strings.Publish_Login; }
-        }
-
-        public string SignUpLabel
-        {
-            get { return Strings.Publish_SignUp; }
-        }
-
-        public string PublishLabel
-        {
-            get { return Strings.Publish_Publish; }
-        }
-
-        public string PrivateLabel
-        {
-            get { return Strings.Common_Private; }
-        }
 
         private void OnLogin()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
+            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Name), dialog);
         }
 
         public void OnLogined()
         {
             OnPropertyChanged(nameof(ShowLogin));
             OnPropertyChanged(nameof(ShowSignUp));
-            OnPropertyChanged(nameof(ShowGetStarted));
+
+            ShowGetStarted = true;
         }
 
         public void OnSignOuted()
@@ -200,8 +183,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
             OnPropertyChanged(nameof(ShowLogin));
             OnPropertyChanged(nameof(ShowSignUp));
 
-
-            ShowGetStarted = true;
+            ShowGetStarted = false;
         }
 
         private void OnSignUp()
@@ -214,7 +196,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
             if (!_storage.IsLogined)
             {
                 var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-                _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
+                _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Name), dialog);
             }
 
             if (_storage.IsLogined)

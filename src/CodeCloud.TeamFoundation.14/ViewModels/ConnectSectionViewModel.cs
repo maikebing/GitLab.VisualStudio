@@ -102,34 +102,9 @@ namespace CodeCloud.TeamFoundation.ViewModels
             get { return Repositories.Count > 0; }
         }
 
-        public string CloneLabel
-        {
-            get { return Strings.Common_Clone; }
-        }
-
-        public string CreateLabel
-        {
-            get { return Strings.Common_CreateRepository; }
-        }
-
-        public string QuitLabel
-        {
-            get { return Strings.Common_Quit; }
-        }
-
-        public string NameLabel
-        {
-            get { return Strings.Repository_Name + ":"; }
-        }
-
-        public string PathLabel
-        {
-            get { return Strings.Repository_Path + ":"; }
-        }
-
         private void OnSignOut()
         {
-            if (MessageBox.Show(Strings.Confirm_Quit, Strings.Common_Quit + Strings.Common_Name, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(Strings.Confirm_Quit, $"{Strings.Common_Quit} {Strings.Name}", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 _storage.Erase();
                 _messenger.Send("OnSignOuted");

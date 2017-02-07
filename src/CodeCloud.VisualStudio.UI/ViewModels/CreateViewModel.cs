@@ -45,14 +45,14 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
 
         private void LoadResources()
         {
-            GitIgnores.Add(string.Empty, "Add .gitignore");
+            GitIgnores.Add(string.Empty, Strings.Common_ChooseAGitIgnore);
             SelectedGitIgnore = string.Empty;
             foreach (var line in _git.GetGitIgnores())
             {
                 GitIgnores.Add(line, $"{line} - .gitignore");
             }
 
-            Licenses.Add(string.Empty, "Add a license");
+            Licenses.Add(string.Empty, Strings.Common_ChooseALicense);
             SelectedLicense = string.Empty;
             foreach (var line in _git.GetLicenses())
             {
@@ -62,8 +62,8 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
 
         private string _name;
 
-        [Required]
-        [MaxLength(64)]
+        [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "CreateView_NameIsRequired")]
+        [MaxLength(64, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Common_NameMaxTo")]
         public string Name
         {
             get { return _name; }
@@ -78,7 +78,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
 
         private string _description;
 
-        [MaxLength(500)]
+        [MaxLength(500, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Common_DescriptionMaxTo")]
         public string Description
         {
             get { return _description; }
@@ -101,7 +101,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
 
         private string _path;
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "CreateView_PathIsRequired")]
         public string Path
         {
             get { return _path; }

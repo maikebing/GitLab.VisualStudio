@@ -40,16 +40,16 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
         }
 
         private string _email;
-        [Required(ErrorMessage = "邮箱地址为必填")]
-        [EmailAddress(ErrorMessage = "不是合法的邮箱地址")]
+        [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsInvalid")]
         public string Email
         {
             get { return _email; }
             set { SetProperty(ref _email, value); }
         }
 
-        [Required(ErrorMessage = "密码为必填")]
-        [MinLength(6, ErrorMessage ="密码至少为6位")]
+        [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordIsRequired")]
+        [MinLength(6, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordMinTo")]
         public string Password
         {
             get { return _mediator?.Password; }
@@ -112,7 +112,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
             }
 
             IsBusy = true;
-            BusyContent = "登录中...";
+            BusyContent = Strings.Common_Loading;
 
             var successed = false;
             Task.Run(() =>
@@ -136,7 +136,7 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("登录失败");
+                    MessageBox.Show(Strings.Login_FailedToLogin);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }

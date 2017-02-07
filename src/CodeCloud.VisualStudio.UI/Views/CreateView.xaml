@@ -34,26 +34,26 @@
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <Label Content="名称"
+            <Label Content="{x:Static shared:Strings.Common_Name}"
                    VerticalAlignment="Center" />
             <controls:IconedTextBox Grid.Column="1"
                                     Height="40"
                                     VerticalAlignment="Top"
-                                    Wartermark="名称"
+                                    Wartermark="{x:Static shared:Strings.Common_Name}"
                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="描述"
+            <Label Content="{x:Static shared:Strings.Common_Description}"
                    Grid.Row="2" />
             <controls:IconedTextBox Grid.Row="2"
                                     Grid.Column="1"
                                     VerticalContentAlignment="Top"
-                                    Wartermark="这是个很酷的项目(可选)"
+                                    Wartermark="{x:Static shared:Strings.CreateView_ThisIsACoollProject}"
                                     Text="{Binding Description}"
                                     TextWrapping="Wrap"
                                     AcceptsReturn="True"
                                     VerticalScrollBarVisibility="Auto" />
 
-            <Label Content="Git ignore"
+            <Label Content="{x:Static shared:Strings.Common_GitIgnore}"
                    Grid.Row="3" />
             <ComboBox x:Name="GitIgnoresComboBox"
                       Grid.Row="3"
@@ -64,7 +64,7 @@
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedGitIgnore}" />
 
-            <Label Content="协议"
+            <Label Content="{x:Static shared:Strings.Common_License}"
                    Grid.Row="4" />
             <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="4"
@@ -75,22 +75,24 @@
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedLicense}" />
 
-            <Label Content="所有权"
+            <Label Content="{x:Static shared:Strings.Common_Property}"
                    Grid.Row="5"
                    VerticalAlignment="Center" />
             <CheckBox Grid.Row="5"
-                      Content="私有?"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsPrivate}"
-                      Grid.Column="1"
-                      Margin="0,7" />
+                      Grid.Column="1">
+                <TextBlock>
+                    <Run Text="{x:Static shared:Strings.Common_Private}" /><Run Text="?" />
+                </TextBlock>
+            </CheckBox>
 
-            <Label Content="路径"
+            <Label Content="{x:Static shared:Strings.Common_Path}"
                    Grid.Row="6"
                    VerticalAlignment="Center" />
             <DockPanel Grid.Row="6"
                        Grid.Column="1">
-                <Button Content="Browse"
+                <Button Content="{x:Static shared:Strings.Common_Browse}"
                         Width="60"
                         DockPanel.Dock="Right"
                         Command="{Binding BrowseCommand}" />
@@ -105,10 +107,10 @@
                         VerticalAlignment="Center"
                         Margin="0,17,0,18">
                 <Button Width="60"
-                        Content="创建"
+                        Content="{x:Static shared:Strings.Common_New}"
                         Command="{Binding NewCommand}" />
                 <Button Width="60"
-                        Content="取消"
+                        Content="{x:Static shared:Strings.Common_Cancel}"
                         Margin="10,0,0,0"
                         Click="OnCancel" />
             </StackPanel>

@@ -8,6 +8,7 @@
              xmlns:controls="clr-namespace:CodeCloud.VisualStudio.Shared.Controls;assembly=CodeCloud.VisualStudio.Shared"
              xmlns:vms="clr-namespace:CodeCloud.TeamFoundation.ViewModels"
              xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
+             xmlns:shared="clr-namespace:CodeCloud.VisualStudio.Shared;assembly=CodeCloud.VisualStudio.Shared"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300">
@@ -265,19 +266,19 @@
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="0"
                     Command="{Binding CloneCommand}"
-                    Content="{Binding CloneLabel}" />
+                    Content="{x:Static shared:Strings.Common_Clone}" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="1"
                     Command="{Binding CreateCommand}"
-                    Content="{Binding CreateLabel}" />
+                    Content="{x:Static shared:Strings.Common_CreateRepository}" />
             <Separator Margin="3,0,3,0"
                        Style="{StaticResource VerticalSeparator}" />
             <Button Style="{StaticResource ActionLinkButton}"
                     KeyboardNavigation.TabIndex="2"
                     Command="{Binding SignOutCommand}"
-                    Content="{Binding QuitLabel}" />
+                    Content="{x:Static shared:Strings.Common_Quit}" />
             <!--<Button Content="test" Click="Button_Click" />-->
         </WrapPanel>
 
@@ -345,15 +346,17 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0"
                                                Grid.Column="0"
-                                               Margin="0,0,6,0"
-                                               Text="{Binding DataContext.NameLabel, RelativeSource={RelativeSource AncestorType=ListBox}}" />
+                                               Margin="0,0,6,0">
+                                        <Run Text="{x:Static shared:Strings.Repository_Name}" /><Run Text=": " />
+                                    </TextBlock>
                                     <TextBlock Grid.Row="0"
                                                Grid.Column="1"
                                                Text="{Binding Name}" />
                                     <TextBlock Grid.Row="1"
                                                Grid.Column="0"
-                                               Margin="0,0,6,0"
-                                               Text="{Binding DataContext.PathLabel, RelativeSource={RelativeSource AncestorType=ListBox}}" />
+                                               Margin="0,0,6,0">
+                                        <Run Text="{x:Static shared:Strings.Common_Path}" /><Run Text=": " />
+                                    </TextBlock>
                                     <TextBlock Grid.Row="1"
                                                Grid.Column="1"
                                                Text="{Binding Path=Path}" />

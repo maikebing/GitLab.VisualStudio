@@ -34,9 +34,9 @@ namespace CodeCloud.TeamFoundation.Connect
             CanSignUp = true;
             ConnectLabel = Strings.Invitation_Connect;
             SignUpLabel = Strings.Invitation_SignUp;
-            Name = Strings.Common_Name;
-            Provider = Strings.Common_Provider;
-            Description = Strings.Common_Description;
+            Name = Strings.Name;
+            Provider = Strings.Provider;
+            Description = Strings.Description;
 
             var assembly = Assembly.GetExecutingAssembly().GetName().Name;
             var image = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute));;
@@ -56,7 +56,7 @@ namespace CodeCloud.TeamFoundation.Connect
         public override void Connect()
         {
             var dialog = _viewFactory.GetView<Dialog>(ViewTypes.Login);
-            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Common_Name), dialog);
+            _shell.ShowDialog(string.Format(Strings.Login_ConnectTo, Strings.Name), dialog);
         }
 
         public override void SignUp()

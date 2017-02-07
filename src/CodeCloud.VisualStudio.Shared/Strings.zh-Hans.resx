@@ -118,91 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CloneView_FailedToLoadProjects" xml:space="preserve">
-    <value>Failed to load</value>
+    <value>加载失败</value>
   </data>
   <data name="CloneView_NoProjects" xml:space="preserve">
-    <value>No projects</value>
+    <value>没有项目</value>
   </data>
   <data name="CloneView_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>搜索</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
-    <value>Browse</value>
+    <value>浏览</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Common_ChooseAGitIgnore" xml:space="preserve">
-    <value>Add a .gitignore</value>
+    <value>选择一个.gitignore</value>
   </data>
   <data name="Common_ChooseALicense" xml:space="preserve">
-    <value>Add a license</value>
+    <value>选择一个协议</value>
   </data>
   <data name="Common_Clone" xml:space="preserve">
-    <value>Clone</value>
+    <value>克隆</value>
   </data>
   <data name="Common_CreateRepository" xml:space="preserve">
-    <value>Create</value>
+    <value>创建仓库</value>
   </data>
   <data name="Common_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>描述</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Maximum length of description is 500</value>
+    <value>描述最长为500个字符</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
     <value>Git ignore</value>
   </data>
   <data name="Common_License" xml:space="preserve">
-    <value>License</value>
+    <value>协议</value>
   </data>
   <data name="Common_Loading" xml:space="preserve">
-    <value>Loading</value>
+    <value>加载中</value>
   </data>
   <data name="Common_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Maximum length of name is 64 chars</value>
+    <value>名称最长为64个字符</value>
   </data>
   <data name="Common_New" xml:space="preserve">
-    <value>New</value>
+    <value>新建</value>
   </data>
   <data name="Common_Path" xml:space="preserve">
-    <value>Path</value>
+    <value>路径</value>
   </data>
   <data name="Common_Private" xml:space="preserve">
-    <value>Private</value>
+    <value>私有</value>
   </data>
   <data name="Common_Property" xml:space="preserve">
-    <value>Property</value>
+    <value>产权</value>
   </data>
   <data name="Common_Quit" xml:space="preserve">
-    <value>Quit</value>
+    <value>退出</value>
   </data>
   <data name="Confirm_Quit" xml:space="preserve">
-    <value>Are you sure you want to quit?</value>
+    <value>确定要退出吗？</value>
   </data>
   <data name="CreateView_NameIsRequired" xml:space="preserve">
-    <value>Name is mandatory</value>
+    <value>名称为必填</value>
   </data>
   <data name="CreateView_PathIsRequired" xml:space="preserve">
-    <value>Path is mandatory</value>
+    <value>路径为必填</value>
   </data>
   <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
-    <value>This is a cool project (optional)</value>
+    <value>这是一个很酷的项目(可选)</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Powerful collaboration, code review, and code management for open source and private projects.</value>
   </data>
   <data name="Invitation_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>连接</value>
   </data>
   <data name="Invitation_SignUp" xml:space="preserve">
-    <value>Sign up</value>
+    <value>注册</value>
   </data>
   <data name="Items_Attachments" xml:space="preserve">
-    <value>Attachments</value>
+    <value>附件</value>
   </data>
   <data name="Items_Issues" xml:space="preserve">
     <value>Issues</value>
@@ -211,47 +211,47 @@
     <value>Pull Requests</value>
   </data>
   <data name="Items_Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>统计</value>
   </data>
   <data name="Items_Wiki" xml:space="preserve">
     <value>Wiki</value>
   </data>
   <data name="Login_ConnectTo" xml:space="preserve">
-    <value>Connect to {0}</value>
+    <value>连接到{0}</value>
     <comment>0 = Common_Name</comment>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>邮箱</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
-    <value>Invalid email</value>
+    <value>不是合法的邮箱地址</value>
   </data>
   <data name="Login_EmailIsRequired" xml:space="preserve">
-    <value>Email is mandatory</value>
+    <value>邮箱为必填</value>
   </data>
   <data name="Login_FailedToLogin" xml:space="preserve">
-    <value>Failed to login</value>
+    <value>登陆失败</value>
   </data>
   <data name="Login_ForgetPassword" xml:space="preserve">
-    <value>Forget password?</value>
+    <value>忘记密码？</value>
   </data>
   <data name="Login_Login" xml:space="preserve">
-    <value>Login</value>
+    <value>登陆</value>
   </data>
   <data name="Login_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="Login_PasswordIsRequired" xml:space="preserve">
-    <value>Password is mandatory</value>
+    <value>密码为必填</value>
   </data>
   <data name="Login_PasswordMinTo" xml:space="preserve">
-    <value>Password should at least be 6 chars</value>
+    <value>密码至少为6位字符</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
-    <value>Resent email to active account</value>
+    <value>重发邮件以激活账号</value>
   </data>
   <data name="Login_SignUp" xml:space="preserve">
-    <value>Sign up</value>
+    <value>注册</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>CodeCloud</value>
@@ -260,25 +260,25 @@
     <value>OSChina.Net</value>
   </data>
   <data name="Publish_Login" xml:space="preserve">
-    <value>Login</value>
+    <value>登录</value>
   </data>
   <data name="Publish_Or" xml:space="preserve">
-    <value>or</value>
+    <value>或</value>
   </data>
   <data name="Publish_Publish" xml:space="preserve">
-    <value>Publish</value>
+    <value>发布</value>
   </data>
   <data name="Publish_SignUp" xml:space="preserve">
-    <value>Sign up</value>
+    <value>注册</value>
   </data>
   <data name="Publish_Start" xml:space="preserve">
-    <value>Start</value>
+    <value>开始</value>
   </data>
   <data name="Publish_Title" xml:space="preserve">
-    <value>Publish to {0}</value>
+    <value>发布到{0}</value>
     <comment>0 = Common_Name</comment>
   </data>
   <data name="Repository_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
 </root>

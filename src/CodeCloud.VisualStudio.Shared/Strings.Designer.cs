@@ -61,7 +61,25 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 搜索.
+        ///   Looks up a localized string similar to Failed to load.
+        /// </summary>
+        public static string CloneView_FailedToLoadProjects {
+            get {
+                return ResourceManager.GetString("CloneView_FailedToLoadProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No projects.
+        /// </summary>
+        public static string CloneView_NoProjects {
+            get {
+                return ResourceManager.GetString("CloneView_NoProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string CloneView_Search {
             get {
@@ -70,7 +88,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 浏览.
+        ///   Looks up a localized string similar to Browse.
         /// </summary>
         public static string Common_Browse {
             get {
@@ -79,7 +97,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 取消.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Common_Cancel {
             get {
@@ -88,7 +106,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 选择一个.gitignore.
+        ///   Looks up a localized string similar to Add a .gitignore.
         /// </summary>
         public static string Common_ChooseAGitIgnore {
             get {
@@ -97,7 +115,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 选择一个协议.
+        ///   Looks up a localized string similar to Add a license.
         /// </summary>
         public static string Common_ChooseALicense {
             get {
@@ -106,7 +124,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 克隆.
+        ///   Looks up a localized string similar to Clone.
         /// </summary>
         public static string Common_Clone {
             get {
@@ -115,7 +133,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 创建仓库.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Common_CreateRepository {
             get {
@@ -124,11 +142,20 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Powerful collaboration, code review, and code management for open source and private projects..
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Common_Description {
             get {
                 return ResourceManager.GetString("Common_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum length of description is 500.
+        /// </summary>
+        public static string Common_DescriptionMaxTo {
+            get {
+                return ResourceManager.GetString("Common_DescriptionMaxTo", resourceCulture);
             }
         }
         
@@ -142,7 +169,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 协议.
+        ///   Looks up a localized string similar to License.
         /// </summary>
         public static string Common_License {
             get {
@@ -151,7 +178,16 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CodeCloud.
+        ///   Looks up a localized string similar to Loading.
+        /// </summary>
+        public static string Common_Loading {
+            get {
+                return ResourceManager.GetString("Common_Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Common_Name {
             get {
@@ -160,7 +196,16 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新建.
+        ///   Looks up a localized string similar to Maximum length of name is 64 chars.
+        /// </summary>
+        public static string Common_NameMaxTo {
+            get {
+                return ResourceManager.GetString("Common_NameMaxTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
         /// </summary>
         public static string Common_New {
             get {
@@ -169,7 +214,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 路径.
+        ///   Looks up a localized string similar to Path.
         /// </summary>
         public static string Common_Path {
             get {
@@ -178,7 +223,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 私有.
+        ///   Looks up a localized string similar to Private.
         /// </summary>
         public static string Common_Private {
             get {
@@ -187,7 +232,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 产权.
+        ///   Looks up a localized string similar to Property.
         /// </summary>
         public static string Common_Property {
             get {
@@ -196,16 +241,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OSChina.Net.
-        /// </summary>
-        public static string Common_Provider {
-            get {
-                return ResourceManager.GetString("Common_Provider", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 退出.
+        ///   Looks up a localized string similar to Quit.
         /// </summary>
         public static string Common_Quit {
             get {
@@ -214,7 +250,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 确定要退出吗？.
+        ///   Looks up a localized string similar to Are you sure you want to quit?.
         /// </summary>
         public static string Confirm_Quit {
             get {
@@ -223,25 +259,43 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 描述.
+        ///   Looks up a localized string similar to Name is mandatory.
         /// </summary>
-        public static string CreateView_Description {
+        public static string CreateView_NameIsRequired {
             get {
-                return ResourceManager.GetString("CreateView_Description", resourceCulture);
+                return ResourceManager.GetString("CreateView_NameIsRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名称.
+        ///   Looks up a localized string similar to Path is mandatory.
         /// </summary>
-        public static string CreateView_Name {
+        public static string CreateView_PathIsRequired {
             get {
-                return ResourceManager.GetString("CreateView_Name", resourceCulture);
+                return ResourceManager.GetString("CreateView_PathIsRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 连接.
+        ///   Looks up a localized string similar to This is a cool project (optional).
+        /// </summary>
+        public static string CreateView_ThisIsACoollProject {
+            get {
+                return ResourceManager.GetString("CreateView_ThisIsACoollProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Powerful collaboration, code review, and code management for open source and private projects..
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
         /// </summary>
         public static string Invitation_Connect {
             get {
@@ -250,7 +304,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 注册.
+        ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string Invitation_SignUp {
             get {
@@ -259,7 +313,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 附件.
+        ///   Looks up a localized string similar to Attachments.
         /// </summary>
         public static string Items_Attachments {
             get {
@@ -286,7 +340,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 统计.
+        ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string Items_Statistics {
             get {
@@ -304,7 +358,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 连接到{0}.
+        ///   Looks up a localized string similar to Connect to {0}.
         /// </summary>
         public static string Login_ConnectTo {
             get {
@@ -313,7 +367,124 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 登录.
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Login_Email {
+            get {
+                return ResourceManager.GetString("Login_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email.
+        /// </summary>
+        public static string Login_EmailIsInvalid {
+            get {
+                return ResourceManager.GetString("Login_EmailIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is mandatory.
+        /// </summary>
+        public static string Login_EmailIsRequired {
+            get {
+                return ResourceManager.GetString("Login_EmailIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to login.
+        /// </summary>
+        public static string Login_FailedToLogin {
+            get {
+                return ResourceManager.GetString("Login_FailedToLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forget password?.
+        /// </summary>
+        public static string Login_ForgetPassword {
+            get {
+                return ResourceManager.GetString("Login_ForgetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login_Login {
+            get {
+                return ResourceManager.GetString("Login_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Login_Password {
+            get {
+                return ResourceManager.GetString("Login_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is mandatory.
+        /// </summary>
+        public static string Login_PasswordIsRequired {
+            get {
+                return ResourceManager.GetString("Login_PasswordIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password should at least be 6 chars.
+        /// </summary>
+        public static string Login_PasswordMinTo {
+            get {
+                return ResourceManager.GetString("Login_PasswordMinTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resent email to active account.
+        /// </summary>
+        public static string Login_ReSendEmail {
+            get {
+                return ResourceManager.GetString("Login_ReSendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
+        /// </summary>
+        public static string Login_SignUp {
+            get {
+                return ResourceManager.GetString("Login_SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CodeCloud.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OSChina.Net.
+        /// </summary>
+        public static string Provider {
+            get {
+                return ResourceManager.GetString("Provider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Publish_Login {
             get {
@@ -322,7 +493,16 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 发布.
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string Publish_Or {
+            get {
+                return ResourceManager.GetString("Publish_Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish.
         /// </summary>
         public static string Publish_Publish {
             get {
@@ -331,7 +511,7 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 注册.
+        ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string Publish_SignUp {
             get {
@@ -340,7 +520,16 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 发布到{0}.
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Publish_Start {
+            get {
+                return ResourceManager.GetString("Publish_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish to {0}.
         /// </summary>
         public static string Publish_Title {
             get {
@@ -349,20 +538,11 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 名称.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Repository_Name {
             get {
                 return ResourceManager.GetString("Repository_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 路径.
-        /// </summary>
-        public static string Repository_Path {
-            get {
-                return ResourceManager.GetString("Repository_Path", resourceCulture);
             }
         }
     }
