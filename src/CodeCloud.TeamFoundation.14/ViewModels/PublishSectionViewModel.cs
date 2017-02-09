@@ -20,6 +20,14 @@ namespace CodeCloud.TeamFoundation.ViewModels
         private readonly IViewFactory _viewFactory;
         private readonly IVisualStudioService _vs;
         private readonly IWebService _web;
+
+        public event Action Published;
+
+        private void OnPublished()
+        {
+            Published?.Invoke();
+        }
+
         public PublishSectionViewModel(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
@@ -249,6 +257,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
                 {
                     IsStarted = false;
                     ShowGetStarted = true;
+                    OnPublished();
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }

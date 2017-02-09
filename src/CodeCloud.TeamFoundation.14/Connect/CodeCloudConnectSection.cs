@@ -55,8 +55,6 @@ namespace CodeCloud.TeamFoundation.Connect
             base.Initialize(sender, e);
 
             IsVisible = _storage.IsLogined;
-
-            _vs.ServiceProvider = ServiceProvider;
         }
 
         protected override object CreateView(SectionInitializeEventArgs e)

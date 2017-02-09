@@ -16,5 +16,8 @@ namespace CodeCloud.VisualStudio.Shared
         void ClearNotifications();
         RepositoryInfo GetActiveRepository();
         string GetSolutionPath();
+        bool IsCodeCloudRepo();
+
+        Project Project { get; }
     }
 }

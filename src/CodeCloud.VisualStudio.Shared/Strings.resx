@@ -274,6 +274,9 @@
   <data name="Publish_Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="Publish_Submiting" xml:space="preserve">
+    <value>Submitting</value>
+  </data>
   <data name="Publish_Title" xml:space="preserve">
     <value>Publish to {0}</value>
     <comment>0 = Common_Name</comment>

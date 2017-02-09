@@ -11,13 +11,13 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class StatisticsNavigationItem : CodeCloudNavigationItem
     {
-        private readonly IVisualStudioService _vs;
+        private readonly ITeamExplorerServices _tes;
 
         [ImportingConstructor]
-        public StatisticsNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
-           : base(Octicon.graph, git, shell, storage, vs, ws)
+        public StatisticsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
+           : base(Octicon.graph, git, shell, storage, tes, ws)
         {
-            _vs = vs;
+            _tes = tes;
             Text = Strings.Items_Statistics;
         }
 
@@ -28,7 +28,9 @@ namespace CodeCloud.TeamFoundation.Home
 
         public override void Execute()
         {
-            OpenInBrowser($"repository/stats/{_vs.Branch}");
+            var repo = _tes.GetActiveRepository();
+
+            OpenInBrowser($"repository/stats/{repo.Branch}");
         }
     }
 }

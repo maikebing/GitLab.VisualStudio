@@ -11,8 +11,8 @@ namespace CodeCloud.TeamFoundation.Home
     public class AttachmentsNavigationItem : CodeCloudNavigationItem
     {
         [ImportingConstructor]
-        public AttachmentsNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
-           : base(Octicon.attachment, git, shell, storage, vs, ws)
+        public AttachmentsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
+           : base(Octicon.attachment, git, shell, storage, tes, ws)
         {
             Text = Strings.Items_Attachments;
         }

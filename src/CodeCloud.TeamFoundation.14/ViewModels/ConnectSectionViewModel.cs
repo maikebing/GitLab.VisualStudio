@@ -37,14 +37,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
             _vs = vs;
             _web = web;
 
-            if (_vs.Repositories == null)
-            {
-                Repositories = new ObservableCollection<Repository>();
-            }
-            else
-            {
-                Repositories = new ObservableCollection<Repository>(_vs.Repositories);
-            }
+            Repositories = new ObservableCollection<Repository>();
 
             Repositories.CollectionChanged += OnRepositoriesChanged;
 
@@ -158,8 +151,6 @@ namespace CodeCloud.TeamFoundation.ViewModels
             {
                 if (ex == null)
                 {
-                    _vs.Projects = remotes;
-
                     Repositories.Clear();
 
                     var activeRepository = _teamexplorer.GetActiveRepository();
@@ -190,8 +181,6 @@ namespace CodeCloud.TeamFoundation.ViewModels
                     }
 
                     valid.Each(o => Repositories.Add(o));
-
-                    _vs.Repositories = Repositories;
                 }
                 else if (!(ex is UnauthorizedAccessException))
                 {

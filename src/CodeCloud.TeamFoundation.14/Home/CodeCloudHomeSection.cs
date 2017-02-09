@@ -12,27 +12,25 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CodeCloudHomeSection : TeamExplorerSectionBase
     {
-        private readonly IVisualStudioService _vs;
+        private readonly ITeamExplorerServices _tes;
 
         [ImportingConstructor]
-        public CodeCloudHomeSection(IVisualStudioService vs)
+        public CodeCloudHomeSection(ITeamExplorerServices tes)
         {
-            _vs = vs;
+            _tes = tes;
         }
 
         public override void Initialize(object sender, SectionInitializeEventArgs e)
         {
             base.Initialize(sender, e);
 
-            _vs.ServiceProvider = ServiceProvider;
-
-            IsVisible = _vs.IsCodeCloudProject;
+            IsVisible = _tes.IsCodeCloudRepo();
         }
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {
             var temp = new TeamExplorerSectionViewModelBase();
-            temp.Title = Strings.Common_Name;
+            temp.Title = Strings.Name;
 
             return temp;
         }
@@ -41,7 +39,7 @@ namespace CodeCloud.TeamFoundation.Home
         {
             return new TextBlock
             {
-                Text = Strings.Common_Description,
+                Text = Strings.Description,
                 TextWrapping = System.Windows.TextWrapping.Wrap
             };
         }

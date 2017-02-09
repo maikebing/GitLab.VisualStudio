@@ -11,21 +11,15 @@ namespace CodeCloud.VisualStudio.Shared
 
     public interface IVisualStudioService
     {
-        string Branch { get; }
+        //string Branch { get; }
 
-        event Action SolutionChanged;
-
-        Project Current { get; }
+        //Project Current { get; }
 
         
 
-        bool IsCodeCloudProject { get; }
+        //IReadOnlyList<Project> Projects { get; set; }
 
-        IReadOnlyList<Project> Projects { get; set; }
-
-        IEnumerable<Repository> Repositories { get; set; }
-
-        IServiceProvider ServiceProvider { get; set; }
+        //IEnumerable<Repository> Repositories { get; set; }
 
         
     }

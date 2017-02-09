@@ -50,36 +50,7 @@ namespace CodeCloud.TeamFoundation.Sync
         {
             base.Initialize(sender, e);
 
-            IsVisible = !IsCodeCloudRepo();
-
-            _vs.ServiceProvider = ServiceProvider;
-        }
-
-        private bool IsCodeCloudRepo()
-        {
-            var projects = _vs.Projects;
-            var repo = _tes.GetActiveRepository();
-            if (repo == null || projects == null)
-            {
-                return false;
-            }
-
-            var path = repo.Path;
-            var url = _git.GetRemote(path);
-
-            var visible = false;
-
-            foreach (var project in projects)
-            {
-                if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
-                {
-                    visible = true;
-
-                    break;
-                }
-            }
-
-            return visible;
+            IsVisible = !_tes.IsCodeCloudRepo();
         }
 
         protected override object CreateView(SectionInitializeEventArgs e)
@@ -92,8 +63,16 @@ namespace CodeCloud.TeamFoundation.Sync
             var view = this.SectionContent as FrameworkElement;
             if (view != null)
             {
-                view.DataContext = new PublishSectionViewModel(_messenger, _git, _shell, _storage, _tes, _viewFactory, _vs, _web);
+                var temp = new PublishSectionViewModel(_messenger, _git, _shell, _storage, _tes, _viewFactory, _vs, _web);
+                temp.Published += OnPublished;
+
+                view.DataContext = temp;
             }
+        }
+
+        private void OnPublished()
+        {
+            IsVisible = false;
         }
 
         public void ShowPublish()

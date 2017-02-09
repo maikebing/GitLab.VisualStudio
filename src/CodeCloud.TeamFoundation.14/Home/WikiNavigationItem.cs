@@ -10,13 +10,13 @@ namespace CodeCloud.TeamFoundation.Home
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class WikiNavigationItem : CodeCloudNavigationItem
     {
-        private readonly IVisualStudioService _vs;
+        private readonly ITeamExplorerServices _tes;
 
         [ImportingConstructor]
-        public WikiNavigationItem(IGitService git, IShellService shell, IStorage storage, IVisualStudioService vs, IWebService ws)
-           : base(Octicon.book, git, shell, storage, vs, ws)
+        public WikiNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
+           : base(Octicon.book, git, shell, storage, tes, ws)
         {
-            _vs = vs;
+            _tes = tes;
 
             Text = Strings.Items_Wiki;
         }
@@ -25,7 +25,7 @@ namespace CodeCloud.TeamFoundation.Home
         {
             base.Invalidate();
 
-            IsVisible = IsVisible && _vs.Current.IsWikiEnabled;
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsWikiEnabled;
         }
 
         protected override void SetDefaultColors()
@@ -39,3 +39,4 @@ namespace CodeCloud.TeamFoundation.Home
         }
     }
 }
+      

@@ -529,6 +529,15 @@ namespace CodeCloud.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submitting.
+        /// </summary>
+        public static string Publish_Submiting {
+            get {
+                return ResourceManager.GetString("Publish_Submiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Publish to {0}.
         /// </summary>
         public static string Publish_Title {

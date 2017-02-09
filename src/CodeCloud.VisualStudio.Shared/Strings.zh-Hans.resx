@@ -274,6 +274,9 @@
   <data name="Publish_Start" xml:space="preserve">
     <value>开始</value>
   </data>
+  <data name="Publish_Submiting" xml:space="preserve">
+    <value>提交中</value>
+  </data>
   <data name="Publish_Title" xml:space="preserve">
     <value>发布到{0}</value>
     <comment>0 = Common_Name</comment>

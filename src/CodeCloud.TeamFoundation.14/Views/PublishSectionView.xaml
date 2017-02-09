@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vms="clr-namespace:CodeCloud.TeamFoundation.ViewModels"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:controls="clr-namespace:CodeCloud.VisualStudio.Shared.Controls;assembly=CodeCloud.VisualStudio.Shared"
              xmlns:shared="clr-namespace:CodeCloud.VisualStudio.Shared;assembly=CodeCloud.VisualStudio.Shared"
              d:DataContext="{d:DesignInstance Type=vms:PublishSectionViewModel, IsDesignTimeCreatable=False}"
              xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
@@ -14,95 +15,96 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-
-    <StackPanel>
-        <Grid Margin="0,6,0,6"
+    <controls:BusyIndicator IsBusy="{Binding IsBusy}"
+                            BusyContent="{x:Static shared:Strings.Publish_Submiting}">
+        <StackPanel>
+            <Grid Margin="0,6,0,6"
               Background="Transparent">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Image x:Name="octokit"
+                <Image x:Name="octokit"
                    Height="32"
                    Width="32"
                    VerticalAlignment="Center"
                    Margin="0,2,8,2"
                    Source="/CodeCloud.TeamFoundation.14;component/Resources/logo.png" />
 
-            <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center"
                         Grid.Column="1">
-                <TextBlock TextTrimming="CharacterEllipsis"
+                    <TextBlock TextTrimming="CharacterEllipsis"
                            FontWeight="SemiBold"
                            Text="{Binding Name}" />
-                <TextBlock TextTrimming="CharacterEllipsis"
+                    <TextBlock TextTrimming="CharacterEllipsis"
                            Foreground="{DynamicResource {x:Static shell:VsBrushes.GrayTextKey}}"
                            Text="{Binding Provider}" />
-            </StackPanel>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
+                </StackPanel>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button Content="{x:Static shared:Strings.Publish_Login}"
+                <Button Content="{x:Static shared:Strings.Publish_Login}"
                     Command="{Binding LoginCommand}"
                     Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBlock Grid.Column="1"
+                <TextBlock Grid.Column="1"
                        Text="{x:Static shared:Strings.Publish_Or}"
                        VerticalAlignment="Center"
                        Margin="5,0"
                        Visibility="{Binding ShowLogin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Grid.Column="2"
+                <Button Grid.Column="2"
                     Content="{x:Static shared:Strings.Publish_SignUp}"
                     Command="{Binding SignUpCommand}"
                     Visibility="{Binding ShowSignUp, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <Button Grid.Column="3"
+                <Button Grid.Column="3"
                     HorizontalAlignment="Right"
                     Content="{x:Static shared:Strings.Publish_Start}"
                     Command="{Binding GetStartedCommand}"
                     Visibility="{Binding ShowGetStarted, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </Grid>
+            </Grid>
 
-        <Grid Visibility="{Binding IsStarted, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="80" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="45" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0"
+            <Grid Visibility="{Binding IsStarted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="45" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
                    Grid.Column="0"
                    Content="{x:Static shared:Strings.Common_Name}" />
-            <TextBox Grid.Row="0"
+                <TextBox Grid.Row="0"
                      Grid.Column="1"
                      VerticalAlignment="Center"
                      Text="{Binding RepositoryName, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="1"
+                <Label Grid.Row="1"
                    Grid.Column="0"
                    Content="{x:Static shared:Strings.Common_Description}" />
-            <TextBox Grid.Row="1"
+                <TextBox Grid.Row="1"
                      Grid.Column="1"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto"
                      Text="{Binding RepositoryDescription}" />
 
-            <Label Grid.Row="2"
+                <Label Grid.Row="2"
                    Grid.Column="0"
                    Content="{x:Static shared:Strings.Common_License}" />
-            <ComboBox x:Name="LicensesComboBox"
+                <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="2"
                       Grid.Column="1"
                       VerticalAlignment="Center"
@@ -110,20 +112,21 @@
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedLicense}" />
-            
-            <CheckBox Grid.Row="3"
+
+                <CheckBox Grid.Row="3"
                       Grid.Column="1"
                       Background="Transparent"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsPrivate}"
                       Content="{x:Static shared:Strings.Common_Private}" />
-            <Button Grid.Row="3"
+                <Button Grid.Row="3"
                     Grid.Column="1"
                     Width="75"
                     Command="{Binding PublishCommand}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Content="{x:Static shared:Strings.Publish_Publish}" />
-        </Grid>
-    </StackPanel>
+            </Grid>
+        </StackPanel>
+    </controls:BusyIndicator>
 </UserControl>

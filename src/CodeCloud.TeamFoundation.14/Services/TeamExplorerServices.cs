@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
@@ -17,6 +19,12 @@ namespace CodeCloud.TeamFoundation
     public class TeamExplorerServices : ITeamExplorerServices
     {
         readonly IServiceProvider serviceProvider;
+
+        [Import]
+        private IGitService _git;
+
+        [Import]
+        private IWebService _web;
 
         /// <summary>
         /// This MEF export requires specific versions of TeamFoundation. ITeamExplorerNotificationManager is declared here so
@@ -122,5 +130,47 @@ namespace CodeCloud.TeamFoundation
             return solutionDir;
         }
 
+
+        public Project Project { get; private set; }
+
+        public bool IsCodeCloudRepo()
+        {
+            var repo = GetActiveRepository();
+            if (repo == null)
+            {
+                return false;
+            }
+
+            var path = repo.Path;
+            var url = _git.GetRemote(path);
+
+            if (url == null)
+            {
+                return false;
+            }
+
+            if (Project == null || !string.Equals(Project.Url, url, StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    var projects = _web.GetProjects();
+
+                    foreach (var project in projects)
+                    {
+                        if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
+                        {
+                            Project = project;
+                            break;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Ignore
+                }
+            }
+
+            return url.IndexOf("https://git.oschina.net") == 0;
+        }
     }
 }
