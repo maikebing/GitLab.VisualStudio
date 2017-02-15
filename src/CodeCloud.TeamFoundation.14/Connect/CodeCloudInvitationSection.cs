@@ -61,7 +61,7 @@ namespace CodeCloud.TeamFoundation.Connect
 
         public override void SignUp()
         {
-            _shell.OpenUrl(@"https://git.oschina.net/signup");
+            _shell.OpenUrl(@"https://gitclub.cn/users/sign_in#register-pane");
         }
 
         public void OnLogined()

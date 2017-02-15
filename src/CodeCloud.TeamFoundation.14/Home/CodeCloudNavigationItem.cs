@@ -39,7 +39,7 @@ namespace CodeCloud.TeamFoundation.Home
         {
             var user = _storage.GetUser();
 
-            var url = $"https://git.oschina.net/{user.Username}/{_tes.Project.Name}/{endpoint}";
+            var url = $"https://gitclub.cn/{user.Username}/{_tes.Project.Name}/{endpoint}";
 
             _shell.OpenUrl(url);
         }

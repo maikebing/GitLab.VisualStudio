@@ -196,7 +196,7 @@ namespace CodeCloud.TeamFoundation.ViewModels
 
         private void OnSignUp()
         {
-            _shell.OpenUrl(@"https://git.oschina.net/signup");
+            _shell.OpenUrl(@"https://gitclub.cn/users/sign_in");
         }
 
         private void OnGetStarted()

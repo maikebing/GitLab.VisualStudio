@@ -170,7 +170,7 @@ namespace CodeCloud.TeamFoundation
                 }
             }
 
-            return url.IndexOf("https://git.oschina.net") == 0;
+            return url.IndexOf("https://gitclub.cn") == 0;
         }
     }
 }

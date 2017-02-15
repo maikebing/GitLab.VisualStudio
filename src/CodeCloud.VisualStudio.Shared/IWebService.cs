@@ -61,7 +61,7 @@ namespace CodeCloud.VisualStudio.Shared
 
         public string Url
         {
-            get { return $"https://git.oschina.net/{Path}.git"; }
+            get { return $"https://gitclub.cn/{Path}.git"; }
         }
 
         [JsonIgnore]

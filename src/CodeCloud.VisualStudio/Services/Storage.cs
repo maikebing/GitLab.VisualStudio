@@ -40,7 +40,7 @@ namespace CodeCloud.VisualStudio.Services
 
         public string GetPassword()
         {
-            var key = "git:https://git.oschina.net";
+            var key = "git:https://gitclub.cn";
 
             using (var credential = new Credential())
             {
@@ -53,7 +53,7 @@ namespace CodeCloud.VisualStudio.Services
 
         private string GetToken()
         {
-            var key = "token:https://git.oschina.net";
+            var key = "token:https://gitclub.cn";
 
             using (var credential = new Credential())
             {
@@ -116,7 +116,7 @@ namespace CodeCloud.VisualStudio.Services
 
         private void SavePassword(string email, string password)
         {
-            var key = "git:https://git.oschina.net";
+            var key = "git:https://gitclub.cn";
             using (var credential = new Credential(email, password, key))
             {
                 credential.Save();
@@ -125,7 +125,7 @@ namespace CodeCloud.VisualStudio.Services
 
         private void SaveToken(string email, string token)
         {
-            var key = "token:https://git.oschina.net";
+            var key = "token:https://gitclub.cn";
             using (var credential = new Credential(email, token, key))
             {
                 credential.Save();
@@ -158,8 +158,8 @@ namespace CodeCloud.VisualStudio.Services
         {
             _user = null;
 
-            EraseCredential("git:https://git.oschina.net");
-            EraseCredential("token:https://git.oschina.net");
+            EraseCredential("git:https://gitclub.cn");
+            EraseCredential("token:https://gitclub.cn");
 
             File.Delete(_path);
         }

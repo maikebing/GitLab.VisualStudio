@@ -143,17 +143,17 @@ namespace CodeCloud.VisualStudio.UI.ViewModels
 
         private void OnForgetPassword()
         {
-            _shell.OpenUrl("https://git.oschina.net/password/new");
+            _shell.OpenUrl("https://gitclub.cn/users/password/new");
         }
 
         private void OnActiveAccount()
         {
-            _shell.OpenUrl("https://git.oschina.net/user/activate");
+            _shell.OpenUrl("https://gitclub.cn/users/confirmation/new");
         }
 
         private void OnSignup()
         {
-            _shell.OpenUrl("https://git.oschina.net/signup");
+            _shell.OpenUrl("https://gitclub.cn/users/sign_in#register-pane");
         }
     }
 }
