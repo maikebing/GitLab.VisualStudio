@@ -170,7 +170,7 @@ namespace GitLab.TeamFoundation
                 }
             }
 
-            return url.IndexOf(Project.Owner.Host) == 0;
+            return url.IndexOf(Project.http_url_to_repo) == 0;
         }
     }
 }

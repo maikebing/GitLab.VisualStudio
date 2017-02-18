@@ -73,7 +73,7 @@
             <controls:IconedTextBox x:Name="HostTextBox"
                                     Height="40"
                                     VerticalAlignment="Top"
-                                    Icon="/GitLab.VisualStudio.UI;component/Resources/images/user.png"
+                                    Icon="/GitLab.VisualStudio.UI;component/Resources/images/host.png"
                                     Wartermark="{x:Static shared:Strings.Login_Host}"
                                     Text="{Binding Host}" />
             <controls:IconedTextBox x:Name="UsernameTextBox"

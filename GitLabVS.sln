@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.15", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.14", "src\GitLab.TeamFoundation.14\GitLab.TeamFoundation.14.csproj", "{161DBF01-1DBF-4B00-8551-C5C00F26720D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10559CEB-2FF0-4617-9122-928F7D8D2E3F}"
+	ProjectSection(SolutionItems) = preProject
+		GitVersion.yml = GitVersion.yml
+		nuget.config = nuget.config
+		README.md = README.md
+		ResetEnvironment.cmd = ResetEnvironment.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
