@@ -107,11 +107,11 @@
     <Compile Include="..\GitLab.TeamFoundation.14\Home\IssuesNavigationItem.cs">
       <Link>Home\IssuesNavigationItem.cs</Link>
     </Compile>
+    <Compile Include="..\GitLab.TeamFoundation.14\Home\MergeRequestsNavigationItem.cs">
+      <Link>Home\MergeRequestsNavigationItem.cs</Link>
+    </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\PipelinesNavigationItem.cs">
       <Link>Home\PipelinesNavigationItem.cs</Link>
-    </Compile>
-    <Compile Include="..\GitLab.TeamFoundation.14\Home\PullRequestsNavigationItem.cs">
-      <Link>Home\PullRequestsNavigationItem.cs</Link>
     </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\SnippetsNavigationItem.cs">
       <Link>Home\SnippetsNavigationItem.cs</Link>
