@@ -1,5 +1,6 @@
 ﻿using GitLab.TeamFoundation.Views;
 using GitLab.VisualStudio.Shared;
+using GitLab.VisualStudio.Shared.Helpers;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System.ComponentModel.Composition;
@@ -22,9 +23,13 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Initialize(object sender, SectionInitializeEventArgs e)
         {
+            IsVisible = false;
             base.Initialize(sender, e);
-
-            IsVisible = _tes.IsGitLabRepo();
+        }
+        public override async void Refresh()
+        {
+            IsVisible = await System.Threading.Tasks.Task.Factory.StartNew(() => _tes.IsGitLabRepo());
+            base.Refresh();
         }
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
@@ -39,7 +44,7 @@ namespace GitLab.TeamFoundation.Home
         {
             return new TextBlock
             {
-                Text = Strings.Description,
+                Text = Strings.Description, 
                 TextWrapping = System.Windows.TextWrapping.Wrap
             };
         }

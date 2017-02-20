@@ -59,11 +59,15 @@ namespace GitLab.VisualStudio.Shared
         [JsonProperty("issues_enabled")]
         public bool IsIssueEnabled { get; set; }
 
-        [JsonProperty("pull_requests_enabled")]
+        [JsonProperty("merge_requests_enabled")]
         public bool IsPullRequestsEnabled { get; set; }
 
         [JsonProperty("wiki_enabled")]
         public bool IsWikiEnabled { get; set; }
+        [JsonProperty("builds_enabled")]
+        public bool IsBuildsEnabled { get; set; }
+        [JsonProperty("snippets_enabled")]
+        public bool IsSnippetsEnabled { get; set; }
 
         public string Url
         {

@@ -9,7 +9,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GitLab.TeamFoundation
@@ -151,10 +153,10 @@ namespace GitLab.TeamFoundation
 
             if (Project == null || !string.Equals(Project.Url, url, StringComparison.OrdinalIgnoreCase))
             {
+
                 try
                 {
                     var projects = _web.GetProjects();
-
                     foreach (var project in projects)
                     {
                         if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
@@ -164,13 +166,29 @@ namespace GitLab.TeamFoundation
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message);
                     // Ignore
                 }
-            }
 
-            return url.IndexOf(Project.http_url_to_repo) == 0;
+            }
+            bool isgitlab = false;
+            if (Project!=null &&  !string.IsNullOrEmpty(Project.http_url_to_repo) && Uri.IsWellFormedUriString(Project.http_url_to_repo, UriKind.Absolute )
+                &&  !string.IsNullOrEmpty(url) && Uri.IsWellFormedUriString(url , UriKind.Absolute ))
+            {
+                try
+                {
+                    UriBuilder remoteurl = new UriBuilder(url);
+                    UriBuilder gitlaburl = new UriBuilder(Project.http_url_to_repo);
+                    isgitlab = remoteurl.Host.ToLower() == gitlaburl.Host.ToLower();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+            return isgitlab;
         }
     }
 }

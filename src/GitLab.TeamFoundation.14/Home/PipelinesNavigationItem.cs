@@ -12,7 +12,7 @@ namespace GitLab.TeamFoundation.Home
     {
         [ImportingConstructor]
         public PipelinesNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
-           : base(Octicon.attachment, git, shell, storage, tes, ws)
+           : base(Octicon.zap, git, shell, storage, tes, ws)
         {
             Text = Strings.Items_Pipeline;
         

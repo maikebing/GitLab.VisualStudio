@@ -313,6 +313,24 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Builds 的本地化字符串。
+        /// </summary>
+        public static string Items_builds {
+            get {
+                return ResourceManager.GetString("Items_builds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Graphs 的本地化字符串。
+        /// </summary>
+        public static string Items_Graph {
+            get {
+                return ResourceManager.GetString("Items_Graph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Issues 的本地化字符串。
         /// </summary>
         public static string Items_Issues {
@@ -340,11 +358,11 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 Graphs 的本地化字符串。
+        ///   查找类似 Snippets 的本地化字符串。
         /// </summary>
-        public static string Items_Statistics {
+        public static string Items_Snippets {
             get {
-                return ResourceManager.GetString("Items_Statistics", resourceCulture);
+                return ResourceManager.GetString("Items_Snippets", resourceCulture);
             }
         }
         
@@ -412,7 +430,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 Host 的本地化字符串。
+        ///   查找类似 GitLab(https://gitlab.com) 的本地化字符串。
         /// </summary>
         public static string Login_Host {
             get {

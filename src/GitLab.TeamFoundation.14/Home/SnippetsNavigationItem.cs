@@ -2,40 +2,41 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
-    [TeamExplorerNavigationItem(Settings.PullRequestsNavigationItemId, Settings.PullRequests)]
+    [TeamExplorerNavigationItem(Settings.SnippetsNavigationItemId, Settings.Snippets)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class PullRequestsNavigationItem : GitLabNavigationItem
+    public class SnippetsNavigationItem : GitLabNavigationItem
     {
         private readonly ITeamExplorerServices _tes;
 
         [ImportingConstructor]
-        public PullRequestsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
-           : base(Octicon.git_pull_request, git, shell, storage, tes, ws)
+        public SnippetsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
+           : base(Octicon.book, git, shell, storage, tes, ws)
         {
             _tes = tes;
-            Text = Strings.Items_PullRequests;
+
+            Text = Strings.Items_Snippets;
         }
 
         public override void Invalidate()
         {
             base.Invalidate();
 
-            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsPullRequestsEnabled;
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsSnippetsEnabled;
         }
 
         protected override void SetDefaultColors()
         {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.RedNavigationItem);
+            m_defaultArgbColorBrush = new SolidColorBrush(Colors.BlueNavigationItem);
         }
 
         public override void Execute()
         {
-            OpenInBrowser("pulls");
+            OpenInBrowser("snippets");
         }
     }
 }
+      

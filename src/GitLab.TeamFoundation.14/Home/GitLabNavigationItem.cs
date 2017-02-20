@@ -30,9 +30,9 @@ namespace GitLab.TeamFoundation.Home
             m_icon = SharedResources.GetDrawingForIcon(icon, brush);
         }
 
-        public override void Invalidate()
+        public override async void Invalidate()
         {
-            IsVisible = _tes.IsGitLabRepo() && _tes.Project != null;
+            IsVisible = await System.Threading.Tasks.Task.Factory.StartNew(() => _tes.IsGitLabRepo()) && _tes.Project != null;
         }
 
         protected void OpenInBrowser(string endpoint)

@@ -93,25 +93,26 @@
             <DockPanel Grid.Row="6"
                        Grid.Column="1">
                 <Button Content="{x:Static shared:Strings.Common_Browse}"
-                        Width="60"
+                        Width="82"
                         DockPanel.Dock="Right"
                         Command="{Binding BrowseCommand}" />
                 <controls:IconedTextBox IsReadOnly="True"
                                         Text="{Binding Path}"
-                                        VerticalContentAlignment="Center" />
+                                        VerticalContentAlignment="Center" Width="175" />
             </DockPanel>
 
             <StackPanel Grid.Row="7"
                         Grid.Column="1"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
-                        Margin="0,17,0,18">
-                <Button Width="60"
+                        Margin="0,17,0,10" Height="28">
+                <Button Width="117"
                         Content="{x:Static shared:Strings.Common_New}"
-                        Command="{Binding NewCommand}" />
-                <Button Width="60"
+                        Command="{Binding NewCommand}" Margin="0,1" />
+                <Frame x:Name="frame" Content="" Width="13"/>
+                <Button Width="117"
                         Content="{x:Static shared:Strings.Common_Cancel}"
-                        Margin="10,0,0,0"
+                        Margin="10,1,0,1"
                         Click="OnCancel" />
             </StackPanel>
         </Grid>

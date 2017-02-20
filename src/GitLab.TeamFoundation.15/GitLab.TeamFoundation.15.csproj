@@ -65,6 +65,7 @@
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="microsoft.visualstudio.shell.interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Threading, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -91,11 +92,17 @@
     <Compile Include="..\GitLab.TeamFoundation.14\Connect\GitLabInvitationSection.cs">
       <Link>Connect\GitLabInvitationSection.cs</Link>
     </Compile>
+    <Compile Include="..\GitLab.TeamFoundation.14\Home\BuildsNavigationItem.cs">
+      <Link>Home\BuildsNavigationItem.cs</Link>
+    </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\GitLabHomeSection.cs">
       <Link>Home\GitLabHomeSection.cs</Link>
     </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\GitLabNavigationItem.cs">
       <Link>Home\GitLabNavigationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\GitLab.TeamFoundation.14\Home\GraphNavigationItem.cs">
+      <Link>Home\GraphNavigationItem.cs</Link>
     </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\IssuesNavigationItem.cs">
       <Link>Home\IssuesNavigationItem.cs</Link>
@@ -106,8 +113,8 @@
     <Compile Include="..\GitLab.TeamFoundation.14\Home\PullRequestsNavigationItem.cs">
       <Link>Home\PullRequestsNavigationItem.cs</Link>
     </Compile>
-    <Compile Include="..\GitLab.TeamFoundation.14\Home\StatisticsNavigationItem.cs">
-      <Link>Home\StatisticsNavigationItem.cs</Link>
+    <Compile Include="..\GitLab.TeamFoundation.14\Home\SnippetsNavigationItem.cs">
+      <Link>Home\SnippetsNavigationItem.cs</Link>
     </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Home\WikiNavigationItem.cs">
       <Link>Home\WikiNavigationItem.cs</Link>

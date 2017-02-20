@@ -7,18 +7,18 @@ using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
-    [TeamExplorerNavigationItem(Settings.StatisticsNavigationItemId, Settings.Statistics)]
+    [TeamExplorerNavigationItem(Settings.GraphsNavigationItemId, Settings.Graphs)]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class StatisticsNavigationItem : GitLabNavigationItem
+    public class GraphNavigationItem : GitLabNavigationItem
     {
         private readonly ITeamExplorerServices _tes;
 
         [ImportingConstructor]
-        public StatisticsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
+        public GraphNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
            : base(Octicon.graph, git, shell, storage, tes, ws)
         {
             _tes = tes;
-            Text = Strings.Items_Statistics;
+            Text = Strings.Items_Graph;
         }
 
         protected override void SetDefaultColors()
