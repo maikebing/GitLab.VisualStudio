@@ -24,7 +24,6 @@ namespace GitLab.TeamFoundation.Home
         public override void Invalidate()
         {
             base.Invalidate();
-
             IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsWikiEnabled;
         }
 

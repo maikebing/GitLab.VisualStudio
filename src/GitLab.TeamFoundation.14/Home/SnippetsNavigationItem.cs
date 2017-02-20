@@ -23,9 +23,7 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Invalidate()
         {
-            base.Invalidate();
-
-            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsSnippetsEnabled;
+            IsVisible = true;
         }
 
         protected override void SetDefaultColors()
@@ -35,7 +33,14 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Execute()
         {
-            OpenInBrowser("snippets");
+            if (_tes.Project != null && _tes.Project.IsSnippetsEnabled)
+            {
+                OpenInBrowser("snippets");
+            }
+            else
+            {
+                OpenHostUrlInBrowser("explore/snippets");
+            }
         }
     }
 }

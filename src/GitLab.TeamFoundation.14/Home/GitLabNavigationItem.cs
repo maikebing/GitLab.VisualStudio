@@ -43,5 +43,13 @@ namespace GitLab.TeamFoundation.Home
 
             _shell.OpenUrl(url);
         }
+        protected void OpenHostUrlInBrowser(string endpoint)
+        {
+            var user = _storage.GetUser();
+
+            var url = $"{_storage.Host}/{endpoint}";
+
+            _shell.OpenUrl(url);
+        }
     }
 }
