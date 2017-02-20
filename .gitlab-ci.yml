@@ -5,7 +5,7 @@ before_script:
  
 stages:
   - buildGitLabForVS
-buildDMS:
+buildGitLabForVS:
   stage: buildGitLabForVS
   script:
   -  rebuildself.cmd    GitLabVS.sln
