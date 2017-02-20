@@ -13,7 +13,6 @@ buildGitLabForVS:
   artifacts:
     expire_in: 1 mos
     name: buildGitLabForVS_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}
-    untracked: true
     paths:
     -  build/Release/GitLab.VisualStudio.vsix
     -  README.md
