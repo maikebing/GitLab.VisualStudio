@@ -24,7 +24,7 @@ namespace GitLab.TeamFoundation.Home
             _storage = storage;
             _tes = tes;
             _web = web;
-
+        
             var brush = new SolidColorBrush(Color.FromRgb(66, 66, 66));
             brush.Freeze();
             m_icon = SharedResources.GetDrawingForIcon(icon, brush);
@@ -37,18 +37,12 @@ namespace GitLab.TeamFoundation.Home
 
         protected void OpenInBrowser(string endpoint)
         {
-            var user = _storage.GetUser();
-
-            var url = $"{_storage.Host}/{user.Username}/{_tes.Project.Name}/{endpoint}";
-
+            var url = $"{_tes.Project.web_url}/{endpoint}";
             _shell.OpenUrl(url);
         }
         protected void OpenHostUrlInBrowser(string endpoint)
         {
-            var user = _storage.GetUser();
-
             var url = $"{_storage.Host}/{endpoint}";
-
             _shell.OpenUrl(url);
         }
     }
