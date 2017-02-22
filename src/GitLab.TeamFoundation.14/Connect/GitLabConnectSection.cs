@@ -20,7 +20,6 @@ namespace GitLab.TeamFoundation.Connect
         private readonly IStorage _storage;
         private readonly ITeamExplorerServices _teamexplorer;
         private readonly IViewFactory _viewFactory;
-        private readonly IVisualStudioService _vs;
         private readonly IWebService _web;
 
         [ImportingConstructor]
@@ -31,7 +30,6 @@ namespace GitLab.TeamFoundation.Connect
             _storage = storage;
             _teamexplorer = teamexplorer;
             _viewFactory = viewFactory;
-            _vs = vs;
             _web = web;
 
             messenger.Register("OnLogined", OnLogined);
@@ -67,7 +65,7 @@ namespace GitLab.TeamFoundation.Connect
 
             if (view != null)
             {
-                view.DataContext = new ConnectSectionViewModel(_messenger, _shell, _storage, _teamexplorer, _viewFactory, _vs, _web);
+    
             }
         }
 

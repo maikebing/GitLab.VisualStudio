@@ -21,10 +21,9 @@ namespace GitLab.TeamFoundation.ViewModels
         private readonly IStorage _storage;
         private readonly ITeamExplorerServices _teamexplorer;
         private readonly IViewFactory _viewFactory;
-        private readonly IVisualStudioService _vs;
         private readonly IWebService _web;
 
-        public ConnectSectionViewModel(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public ConnectSectionViewModel(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
             messenger.Register<string, Repository>("OnClone", OnRepositoryCloned);
@@ -34,7 +33,6 @@ namespace GitLab.TeamFoundation.ViewModels
             _storage = storage;
             _teamexplorer = teamexplorer;
             _viewFactory = viewFactory;
-            _vs = vs;
             _web = web;
 
             Repositories = new ObservableCollection<Repository>();

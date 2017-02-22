@@ -18,7 +18,6 @@ namespace GitLab.TeamFoundation.ViewModels
         private readonly IStorage _storage;
         private readonly ITeamExplorerServices _tes;
         private readonly IViewFactory _viewFactory;
-        private readonly IVisualStudioService _vs;
         private readonly IWebService _web;
 
         public event Action Published;
@@ -28,7 +27,7 @@ namespace GitLab.TeamFoundation.ViewModels
             Published?.Invoke();
         }
 
-        public PublishSectionViewModel(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public PublishSectionViewModel(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IWebService web)
         {
             messenger.Register("OnLogined", OnLogined);
             messenger.Register("OnSignOuted", OnSignOuted);
@@ -39,7 +38,6 @@ namespace GitLab.TeamFoundation.ViewModels
             _storage = storage;
             _tes = tes;
             _viewFactory = viewFactory;
-            _vs = vs;
             _web = web;
 
             Name = Strings.Name;
