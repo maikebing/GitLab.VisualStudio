@@ -241,6 +241,7 @@ namespace GitLab.TeamFoundation.ViewModels
                 catch (Exception ex)
                 {
                     error = ex.Message;
+                    _tes.ShowError(ex.Message);
                 }
             }).ContinueWith(task =>
             {

@@ -20,16 +20,9 @@ namespace GitLab.TeamFoundation.Home
             _tes = tes;
             Text = Strings.Items_Graph;
         }
-
-        protected override void SetDefaultColors()
-        {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.LightBlueNavigationItem);
-        }
-
         public override void Execute()
         {
             var repo = _tes.GetActiveRepository();
-
             OpenInBrowser($"graphs/{repo.Branch}");
         }
     }

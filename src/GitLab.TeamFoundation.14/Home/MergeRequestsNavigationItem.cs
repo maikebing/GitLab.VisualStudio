@@ -27,12 +27,6 @@ namespace GitLab.TeamFoundation.Home
 
             IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsPullRequestsEnabled;
         }
-
-        protected override void SetDefaultColors()
-        {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.RedNavigationItem);
-        }
-
         public override void Execute()
         {
             OpenInBrowser("merge_requests");

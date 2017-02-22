@@ -27,11 +27,6 @@ namespace GitLab.TeamFoundation.Home
             IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsWikiEnabled;
         }
 
-        protected override void SetDefaultColors()
-        {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.BlueNavigationItem);
-        }
-
         public override void Execute()
         {
             OpenInBrowser("wikis");

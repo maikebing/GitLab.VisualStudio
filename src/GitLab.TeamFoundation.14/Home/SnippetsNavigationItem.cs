@@ -17,7 +17,6 @@ namespace GitLab.TeamFoundation.Home
            : base(Octicon.book, git, shell, storage, tes, ws)
         {
             _tes = tes;
-
             Text = Strings.Items_Snippets;
         }
 
@@ -25,12 +24,6 @@ namespace GitLab.TeamFoundation.Home
         {
             IsVisible = true;
         }
-
-        protected override void SetDefaultColors()
-        {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.BlueNavigationItem);
-        }
-
         public override void Execute()
         {
             if (_tes.Project != null && _tes.Project.IsSnippetsEnabled)

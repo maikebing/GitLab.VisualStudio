@@ -18,11 +18,6 @@ namespace GitLab.TeamFoundation.Home
         
         }
 
-        protected override void SetDefaultColors()
-        {
-            m_defaultArgbColorBrush = new SolidColorBrush(Colors.LightBlueNavigationItem);
-        }
-
         public override void Execute()
         {
             OpenInBrowser("pipelines");
