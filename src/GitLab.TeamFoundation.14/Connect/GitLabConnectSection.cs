@@ -62,10 +62,9 @@ namespace GitLab.TeamFoundation.Connect
         protected override void InitializeView(SectionInitializeEventArgs e)
         {
             var view = this.SectionContent as FrameworkElement;
-
             if (view != null)
             {
-    
+                view.DataContext = new ConnectSectionViewModel(_messenger, _shell, _storage, _teamexplorer, _viewFactory, _web);
             }
         }
 
@@ -82,7 +81,6 @@ namespace GitLab.TeamFoundation.Connect
         public void OnClone(string url, Repository repository)
         {
             var gitExt = ServiceProvider.GetService<IGitRepositoriesExt>();
-
             gitExt.Clone(url, repository.Path, CloneOptions.RecurseSubmodule);
         }
 
