@@ -31,7 +31,6 @@ namespace GitLab.TeamFoundation.ViewModels
         {
             messenger.Register("OnLogined", OnLogined);
             messenger.Register("OnSignOuted", OnSignOuted);
-
             _messenger = messenger;
             _git = git;
             _shell = shell;
@@ -39,18 +38,14 @@ namespace GitLab.TeamFoundation.ViewModels
             _tes = tes;
             _viewFactory = viewFactory;
             _web = web;
-
             Name = Strings.Name;
-            Provider = Strings.Provider + "(" + storage.Host + ")";
+            Provider =  Strings.Provider + ": " + storage.Host + "";
             Description = Strings.Description;
-
             _loginCommand = new DelegateCommand(OnLogin);
             _signUpCommand = new DelegateCommand(OnSignUp);
             _getStartedCommand = new DelegateCommand(OnGetStarted);
             _publishCommand = new DelegateCommand(OnPublish, CanPublish);
-
             ShowGetStarted = storage.IsLogined;
-
             //IsStarted = true;
             LoadResources();
         }

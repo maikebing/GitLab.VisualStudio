@@ -502,7 +502,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 OSChina.Net 的本地化字符串。
+        ///   查找类似 GitLab 的本地化字符串。
         /// </summary>
         public static string Provider {
             get {
