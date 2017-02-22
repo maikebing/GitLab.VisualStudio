@@ -23,7 +23,7 @@ namespace GitLab.TeamFoundation.Connect
         private readonly IWebService _web;
 
         [ImportingConstructor]
-        public GitLabConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public GitLabConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory,  IWebService web)
         {
             _messenger = messenger;
             _shell = shell;

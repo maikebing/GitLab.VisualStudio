@@ -23,7 +23,7 @@ namespace GitLab.TeamFoundation.Sync
         private readonly IWebService _web;
 
         [ImportingConstructor]
-        public GitLabPublishSection(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IVisualStudioService vs, IWebService web)
+        public GitLabPublishSection(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory,  IWebService web)
         {
             _messenger = messenger;
             _git = git;
@@ -61,7 +61,8 @@ namespace GitLab.TeamFoundation.Sync
             var view = this.SectionContent as FrameworkElement;
             if (view != null)
             {
-                        temp.Published += OnPublished;
+                var temp = new PublishSectionViewModel(_messenger, _git, _shell, _storage, _tes, _viewFactory, _web);
+                temp.Published += OnPublished;
                 view.DataContext = temp;
             }
         }
