@@ -135,7 +135,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     loaded = LoadRepositories();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     error = Strings.CloneView_FailedToLoadProjects;
                 }
@@ -154,10 +154,10 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     {
                         loaded.Each(o => _repositories.Add(new ProjectViewModel(o)));
 
-                        var single = _repositories.Select(o => o.Owner).Distinct().SingleOrDefault();
-                        if (single != null)
+                        var first = _repositories.Select(o => o.Owner).FirstOrDefault();
+                        if (first != null)
                         {
-                            single.IsExpanded = true;
+                            first.IsExpanded = true;
                         }
                     }
                 }
