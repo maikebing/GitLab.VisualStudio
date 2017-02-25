@@ -67,7 +67,7 @@
 
                 <Button Grid.Column="3"
                     HorizontalAlignment="Right"
-                    Content="{x:Static shared:Strings.Publish_Start}"
+                    Content="{x:Static shared:Strings.Publish_Publish}"
                     Command="{Binding GetStartedCommand}"
                     Visibility="{Binding ShowGetStarted, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
