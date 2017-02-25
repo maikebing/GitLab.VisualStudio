@@ -213,8 +213,8 @@
   <data name="Items_Pipeline" xml:space="preserve">
     <value>Pipelines</value>
   </data>
-  <data name="Items_PullRequests" xml:space="preserve">
-    <value>Pull Requests</value>
+  <data name="Items_MergeRequests" xml:space="preserve">
+    <value>Merge Requests</value>
   </data>
   <data name="Items_Snippets" xml:space="preserve">
     <value>Snippets</value>

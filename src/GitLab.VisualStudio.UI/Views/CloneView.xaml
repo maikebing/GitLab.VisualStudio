@@ -160,8 +160,12 @@
                                         IsEnabled="{Binding FilterTextIsEnabled, Mode=OneWay}" />
 
                 <Button x:Name="cloneButton"
-                        Margin="158,12,128,12"
-                        Width="104"
+                        Margin="20,12,26,12"
+                          Background="#3b83c0"
+                    Foreground="#ffffff"
+                    FontWeight="Bold"
+                    FontSize="14"
+                        Width="344"
                         HorizontalAlignment="Center"
                         IsDefault="True"
                         DockPanel.Dock="Bottom"
@@ -181,8 +185,12 @@
                                  Grid.Column="1"
                                  VerticalAlignment="Center"
                                  IsReadOnly="True"
-                                 Text="{Binding BaseRepositoryPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,6" Width="273" />
+                                 Text="{Binding BaseRepositoryPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,6" Width="257" />
                         <Button x:Name="browsePathButton"
+                                  Background="#3b83c0"
+                    Foreground="#ffffff"
+                    FontWeight="Bold"
+                    FontSize="12"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Content="{x:Static shared:Strings.Common_Browse}"

@@ -214,7 +214,7 @@
     <value>流水线</value>
   </data>
   <data name="Items_PullRequests" xml:space="preserve">
-    <value>Pull Requests</value>
+    <value>Merge Requests</value>
   </data>
   <data name="Items_Snippets" xml:space="preserve">
     <value>代码片段</value>

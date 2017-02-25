@@ -340,20 +340,20 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Merge Requests 的本地化字符串。
+        /// </summary>
+        public static string Items_MergeRequests {
+            get {
+                return ResourceManager.GetString("Items_MergeRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Pipelines 的本地化字符串。
         /// </summary>
         public static string Items_Pipeline {
             get {
                 return ResourceManager.GetString("Items_Pipeline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Pull Requests 的本地化字符串。
-        /// </summary>
-        public static string Items_PullRequests {
-            get {
-                return ResourceManager.GetString("Items_PullRequests", resourceCulture);
             }
         }
         

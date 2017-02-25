@@ -165,14 +165,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\images\github.png" />
     <Resource Include="Resources\images\logo.png" />
-    <Resource Include="Resources\images\osc.png" />
     <Resource Include="Resources\images\password.png" />
-    <Resource Include="Resources\images\qq.png" />
     <Resource Include="Resources\images\user.png" />
-    <Resource Include="Resources\images\weibo.png" />
-    <Resource Include="Resources\images\windows.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj">
