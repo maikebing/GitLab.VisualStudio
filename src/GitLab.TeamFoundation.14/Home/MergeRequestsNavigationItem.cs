@@ -18,7 +18,7 @@ namespace GitLab.TeamFoundation.Home
            : base(Octicon.git_pull_request, git, shell, storage, tes, ws)
         {
             _tes = tes;
-            Text = Strings.Items_PullRequests;
+            Text = Strings.Items_MergeRequests;
         }
 
         public override void Invalidate()
