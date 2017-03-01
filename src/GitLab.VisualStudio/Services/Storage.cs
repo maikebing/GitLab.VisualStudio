@@ -37,7 +37,20 @@ namespace GitLab.VisualStudio.Services
                 return _user != null && _user.Token != null;
             }
         }
-        public string Host { get { return GetUser().Host; } }
+
+
+        public string Host
+        {
+            get
+            {
+                string url = string.Empty;
+                if (GetUser() != null)
+                {
+                    url = GetUser().Host;
+                }
+                return url;
+            }
+        }
 
         public string GetPassword()
         {
