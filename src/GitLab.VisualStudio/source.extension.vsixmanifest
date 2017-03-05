@@ -9,7 +9,7 @@
     <ReleaseNotes>readme.txt</ReleaseNotes>
     <Icon>Resources\logo_32x32@2x.png</Icon>
     <PreviewImage>Resources\preview_200x200.png</PreviewImage>
-    <Tags>GitLab,git,open source,source control,branch,Pipelines,Registry,Graphs,IssuesMerge Requests,Wiki</Tags>
+    <Tags>GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki</Tags>
   </Metadata>
   <Installation AllUsers="true">
     <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Pro" />
