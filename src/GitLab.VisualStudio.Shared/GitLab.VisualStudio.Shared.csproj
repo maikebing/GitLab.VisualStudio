@@ -139,6 +139,8 @@
     <Compile Include="Helpers\Validatable.cs" />
     <Compile Include="IDialog.cs" />
     <Compile Include="IGitService.cs" />
+    <Compile Include="IMenuHandler.cs" />
+    <Compile Include="IMenuProvider.cs" />
     <Compile Include="IMessenger.cs" />
     <Compile Include="IServiceProviderExtensions.cs" />
     <Compile Include="IStorage.cs" />

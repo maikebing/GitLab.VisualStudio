@@ -59,6 +59,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GitLabPackage.cs" />
+    <Compile Include="OpenOnGitLab.cs" />
+    <Compile Include="OpenOnGitLabPackage.cs" />
+    <Compile Include="OpenOnGitLabPackage2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenOnGitLabPackage.vsct</DependentUpon>
+    </Compile>
+    <Compile Include="Services\GitAnalysis.cs" />
     <Compile Include="Services\GitService.cs" />
     <Compile Include="Services\ShellService.cs" />
     <Compile Include="..\common\SolutionInfo.cs">
@@ -88,10 +96,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <VSCTCompile Include="OpenOnGitLabPackage.vsct">
+      <ResourceName>Menus3.ctmenu</ResourceName>
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>OpenOnGitLabPackage2.cs</LastGenOutput>
+    </VSCTCompile>
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Resource Include="Resources\OpenOnGitLab.png" />
+    <Resource Include="Resources\OpenOnGitLabPackage.ico" />
     <Content Include="Resources\preview_200x200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -451,6 +466,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
