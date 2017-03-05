@@ -32,10 +32,7 @@ http://git.oschina.net/GitGroup/CodeCloud.VisualStudio
 #### isual Studio Extension for opening files on GitHub.com
 https://github.com/neuecc/Open-on-GitHub 
 
-### Open On GitLab 
-
-![image](./docs/images/OpenOnGitLab.png)
-
+ 
 
 
 ### Open On GitLab 
@@ -43,8 +40,8 @@ https://github.com/neuecc/Open-on-GitHub
 ![image](./docs/images/OpenOnGitLab.png)
 ###  Team Home Page
 
-![image](./docs/images/TeamHome.png)
+![image](./docs/images/TeamHome.PNG)
 
 ### Team Connct Page
-![image](./docs/images/TeamConnect.png)
+![image](./docs/images/TeamConnect.PNG)
 
