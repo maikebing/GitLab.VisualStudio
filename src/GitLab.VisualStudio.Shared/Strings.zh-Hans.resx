@@ -293,4 +293,7 @@
   <data name="Items_MergeRequests" xml:space="preserve">
     <value>Merge Requests</value>
   </data>
+  <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
+    <value>项目 {0} 已经存在!</value>
+  </data>
 </root>

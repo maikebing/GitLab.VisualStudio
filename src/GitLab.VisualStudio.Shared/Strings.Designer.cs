@@ -286,6 +286,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 The project {0} already exists! 的本地化字符串。
+        /// </summary>
+        public static string CreateViewModel_OnSave_TheProject0AlreadyExists {
+            get {
+                return ResourceManager.GetString("CreateViewModel_OnSave_TheProject0AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 GitLab  unlimited free repositories and collaborators. Sign Up. Free public &amp; private repositories and unlimited collaborators. 的本地化字符串。
         /// </summary>
         public static string Description {

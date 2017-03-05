@@ -88,7 +88,7 @@ namespace GitLab.VisualStudio.Services
             var request = GetRequest($"{host}/api/v3/session");
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
-            var content = $"email={HttpUtility.UrlEncode(email)}&password={HttpUtility.UrlEncode(password)}";
+            var content = (email.Contains("@")? $"email={HttpUtility.UrlEncode(email)}": $"login={HttpUtility.UrlEncode(email)}") +$"&password={HttpUtility.UrlEncode(password)}";
             var bytes = Encoding.UTF8.GetBytes(content);
             request.ContentLength = bytes.Length;
             request.GetRequestStream().Write(bytes, 0, bytes.Length);

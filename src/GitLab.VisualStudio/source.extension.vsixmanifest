@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="54803a44-49e0-4935-bba4-7d7d91682273" Version="1.0.0.39" Language="zh-CN" Publisher="MysticBoy" />
+    <Identity Id="54803a44-49e0-4935-bba4-7d7d91682273" Version="1.0.0.40" Language="en-US" Publisher="MysticBoy" />
     <DisplayName>GitLab Extension for Visual Studio</DisplayName>
     <Description xml:space="preserve">A Visual Studio Extension that brings the GitLab Flow into Visual Studio.</Description>
     <MoreInfo>http://visualstudio.gitclub.cn</MoreInfo>
@@ -9,7 +9,7 @@
     <ReleaseNotes>readme.txt</ReleaseNotes>
     <Icon>Resources\logo_32x32@2x.png</Icon>
     <PreviewImage>Resources\preview_200x200.png</PreviewImage>
-    <Tags>GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;Issues;Merge Requests;Wiki</Tags>
+    <Tags>GitLab,git,open source,source control,branch,Pipelines,Registry,Graphs,IssuesMerge Requests,Wiki</Tags>
   </Metadata>
   <Installation AllUsers="true">
     <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Pro" />

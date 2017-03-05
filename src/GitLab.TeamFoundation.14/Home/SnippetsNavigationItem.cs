@@ -22,7 +22,7 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Invalidate()
         {
-            IsVisible = true;
+            IsVisible = IsVisible  ||  _tes.Project == null  ;
         }
         public override void Execute()
         {

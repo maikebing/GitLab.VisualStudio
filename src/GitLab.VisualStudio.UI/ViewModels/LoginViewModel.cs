@@ -50,7 +50,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private string _email;
         [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
-        [EmailAddress(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsInvalid")]
+      //[EmailAddress (ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsInvalid")]
         public string Email
         {
             get { return _email; }

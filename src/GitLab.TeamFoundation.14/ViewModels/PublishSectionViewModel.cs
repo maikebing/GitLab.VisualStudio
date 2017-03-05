@@ -39,7 +39,14 @@ namespace GitLab.TeamFoundation.ViewModels
             _viewFactory = viewFactory;
             _web = web;
             Name = Strings.Name;
-            Provider =  Strings.Provider + ": " + storage.Host + "";
+            if (string.IsNullOrEmpty(storage.Host))
+            {
+                Provider = Strings.Provider;
+            }
+            else
+            {
+                Provider = Strings.Provider + ": " + storage.Host + "";
+            }
             Description = Strings.Description;
             _loginCommand = new DelegateCommand(OnLogin);
             _signUpCommand = new DelegateCommand(OnSignUp);
@@ -189,7 +196,14 @@ namespace GitLab.TeamFoundation.ViewModels
 
         private void OnSignUp()
         {
-            _shell.OpenUrl($"{_storage.Host}/users/sign_in");
+            if (string.IsNullOrEmpty(_storage.Host))
+            {
+                _shell.OpenUrl("http://visualstudio.gitclub.cn");
+            }
+            else
+            {
+                _shell.OpenUrl($"{_storage.Host}/users/sign_in");
+            }
         }
 
         private void OnGetStarted()

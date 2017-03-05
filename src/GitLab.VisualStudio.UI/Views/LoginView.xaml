@@ -170,21 +170,6 @@
                                 Value="44" />
                     </Style>
                 </StackPanel.Resources>
-                <Button Background="Transparent">
-                    <Image Source="/GitLab.VisualStudio.UI;component/Resources/images/osc.png" />
-                </Button>
-                <Button Background="Transparent">
-                    <Image Source="/GitLab.VisualStudio.UI;component/Resources/images/github.png" />
-                </Button>
-                <Button Background="Transparent">
-                    <Image Source="/GitLab.VisualStudio.UI;component/Resources/images/weibo.png" />
-                </Button>
-                <Button Background="Transparent">
-                    <Image Source="/GitLab.VisualStudio.UI;component/Resources/images/qq.png" />
-                </Button>
-                <Button Background="Transparent">
-                    <Image Source="/GitLab.VisualStudio.UI;component/Resources/images/windows.png" />
-                </Button>
             </StackPanel>
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="5"

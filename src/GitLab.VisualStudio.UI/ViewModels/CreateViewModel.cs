@@ -164,12 +164,19 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 try
                 {
-                    result = _web.CreateProject(Name, Description, IsPrivate);
-                    if (result.Project != null)
+                    if (_web.GetProjects().Any(p => p.Name == Name))
                     {
-                        clonePath = System.IO.Path.Combine(Path, result.Project.Name);
+                        error = string.Format(Strings.CreateViewModel_OnSave_TheProject0AlreadyExists, Name);
+                    }
+                    else
+                    {
+                        result = _web.CreateProject(Name, Description, IsPrivate);
+                        if (result.Project != null)
+                        {
+                            clonePath = System.IO.Path.Combine(Path, result.Project.Name);
 
-                        InitialCommit(result.Project.Url);
+                            InitialCommit(result.Project.Url);
+                        }
                     }
                 }
                 catch (Exception ex)
