@@ -61,7 +61,7 @@
     <Compile Include="GitLabPackage.cs" />
     <Compile Include="OpenOnGitLab.cs" />
     <Compile Include="OpenOnGitLabPackage.cs" />
-    <Compile Include="OpenOnGitLabPackage2.cs">
+    <Compile Include="OpenOnGitLabPackage1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OpenOnGitLabPackage.vsct</DependentUpon>
@@ -82,6 +82,11 @@
     <Compile Include="Services\Storage.cs" />
     <Compile Include="Services\ViewFactory.cs" />
     <Compile Include="Services\WebService.cs" />
+    <Compile Include="VSPackage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\packages\libgit2sharp.nativebinaries.1.0.129\libgit2\windows\amd64\git2-785d8c4.dll">
@@ -97,9 +102,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <VSCTCompile Include="OpenOnGitLabPackage.vsct">
-      <ResourceName>Menus3.ctmenu</ResourceName>
+      <ResourceName>Menus.ctmenu</ResourceName>
       <Generator>VsctGenerator</Generator>
-      <LastGenOutput>OpenOnGitLabPackage2.cs</LastGenOutput>
+      <LastGenOutput>OpenOnGitLabPackage1.cs</LastGenOutput>
     </VSCTCompile>
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -472,11 +477,14 @@
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage.zh-Hans.resx">
+      <MergeWithCTO>true</MergeWithCTO>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\icons\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

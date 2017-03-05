@@ -7,12 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace GitLab.VisualStudio.Services
 {
-    public enum GitHubUrlType
+    public enum GitLabUrlType
     {
         Master,
         CurrentBranch,
         CurrentRevision,
-        CurrentRevisionFull
+        CurrentRevisionFull,
+        Blame,
+        Commits
     }
 
     public sealed class GitAnalysis : IDisposable
@@ -32,39 +34,42 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        public string GetGitHubTargetPath(GitHubUrlType urlType)
+        public string GetGitLabTargetPath(GitLabUrlType urlType)
         {
             switch (urlType)
             {
-                case GitHubUrlType.CurrentBranch:
-                    return repository.Head.Name.Replace("origin/", "");
-                case GitHubUrlType.CurrentRevision:
+                case GitLabUrlType.CurrentBranch:
+                    return repository.Head.FriendlyName.Replace("origin/", "");
+                case GitLabUrlType.CurrentRevision:
                     return repository.Commits.First().Id.ToString(8);
-                case GitHubUrlType.CurrentRevisionFull:
+                case GitLabUrlType.CurrentRevisionFull:
                     return repository.Commits.First().Id.Sha;
-                case GitHubUrlType.Master:
-                default:
+                   default:
                     return "master";
             }
         }
 
-        public string GetGitHubTargetDescription(GitHubUrlType urlType)
+        public string GetGitLabTargetDescription(GitLabUrlType urlType)
         {
             switch (urlType)
             {
-                case GitHubUrlType.CurrentBranch:
-                    return "Branch: " + repository.Head.Name.Replace("origin/", "");
-                case GitHubUrlType.CurrentRevision:
+                case GitLabUrlType.CurrentBranch:
+                    return "Branch: " + repository.Head.FriendlyName.Replace("origin/", "");
+                case GitLabUrlType.CurrentRevision:
                     return "Revision: " + repository.Commits.First().Id.ToString(8);
-                case GitHubUrlType.CurrentRevisionFull:
+                case GitLabUrlType.CurrentRevisionFull:
                     return "Revision: " + repository.Commits.First().Id.ToString(8) + "... (Full ID)";
-                case GitHubUrlType.Master:
+                case GitLabUrlType.Blame:
+                    return "Blame";
+                case GitLabUrlType.Commits:
+                    return "Commits";
+                case GitLabUrlType.Master:
                 default:
                     return "master";
             }
         }
 
-        public string BuildGitHubUrl(GitHubUrlType urlType, Tuple<int, int> selectionLineRange)
+        public string BuildGitLabUrl(GitLabUrlType urlType, Tuple<int, int> selectionLineRange)
         {
             // https://github.com/user/repo.git
             var originUrl = repository.Config.Get<string>("remote.origin.url");
@@ -85,7 +90,7 @@ namespace GitLab.VisualStudio.Services
             var rootDir = repository.Info.WorkingDirectory;
             var fileIndexPath = targetFullPath.Substring(rootDir.Length).Replace("\\", "/");
 
-            var repositoryTarget = GetGitHubTargetPath(urlType);
+            var repositoryTarget = GetGitLabTargetPath(urlType);
 
             // line selection
             var fragment = (selectionLineRange != null)
@@ -94,7 +99,17 @@ namespace GitLab.VisualStudio.Services
                                     : string.Format("#L{0}-L{1}", selectionLineRange.Item1, selectionLineRange.Item2)
                                 : "";
 
-            var fileUrl = string.Format("{0}/blob/{1}/{2}{3}", urlRoot.Trim('/'), WebUtility.UrlEncode(repositoryTarget.Trim('/')), fileIndexPath.Trim('/'), fragment);
+            var urlshowkind = "blob";
+            if (urlType == GitLabUrlType.Blame)
+            {
+                urlshowkind = "blame";
+            }
+            if (urlType == GitLabUrlType.Commits)
+            {
+                urlshowkind = "commits";
+            }
+            var fileUrl = string.Format("{0}/{4}/{1}/{2}{3}", urlRoot.Trim('/'), WebUtility.UrlEncode(repositoryTarget.Trim('/')), fileIndexPath.Trim('/'), fragment, urlshowkind);
+         
             return fileUrl;
         }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,31 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="8110" xml:space="preserve">
-    <value>OpenOnGitLab Extension</value>
+    <value>OpenOnGitLab扩展</value>
   </data>
   <data name="8112" xml:space="preserve">
-    <value>Visual Studio Extension for opening files on you GitLab Site!</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="8400" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\OpenOnGitLabPackage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>在你的GitLab网站中打开</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenMaster" xml:space="preserve">
-    <value>Open Master</value>
+    <value>浏览主分支</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenBranch" xml:space="preserve">
-    <value>Open Branch</value>
+    <value>浏览分支</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenRevision" xml:space="preserve">
-    <value>Open Revision</value>
+    <value>浏览版本</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenRevisionFull" xml:space="preserve">
-    <value>Open RevisionFull</value>
+    <value>浏览完整版本</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenCommits" xml:space="preserve">
-    <value>Open Commits</value>
+    <value>浏览提交</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenBlame" xml:space="preserve">
-    <value>Open Blame</value>
+    <value>浏览审查</value>
   </data>
 </root>

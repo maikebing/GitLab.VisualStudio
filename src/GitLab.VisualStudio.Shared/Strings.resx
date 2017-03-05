@@ -227,7 +227,7 @@
     <comment>0 = Common_Name</comment>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>User Name or Email </value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
     <value>Invalid email</value>

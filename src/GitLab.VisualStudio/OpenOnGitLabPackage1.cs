@@ -29,6 +29,8 @@ namespace GitLab.VisualStudio
         public const int CommandId_OpenBranch = 0x0200;
         public const int CommandId_OpenRevision = 0x0300;
         public const int CommandId_OpenRevisionFull = 0x0400;
+        public const int CommandId_Blame = 0x0500;
+        public const int CommandId_Commits = 0x0600;
         public const int bmpPic1 = 0x0001;
         public const int bmpPic2 = 0x0002;
         public const int bmpPicSearch = 0x0003;

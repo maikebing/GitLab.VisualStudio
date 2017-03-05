@@ -224,7 +224,7 @@
     <comment>0 = Common_Name</comment>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>邮箱</value>
+    <value>用户名或邮箱</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
     <value>不是合法的邮箱地址</value>

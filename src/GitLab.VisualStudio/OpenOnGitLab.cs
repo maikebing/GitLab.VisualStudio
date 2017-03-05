@@ -14,6 +14,7 @@ using GitLab.VisualStudio.Services;
 using System.Diagnostics;
 using System.IO;
 using EnvDTE;
+using GitLab.VisualStudio.Shared;
 
 namespace GitLab.VisualStudio
 {
@@ -70,27 +71,26 @@ namespace GitLab.VisualStudio
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
-                foreach (var item in new[]
-              {
-             
-                     PackageIds.CommandId_OpenMaster,
-                    PackageIds. CommandId_OpenBranch,
-                      PackageIds.CommandId_OpenRevision,
-                    PackageIds.CommandId_OpenRevisionFull
-                })
-                {
-                    var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabPackageCmdSet, (int)item);
-                    var menuItem = new OleMenuCommand(MenuItemCallback, menuCommandID);
-                    menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                    commandService.AddCommand(menuItem);
-                }
+                AddCommand(commandService, PackageIds.CommandId_OpenMaster,VSPackage.OpenOnGitLab_OpenOnGitLab_OpenMaster);
+                AddCommand(commandService, PackageIds.CommandId_OpenBranch, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBranch);
+                AddCommand(commandService, PackageIds.CommandId_OpenRevision, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevision);
+                AddCommand(commandService, PackageIds.CommandId_OpenRevisionFull, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevisionFull);
+                AddCommand(commandService, PackageIds.CommandId_Commits, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenCommits);
+                AddCommand(commandService, PackageIds.CommandId_Blame, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBlame);
             }
-            
+        }
+
+        private void AddCommand(OleMenuCommandService commandService, int item,string text)
+        {
+            var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabPackageCmdSet, (int)item);
+            var menuItem = new OleMenuCommand(MenuItemCallback, menuCommandID,text);
+            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+            commandService.AddCommand(menuItem);
         }
 
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
-            var command = (MenuCommand)sender;
+            var command = (OleMenuCommand)sender;
             try
             {
                 // TODO:is should avoid create GitAnalysis every call?
@@ -102,15 +102,15 @@ namespace GitLab.VisualStudio
                         return;
                     }
 
-                    var type = ToGitHubUrlType(command.CommandID.ID);
-                    var targetPath = git.GetGitHubTargetPath(type);
-                    if (type == GitHubUrlType.CurrentBranch && targetPath == "master")
+                    var type = ToGitLabUrlType(command.CommandID.ID);
+                    var targetPath = git.GetGitLabTargetPath(type);
+                    if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
                     {
                         command.Visible = false;
                     }
                     else
                     {
-                        // command.Properties. = git.GetGitHubTargetDescription(type);
+                       command.Text = git.GetGitLabTargetDescription(type);
                         command.Enabled = true;
                     }
                 }
@@ -176,9 +176,9 @@ namespace GitLab.VisualStudio
                         return;
                     }
                     var selectionLineRange = GetSelectionLineRange();
-                    var type = ToGitHubUrlType(command.CommandID.ID);
-                    var gitHubUrl = git.BuildGitHubUrl(type, selectionLineRange);
-                    System.Diagnostics.Process.Start(gitHubUrl); // open browser
+                    var type = ToGitLabUrlType(command.CommandID.ID);
+                    var gitLabUrl = git.BuildGitLabUrl(type, selectionLineRange);
+                    System.Diagnostics.Process.Start(gitLabUrl); // open browser
                 }
             }
             catch (Exception ex)
@@ -228,18 +228,19 @@ namespace GitLab.VisualStudio
             {
                 return null;
             }
-
             return Tuple.Create(selection.TopPoint.Line, selection.BottomPoint.Line);
         }
 
-        static GitHubUrlType ToGitHubUrlType(int commandId)
+        static GitLabUrlType ToGitLabUrlType(int commandId)
         {
-            if (commandId == PackageIds.CommandId_OpenMaster) return GitHubUrlType.Master;
-            if (commandId == PackageIds.CommandId_OpenBranch) return GitHubUrlType.CurrentBranch;
-            if (commandId == PackageIds.CommandId_OpenRevision) return GitHubUrlType.CurrentRevision;
+            if (commandId == PackageIds.CommandId_OpenMaster) return GitLabUrlType.Master;
+            if (commandId == PackageIds.CommandId_OpenBranch) return GitLabUrlType.CurrentBranch;
+            if (commandId == PackageIds.CommandId_OpenRevision) return GitLabUrlType.CurrentRevision;
+            if (commandId == PackageIds.CommandId_Blame) return GitLabUrlType.Blame;
+            if (commandId == PackageIds.CommandId_Commits) return GitLabUrlType.Commits;
             if (commandId == PackageIds.CommandId_OpenRevisionFull)
-                return GitHubUrlType.CurrentRevisionFull;
-            return GitHubUrlType.CurrentRevisionFull;
+                return GitLabUrlType.CurrentRevisionFull;
+            return GitLabUrlType.CurrentRevisionFull;
         }
     }
 }
