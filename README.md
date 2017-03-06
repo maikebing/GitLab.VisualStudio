@@ -44,4 +44,7 @@ https://github.com/neuecc/Open-on-GitHub
 
 ### Team Connct Page
 ![image](./docs/images/TeamConnect.PNG)
+ 
+ 
+[![image](http://s07.flagcounter.com/map/7uzT/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/)](http://info.flagcounter.com/7uzT)
 
