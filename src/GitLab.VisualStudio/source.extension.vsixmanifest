@@ -27,4 +27,7 @@
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="GitLab.TeamFoundation.14" Path="|GitLab.TeamFoundation.14|" />
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="GitLab.TeamFoundation.15" Path="|GitLab.TeamFoundation.15|" />
   </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[14.0,16.0)" DisplayName="Visual Studio 核心编辑器" />
+  </Prerequisites>
 </PackageManifest>
