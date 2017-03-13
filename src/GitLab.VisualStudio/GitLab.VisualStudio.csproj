@@ -59,7 +59,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GitLabPackage.cs" />
-    <Compile Include="OpenOnGitLab.cs" />
     <Compile Include="OpenOnGitLabPackage.cs" />
     <Compile Include="OpenOnGitLabPackage1.cs">
       <AutoGen>True</AutoGen>
@@ -105,6 +104,7 @@
       <ResourceName>Menus.ctmenu</ResourceName>
       <Generator>VsctGenerator</Generator>
       <LastGenOutput>OpenOnGitLabPackage1.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </VSCTCompile>
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
