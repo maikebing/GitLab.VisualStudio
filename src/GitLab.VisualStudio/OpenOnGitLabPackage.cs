@@ -211,7 +211,7 @@ namespace GitLab.VisualStudio
             }
         }
 
-        string GetActiveFilePath()
+      public static  string GetActiveFilePath()
         {
             // sometimes, DTE.ActiveDocument.Path is ToLower but GitHub can't open lower path.
             // fix proper-casing | http://stackoverflow.com/questions/325931/getting-actual-file-name-with-proper-casing-on-windows-with-net
