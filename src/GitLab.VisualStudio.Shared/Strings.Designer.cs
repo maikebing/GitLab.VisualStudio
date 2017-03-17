@@ -448,6 +448,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Host is invalid 的本地化字符串。
+        /// </summary>
+        public static string Login_HostIsInvalid {
+            get {
+                return ResourceManager.GetString("Login_HostIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Login 的本地化字符串。
         /// </summary>
         public static string Login_Login {

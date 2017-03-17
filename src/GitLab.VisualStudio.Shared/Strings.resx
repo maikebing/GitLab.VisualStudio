@@ -296,4 +296,7 @@
   <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
     <value>The project {0} already exists!</value>
   </data>
+  <data name="Login_HostIsInvalid" xml:space="preserve">
+    <value>Host is invalid</value>
+  </data>
 </root>

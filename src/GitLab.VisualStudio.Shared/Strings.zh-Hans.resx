@@ -296,4 +296,7 @@
   <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
     <value>项目 {0} 已经存在!</value>
   </data>
+  <data name="Login_HostIsInvalid" xml:space="preserve">
+    <value>主机名无效</value>
+  </data>
 </root>

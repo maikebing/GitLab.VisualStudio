@@ -31,7 +31,6 @@ namespace GitLab.VisualStudio.Services
                     if (!_isChecked)
                     {
                         LoadUser();
-
                         _isChecked = true;
                     }
                 }
@@ -148,31 +147,30 @@ namespace GitLab.VisualStudio.Services
 
         private void LoadUser()
         {
-            if (File.Exists(_path))
+            try
             {
-                JObject o = null;
-                using (var reader = new JsonTextReader(new StreamReader(_path)))
+                if (File.Exists(_path))
                 {
-                    var serializer = new JsonSerializer();
-                    o = (JObject)serializer.Deserialize(reader);
-                    using (var git = new GitAnalysis(OpenOnGitLabPackage.GetActiveFilePath()))
+                    JObject o = null;
+                    using (var reader = new JsonTextReader(new StreamReader(_path)))
                     {
-                        if (git.IsDiscoveredGitRepository)
+                        var serializer = new JsonSerializer();
+                        o = (JObject)serializer.Deserialize(reader);
+
+                        var token = o["User"];
+                        if (token != null)
                         {
-                            git.GetRepoUrlRoot();
-                            var token = o["User"];
-                            if (token != null)
-                            {
-                                _user = token.ToObject<User>();
+                            _user = token.ToObject<User>();
 
-                                _user.Token = GetToken();
-                            }
+                            _user.Token = GetToken();
                         }
-                         
                     }
-
-                
                 }
+            }
+            catch (Exception ex)
+            {
+
+             
             }
         }
 

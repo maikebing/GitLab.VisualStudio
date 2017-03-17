@@ -57,6 +57,7 @@ namespace GitLab.VisualStudio
         /// </summary>
         public OpenOnGitLabPackage()
         {
+            ServiceProvider = (this);
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
             // not sited yet inside Visual Studio environment. The place to do all the other
@@ -98,8 +99,8 @@ namespace GitLab.VisualStudio
         /// </summary>
         public static readonly Guid CommandSet = new Guid("6cd6c755-f5a3-4944-a799-44b346edd2ea");
 
-     
 
+        public static System.IServiceProvider ServiceProvider { get; set; }
 
         private static DTE2 _dte;
 
@@ -109,7 +110,7 @@ namespace GitLab.VisualStudio
             {
                 if (_dte == null)
                 {
-                    _dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2;
+                    _dte = ServiceProvider.GetService(typeof(DTE)) as DTE2;
                 }
 
                 return _dte;
@@ -201,7 +202,7 @@ namespace GitLab.VisualStudio
             catch (Exception ex)
             {
                 VsShellUtilities.ShowMessageBox(
-        ServiceProvider.GlobalProvider,
+        ServiceProvider,
         ex.Message,
         title,
         OLEMSGICON.OLEMSGICON_INFO,

@@ -29,31 +29,37 @@ namespace GitLab.VisualStudio.Services
 
             return request;
         }
-
+        List<Project>  lstProject = new List<Project>();
+        DateTime dt = DateTime.MinValue;
         public IReadOnlyList<Project> GetProjects()
         {
-            var user = _storage.GetUser();
-            if (user == null)
+            lock (lstProject)
             {
-                throw new UnauthorizedAccessException("Not login yet");
-            }
 
-            var result = new List<Project>();
 
-            var page = 1;
-            while (true)
-            {
-                var projects = GetProjectsOfPage(page, user.Token);
-                if (!projects.Any())
+                if (DateTime.Now.Subtract(dt).TotalMinutes > 1)
                 {
-                    break;
+                    lstProject.Clear();
+                    var user = _storage.GetUser();
+                    if (user == null)
+                    {
+                        throw new UnauthorizedAccessException("Not login yet");
+                    }
+                    var page = 1;
+                    while (true)
+                    {
+                        var projects = GetProjectsOfPage(page, user.Token);
+                        if (!projects.Any())
+                        {
+                            break;
+                        }
+
+                        page++;
+                        lstProject.AddRange(projects);
+                    }
                 }
-
-                page++;
-                result.AddRange(projects);
             }
-
-            return result;
+            return lstProject;
         }
 
         private IReadOnlyList<Project> GetProjectsOfPage(int page, string token)
