@@ -74,15 +74,22 @@ namespace GitLab.VisualStudio
         {
             Instance = this;
 
-            var mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            if (mcs != null)
+            try
             {
-                AddCommand(mcs, PackageIds.CommandId_OpenMaster, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenMaster);
-                AddCommand(mcs, PackageIds.CommandId_OpenBranch, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBranch);
-                AddCommand(mcs, PackageIds.CommandId_OpenRevision, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevision);
-                AddCommand(mcs, PackageIds.CommandId_OpenRevisionFull, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevisionFull);
-                AddCommand(mcs, PackageIds.CommandId_Commits, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenCommits);
-                AddCommand(mcs, PackageIds.CommandId_Blame, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBlame);
+                var mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+                if (mcs != null)
+                {
+                    AddCommand(mcs, PackageIds.CommandId_OpenMaster, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenMaster);
+                    AddCommand(mcs, PackageIds.CommandId_OpenBranch, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBranch);
+                    AddCommand(mcs, PackageIds.CommandId_OpenRevision, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevision);
+                    AddCommand(mcs, PackageIds.CommandId_OpenRevisionFull, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenRevisionFull);
+                    AddCommand(mcs, PackageIds.CommandId_Commits, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenCommits);
+                    AddCommand(mcs, PackageIds.CommandId_Blame, VSPackage.OpenOnGitLab_OpenOnGitLab_OpenBlame);
+                }
+            }
+            catch (Exception  )
+            {
+ 
             }
             base.Initialize();
         }
