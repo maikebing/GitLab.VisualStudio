@@ -97,12 +97,12 @@ namespace GitLab.VisualStudio.Services
             {
                 if (File.Exists(Path.Combine(path, ".gitignore")))
                 {
-                    repo.Stage(".gitignore");
+                    LibGit2Sharp.Commands.Stage(repo,".gitignore");
                 }
 
                 if (File.Exists(Path.Combine(path, "LICENSE")))
                 {
-                    repo.Stage("LICENSE");
+                    LibGit2Sharp.Commands.Stage(repo, "LICENSE");
                 }
 
                 // Create the committer's signature and commit
@@ -141,7 +141,7 @@ namespace GitLab.VisualStudio.Services
                 if (!string.IsNullOrEmpty(license))
                 {
                     FillAccessories(fullname, email, path, null, license);
-                    repo.Stage("LICENSE");
+                    LibGit2Sharp.Commands.Stage(repo, "LICENSE");
 
                     // Create the committer's signature and commit
                     Signature author = new Signature(fullname, email, DateTime.Now);
