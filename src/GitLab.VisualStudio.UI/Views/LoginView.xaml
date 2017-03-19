@@ -89,6 +89,7 @@
                                     VerticalAlignment="Top"
                                     Icon="/GitLab.VisualStudio.UI;component/Resources/Images/password.png"
                                     Wartermark="{x:Static shared:Strings.Login_Password}"
+                                     
                                     Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="0,8,0,0" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="3"

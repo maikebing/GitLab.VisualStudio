@@ -116,7 +116,7 @@
                     FontWeight="Bold"
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_New}"
-                        Command="{Binding NewCommand}" Margin="0,1" />
+                        Command="{Binding NewCommand}" Margin="0,-8,0,1" />
                 <Frame x:Name="frame" Content="" Width="13"/>
                 <Button Width="117"
                           Background="#3b83c0"
@@ -124,7 +124,7 @@
                     FontWeight="Bold"
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_Cancel}"
-                        Margin="10,1,0,1"
+                        Margin="10,-8,0,1"
                         Click="OnCancel" />
             </StackPanel>
         </Grid>
