@@ -7,6 +7,12 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 
 ## What't new ?
+
+#### V1.0.0.58 
+1. Support for Visual Studio 2017 
+2. Fix bus.
+
+
 #### V1.0.0.40 
  1. Right click on editor, if repository is hosted on GitLab Server , you can jump to master/current branch/current revision's blob page and blame/commits page. If selecting line(single, range) in editor, jump with line number fragment.
  2. Fix [#4](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/4) [#5](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/5) [#6](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/6)
