@@ -22,7 +22,7 @@ Official builds of this extension are available at [the official website](http:/
  http://visualstudio.gitclub.cn/
 
 ### BUG And Issues
- https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues
+https://gitlab.com/maikebing/GitLab.VisualStudio/issues
 
 ###    Visual Studio    |   Marketplace
 https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionforVisualStudio

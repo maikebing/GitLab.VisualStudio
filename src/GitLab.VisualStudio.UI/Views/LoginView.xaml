@@ -89,14 +89,14 @@
                                     VerticalAlignment="Top"
                                     Icon="/GitLab.VisualStudio.UI;component/Resources/Images/password.png"
                                     Wartermark="{x:Static shared:Strings.Login_Password}"
-                                     
+                                    KeyDown="PasswordTextBox_KeyDown"
                                     Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" Margin="0,8,0,0" />
             <Button Style="{StaticResource LinkButton}"
                     Grid.Row="3"
                     Content="{x:Static shared:Strings.Login_ForgetPassword}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
-                    Margin="0,8,0,56"
+                    Margin="0,8,0,56" 
                     Command="{Binding ForgetPasswordCommand}" Grid.RowSpan="2"/>
             <Button x:Name="SignInButton"
                     Height="35"

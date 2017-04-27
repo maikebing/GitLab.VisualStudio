@@ -65,7 +65,16 @@ namespace GitLab.VisualStudio.Services
         {
             get
             {
-                string _path = OpenOnGitLabPackage.GetSolutionDirectory()+ "\\.vs\\.gitlab";
+                string slnpath = OpenOnGitLabPackage.GetSolutionDirectory();
+                string _path = string.Empty;
+                if (string.IsNullOrEmpty(slnpath))
+                {
+                    _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".GitLab");
+                }
+                else
+                {
+                      _path = slnpath + "\\.vs\\.gitlab";
+                }
                 return _path;
             }
         }
