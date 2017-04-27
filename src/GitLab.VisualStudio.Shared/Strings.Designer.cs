@@ -304,6 +304,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 未登录 的本地化字符串。
+        /// </summary>
+        public static string GitLabInvitationSection_GitLabInvitationSection_NoLogin {
+            get {
+                return ResourceManager.GetString("GitLabInvitationSection_GitLabInvitationSection_NoLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Connect 的本地化字符串。
         /// </summary>
         public static string Invitation_Connect {

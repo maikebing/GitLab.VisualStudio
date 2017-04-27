@@ -126,6 +126,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             var successed = false;
             Task.Run(() =>
             {
+               
                 var user = _web.Login(Host , Email, Password);
                 if (user != null)
                 {

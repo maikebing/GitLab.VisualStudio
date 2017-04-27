@@ -299,4 +299,7 @@
   <data name="Login_HostIsInvalid" xml:space="preserve">
     <value>Host is invalid</value>
   </data>
+  <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
+    <value>未登录</value>
+  </data>
 </root>

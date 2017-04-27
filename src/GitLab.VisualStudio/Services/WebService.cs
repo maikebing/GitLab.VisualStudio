@@ -57,6 +57,7 @@ namespace GitLab.VisualStudio.Services
                         page++;
                         lstProject.AddRange(projects);
                     }
+                    dt = DateTime.Now;
                 }
             }
             return lstProject;

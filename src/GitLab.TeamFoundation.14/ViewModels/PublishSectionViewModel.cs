@@ -41,6 +41,7 @@ namespace GitLab.TeamFoundation.ViewModels
             Name = Strings.Name;
             if (string.IsNullOrEmpty(storage.Host))
             {
+               
                 Provider = Strings.Provider;
             }
             else

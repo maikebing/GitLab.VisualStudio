@@ -7,6 +7,7 @@ namespace GitLab.VisualStudio.Shared
         bool IsLogined { get; }
         User GetUser();
         string Host { get;  }
+        string Path { get; }
         string GetPassword();
 
         void SaveUser( User user, string password);

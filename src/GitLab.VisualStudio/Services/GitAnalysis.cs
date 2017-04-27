@@ -31,8 +31,13 @@ namespace GitLab.VisualStudio.Services
             if (repositoryPath != null)
             {
                 this.repository = new LibGit2Sharp.Repository(repositoryPath);
+                RepositoryPath = repositoryPath;
             }
+            
+            
         }
+        public string RepositoryPath { get; private set; }
+        public Repository Repository { get { return repository; } }
 
         public string GetGitLabTargetPath(GitLabUrlType urlType)
         {
@@ -103,19 +108,21 @@ namespace GitLab.VisualStudio.Services
 
         public string GetRepoUrlRoot()
         {
-            var originUrl = repository.Config.Get<string>("remote.origin.url");
-            if (originUrl == null) throw new InvalidOperationException("OriginUrl can't found");
+            string urlRoot = string.Empty;
+           var originUrl = repository.Config.Get<string>("remote.origin.url");
+            if (originUrl!=null )
+            {
+                // https://github.com/user/repo
+                  urlRoot = (originUrl.Value.EndsWith(".git", StringComparison.InvariantCultureIgnoreCase))
+                    ? originUrl.Value.Substring(0, originUrl.Value.Length - 4) // remove .git
+                    : originUrl.Value;
 
-            // https://github.com/user/repo
-            var urlRoot = (originUrl.Value.EndsWith(".git", StringComparison.InvariantCultureIgnoreCase))
-                ? originUrl.Value.Substring(0, originUrl.Value.Length - 4) // remove .git
-                : originUrl.Value;
+                // git@github.com:user/repo -> http://github.com/user/repo
+                urlRoot = Regex.Replace(urlRoot, "^git@(.+):(.+)/(.+)$", match => "http://" + string.Join("/", match.Groups.OfType<Group>().Skip(1).Select(group => group.Value)), RegexOptions.IgnoreCase);
 
-            // git@github.com:user/repo -> http://github.com/user/repo
-            urlRoot = Regex.Replace(urlRoot, "^git@(.+):(.+)/(.+)$", match => "http://" + string.Join("/", match.Groups.OfType<Group>().Skip(1).Select(group => group.Value)), RegexOptions.IgnoreCase);
-
-            // https://user@github.com/user/repo -> https://github.com/user/repo
-            urlRoot = Regex.Replace(urlRoot, "(?<=^https?://)([^@/]+)@", "");
+                // https://user@github.com/user/repo -> https://github.com/user/repo
+                urlRoot = Regex.Replace(urlRoot, "(?<=^https?://)([^@/]+)@", "");
+            }
             return urlRoot;
         }
 

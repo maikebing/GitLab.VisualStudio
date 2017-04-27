@@ -29,8 +29,8 @@
                    Height="32"
                    Width="32"
                    VerticalAlignment="Center"
-                   Margin="0,2,8,2"
-                   Source="/GitLab.TeamFoundation.14;component/Resources/logo.png" />
+                   Margin="0,2,8,2" Source="/GitLab.TeamFoundation.15;component/Resources/logo.png"
+                  />
 
                 <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center"

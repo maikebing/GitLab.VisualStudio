@@ -150,7 +150,10 @@ namespace GitLab.VisualStudio.Services
                     // Commit to the repository
                     Commit commit = repo.Commit($"Use {license}", author, committer);
                 }
-
+                if (repo.Network.Remotes.Any(r=>r.Name=="origin"))
+                {
+                    repo.Network.Remotes.Remove("origin");
+                }
                 repo.Network.Remotes.Add("origin", url);
                 var remote = repo.Network.Remotes["origin"];
                 var options = new PushOptions();
