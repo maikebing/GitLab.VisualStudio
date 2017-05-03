@@ -90,16 +90,26 @@ namespace GitLab.VisualStudio.Services
             }
         }
    
-        public User Login(string host,string email, string password)
+        public User Login(bool enable2fa,string host,string email, string password)
         {
-            var request = GetRequest($"{host}/api/v3/session");
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            var content = (email.Contains("@")? $"email={HttpUtility.UrlEncode(email)}": $"login={HttpUtility.UrlEncode(email)}") +$"&password={HttpUtility.UrlEncode(password)}";
-            var bytes = Encoding.UTF8.GetBytes(content);
-            request.ContentLength = bytes.Length;
-            request.GetRequestStream().Write(bytes, 0, bytes.Length);
+            HttpWebRequest request = null;
+            if (enable2fa)
+            {
+                //https://gitlab.com/api/v3/user?private_token=7gzmyHchSxzapjyut1x1
+                request = GetRequest($"{host}/api/v3/user?private_token={password}");
+                request.Method = "GET";
+            }
+            else
+            {
 
+                request = GetRequest($"{host}/api/v3/session");
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                var content = (email.Contains("@") ? $"email={HttpUtility.UrlEncode(email)}" : $"login={HttpUtility.UrlEncode(email)}") + $"&password={HttpUtility.UrlEncode(password)}";
+                var bytes = Encoding.UTF8.GetBytes(content);
+                request.ContentLength = bytes.Length;
+                request.GetRequestStream().Write(bytes, 0, bytes.Length);
+            }
             try
             {
                 var response = (HttpWebResponse)request.GetResponse();

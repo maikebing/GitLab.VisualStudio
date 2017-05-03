@@ -42,7 +42,7 @@ namespace GitLab.VisualStudio.Services
             return tempDirectory;
         }
 
-        public void FillAccessories(string fullname, string email, string path, string gitignore, string license)
+        public void FillAccessories(string fullname, string email,  string path, string gitignore, string license)
         {
             var assembly = Assembly.GetExecutingAssembly();
 
@@ -84,7 +84,7 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        public void PushInitialCommit(string fullname, string email, string password, string url, string gitignore, string license)
+        public void PushInitialCommit(string fullname, string email,string username, string password, string url, string gitignore, string license)
         {
             var path = GetTemporaryDirectory();
             Directory.CreateDirectory(path);
@@ -126,14 +126,14 @@ namespace GitLab.VisualStudio.Services
                 var remote = repo.Network.Remotes["origin"];
                 var options = new PushOptions();
                 options.CredentialsProvider = (_url, _user, _cred) =>
-                    new UsernamePasswordCredentials { Username = email, Password = password };
+                    new UsernamePasswordCredentials { Username = (string.IsNullOrEmpty(username)?email: username), Password = password };
                 repo.Network.Push(remote, @"refs/heads/master", options);
             }
 
             DeleteDirectory(path);
         }
 
-        public void PushWithLicense(string fullname, string email, string password, string url, string path, string license)
+        public void PushWithLicense(string fullname, string email,string username, string password, string url, string path, string license)
         {
 
             using (var repo = new LibGit2Sharp.Repository(path))
@@ -158,7 +158,7 @@ namespace GitLab.VisualStudio.Services
                 var remote = repo.Network.Remotes["origin"];
                 var options = new PushOptions();
                 options.CredentialsProvider = (_url, _user, _cred) =>
-                    new UsernamePasswordCredentials { Username = email, Password = password };
+                    new UsernamePasswordCredentials { Username = (string.IsNullOrEmpty(username) ? email : username), Password = password };
                 repo.Network.Push(remote, @"refs/heads/master", options);
             }
         }

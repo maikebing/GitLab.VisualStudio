@@ -112,6 +112,10 @@ namespace GitLab.VisualStudio.Services
         public void SaveUser(User user, string password)
         {
             SavePassword(user.Host, user.Username, password);
+            if (user.Two_Factor_Enabled)
+            {
+                user.Token = password;
+            }
             SaveToken(user.Host,user.Username, user.Token);
             SaveUserToLocal(user);
           

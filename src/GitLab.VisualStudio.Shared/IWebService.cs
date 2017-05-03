@@ -24,6 +24,9 @@ namespace GitLab.VisualStudio.Shared
         public string Token { get; set; }
         [JsonProperty("host")]
         public string Host { get; set; }
+        [JsonProperty("two_factor_enabled")]
+        public bool Two_Factor_Enabled { get; set; }
+
         public bool ShouldSerializeToken()
         {
             return false;
@@ -98,7 +101,7 @@ namespace GitLab.VisualStudio.Shared
 
     public interface IWebService
     {
-        User Login(string host,string email, string password);
+        User Login(bool enable2fa, string host,string email, string password);
         IReadOnlyList<Project> GetProjects();
         CreateResult CreateProject(string name, string description, bool isPrivate);
     }

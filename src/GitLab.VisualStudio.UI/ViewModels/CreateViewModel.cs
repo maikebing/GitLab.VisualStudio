@@ -215,7 +215,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             var user = _storage.GetUser();
             var password = _storage.GetPassword(user.Host);
 
-            _git.PushInitialCommit(user.Name, user.Email, password, url, SelectedGitIgnore, SelectedLicense);
+            _git.PushInitialCommit(user.Name, user.Email,user.Username, password, url, SelectedGitIgnore, SelectedLicense);
           
         }
 

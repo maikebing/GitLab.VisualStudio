@@ -41,7 +41,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private string _host;
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_HostIsRequired")]
-        [Url(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_HostIsInvalid")]
         public string Host
         {
             get { return _host; }
@@ -50,13 +49,17 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private string _email;
         [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
-      //[EmailAddress (ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsInvalid")]
         public string Email
         {
             get { return _email; }
             set { SetProperty(ref _email, value); }
         }
-
+        private bool _Enable2FA;
+        public bool Enable2FA
+        {
+            get { return _Enable2FA; }
+            set { SetProperty(ref _Enable2FA, value); }
+        }
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordIsRequired")]
         [MinLength(6, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordMinTo")]
         public string Password
@@ -126,14 +129,15 @@ namespace GitLab.VisualStudio.UI.ViewModels
             var successed = false;
             Task.Run(() =>
             {
-               
-                var user = _web.Login(Host , Email, Password);
-                if (user != null)
-                {
-                    successed = true;
-                    user.Host = Host;
-                    _storage.SaveUser(user, Password);
-                }
+                
+                    var user = _web.Login(Enable2FA, Host, Email, Password);
+                    if (user != null)
+                    {
+                        successed = true;
+                        user.Host = Host;
+                        _storage.SaveUser(user, Password);
+                    }
+              
             }).ContinueWith(task =>
             {
                 IsBusy = false;

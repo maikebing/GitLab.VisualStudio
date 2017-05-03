@@ -8,7 +8,14 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 ## What't new ?
 
+#### V1.0.0.70
+
+1. GitLab login information associated with the solution, easy to switch GitLab server.
+2. Enter the password and press enter to login GitLab server.
+3. Now, We can login   with two  factor authentication.just enter the personal access token into the password field.
+
 #### V1.0.0.58 
+
 1. Support for Visual Studio 2017 
 2. Fix bus.
 
