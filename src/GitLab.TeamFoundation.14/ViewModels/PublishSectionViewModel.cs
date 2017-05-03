@@ -241,7 +241,7 @@ namespace GitLab.TeamFoundation.ViewModels
                         var path = activeRepository == null ? _tes.GetSolutionPath() : activeRepository.Path;
 
                         var user = _storage.GetUser();
-                        var password = _storage.GetPassword();
+                        var password = _storage.GetPassword(user.Host);
 
                         _git.PushWithLicense(user.Name, user.Email, password, result.Project.Url, path, SelectedLicense);
                     }

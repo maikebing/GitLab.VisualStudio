@@ -213,9 +213,10 @@ namespace GitLab.VisualStudio.UI.ViewModels
         private void InitialCommit(string url)
         {
             var user = _storage.GetUser();
-            var password = _storage.GetPassword();
+            var password = _storage.GetPassword(user.Host);
 
             _git.PushInitialCommit(user.Name, user.Email, password, url, SelectedGitIgnore, SelectedLicense);
+          
         }
 
         private bool CanSave()

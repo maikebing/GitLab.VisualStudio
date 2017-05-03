@@ -78,9 +78,9 @@ namespace GitLab.VisualStudio.Services
                 return _path;
             }
         }
-        public string GetPassword()
+        public string GetPassword(string _host)
         {
-            var key = $"git:{Host}";
+            var key = $"git:{_host}";
 
             using (var credential = new Credential())
             {
@@ -111,8 +111,8 @@ namespace GitLab.VisualStudio.Services
 
         public void SaveUser(User user, string password)
         {
-            SavePassword(user.Email, password);
-            SaveToken(user.Email, user.Token);
+            SavePassword(user.Host, user.Username, password);
+            SaveToken(user.Host,user.Username, user.Token);
             SaveUserToLocal(user);
           
         }
@@ -154,19 +154,19 @@ namespace GitLab.VisualStudio.Services
          
         }
 
-        private void SavePassword(string email, string password)
+        private void SavePassword(string _host,string username, string password)
         {
-            var key = $"git:{Host}";
-            using (var credential = new Credential(email, password, key))
+            var key = $"git:{_host}";
+            using (var credential = new Credential(username, password, key))
             {
                 credential.Save();
             }
         }
 
-        private void SaveToken(string email, string token)
+        private void SaveToken(string _host,string username, string token)
         {
-            var key = $"token:{Host}";
-            using (var credential = new Credential(email, token, key))
+            var key = $"token:{_host}";
+            using (var credential = new Credential(username, token, key))
             {
                 credential.Save();
             }
@@ -191,13 +191,9 @@ namespace GitLab.VisualStudio.Services
                 {
                     var serializer = new JsonSerializer();
                     o = (JObject)serializer.Deserialize(reader);
-
                     var token = o["User"];
-                    if (token != null)
-                    {
-                        _user = token.ToObject<User>();
-                        _user.Token = GetToken(_user.Host);
-                    }
+                    _user = token.ToObject<User>();
+                    _user.Token = GetToken(_user.Host);
                 }
 
             }

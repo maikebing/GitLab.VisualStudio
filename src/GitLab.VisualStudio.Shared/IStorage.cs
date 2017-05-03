@@ -8,7 +8,7 @@ namespace GitLab.VisualStudio.Shared
         User GetUser();
         string Host { get;  }
         string Path { get; }
-        string GetPassword();
+        string GetPassword(string _host);
 
         void SaveUser( User user, string password);
         void Erase();
