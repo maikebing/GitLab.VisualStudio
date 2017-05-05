@@ -304,7 +304,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 未登录 的本地化字符串。
+        ///   查找类似 No Login  的本地化字符串。
         /// </summary>
         public static string GitLabInvitationSection_GitLabInvitationSection_NoLogin {
             get {
@@ -606,6 +606,15 @@ namespace GitLab.VisualStudio.Shared {
         public static string Repository_Name {
             get {
                 return ResourceManager.GetString("Repository_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Two Factor Authentication 的本地化字符串。
+        /// </summary>
+        public static string TwoFactorAuthentication {
+            get {
+                return ResourceManager.GetString("TwoFactorAuthentication", resourceCulture);
             }
         }
     }

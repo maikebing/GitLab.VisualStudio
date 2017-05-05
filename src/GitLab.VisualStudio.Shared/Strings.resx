@@ -300,6 +300,9 @@
     <value>Host is invalid</value>
   </data>
   <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
-    <value>未登录</value>
+    <value>No Login </value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>Two Factor Authentication</value>
   </data>
 </root>

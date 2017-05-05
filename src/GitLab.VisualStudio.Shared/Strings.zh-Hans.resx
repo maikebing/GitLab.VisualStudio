@@ -299,4 +299,10 @@
   <data name="Login_HostIsInvalid" xml:space="preserve">
     <value>主机名无效</value>
   </data>
+  <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
+    <value>No login </value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>双因子验证</value>
+  </data>
 </root>

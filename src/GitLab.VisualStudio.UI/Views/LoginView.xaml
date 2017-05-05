@@ -184,7 +184,7 @@
                     HorizontalAlignment="Right"
                     Command="{Binding SignupCommand}"
                     Content="{x:Static shared:Strings.Login_SignUp}" Margin="0,15,17,99" />
-            <CheckBox IsChecked="{Binding Enable2FA}" x:Name="chk2FA" Content="2FA" HorizontalAlignment="Left" Margin="18,12,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+            <CheckBox IsChecked="{Binding Enable2FA}" x:Name="chk2FA" Content="{x:Static shared:Strings.TwoFactorAuthentication}" HorizontalAlignment="Left" Margin="18,12,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

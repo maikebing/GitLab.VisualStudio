@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GitLab.VisualStudio.Services
 {
@@ -90,9 +91,10 @@ namespace GitLab.VisualStudio.Services
             Directory.CreateDirectory(path);
 
             FillAccessories(fullname, email, path, gitignore, license);
-
-            LibGit2Sharp.Repository.Init(path);
-
+            if (!LibGit2Sharp.Repository.IsValid(path))
+            {
+                LibGit2Sharp.Repository.Init(path);
+            }
             using (var repo = new LibGit2Sharp.Repository(path))
             {
                 if (File.Exists(Path.Combine(path, ".gitignore")))
@@ -136,19 +138,31 @@ namespace GitLab.VisualStudio.Services
         public void PushWithLicense(string fullname, string email,string username, string password, string url, string path, string license)
         {
 
+            if (!LibGit2Sharp.Repository.IsValid(path))
+            {
+                LibGit2Sharp.Repository.Init(path);
+            }
+
             using (var repo = new LibGit2Sharp.Repository(path))
             {
-                if (!string.IsNullOrEmpty(license))
+                if (!string.IsNullOrEmpty(license)  )
                 {
-                    FillAccessories(fullname, email, path, null, license);
-                    LibGit2Sharp.Commands.Stage(repo, "LICENSE");
+                    try
+                    {
+                        FillAccessories(fullname, email, path, null, license);
+                        LibGit2Sharp.Commands.Stage(repo, "LICENSE");
 
-                    // Create the committer's signature and commit
-                    Signature author = new Signature(fullname, email, DateTime.Now);
-                    Signature committer = author;
+                        // Create the committer's signature and commit
+                        Signature author = new Signature(fullname, email, DateTime.Now);
+                        Signature committer = author;
 
-                    // Commit to the repository
-                    Commit commit = repo.Commit($"Use {license}", author, committer);
+                        // Commit to the repository
+                        Commit commit = repo.Commit($"Use {license}", author, committer);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);  
+                    }
                 }
                 if (repo.Network.Remotes.Any(r=>r.Name=="origin"))
                 {
