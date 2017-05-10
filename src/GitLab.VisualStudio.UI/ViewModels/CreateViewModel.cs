@@ -104,7 +104,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "CreateView_PathIsRequired")]
         public string Path
         {
-            get { return _storage.GetBaseRepositoryDirectory(); }
+            get { return _path; }
             set
             {
                 SetProperty(ref _path, value, () =>
