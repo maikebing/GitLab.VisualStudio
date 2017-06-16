@@ -138,7 +138,7 @@ namespace GitLab.VisualStudio
             try
             {
                 // TODO:is should avoid create GitAnalysis every call?
-                using (var git = new GitAnalysis(GetActiveFilePath()))
+                using (var git = new GitAnalysis(GetSolutionDirectory()))
                 {
                     if (!git.IsDiscoveredGitRepository)
                     {
@@ -195,7 +195,7 @@ namespace GitLab.VisualStudio
             var command = (MenuCommand)sender;
             try
             {
-                using (var git = new GitAnalysis(GetActiveFilePath()))
+                using (var git = new GitAnalysis(GetSolutionDirectory()))
                 {
                     if (!git.IsDiscoveredGitRepository)
                     {
@@ -235,7 +235,7 @@ namespace GitLab.VisualStudio
         public static string GetSolutionDirectory()
         {
             var path = string.Empty;
-            if (DTE != null && DTE.ActiveDocument != null)
+            if (DTE != null && DTE.Solution != null && DTE.Solution.IsOpen)
             {
                 path = new System.IO.FileInfo(DTE.Solution.FileName).DirectoryName;
 
