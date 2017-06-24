@@ -95,7 +95,7 @@ namespace GitLab.VisualStudio.Services
             HttpWebRequest request = null;
             if (enable2fa)
             {
-                //https://gitlab.com/api/v3/user?private_token=7gzmyHchSxzapjyut1x1
+                
                 request = GetRequest($"{host}/api/v3/user?private_token={password}");
                 request.Method = "GET";
             }
