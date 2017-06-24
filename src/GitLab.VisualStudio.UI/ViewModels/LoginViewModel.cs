@@ -61,7 +61,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
             set { SetProperty(ref _Enable2FA, value); }
         }
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordIsRequired")]
-        [MinLength(6, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordMinTo")]
         public string Password
         {
             get { return _mediator?.Password; }
