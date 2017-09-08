@@ -99,7 +99,7 @@ namespace GitLab.TeamFoundation
 
             var repo = git.ActiveRepositories.FirstOrDefault();
 
-            if (repo != null)
+            if (repo != null && repo.CurrentBranch!=null && !string.IsNullOrEmpty(repo.CurrentBranch.Name))
             {
                 return new RepositoryInfo
                 {

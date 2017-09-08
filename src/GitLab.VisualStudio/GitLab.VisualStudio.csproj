@@ -489,6 +489,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="VSPackage.de.resx" />
+    <EmbeddedResource Include="VSPackage.fr.resx" />
+    <EmbeddedResource Include="VSPackage.it.resx" />
+    <EmbeddedResource Include="VSPackage.ja.resx" />
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
@@ -499,6 +503,7 @@
     <EmbeddedResource Include="VSPackage.zh-Hans.resx">
       <MergeWithCTO>true</MergeWithCTO>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage.zh-Hant.resx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
