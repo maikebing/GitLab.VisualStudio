@@ -33,7 +33,7 @@
     <Style TargetType="{x:Type ui:OcticonImage}"
            BasedOn="{StaticResource OcticonImage}" />
 
-    <Style x:Key="GitHubLogo"
+    <Style x:Key="GitLabLogo"
            TargetType="ui:OcticonImage"
            BasedOn="{StaticResource OcticonImage}">
         <Setter Property="FontSize"

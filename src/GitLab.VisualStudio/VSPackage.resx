@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="8110" xml:space="preserve">
-    <value>OpenOnGitLab Extension</value>
+    <value>GitLab Extension for Visual Studio</value>
   </data>
   <data name="8112" xml:space="preserve">
-    <value>Visual Studio Extension for opening files on you GitLab Site!</value>
+    <value>A Visual Studio Extension that brings the GitLab Flow into Visual Studio.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="8400" type="System.Resources.ResXFileRef, System.Windows.Forms">

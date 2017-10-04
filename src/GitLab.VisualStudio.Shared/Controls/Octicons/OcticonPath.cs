@@ -24,7 +24,7 @@ namespace GitLab.VisualStudio.Shared.Controls
 
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
             "Icon", typeof(Octicon), typeof(OcticonPath),
-            new FrameworkPropertyMetadata(defaultValue: Octicon.mark_github, flags:
+            new FrameworkPropertyMetadata(defaultValue: Octicon.mark_GitLab, flags:
                 FrameworkPropertyMetadataOptions.AffectsArrange |
                 FrameworkPropertyMetadataOptions.AffectsMeasure |
                 FrameworkPropertyMetadataOptions.AffectsRender,

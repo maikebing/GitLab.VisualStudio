@@ -22,8 +22,10 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Invalidate()
         {
-            IsVisible = IsVisible  ||  _tes.Project == null  ;
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsSnippetsEnabled;
         }
+
+
         public override void Execute()
         {
             if (_tes.Project != null && _tes.Project.IsSnippetsEnabled)
@@ -37,4 +39,3 @@ namespace GitLab.TeamFoundation.Home
         }
     }
 }
-      

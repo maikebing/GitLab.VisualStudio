@@ -125,7 +125,7 @@
                                        Value="True" />
                         </MultiDataTrigger.Conditions>
                         <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                                Value="{DynamicResource GitLabVsToolWindowText}" />-->
                         <Setter Property="Foreground"
                                 Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
                     </MultiDataTrigger>
@@ -137,14 +137,14 @@
                                        Value="False" />
                         </MultiDataTrigger.Conditions>
                         <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                                Value="{DynamicResource GitLabVsToolWindowText}" />-->
                         <Setter Property="Foreground"
                                 Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
                     </MultiDataTrigger>
                     <DataTrigger Value="True"
                                  Binding="{Binding IsActived}">
                         <!--<Setter Property="Foreground"
-                                Value="{DynamicResource GitHubVsToolWindowText}" />-->
+                                Value="{DynamicResource GitLabVsToolWindowText}" />-->
                         <!--<Setter Property="Foreground"
                                 Value="#000000" />-->
                     </DataTrigger>
@@ -160,7 +160,7 @@
                 <Setter Property="TextWrapping"
                         Value="NoWrap" />
                 <!--<Setter Property="Foreground"
-                        Value="{DynamicResource GitHubVsGrayText}" />-->
+                        Value="{DynamicResource GitLabVsGrayText}" />-->
                 <Setter Property="Foreground"
                         Value="{DynamicResource {x:Static shell:VsBrushes.GrayTextKey}}" />
                 <Style.Triggers>
@@ -180,7 +180,7 @@
                         <DataTrigger.Binding>
                             <MultiBinding Converter="{StaticResource IsCurrentRepositoryConverter}" ConverterParameter="IsCurrentRepository">
                                 <Binding/>
-                                <Binding Path="ViewModel" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:GitHubConnectContent}}" />
+                                <Binding Path="ViewModel" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:GitLabConnectContent}}" />
                             </MultiBinding>
                         </DataTrigger.Binding>
                         <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
@@ -315,7 +315,7 @@
                                                Margin="11,1,6,1"
                                                Width="16"
                                                Height="16"
-                                               Foreground="{DynamicResource GitHubVsToolWindowText}"
+                                               Foreground="{DynamicResource GitLabVsToolWindowText}"
                                                Icon="{Binding Path=Icon}" />-->
                         <controls:OcticonImage Grid.Column="0"
                                                Margin="11,1,6,1"

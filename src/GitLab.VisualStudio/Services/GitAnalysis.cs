@@ -13,8 +13,7 @@ namespace GitLab.VisualStudio.Services
         CurrentBranch,
         CurrentRevision,
         CurrentRevisionFull,
-        Blame,
-        Commits
+      
     }
 
     public sealed class GitAnalysis : IDisposable
@@ -49,7 +48,8 @@ namespace GitLab.VisualStudio.Services
                     return repository.Commits.First().Id.ToString(8);
                 case GitLabUrlType.CurrentRevisionFull:
                     return repository.Commits.First().Id.Sha;
-                   default:
+                case GitLabUrlType.Master:
+                default:
                     return "master";
             }
         }
@@ -64,10 +64,10 @@ namespace GitLab.VisualStudio.Services
                     return "Revision: " + repository.Commits.First().Id.ToString(8);
                 case GitLabUrlType.CurrentRevisionFull:
                     return "Revision: " + repository.Commits.First().Id.ToString(8) + "... (Full ID)";
-                case GitLabUrlType.Blame:
-                    return "Blame";
-                case GitLabUrlType.Commits:
-                    return "Commits";
+                //case GitLabUrlType.Blame:
+                //    return "Blame";
+                //case GitLabUrlType.Commits:
+                //    return "Commits";
                 case GitLabUrlType.Master:
                 default:
                     return "master";
@@ -76,7 +76,7 @@ namespace GitLab.VisualStudio.Services
 
         public string BuildGitLabUrl(GitLabUrlType urlType, Tuple<int, int> selectionLineRange)
         {
-            // https://github.com/user/repo.git
+            // https://GitLab.com/user/repo.git
             string urlRoot = GetRepoUrlRoot();
 
             // foo/bar.cs
@@ -93,14 +93,14 @@ namespace GitLab.VisualStudio.Services
                                 : "";
 
             var urlshowkind = "blob";
-            if (urlType == GitLabUrlType.Blame)
-            {
-                urlshowkind = "blame";
-            }
-            if (urlType == GitLabUrlType.Commits)
-            {
-                urlshowkind = "commits";
-            }
+            //if (urlType == GitLabUrlType.Blame)
+            //{
+            //    urlshowkind = "blame";
+            //}
+            //if (urlType == GitLabUrlType.Commits)
+            //{
+            //    urlshowkind = "commits";
+            //}
             var fileUrl = string.Format("{0}/{4}/{1}/{2}{3}", urlRoot.Trim('/'), WebUtility.UrlEncode(repositoryTarget.Trim('/')), fileIndexPath.Trim('/'), fragment, urlshowkind);
 
             return fileUrl;
@@ -112,15 +112,15 @@ namespace GitLab.VisualStudio.Services
            var originUrl = repository.Config.Get<string>("remote.origin.url");
             if (originUrl!=null )
             {
-                // https://github.com/user/repo
+                // https://GitLab.com/user/repo
                   urlRoot = (originUrl.Value.EndsWith(".git", StringComparison.InvariantCultureIgnoreCase))
                     ? originUrl.Value.Substring(0, originUrl.Value.Length - 4) // remove .git
                     : originUrl.Value;
 
-                // git@github.com:user/repo -> http://github.com/user/repo
+                // git@GitLab.com:user/repo -> http://GitLab.com/user/repo
                 urlRoot = Regex.Replace(urlRoot, "^git@(.+):(.+)/(.+)$", match => "http://" + string.Join("/", match.Groups.OfType<Group>().Skip(1).Select(group => group.Value)), RegexOptions.IgnoreCase);
 
-                // https://user@github.com/user/repo -> https://github.com/user/repo
+                // https://user@GitLab.com/user/repo -> https://GitLab.com/user/repo
                 urlRoot = Regex.Replace(urlRoot, "(?<=^https?://)([^@/]+)@", "");
             }
             return urlRoot;

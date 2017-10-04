@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 namespace GitLab.VisualStudio
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [Guid("54803a44-49e0-4935-bba4-7d7d91682273")]
+    [InstalledProductRegistration("#8110", "#8112", PackageVersion.Version, IconResourceID = 8400)]
+    [Guid(PackageGuids.guidGitLabPkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     // this is the Git service GUID, so we load whenever it loads
     [ProvideAutoLoad("11B8E6D7-C08B-4385-B321-321078CDD1F8")]
@@ -42,13 +42,22 @@ namespace GitLab.VisualStudio
             string path = "";
             if (DTE != null)
             {
-                // sometimes, DTE.ActiveDocument.Path is ToLower but GitHub can't open lower path.
+                // sometimes, DTE.ActiveDocument.Path is ToLower but GitLab can't open lower path.
                 // fix proper-casing | http://stackoverflow.com/questions/325931/getting-actual-file-name-with-proper-casing-on-windows-with-net
                 path = GetExactPathName(DTE.ActiveDocument.Path + DTE.ActiveDocument.Name);
             }
             return path;
         }
+        public static string GetSolutionDirectory()
+        {
+            var path = string.Empty;
+            if (DTE != null && DTE.Solution != null && DTE.Solution.IsOpen)
+            {
+                path = new System.IO.FileInfo(DTE.Solution.FileName).DirectoryName;
 
+            }
+            return path;
+        }
         static string GetExactPathName(string pathName)
         {
             if (!(File.Exists(pathName) || Directory.Exists(pathName)))

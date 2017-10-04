@@ -36,14 +36,14 @@ https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionfor
 
 ### Thanks
  
-####  GitHub Extension for Visual Studio
+####  GitLab Extension for Visual Studio
   
 ####  CodeCloud Extension for  Visual Studio
 
 http://git.oschina.net/GitGroup/CodeCloud.VisualStudio
 
-#### isual Studio Extension for opening files on GitHub.com
-https://github.com/neuecc/Open-on-GitHub 
+#### isual Studio Extension for opening files on GitLab.com
+https://GitLab.com/neuecc/Open-on-GitLab 
 
  
 

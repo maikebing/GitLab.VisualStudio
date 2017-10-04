@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+
+  <Commands package="guidOpenOnGitLabPkg">
+    <Menus>
+      <Menu guid="guidOpenOnGitLabCmdSet" id="SubMenu" priority="0x1000" type="Menu">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" />
+        <Strings>
+          <ButtonText>Open on GitLab</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Groups>
+      <Group guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600" />
+      <Group guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" priority="0x0600">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenu" />
+      </Group>
+    
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenMaster" priority="0x0100" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <Strings>
+          <ButtonText>master</ButtonText>
+          <CommandName>master</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenBranch" priority="0x0200" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>branch</ButtonText>
+          <CommandName>branch</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenRevision" priority="0x0300" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>revision</ButtonText>
+          <CommandName>revision</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenRevisionFull" priority="0x0400" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>revisionFull</ButtonText>
+          <CommandName>revisionFull</CommandName>
+        </Strings>
+      </Button>
+       
+    </Buttons>
+ 
+  </Commands>
+  <CommandPlacements>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindowLibra" id="IDMX_HTML_SOURCE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="CssEditorWindows2" id="IDMX_CSS_SOURCE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="JsonEditorWindows" id="IDMX_JSON_SOURCE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_BASIC" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_HTML" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_SCRIPT" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASPX" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASPX_CODE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASAX_CODE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASPX_CODE_VB" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASAX_CODE_VB" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASMX_CODE" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="HtmlEditorWindows" id="IDMX_HTM_SOURCE_ASMX_CODE_VB" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="CssEditorWindows" id="IDMX_HTM_SOURCE_CSS" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
+      <Parent guid="XamlEditorWindows" id="IDMX_XAML_SOURCE_BASIC" />
+    </CommandPlacement>
+  </CommandPlacements>
+  <Symbols>
+    <GuidSymbol name="guidOpenOnGitLabPkg" value="{F43CFE82-0372-4230-9162-038E51408B2F}" />
+    <GuidSymbol name="guidOpenOnGitLabCmdSet" value="{72B54F2E-FE93-4950-88BF-C536D1CFD91F}">
+      <IDSymbol name="ContextMenuGroup" value="0x1020" />
+      <IDSymbol name="SubMenuGroup" value="0x1030" />
+      <IDSymbol name="SubMenu" value="0x1040" />
+      <!-- Command -->
+      <IDSymbol name="OpenMaster" value="0x0100" />
+      <IDSymbol name="OpenBranch" value="0x0200" />
+      <IDSymbol name="OpenRevision" value="0x0300" />
+      <IDSymbol name="OpenRevisionFull" value="0x0400" />
+    </GuidSymbol>
+
+    <!-- List for various editor types -->
+    <GuidSymbol name="HtmlEditorWindowLibra" value="{78F03954-2FB8-4087-8CE7-59D71710B3BB}">
+      <IDSymbol name="IDMX_HTML_SOURCE" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="CssEditorWindows2" value="{64DA400E-B4AD-4D67-AA92-4B7ACB01ECD5}">
+      <IDSymbol name="IDMX_CSS_SOURCE" value="0x0002" />
+    </GuidSymbol>
+    <GuidSymbol name="JsonEditorWindows" value="{F718CA06-CF4F-4A0C-9106-E79E9EE5E7CD}">
+      <IDSymbol name="IDMX_JSON_SOURCE" value="0x0003" />
+    </GuidSymbol>
+    <GuidSymbol name="HtmlEditorWindows" value="{d7e8c5e1-bdb8-11d0-9c88-0000f8040a53}">
+      <IDSymbol name="IDMX_HTM_SOURCE_BASIC" value="0x32" />
+      <IDSymbol name="IDMX_HTM_SOURCE_HTML" value="0x0033" />
+      <IDSymbol name="IDMX_HTM_SOURCE_SCRIPT" value="0x34" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASPX" value="0x35" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASAX" value="0x3B" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASPX_CODE" value="0x36" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASAX_CODE" value="0x3C" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASPX_CODE_VB" value="0x37" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASAX_CODE_VB" value="0x3D" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASMX_CODE" value="0x38" />
+      <IDSymbol name="IDMX_HTM_SOURCE_ASMX_CODE_VB" value="0x39" />
+    </GuidSymbol>
+    <GuidSymbol name="CssEditorWindows" value="{A764E896-518D-11D2-9A89-00C04F79EFC3}">
+      <IDSymbol name="IDMX_HTM_SOURCE_CSS" value="0x0102" />
+    </GuidSymbol>
+    <GuidSymbol name="XamlEditorWindows" value="{4C87B692-1202-46AA-B64C-EF01FAEC53DA}">
+      <IDSymbol name="IDMX_XAML_SOURCE_BASIC" value="0x0103" />
+    </GuidSymbol>
+   
+  </Symbols>
+</CommandTable>

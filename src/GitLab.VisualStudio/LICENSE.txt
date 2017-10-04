@@ -1,7 +1,10 @@
 The MIT License (MIT)
-
-Copyright (c) 2017 MaikeBing
-Copyright (c) 2016 dillyliu
+GitLabVS
+	Copyright (c) 2017 MaikeBing
+CodeCloud.VisualStudio	
+	Copyright (C) 2017 OSChina.NET.
+OpenOnGitHub  
+	Copyright (c) 2015 Yoshifumi Kawai 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

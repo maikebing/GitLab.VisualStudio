@@ -945,9 +945,9 @@ namespace GitLab.VisualStudio.Shared.Controls.Octicons {
         /// <summary>
         ///   查找类似 M8.64 5.19H4.88c-0.11 0-0.19 0.08-0.19 0.17v1.84c0 0.09 0.08 0.17 0.19 0.17h1.47v2.3s-0.33 0.11-1.25 0.11c-1.08 0-2.58-0.39-2.58-3.7s1.58-3.73 3.05-3.73c1.27 0 1.81 0.22 2.17 0.33 0.11 0.03 0.2-0.08 0.2-0.17l0.42-1.78c0-0.05-0.02-0.09-0.06-0.14-0.14-0.09-1.02-0.58-3.2-0.58C2.58 0 0 1.06 0 6.2s2.95 5.92 5.44 5.92c2.06 0 3.31-0.89 3.31-0.89 0.05-0.02 0.06-0.09 0.06-0.13V5.36c0-0.09-0.08-0.17-0.19-0.17h0.02zM27.7 0.44h-2.13c-0.09 0-0.17 0.08-0.17 0.17v4.09h-3.31V0.61c0-0.09-0.08-0.17-0.17-0.17h-2.13c-0.09 0-0. [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
-        internal static string logo_github {
+        internal static string logo_GitLab {
             get {
-                return ResourceManager.GetString("logo_github", resourceCulture);
+                return ResourceManager.GetString("logo_GitLab", resourceCulture);
             }
         }
         
@@ -981,9 +981,9 @@ namespace GitLab.VisualStudio.Shared.Controls.Octicons {
         /// <summary>
         ///   查找类似 M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
-        internal static string mark_github {
+        internal static string mark_GitLab {
             get {
-                return ResourceManager.GetString("mark_github", resourceCulture);
+                return ResourceManager.GetString("mark_GitLab", resourceCulture);
             }
         }
         

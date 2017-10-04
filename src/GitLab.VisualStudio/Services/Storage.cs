@@ -38,7 +38,7 @@ namespace GitLab.VisualStudio.Services
             get
             {
                 string url = string.Empty;
-                using (var git = new GitAnalysis(OpenOnGitLabPackage.GetSolutionDirectory()))
+                using (var git = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
                 {
                     if (git != null && git.IsDiscoveredGitRepository)
                     {
@@ -65,7 +65,7 @@ namespace GitLab.VisualStudio.Services
         {
             get
             {
-                string slnpath = OpenOnGitLabPackage.GetSolutionDirectory();
+                string slnpath = GitLabPackage.GetSolutionDirectory();
                 string _path = string.Empty;
                 if (string.IsNullOrEmpty(slnpath))
                 {

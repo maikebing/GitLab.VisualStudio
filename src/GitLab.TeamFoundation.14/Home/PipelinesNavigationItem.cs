@@ -15,9 +15,15 @@ namespace GitLab.TeamFoundation.Home
            : base(Octicon.zap, git, shell, storage, tes, ws)
         {
             Text = Strings.Items_Pipeline;
-        
+            _tes = tes;
         }
+        private readonly ITeamExplorerServices _tes;
+        public override void Invalidate()
+        {
+            base.Invalidate();
 
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsBuildsEnabled;
+        }
         public override void Execute()
         {
             OpenInBrowser("pipelines");
