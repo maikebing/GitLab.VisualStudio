@@ -1,5 +1,7 @@
 before_script:
   - echo off
+  - git submodule sync --recursive
+  - git submodule update --init --recursive
   - echo "Restoring NuGet Packages..."
   - '"src\nuget\NuGet.exe" restore "GitLabVS.sln"'
  
