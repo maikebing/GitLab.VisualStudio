@@ -1,0 +1,4 @@
+[submodule "NGitLab"]
+	path = NGitLab
+	url = https://github.com/maikebing/NGitLab.git
+	branch = v4api
