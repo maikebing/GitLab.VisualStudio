@@ -40,10 +40,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _host;
-        [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_HostIsRequired")]
+        [Required(ErrorMessageResourceType = typeof(Strings),AllowEmptyStrings =false, ErrorMessageResourceName = "Login_HostIsRequired")]
         public string Host
         {
-            get { return _host; }
+            get {
+                if (string.IsNullOrEmpty(_host) || string.IsNullOrWhiteSpace(_host))
+                {
+                    _host = Strings.DefaultHost;
+                }
+                return _host;
+            }
             set { SetProperty(ref _host, value); }
         }
 

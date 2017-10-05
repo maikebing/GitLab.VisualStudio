@@ -117,4 +117,193 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloneView_FailedToLoadProjects" xml:space="preserve">
+    <value>ゲームのロードに失敗しました</value>
+  </data>
+  <data name="CloneView_NoProjects" xml:space="preserve">
+    <value>プロジェクトはありません!</value>
+  </data>
+  <data name="CloneView_Search" xml:space="preserve">
+    <value>検索!</value>
+  </data>
+  <data name="Common_Browse" xml:space="preserve">
+    <value>ブラウズ</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common_ChooseAGitIgnore" xml:space="preserve">
+    <value>.Gitignore を追加!</value>
+  </data>
+  <data name="Common_ChooseALicense" xml:space="preserve">
+    <value>ライセンスを追加!</value>
+  </data>
+  <data name="Common_Clone" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Common_CreateRepository" xml:space="preserve">
+    <value>メニューを作成</value>
+  </data>
+  <data name="Common_Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Common_DescriptionMaxTo" xml:space="preserve">
+    <value>説明の最大長は 500 です!</value>
+  </data>
+  <data name="Common_GitIgnore" xml:space="preserve">
+    <value>無視</value>
+  </data>
+  <data name="Common_License" xml:space="preserve">
+    <value>ライセンス</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>読み込み中</value>
+  </data>
+  <data name="Common_Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Common_NameMaxTo" xml:space="preserve">
+    <value>名前の最大長は 64 文字です。</value>
+  </data>
+  <data name="Common_New" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="Common_Path" xml:space="preserve">
+    <value>パス&amp;#x0A;</value>
+  </data>
+  <data name="Common_Private" xml:space="preserve">
+    <value>プライベート</value>
+  </data>
+  <data name="Common_Property" xml:space="preserve">
+    <value>資産</value>
+  </data>
+  <data name="Common_Quit" xml:space="preserve">
+    <value>中止</value>
+  </data>
+  <data name="Confirm_Quit" xml:space="preserve">
+    <value>本当に終了してもよろしいですか？</value>
+  </data>
+  <data name="CreateView_NameIsRequired" xml:space="preserve">
+    <value>名前は必須です</value>
+  </data>
+  <data name="CreateView_PathIsRequired" xml:space="preserve">
+    <value>パスは必須です!</value>
+  </data>
+  <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
+    <value>これはクールなプロジェクト (省略可能)!</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>GitLab 無制限無料のリポジトリとの共同研究。サインアップ。無料パブリック ・ プライベート リポジトリ、無制限協力!。</value>
+  </data>
+  <data name="Invitation_Connect" xml:space="preserve">
+    <value>SNS</value>
+  </data>
+  <data name="Invitation_SignUp" xml:space="preserve">
+    <value>サインアップしてください！</value>
+  </data>
+  <data name="Items_builds" xml:space="preserve">
+    <value>builds</value>
+  </data>
+  <data name="Items_Graph" xml:space="preserve">
+    <value>グラフ</value>
+  </data>
+  <data name="Items_Issues" xml:space="preserve">
+    <value>課題</value>
+  </data>
+  <data name="Items_Pipeline" xml:space="preserve">
+    <value>パイプライン!</value>
+  </data>
+  <data name="Items_MergeRequests" xml:space="preserve">
+    <value>要求を結合!</value>
+  </data>
+  <data name="Items_Snippets" xml:space="preserve">
+    <value>コードスニペット</value>
+  </data>
+  <data name="Items_Wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
+  <data name="Login_ConnectTo" xml:space="preserve">
+    <value>接続</value>
+  </data>
+  <data name="Login_Email" xml:space="preserve">
+    <value>ユーザー名またはＥメール</value>
+  </data>
+  <data name="Login_EmailIsInvalid" xml:space="preserve">
+    <value>無効なメールアドレス</value>
+  </data>
+  <data name="Login_EmailIsRequired" xml:space="preserve">
+    <value>メールは必須です!</value>
+  </data>
+  <data name="Login_FailedToLogin" xml:space="preserve">
+    <value>ログインに失敗しました</value>
+  </data>
+  <data name="Login_ForgetPassword" xml:space="preserve">
+    <value>パスワードを忘れた場合</value>
+  </data>
+  <data name="Login_Host" xml:space="preserve">
+    <value>GitLab (https://gitlab.com)!</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="Login_PasswordIsRequired" xml:space="preserve">
+    <value>パスワードは必須です!</value>
+  </data>
+  <data name="Login_PasswordMinTo" xml:space="preserve">
+    <value>パスワードは少なくとも 6 文字をする必要があります!</value>
+  </data>
+  <data name="Login_ReSendEmail" xml:space="preserve">
+    <value>アクティブなアカウントにメールを再送信!</value>
+  </data>
+  <data name="Login_SignUp" xml:space="preserve">
+    <value>サインアップしてください！</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>GitLab!</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>GitLab!</value>
+  </data>
+  <data name="Publish_Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Publish_Or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Publish_Publish" xml:space="preserve">
+    <value>公開する</value>
+  </data>
+  <data name="Publish_SignUp" xml:space="preserve">
+    <value>サインアップしてください！</value>
+  </data>
+  <data name="Publish_Start" xml:space="preserve">
+    <value>開始！</value>
+  </data>
+  <data name="Publish_Submiting" xml:space="preserve">
+    <value>送信しています</value>
+  </data>
+  <data name="Publish_Title" xml:space="preserve">
+    <value>{0} を公開!</value>
+  </data>
+  <data name="Repository_Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
+    <value>プロジェクト {0} は既に存在します!</value>
+  </data>
+  <data name="Login_HostIsInvalid" xml:space="preserve">
+    <value>ホストが無効です。</value>
+  </data>
+  <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
+    <value>ログイン!</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>二段階認証</value>
+  </data>
+  <data name="DefaultHost" xml:space="preserve">
+    <value>https://gitlab.com!</value>
+  </data>
 </root>

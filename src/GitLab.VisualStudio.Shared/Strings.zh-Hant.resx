@@ -303,4 +303,7 @@
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>雙因數驗證</value>
   </data>
+  <data name="DefaultHost" xml:space="preserve">
+    <value>https://gitclub.cn</value>
+  </data>
 </root>

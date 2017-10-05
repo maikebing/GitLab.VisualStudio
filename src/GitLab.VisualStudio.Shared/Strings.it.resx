@@ -303,4 +303,7 @@
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Autenticazione a due fattori!</value>
   </data>
+  <data name="DefaultHost" xml:space="preserve">
+    <value>https://gitlab.com</value>
+  </data>
 </root>

@@ -30,6 +30,8 @@ Official builds of this extension are available at [the official website](http:/
 
 ### BUG And Issues
 https://gitlab.com/maikebing/GitLab.VisualStudio/issues
+or 
+https://github.com/maikebing/GitLab.VisualStudio/issues
 
 ###    Visual Studio    |   Marketplace
 https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionforVisualStudio
@@ -40,9 +42,9 @@ https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionfor
   
 ####  CodeCloud Extension for  Visual Studio
 
-http://git.oschina.net/GitGroup/CodeCloud.VisualStudio
+https://gitee.com/GitGroup/CodeCloud.VisualStudio
 
-#### isual Studio Extension for opening files on GitLab.com
+#### Visual Studio Extension for opening files on GitLab.com
 https://GitLab.com/neuecc/Open-on-GitLab 
 
  

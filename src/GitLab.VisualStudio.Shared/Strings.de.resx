@@ -117,4 +117,193 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloneView_FailedToLoadProjects" xml:space="preserve">
+    <value>Laden fehlgeschlagen.</value>
+  </data>
+  <data name="CloneView_NoProjects" xml:space="preserve">
+    <value>Keine Projekte</value>
+  </data>
+  <data name="CloneView_Search" xml:space="preserve">
+    <value>Suche!</value>
+  </data>
+  <data name="Common_Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Abbrechen!</value>
+  </data>
+  <data name="Common_ChooseAGitIgnore" xml:space="preserve">
+    <value>Hinzufügen einer .gitignore!</value>
+  </data>
+  <data name="Common_ChooseALicense" xml:space="preserve">
+    <value>Eine Lizenz hinzufügen!</value>
+  </data>
+  <data name="Common_Clone" xml:space="preserve">
+    <value>Klonen</value>
+  </data>
+  <data name="Common_CreateRepository" xml:space="preserve">
+    <value>Erstellen!</value>
+  </data>
+  <data name="Common_Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Common_DescriptionMaxTo" xml:space="preserve">
+    <value>Maximale Länge der Beschreibung beträgt 500!</value>
+  </data>
+  <data name="Common_GitIgnore" xml:space="preserve">
+    <value>Ignorieren</value>
+  </data>
+  <data name="Common_License" xml:space="preserve">
+    <value>Lizenzen</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Lade</value>
+  </data>
+  <data name="Common_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Common_NameMaxTo" xml:space="preserve">
+    <value>Maximale Länge des Namens beträgt 64 Zeichen!</value>
+  </data>
+  <data name="Common_New" xml:space="preserve">
+    <value>Neu!</value>
+  </data>
+  <data name="Common_Path" xml:space="preserve">
+    <value>Pfad</value>
+  </data>
+  <data name="Common_Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Common_Property" xml:space="preserve">
+    <value>Eigenschaft</value>
+  </data>
+  <data name="Common_Quit" xml:space="preserve">
+    <value>Abbrechen!</value>
+  </data>
+  <data name="Confirm_Quit" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie öffnen möchten?</value>
+  </data>
+  <data name="CreateView_NameIsRequired" xml:space="preserve">
+    <value>Name ist ein Pflichtfeld</value>
+  </data>
+  <data name="CreateView_PathIsRequired" xml:space="preserve">
+    <value>ist obligatorisch</value>
+  </data>
+  <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
+    <value>Dies ist ein cooles Projekt (optional)!</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>GitLab unbegrenzte kostenlose Repositories und Mitarbeiter. Anmelden. Kostenlose öffentliche &amp; private Repositories und unbegrenzte Kollaborateure.!</value>
+  </data>
+  <data name="Invitation_Connect" xml:space="preserve">
+    <value>Verbinden!</value>
+  </data>
+  <data name="Invitation_SignUp" xml:space="preserve">
+    <value>Jetzt registrieren!</value>
+  </data>
+  <data name="Items_builds" xml:space="preserve">
+    <value>Baut!</value>
+  </data>
+  <data name="Items_Graph" xml:space="preserve">
+    <value>Diagramme</value>
+  </data>
+  <data name="Items_Issues" xml:space="preserve">
+    <value>Probleme</value>
+  </data>
+  <data name="Items_Pipeline" xml:space="preserve">
+    <value>Pipelines</value>
+  </data>
+  <data name="Items_MergeRequests" xml:space="preserve">
+    <value>Anfragen zu verschmelzen!</value>
+  </data>
+  <data name="Items_Snippets" xml:space="preserve">
+    <value>Snipptes</value>
+  </data>
+  <data name="Items_Wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
+  <data name="Login_ConnectTo" xml:space="preserve">
+    <value>Verbinde mit</value>
+  </data>
+  <data name="Login_Email" xml:space="preserve">
+    <value>Benutzername oder E-Mail</value>
+  </data>
+  <data name="Login_EmailIsInvalid" xml:space="preserve">
+    <value>Ungültige E-Mail!</value>
+  </data>
+  <data name="Login_EmailIsRequired" xml:space="preserve">
+    <value>Die Email Adresse des Empfängers ist ein Pflichtfeld</value>
+  </data>
+  <data name="Login_FailedToLogin" xml:space="preserve">
+    <value>Anmeldung fehlgeschlagen!</value>
+  </data>
+  <data name="Login_ForgetPassword" xml:space="preserve">
+    <value>Passwort vergessen</value>
+  </data>
+  <data name="Login_Host" xml:space="preserve">
+    <value>GitLab (https://gitlab.com)!</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Anmelden!</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login_PasswordIsRequired" xml:space="preserve">
+    <value>Passwort ist obligatorisch</value>
+  </data>
+  <data name="Login_PasswordMinTo" xml:space="preserve">
+    <value>Passwort sollte mindestens 6 Zeichen sein!</value>
+  </data>
+  <data name="Login_ReSendEmail" xml:space="preserve">
+    <value>Ärgern sich über e-Mail an aktiven Account!</value>
+  </data>
+  <data name="Login_SignUp" xml:space="preserve">
+    <value>Jetzt registrieren!</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>GitLab</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>GitLab</value>
+  </data>
+  <data name="Publish_Login" xml:space="preserve">
+    <value>Anmelden!</value>
+  </data>
+  <data name="Publish_Or" xml:space="preserve">
+    <value>oder</value>
+  </data>
+  <data name="Publish_Publish" xml:space="preserve">
+    <value>Veröffentlichen</value>
+  </data>
+  <data name="Publish_SignUp" xml:space="preserve">
+    <value>Jetzt registrieren!</value>
+  </data>
+  <data name="Publish_Start" xml:space="preserve">
+    <value>Start!</value>
+  </data>
+  <data name="Publish_Submiting" xml:space="preserve">
+    <value>Übermittlung...</value>
+  </data>
+  <data name="Publish_Title" xml:space="preserve">
+    <value>Veröffentlichen auf</value>
+  </data>
+  <data name="Repository_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
+    <value>Das Projekt {0} ist bereits vorhanden!</value>
+  </data>
+  <data name="Login_HostIsInvalid" xml:space="preserve">
+    <value>ist ungültig</value>
+  </data>
+  <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
+    <value>Kein Login</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>Zwei-Faktor-Authentifizierung</value>
+  </data>
+  <data name="DefaultHost" xml:space="preserve">
+    <value>https://gitlab.com</value>
+  </data>
 </root>

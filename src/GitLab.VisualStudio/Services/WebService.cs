@@ -65,7 +65,7 @@ namespace GitLab.VisualStudio.Services
 
         private IReadOnlyList<Project> GetProjectsOfPage(int page, string token)
         {
-            var url = $"{_storage.GetUser().Host}/api/v3/projects?page={page}&private_token={token}";
+            var url = $"{_storage.GetUser().Host}/api/v4/projects?page={page}&private_token={token}";
 
             var request = GetRequest(url);
             request.Method = "GET";
@@ -96,13 +96,13 @@ namespace GitLab.VisualStudio.Services
             if (enable2fa)
             {
                 
-                request = GetRequest($"{host}/api/v3/user?private_token={password}");
+                request = GetRequest($"{host}/api/v4/user?private_token={password}");
                 request.Method = "GET";
             }
             else
             {
 
-                request = GetRequest($"{host}/api/v3/session");
+                request = GetRequest($"{host}/api/v4/session");
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 var content = (email.Contains("@") ? $"email={HttpUtility.UrlEncode(email)}" : $"login={HttpUtility.UrlEncode(email)}") + $"&password={HttpUtility.UrlEncode(password)}";
@@ -140,7 +140,7 @@ namespace GitLab.VisualStudio.Services
 
             var result = new CreateResult();
 
-            var url = $"{user.Host}/api/v3/projects?private_token={user.Token}";
+            var url = $"{user.Host}/api/v4/projects?private_token={user.Token}";
 
             var request = GetRequest(url);
             request.Method = "POST";
