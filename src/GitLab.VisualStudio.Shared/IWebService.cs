@@ -8,73 +8,20 @@ using System.Threading.Tasks;
 
 namespace GitLab.VisualStudio.Shared
 {
-    public class User
+    public class User:NGitLab.Models.Session
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("username")]
-        public string Username { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("email")]
-        public string Email { get; set; }
-        [JsonProperty("new_portrait")]
-        public string Avatar { get; set; }
-        [JsonProperty("private_token")]
-        public string Token { get; set; }
-        [JsonProperty("host")]
+        
         public string Host { get; set; }
-        [JsonProperty("two_factor_enabled")]
-        public bool Two_Factor_Enabled { get; set; }
-
-        public bool ShouldSerializeToken()
-        {
-            return false;
-        }
+      
+      
     }
 
-    public class Project
+    public class Project:NGitLab.Models.Project
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-    
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("path_with_namespace")]
-        public string Path { get; set; }
-
-        [JsonProperty("public")]
-        public bool Public { get; set; }
-        [JsonProperty("ssh_url_to_repo")]
-        public string ssh_url_to_repo { get; set; }
-        [JsonProperty("http_url_to_repo")]
-        public string http_url_to_repo { get; set; }
-        [JsonProperty("web_url")]
-        public string web_url { get; set; }
-        [JsonProperty("owner")]
-        public User Owner { get; set; }
-
-        [JsonProperty("fork?")]
-        public bool Fork { get; set; }
-
-        [JsonProperty("issues_enabled")]
-        public bool IsIssueEnabled { get; set; }
-
-        [JsonProperty("merge_requests_enabled")]
-        public bool IsPullRequestsEnabled { get; set; }
-
-        [JsonProperty("wiki_enabled")]
-        public bool IsWikiEnabled { get; set; }
-        [JsonProperty("builds_enabled")]
-        public bool IsBuildsEnabled { get; set; }
-        [JsonProperty("snippets_enabled")]
-        public bool IsSnippetsEnabled { get; set; }
-
-        public string Url
+         
+        public new string Url
         {
-            get { return http_url_to_repo; }
+            get { return HttpUrl; }
         }
 
         [JsonIgnore]
@@ -93,7 +40,7 @@ namespace GitLab.VisualStudio.Shared
         }
     }
 
-    public class CreateResult
+    public class CreateResult 
     {
         public string Message { get; set; }
         public Project Project { get; set; }
@@ -101,7 +48,7 @@ namespace GitLab.VisualStudio.Shared
 
     public interface IWebService
     {
-        User Login(bool enable2fa, string host,string email, string password);
+        User LoginAsync(bool enable2fa, string host,string email, string password);
         IReadOnlyList<Project> GetProjects();
         CreateResult CreateProject(string name, string description, bool isPrivate);
     }

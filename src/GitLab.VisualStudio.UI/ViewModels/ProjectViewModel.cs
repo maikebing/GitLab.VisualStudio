@@ -7,7 +7,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
     public class Owner : IEquatable<Owner>
     {
         public string Name { get; set; }
-        public string Avatar { get; set; }
+        public string AvatarUrl { get; set; }
         public bool IsExpanded { get; set; }
 
         public override bool Equals(object obj)
@@ -50,7 +50,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 Owner = new Owner
                 {
                     Name = repository.Owner.Name,
-                    Avatar = repository.Owner.Avatar
+                    AvatarUrl = repository.Owner.AvatarUrl
                 };
             }
 

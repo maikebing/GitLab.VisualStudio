@@ -22,13 +22,13 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Invalidate()
         {
-            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsSnippetsEnabled;
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.SnippetsEnabled;
         }
 
 
         public override void Execute()
         {
-            if (_tes.Project != null && _tes.Project.IsSnippetsEnabled)
+            if (_tes.Project != null && _tes.Project.SnippetsEnabled)
             {
                 OpenInBrowser("snippets");
             }

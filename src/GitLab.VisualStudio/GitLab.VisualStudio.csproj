@@ -426,9 +426,6 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NGitLab, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NGitLab.2.0.0-beta-0065\lib\net45\NGitLab.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -461,6 +458,10 @@
     <Reference Include="System.Xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\NGitLab\NGitLab\NGitLab\NGitLab.csproj">
+      <Project>{eb69c6ad-64a6-4fe5-880c-38607a2430fb}</Project>
+      <Name>NGitLab</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GitLab.TeamFoundation.14\GitLab.TeamFoundation.14.csproj">
       <Project>{161DBF01-1DBF-4B00-8551-C5C00F26720D}</Project>
       <Name>GitLab.TeamFoundation.14</Name>

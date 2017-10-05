@@ -206,6 +206,10 @@
     <Resource Include="Resources\images\user.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\NGitLab\NGitLab\NGitLab\NGitLab.csproj">
+      <Project>{eb69c6ad-64a6-4fe5-880c-38607a2430fb}</Project>
+      <Name>NGitLab</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj">
       <Project>{C3150B82-8E79-4FF6-A9FF-E361C108384F}</Project>
       <Name>GitLab.VisualStudio.Shared</Name>

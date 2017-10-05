@@ -27,7 +27,7 @@ namespace GitLab.VisualStudio.Services
             {
                 bool islogin = false;
                 var _user = LoadUser();
-                islogin = _user != null && _user.Token != null;
+                islogin = _user != null && _user.PrivateToken != null;
                 return islogin;
             }
         }
@@ -112,11 +112,11 @@ namespace GitLab.VisualStudio.Services
         public void SaveUser(User user, string password)
         {
             SavePassword(user.Host, user.Username, password);
-            if (user.Two_Factor_Enabled)
+            if (user.TwoFactorEnabled)
             {
-                user.Token = password;
+                user.PrivateToken = password;
             }
-            SaveToken(user.Host,user.Username, user.Token);
+            SaveToken(user.Host,user.Username, user.PrivateToken);
             SaveUserToLocal(user);
           
         }
@@ -197,7 +197,7 @@ namespace GitLab.VisualStudio.Services
                     o = (JObject)serializer.Deserialize(reader);
                     var token = o["User"];
                     _user = token.ToObject<User>();
-                    _user.Token = GetToken(_user.Host);
+                    _user.PrivateToken = GetToken(_user.Host);
                 }
 
             }
