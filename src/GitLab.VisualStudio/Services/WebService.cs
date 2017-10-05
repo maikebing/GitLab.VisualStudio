@@ -135,7 +135,7 @@ namespace GitLab.VisualStudio.Services
             var user = _storage.GetUser();
             if (user == null)
             {
-                throw new UnauthorizedAccessException("Not login yet");
+                throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
 
             var result = new CreateResult();

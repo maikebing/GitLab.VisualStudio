@@ -308,4 +308,7 @@
   <data name="DefaultHost" xml:space="preserve">
     <value>https://gitclub.cn</value>
   </data>
+  <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
+    <value>还没登录</value>
+  </data>
 </root>

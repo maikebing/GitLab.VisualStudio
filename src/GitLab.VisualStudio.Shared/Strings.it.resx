@@ -306,4 +306,7 @@
   <data name="DefaultHost" xml:space="preserve">
     <value>https://gitlab.com</value>
   </data>
+  <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
+    <value>Non è ancora possibile accedere!</value>
+  </data>
 </root>

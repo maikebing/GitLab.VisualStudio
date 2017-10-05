@@ -626,5 +626,14 @@ namespace GitLab.VisualStudio.Shared {
                 return ResourceManager.GetString("TwoFactorAuthentication", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 Not login yet 的本地化字符串。
+        /// </summary>
+        public static string WebService_CreateProject_NotLoginYet {
+            get {
+                return ResourceManager.GetString("WebService_CreateProject_NotLoginYet", resourceCulture);
+            }
+        }
     }
 }
