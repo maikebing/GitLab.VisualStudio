@@ -44,13 +44,13 @@ https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionfor
 
 https://gitee.com/GitGroup/CodeCloud.VisualStudio
 
-#### Visual Studio Extension for opening files on GitLab.com
-https://GitLab.com/neuecc/Open-on-GitLab 
+#### Visual Studio Extension for opening files on GitHub.com
+https://github.com/neuecc/Open-on-GitHub 
 
  
 
 
-### Open On GitLab 
+### Open On GitHub 
 
 ![image](./docs/images/OpenOnGitLab.png)
 ###  Team Home Page
