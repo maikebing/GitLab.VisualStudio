@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace GitLab.VisualStudio
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#8110", "#8112",  PackageVersion.Version, IconResourceID = 8400)]
+    [InstalledProductRegistration("#8110", "#8112", PackageVersion.Version, IconResourceID = 8400)]
     [ProvideMenuResource("Menus2.ctmenu", 1)]
     [Guid(PackageGuids.guidOpenOnGitLabPkgString)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
@@ -47,7 +47,9 @@ namespace GitLab.VisualStudio
                     PackageCommanddIDs.OpenMaster,
                     PackageCommanddIDs.OpenBranch,
                     PackageCommanddIDs.OpenRevision,
-                    PackageCommanddIDs.OpenRevisionFull
+                    PackageCommanddIDs.OpenRevisionFull,
+                     PackageCommanddIDs.OpenBlame,
+                     PackageCommanddIDs.OpenCommits
                 })
                 {
                     var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
@@ -124,7 +126,7 @@ namespace GitLab.VisualStudio
             var path = GetExactPathName(DTE.ActiveDocument.Path + DTE.ActiveDocument.Name);
             return path;
         }
-     
+
         static string GetExactPathName(string pathName)
         {
             if (!(File.Exists(pathName) || Directory.Exists(pathName)))
@@ -147,20 +149,30 @@ namespace GitLab.VisualStudio
         Tuple<int, int> GetSelectionLineRange()
         {
             var selection = DTE.ActiveDocument.Selection as TextSelection;
-            if (selection == null || selection.IsEmpty)
+            if (selection != null)
+            {
+                if (!selection.IsEmpty)
+                {
+                    return Tuple.Create(selection.TopPoint.Line, selection.BottomPoint.Line);
+                }
+                else
+                {
+                    return Tuple.Create(selection.CurrentLine, selection.CurrentLine);
+                }
+            }
+            else
             {
                 return null;
             }
-
-            return Tuple.Create(selection.TopPoint.Line, selection.BottomPoint.Line);
         }
-
         static GitLabUrlType ToGitLabUrlType(int commandId)
         {
             if (commandId == PackageCommanddIDs.OpenMaster) return GitLabUrlType.Master;
             if (commandId == PackageCommanddIDs.OpenBranch) return GitLabUrlType.CurrentBranch;
             if (commandId == PackageCommanddIDs.OpenRevision) return GitLabUrlType.CurrentRevision;
             if (commandId == PackageCommanddIDs.OpenRevisionFull) return GitLabUrlType.CurrentRevisionFull;
+            if (commandId == PackageCommanddIDs.OpenBlame) return GitLabUrlType.Blame;
+            if (commandId == PackageCommanddIDs.OpenCommits) return GitLabUrlType.Commits;
             else return GitLabUrlType.Master;
         }
     }

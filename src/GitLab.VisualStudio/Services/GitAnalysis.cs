@@ -13,7 +13,8 @@ namespace GitLab.VisualStudio.Services
         CurrentBranch,
         CurrentRevision,
         CurrentRevisionFull,
-      
+        Blame,
+        Commits,
     }
 
     public sealed class GitAnalysis : IDisposable
@@ -64,10 +65,10 @@ namespace GitLab.VisualStudio.Services
                     return "Revision: " + repository.Commits.First().Id.ToString(8);
                 case GitLabUrlType.CurrentRevisionFull:
                     return "Revision: " + repository.Commits.First().Id.ToString(8) + "... (Full ID)";
-                //case GitLabUrlType.Blame:
-                //    return "Blame";
-                //case GitLabUrlType.Commits:
-                //    return "Commits";
+                case GitLabUrlType.Blame:
+                    return "Blame";
+                case GitLabUrlType.Commits:
+                    return "Commits";
                 case GitLabUrlType.Master:
                 default:
                     return "master";
@@ -93,14 +94,14 @@ namespace GitLab.VisualStudio.Services
                                 : "";
 
             var urlshowkind = "blob";
-            //if (urlType == GitLabUrlType.Blame)
-            //{
-            //    urlshowkind = "blame";
-            //}
-            //if (urlType == GitLabUrlType.Commits)
-            //{
-            //    urlshowkind = "commits";
-            //}
+            if (urlType == GitLabUrlType.Blame)
+            {
+                urlshowkind = "blame";
+            }
+            if (urlType == GitLabUrlType.Commits)
+            {
+                urlshowkind = "commits";
+            }
             var fileUrl = string.Format("{0}/{4}/{1}/{2}{3}", urlRoot.Trim('/'), WebUtility.UrlEncode(repositoryTarget.Trim('/')), fileIndexPath.Trim('/'), fragment, urlshowkind);
 
             return fileUrl;

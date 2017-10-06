@@ -21,6 +21,8 @@ namespace GitLab.VisualStudio
         public const uint OpenBranch = 0x200;
         public const uint OpenRevision = 0x300;
         public const uint OpenRevisionFull = 0x400;
+        public const uint OpenBlame = 0x500;
+        public const uint OpenCommits = 0x600;
     };
 
  

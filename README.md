@@ -7,6 +7,10 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 
 ## What't new ?
+#### V1.0.0.85
+1.Add multiple languages!
+2.Open on GitLab move to  submenu!
+3.Fixed issue #3,Thanks luky92!
 
 #### V1.0.0.70
 

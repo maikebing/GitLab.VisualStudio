@@ -54,7 +54,22 @@
           <CommandName>revisionFull</CommandName>
         </Strings>
       </Button>
-       
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenBlame" priority="0x0500" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Blame</ButtonText>
+          <CommandName>Blame</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenCommits" priority="0x0600" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Commits</ButtonText>
+          <CommandName>Commits</CommandName>
+        </Strings>
+      </Button>
     </Buttons>
  
   </Commands>
@@ -119,6 +134,8 @@
       <IDSymbol name="OpenBranch" value="0x0200" />
       <IDSymbol name="OpenRevision" value="0x0300" />
       <IDSymbol name="OpenRevisionFull" value="0x0400" />
+      <IDSymbol name="OpenBlame" value="0x0500" />
+      <IDSymbol name="OpenCommits" value="0x0600" />
     </GuidSymbol>
 
     <!-- List for various editor types -->
