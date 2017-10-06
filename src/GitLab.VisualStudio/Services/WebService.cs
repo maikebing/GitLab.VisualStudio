@@ -35,15 +35,16 @@ namespace GitLab.VisualStudio.Services
                     throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
                 }
                 var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
-                lstProject.AddRange((Project[])client.Projects.Owned().ToArray());
-
-                dt = DateTime.Now;
+                foreach (var item in client.Projects.Membership())
+                {
+                    lstProject.Add(item);
+                }
             }
             return lstProject;
         }
  
    
-        public  User  LoginAsync(bool enable2fa,string host,string email, string password)
+        public User LoginAsync(bool enable2fa,string host,string email, string password)
         {
             NGitLab.GitLabClient client = null;
             User user = null;
@@ -58,8 +59,8 @@ namespace GitLab.VisualStudio.Services
             }
             try
             {
-                user = (User)client.Users.Current();
-
+                user = client.Users.Current();
+                user.PrivateToken = client.ApiToken;
             }
             catch (WebException ex)
             {
