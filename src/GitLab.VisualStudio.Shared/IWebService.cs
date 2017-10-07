@@ -10,77 +10,102 @@ namespace GitLab.VisualStudio.Shared
 {
     public class User
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("username")]
-        public string Username { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("email")]
-        public string Email { get; set; }
-        [JsonProperty("new_portrait")]
-        public string Avatar { get; set; }
-        [JsonProperty("private_token")]
-        public string Token { get; set; }
-        [JsonProperty("host")]
-        public string Host { get; set; }
-        [JsonProperty("two_factor_enabled")]
-        public bool Two_Factor_Enabled { get; set; }
-
-        public bool ShouldSerializeToken()
+        public static implicit operator User(NGitLab.Models.Session session)
         {
-            return false;
+            return (NGitLab.Models.User)session;
         }
+        public static implicit operator User(NGitLab.Models.User session)
+        {
+            if (session != null)
+            {
+                return new User()
+                {
+                    AvatarUrl = session.AvatarUrl,
+                    Email = session.Email,
+                    Id = session.Id,
+                    Name = session.Name,
+                    TwoFactorEnabled = session.TwoFactorEnabled,
+                    Username = session.Username
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string AvatarUrl { get; set; }
+        public string PrivateToken { get; set; }
+        public string Host { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+ 
     }
 
     public class Project
     {
-        [JsonProperty("id")]
+        public static implicit operator Project(NGitLab.Models.Project p)
+        {
+            if (p != null)
+            {
+                 return new Project()
+                {
+                    BuildsEnabled = p.BuildsEnabled,
+                    Fork = p.Fork,
+                    HttpUrl = p.HttpUrl,
+                    IssuesEnabled = p.IssuesEnabled,
+                    Name = p.Name,
+                    Owner = p.Owner,
+                    Public = p.Public,
+                    Path = p.Path,
+                    MergeRequestsEnabled = p.MergeRequestsEnabled,
+                    SnippetsEnabled = p.SnippetsEnabled,
+                    SshUrl = p.SshUrl,
+                    WikiEnabled = p.WikiEnabled,
+                    Id = p.Id
+                };
+                
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public int Id { get; set; }
 
     
-        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("path_with_namespace")]
         public string Path { get; set; }
 
-        [JsonProperty("public")]
         public bool Public { get; set; }
-        [JsonProperty("ssh_url_to_repo")]
-        public string ssh_url_to_repo { get; set; }
-        [JsonProperty("http_url_to_repo")]
-        public string http_url_to_repo { get; set; }
-        [JsonProperty("web_url")]
-        public string web_url { get; set; }
-        [JsonProperty("owner")]
+        public string SshUrl { get; set; }
+        public string HttpUrl { get; set; }
+      
         public User Owner { get; set; }
 
-        [JsonProperty("fork?")]
         public bool Fork { get; set; }
 
-        [JsonProperty("issues_enabled")]
-        public bool IsIssueEnabled { get; set; }
+        public bool IssuesEnabled { get; set; }
 
-        [JsonProperty("merge_requests_enabled")]
-        public bool IsPullRequestsEnabled { get; set; }
+        public bool MergeRequestsEnabled { get; set; }
 
-        [JsonProperty("wiki_enabled")]
-        public bool IsWikiEnabled { get; set; }
-        [JsonProperty("builds_enabled")]
-        public bool IsBuildsEnabled { get; set; }
-        [JsonProperty("snippets_enabled")]
-        public bool IsSnippetsEnabled { get; set; }
+        public bool WikiEnabled { get; set; }
+        public bool BuildsEnabled { get; set; }
+        public bool SnippetsEnabled { get; set; }
 
         public string Url
         {
-            get { return http_url_to_repo; }
+            get { return HttpUrl; }
         }
 
-        [JsonIgnore]
+     
         public string LocalPath { get; set; }
 
-        [JsonIgnore]
+ 
         public Octicon Icon
         {
             get
@@ -93,7 +118,7 @@ namespace GitLab.VisualStudio.Shared
         }
     }
 
-    public class CreateResult
+    public class CreateResult 
     {
         public string Message { get; set; }
         public Project Project { get; set; }
@@ -101,7 +126,7 @@ namespace GitLab.VisualStudio.Shared
 
     public interface IWebService
     {
-        User Login(bool enable2fa, string host,string email, string password);
+        User LoginAsync(bool enable2fa, string host,string email, string password);
         IReadOnlyList<Project> GetProjects();
         CreateResult CreateProject(string name, string description, bool isPrivate);
     }

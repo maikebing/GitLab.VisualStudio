@@ -25,7 +25,7 @@ namespace GitLab.TeamFoundation.Home
         {
             base.Invalidate();
 
-            IsVisible = IsVisible && _tes.Project != null && _tes.Project.IsPullRequestsEnabled;
+            IsVisible = IsVisible && _tes.Project != null && _tes.Project.MergeRequestsEnabled;
         }
         public override void Execute()
         {

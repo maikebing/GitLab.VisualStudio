@@ -135,7 +135,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Task.Run(() =>
             {
                 
-                    var user = _web.Login(Enable2FA, Host, Email, Password);
+                    var user = _web.LoginAsync(Enable2FA, Host, Email, Password);
                     if (user != null)
                     {
                         successed = true;

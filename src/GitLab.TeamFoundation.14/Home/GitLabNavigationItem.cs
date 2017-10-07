@@ -50,7 +50,7 @@ namespace GitLab.TeamFoundation.Home
         }
         protected void OpenInBrowser(string endpoint)
         {
-            var url = $"{_tes.Project.web_url}/{endpoint}";
+            var url = $"{_tes.Project.HttpUrl}/{endpoint}";
             _shell.OpenUrl(url);
         }
         protected void OpenHostUrlInBrowser(string endpoint)

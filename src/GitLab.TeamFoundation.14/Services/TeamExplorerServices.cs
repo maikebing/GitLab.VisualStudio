@@ -174,13 +174,13 @@ namespace GitLab.TeamFoundation
 
             }
             bool isgitlab = false;
-            if (Project!=null &&  !string.IsNullOrEmpty(Project.http_url_to_repo) && Uri.IsWellFormedUriString(Project.http_url_to_repo, UriKind.Absolute )
+            if (Project!=null &&  !string.IsNullOrEmpty(Project.HttpUrl) && Uri.IsWellFormedUriString(Project.HttpUrl, UriKind.Absolute )
                 &&  !string.IsNullOrEmpty(url) && Uri.IsWellFormedUriString(url , UriKind.Absolute ))
             {
                 try
                 {
                     UriBuilder remoteurl = new UriBuilder(url);
-                    UriBuilder gitlaburl = new UriBuilder(Project.http_url_to_repo);
+                    UriBuilder gitlaburl = new UriBuilder(Project.HttpUrl);
                     isgitlab = remoteurl.Host.ToLower() == gitlaburl.Host.ToLower();
                 }
                 catch (Exception ex)
