@@ -224,7 +224,7 @@ namespace GitLab.TeamFoundation.ViewModels
 
         private void OnPublish()
         {
-            CreateResult result = null;
+            CreateProjectResult result = null;
             string error = null;
 
             IsBusy = true;

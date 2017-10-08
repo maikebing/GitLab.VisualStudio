@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitLab.VisualStudio.Services
 {
@@ -234,6 +235,8 @@ namespace GitLab.VisualStudio.Services
 
             return result;
         }
+   
+
 
         public string GetRemote(string path)
         {

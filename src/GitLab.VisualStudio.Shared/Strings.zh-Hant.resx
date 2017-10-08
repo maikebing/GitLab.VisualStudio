@@ -309,4 +309,25 @@
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>還沒登錄</value>
   </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>未能創建片段 ！</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>可見度為必填項 ！</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>描述項為必填項 ！</value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>文件名是必需的.</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>标题項為必填項 </value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>程式項為必填項 </value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>創建一個片段，請稍候...</value>
+  </data>
 </root>

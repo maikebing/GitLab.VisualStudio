@@ -259,6 +259,60 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Code IsRequired 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_CodeIsRequired {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_CodeIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Descriptors Is Required 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_DescriptorsIsRequired {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_DescriptorsIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to create Snippet 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_FailedToCreateSnippet {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_FailedToCreateSnippet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 FileName Is Required 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_FileNameIsRequired {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_FileNameIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Title Is Required 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_TitleIsRequired {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_TitleIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Visibility Is Required 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetViewModel_VisibilityIsRequired {
+            get {
+                return ResourceManager.GetString("CreateSnippetViewModel_VisibilityIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Name is mandatory 的本地化字符串。
         /// </summary>
         public static string CreateView_NameIsRequired {
@@ -291,6 +345,15 @@ namespace GitLab.VisualStudio.Shared {
         public static string CreateViewModel_OnSave_TheProject0AlreadyExists {
             get {
                 return ResourceManager.GetString("CreateViewModel_OnSave_TheProject0AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Creating a Snippet, please wait... 的本地化字符串。
+        /// </summary>
+        public static string CreatingASnippetPleaseWait {
+            get {
+                return ResourceManager.GetString("CreatingASnippetPleaseWait", resourceCulture);
             }
         }
         

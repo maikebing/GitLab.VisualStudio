@@ -155,7 +155,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private void OnSave()
         {
-            CreateResult result = null;
+            CreateProjectResult result = null;
             string error = null;
             string clonePath = null;
             IsBusy = true;

@@ -309,4 +309,25 @@
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>Noch nicht einloggen!</value>
   </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>Anlegen fehlgeschlagen</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>Sichtbarkeit ist erforderlich!</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>Deskriptoren ist erforderlich!</value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>Dateiname ist erforderlich!</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>Titel wird benötigt</value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>Code IsRequired!</value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>Erstellen ein Snippet, bitte warten Sie...</value>
+  </data>
 </root>

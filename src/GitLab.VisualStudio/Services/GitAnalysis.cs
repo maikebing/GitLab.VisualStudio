@@ -126,7 +126,16 @@ namespace GitLab.VisualStudio.Services
             }
             return urlRoot;
         }
-
+        public string GetRepoOriginRemoteUrl()
+        {
+            string urlRoot = string.Empty;
+            var originUrl = repository.Config.Get<string>("remote.origin.url");
+            if (originUrl != null)
+            {
+                urlRoot = originUrl.Value ;
+            }
+            return urlRoot;
+        }
         void Dispose(bool disposing)
         {
             if (repository != null)

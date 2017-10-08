@@ -10,6 +10,7 @@ namespace GitLab.VisualStudio.Shared
     {
         Clone,
         Create,
-        Login
+        Login,
+        CreateSnippet
     }
 }

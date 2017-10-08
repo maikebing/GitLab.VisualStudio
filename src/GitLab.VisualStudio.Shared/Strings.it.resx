@@ -309,4 +309,25 @@
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>Non è ancora possibile accedere!</value>
   </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>Impossibile creare Snippet!</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>La visibilità è richiesta!</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>I descrittori è richiesto!</value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>Nome del file è richiesto!</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>Il titolo è richiesto</value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>IsRequired</value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>Creazione di un frammento, si prega di attendere...</value>
+  </data>
 </root>

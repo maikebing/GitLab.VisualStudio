@@ -50,7 +50,7 @@ namespace GitLab.VisualStudio.Shared
         {
             if (p != null)
             {
-                 return new Project()
+                return new Project()
                 {
                     BuildsEnabled = p.BuildsEnabled,
                     Fork = p.Fork,
@@ -64,7 +64,8 @@ namespace GitLab.VisualStudio.Shared
                     SnippetsEnabled = p.SnippetsEnabled,
                     SshUrl = p.SshUrl,
                     WikiEnabled = p.WikiEnabled,
-                    Id = p.Id
+                    Id = p.Id,
+                    WebUrl = p.WebUrl
                 };
                 
             }
@@ -84,7 +85,7 @@ namespace GitLab.VisualStudio.Shared
         public bool Public { get; set; }
         public string SshUrl { get; set; }
         public string HttpUrl { get; set; }
-      
+        public string WebUrl { get; set; }
         public User Owner { get; set; }
 
         public bool Fork { get; set; }
@@ -117,17 +118,49 @@ namespace GitLab.VisualStudio.Shared
             }
         }
     }
-
-    public class CreateResult 
+    public class  Snippet
+    {
+        public static implicit operator Snippet(NGitLab.Models.ProjectSnippet p)
+        {
+            if (p != null)
+            {
+                return new Snippet()
+                {
+                    Description = p.Description,
+                    FileName = p.FileName,
+                    Id = p.Id,
+                    Title = p.Title,
+                    WebUrl = p.WebUrl
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string FileName { get; set; }
+        public string Description { get; set; }
+        public string WebUrl { get; set; }
+    }
+    public class CreateProjectResult 
     {
         public string Message { get; set; }
         public Project Project { get; set; }
+    }
+    public class CreateSnippetResult
+    {
+        public string Message { get; set; }
+        public Snippet Snippet { get; set; }
     }
 
     public interface IWebService
     {
         User LoginAsync(bool enable2fa, string host,string email, string password);
         IReadOnlyList<Project> GetProjects();
-        CreateResult CreateProject(string name, string description, bool isPrivate);
+        CreateProjectResult CreateProject(string name, string description, bool isPrivate);
+        CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility);
+        Project GetActiveProject();
     }
 }

@@ -309,4 +309,25 @@
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>まだログインしていません！</value>
   </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>スニペットの作成に失敗しました。</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>可視性が必要です。</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>記述子が必要です。</value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>ファイル名が必要です。</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>jp - Title is required</value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>IsRequired をコード!</value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>スニペットを作成するには、お待ちください・・・</value>
+  </data>
 </root>

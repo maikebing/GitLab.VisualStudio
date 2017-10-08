@@ -1,15 +1,21 @@
-﻿using EnvDTE;
+﻿using EnvDTE; 
 using EnvDTE80;
 using GitLab.VisualStudio;
 using GitLab.VisualStudio.Services;
+using GitLab.VisualStudio.Shared;
+using GitLab.VisualStudio.UI.ViewModels;
+using GitLab.VisualStudio.UI.Views;
+using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
-
+using System.Windows;
 
 namespace GitLab.VisualStudio
 {
@@ -20,8 +26,31 @@ namespace GitLab.VisualStudio
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     public sealed class OpenOnGitLabPackage : Package
     {
-        private static DTE2 _dte;
+      
+ 
 
+        [Import]
+        private IShellService _shell;
+
+     
+        [Import]
+        private IViewFactory _viewFactory;
+
+
+        private static ITeamExplorerServices _tes;
+        internal static ITeamExplorerServices TES
+        {
+            get
+            {
+                if (_tes == null)
+                {
+                    _tes = ServiceProvider.GlobalProvider.GetService(typeof(ITeamExplorerServices)) as ITeamExplorerServices;
+                }
+
+                return _tes;
+            }
+        }
+        private static DTE2 _dte;
         internal static DTE2 DTE
         {
             get
@@ -34,11 +63,13 @@ namespace GitLab.VisualStudio
                 return _dte;
             }
         }
-
+        
         protected override void Initialize()
         {
             base.Initialize();
-
+            var assemblyCatalog = new AssemblyCatalog(typeof(OpenOnGitLabPackage).Assembly);
+            CompositionContainer container = new CompositionContainer(assemblyCatalog);
+            container.ComposeParts(this);
             var mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (mcs != null)
             {
@@ -49,7 +80,8 @@ namespace GitLab.VisualStudio
                     PackageCommanddIDs.OpenRevision,
                     PackageCommanddIDs.OpenRevisionFull,
                      PackageCommanddIDs.OpenBlame,
-                     PackageCommanddIDs.OpenCommits
+                     PackageCommanddIDs.OpenCommits,
+                     PackageCommanddIDs.CreateSnippet
                 })
                 {
                     var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
@@ -65,25 +97,33 @@ namespace GitLab.VisualStudio
             var command = (OleMenuCommand)sender;
             try
             {
-                // TODO:is should avoid create GitAnalysis every call?
-                using (var git = new GitAnalysis(GetActiveFilePath()))
+                if (command.CommandID.ID == PackageCommanddIDs.CreateSnippet)
                 {
-                    if (!git.IsDiscoveredGitRepository)
+                    var selectionLineRange = GetSelectionLineRange();
+                    command.Enabled = selectionLineRange.Item1 < selectionLineRange.Item2;
+                }
+                else
+                {
+                    // TODO:is should avoid create GitAnalysis every call?
+                    using (var git = new GitAnalysis(GetActiveFilePath()))
                     {
-                        command.Enabled = false;
-                        return;
-                    }
+                        if (!git.IsDiscoveredGitRepository)
+                        {
+                            command.Enabled = false;
+                            return;
+                        }
 
-                    var type = ToGitLabUrlType(command.CommandID.ID);
-                    var targetPath = git.GetGitLabTargetPath(type);
-                    if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
-                    {
-                        command.Visible = false;
-                    }
-                    else
-                    {
-                        command.Text = git.GetGitLabTargetDescription(type);
-                        command.Enabled = true;
+                        var type = ToGitLabUrlType(command.CommandID.ID);
+                        var targetPath = git.GetGitLabTargetPath(type);
+                        if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
+                        {
+                            command.Visible = false;
+                        }
+                        else
+                        {
+                            command.Text = git.GetGitLabTargetDescription(type);
+                            command.Enabled = true;
+                        }
                     }
                 }
             }
@@ -101,16 +141,36 @@ namespace GitLab.VisualStudio
             var command = (OleMenuCommand)sender;
             try
             {
-                using (var git = new GitAnalysis(GetActiveFilePath()))
+                if (command.CommandID.ID == PackageCommanddIDs.CreateSnippet)
                 {
-                    if (!git.IsDiscoveredGitRepository)
+                    var selection = DTE.ActiveDocument.Selection as TextSelection;
+                    if (selection != null)
                     {
-                        return;
+                        var dialog = _viewFactory.GetView<Dialog>(ViewTypes.CreateSnippet);
+                        var cs = (CreateSnippet)dialog;
+                        var csm = cs.DataContext as CreateSnippetViewModel;
+                        csm.Code = selection.Text;
+                        csm.FileName = new System.IO.FileInfo(DTE.ActiveDocument.FullName).Name; 
+                        _shell.ShowDialog("Create Snippet", dialog);
                     }
-                    var selectionLineRange = GetSelectionLineRange();
-                    var type = ToGitLabUrlType(command.CommandID.ID);
-                    var GitLabUrl = git.BuildGitLabUrl(type, selectionLineRange);
-                    System.Diagnostics.Process.Start(GitLabUrl); // open browser
+                    else
+                    {
+                        Debug.Write("未选择任何内容");
+                    }
+                }
+                else
+                {
+                    using (var git = new GitAnalysis(GetActiveFilePath()))
+                    {
+                        if (!git.IsDiscoveredGitRepository)
+                        {
+                            return;
+                        }
+                        var selectionLineRange = GetSelectionLineRange();
+                        var type = ToGitLabUrlType(command.CommandID.ID);
+                        var GitLabUrl = git.BuildGitLabUrl(type, selectionLineRange);
+                        System.Diagnostics.Process.Start(GitLabUrl); // open browser
+                    }
                 }
             }
             catch (Exception ex)

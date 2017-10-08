@@ -23,6 +23,7 @@ namespace GitLab.VisualStudio
         public const uint OpenRevisionFull = 0x400;
         public const uint OpenBlame = 0x500;
         public const uint OpenCommits = 0x600;
+        public const uint CreateSnippet = 0x700;
     };
 
  

@@ -22,23 +22,28 @@ namespace GitLab.VisualStudio.Services
         [Import]
         private IStorage _storage;
 
-     
         List<Project>  lstProject = new List<Project>();
-        DateTime dt = DateTime.MinValue;
+        DateTime dts = DateTime.MinValue;
         public IReadOnlyList<Project> GetProjects()
         {
             lock (lstProject)
             {
-                var user = _storage.GetUser();
-                if (user == null)
+                if (lstProject.Count==0 ||  Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds)>5)//缓存五秒
                 {
-                    throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
+                    lstProject.Clear();
+                    var user = _storage.GetUser();
+                    if (user == null)
+                    {
+                        throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
+                    }
+                    var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+                    foreach (var item in client.Projects.Membership())
+                    {
+                        lstProject.Add(item);
+                    }
+                    dts = DateTime.Now;
                 }
-                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
-                foreach (var item in client.Projects.Membership())
-                {
-                    lstProject.Add(item);
-                }
+              
             }
             return lstProject;
         }
@@ -72,14 +77,14 @@ namespace GitLab.VisualStudio.Services
             return user;
         }
 
-        public CreateResult CreateProject(string name, string description, bool isPrivate)
+        public CreateProjectResult CreateProject(string name, string description, bool isPrivate)
         {
             var user = _storage.GetUser();
             if (user == null)
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
-            var result = new CreateResult();
+            var result = new CreateProjectResult();
             try
             {
 
@@ -94,6 +99,62 @@ namespace GitLab.VisualStudio.Services
                 result.Message = ex.Message;
             }
             return result;
+        }
+        public CreateSnippetResult CreateSnippet(string title ,string filename, string description,string code, string visibility)
+        {
+            CreateSnippetResult result = new CreateSnippetResult() {  Message="", Snippet=null};
+            var user = _storage.GetUser();
+      
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
+            }
+            try
+            {
+                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+                var pjt = GetActiveProject();
+                if (pjt.SnippetsEnabled)
+                {
+                    var snp = client.GetRepository(pjt.Id)
+                             .ProjectSnippets
+                                     .Create(
+                                      new NGitLab.Models.ProjectSnippetInsert()
+                                      {
+                                          Title = title
+                                          ,
+                                          Code = code
+                                          ,
+                                          Description = description
+                                          ,
+                                          FileName = filename
+                                          ,
+                                          Visibility = visibility
+                                          ,
+                                          Id = pjt.Id
+                                      });
+                    result.Snippet = snp;
+                }
+                else
+                {
+                    result.Message = "The snippets  is not enabled";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
+
+        public Project GetActiveProject()
+        {
+            using (GitAnalysis ga = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
+            {
+                var url = ga.GetRepoOriginRemoteUrl();
+                var pjt = from project in this.GetProjects() where string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase) select project;
+                return pjt.FirstOrDefault();
+            }
         }
     }
 }

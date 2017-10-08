@@ -309,4 +309,25 @@
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>pas connecté</value>
   </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>Impossible de créer l’extrait !</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>Visibilité est nécessaire !</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>Descripteurs n’est nécessaire !</value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>Nom de fichier n’est nécessaire !</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>Le titre des frais est requis</value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>Code Is Required</value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>Créer un extrait de code, s’il vous plaît patienter... </value>
+  </data>
 </root>

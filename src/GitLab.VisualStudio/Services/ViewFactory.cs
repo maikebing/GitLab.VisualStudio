@@ -41,6 +41,10 @@ namespace GitLab.VisualStudio.Services
             {
                 return new CreateView(_git, _messenger, _shell, _storage, _web) as T;
             }
+            if (type == ViewTypes.CreateSnippet)
+            {
+                return new CreateSnippet( _messenger, _shell, _storage, _web) as T;
+            }
             return null;
         }
     }

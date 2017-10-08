@@ -70,6 +70,14 @@
           <CommandName>Commits</CommandName>
         </Strings>
       </Button>
+       <Button guid="guidOpenOnGitLabCmdSet" id="OpenCreateSnippet" priority="0x0700" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>CreateSnippet</ButtonText>
+          <CommandName>CreateSnippet</CommandName>
+        </Strings>
+      </Button>
     </Buttons>
  
   </Commands>
@@ -136,6 +144,8 @@
       <IDSymbol name="OpenRevisionFull" value="0x0400" />
       <IDSymbol name="OpenBlame" value="0x0500" />
       <IDSymbol name="OpenCommits" value="0x0600" />
+      <IDSymbol name="OpenCreateSnippet" value="0x0700" />
+
     </GuidSymbol>
 
     <!-- List for various editor types -->

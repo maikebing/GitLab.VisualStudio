@@ -300,7 +300,7 @@
     <value>主机名无效</value>
   </data>
   <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
-    <value>No login </value>
+    <value>未登录</value>
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>双因子验证</value>
@@ -310,5 +310,26 @@
   </data>
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>还没登录</value>
+  </data>
+  <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
+    <value>未能创建片段</value>
+  </data>
+  <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
+    <value>可见性为必填项</value>
+  </data>
+  <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
+    <value>描述符为必填项 </value>
+  </data>
+  <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
+    <value>文件名是必填</value>
+  </data>
+  <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
+    <value>标题为必填项</value>
+  </data>
+  <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
+    <value>代码为必填项</value>
+  </data>
+  <data name="CreatingASnippetPleaseWait" xml:space="preserve">
+    <value>正在创建代码片段，请稍候...</value>
   </data>
 </root>

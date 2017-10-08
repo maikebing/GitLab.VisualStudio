@@ -158,9 +158,13 @@
   <ItemGroup>
     <Compile Include="ViewModels\CloneViewModel.cs" />
     <Compile Include="ViewModels\CreateViewModel.cs" />
+    <Compile Include="ViewModels\CreateSnippetViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="Views\CloneView.xaml.cs">
       <DependentUpon>CloneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateSnippetView.xaml.cs">
+      <DependentUpon>CreateSnippetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateView.xaml.cs">
       <DependentUpon>CreateView.xaml</DependentUpon>
@@ -188,6 +192,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\CloneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateSnippetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
