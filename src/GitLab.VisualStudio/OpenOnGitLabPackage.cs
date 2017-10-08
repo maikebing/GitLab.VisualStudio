@@ -31,25 +31,10 @@ namespace GitLab.VisualStudio
 
         [Import]
         private IShellService _shell;
-
      
         [Import]
         private IViewFactory _viewFactory;
 
-
-        private static ITeamExplorerServices _tes;
-        internal static ITeamExplorerServices TES
-        {
-            get
-            {
-                if (_tes == null)
-                {
-                    _tes = ServiceProvider.GlobalProvider.GetService(typeof(ITeamExplorerServices)) as ITeamExplorerServices;
-                }
-
-                return _tes;
-            }
-        }
         private static DTE2 _dte;
         internal static DTE2 DTE
         {
@@ -151,7 +136,7 @@ namespace GitLab.VisualStudio
                         var csm = cs.DataContext as CreateSnippetViewModel;
                         csm.Code = selection.Text;
                         csm.FileName = new System.IO.FileInfo(DTE.ActiveDocument.FullName).Name; 
-                        _shell.ShowDialog("Create Snippet", dialog);
+                        _shell.ShowDialog(Strings.OpenOnGitLabPackage_CreateSnippet, dialog);
                     }
                     else
                     {

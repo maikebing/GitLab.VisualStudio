@@ -22,13 +22,13 @@ namespace GitLab.VisualStudio.Services
         [Import]
         private IStorage _storage;
 
-        List<Project>  lstProject = new List<Project>();
+        List<Project> lstProject = new List<Project>();
         DateTime dts = DateTime.MinValue;
         public IReadOnlyList<Project> GetProjects()
         {
             lock (lstProject)
             {
-                if (lstProject.Count==0 ||  Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds)>5)//缓存五秒
+                if (lstProject.Count == 0 || Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds) > 5)//缓存五秒
                 {
                     lstProject.Clear();
                     var user = _storage.GetUser();
@@ -43,24 +43,23 @@ namespace GitLab.VisualStudio.Services
                     }
                     dts = DateTime.Now;
                 }
-              
+
             }
             return lstProject;
         }
- 
-   
-        public User LoginAsync(bool enable2fa,string host,string email, string password)
+
+
+        public User LoginAsync(bool enable2fa, string host, string email, string password)
         {
             NGitLab.GitLabClient client = null;
             User user = null;
             if (enable2fa)
             {
-                   client =   NGitLab.GitLabClient.Connect(host,password);
-               
+                client = NGitLab.GitLabClient.Connect(host, password);
             }
             else
             {
-                  client =   NGitLab.GitLabClient.Connect(host,email,password);
+                client = NGitLab.GitLabClient.Connect(host, email, password);
             }
             try
             {
@@ -100,11 +99,11 @@ namespace GitLab.VisualStudio.Services
             }
             return result;
         }
-        public CreateSnippetResult CreateSnippet(string title ,string filename, string description,string code, string visibility)
+        public CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility)
         {
-            CreateSnippetResult result = new CreateSnippetResult() {  Message="", Snippet=null};
+            CreateSnippetResult result = new CreateSnippetResult() { Message = "", Snippet = null };
             var user = _storage.GetUser();
-      
+
             if (user == null)
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
@@ -136,7 +135,7 @@ namespace GitLab.VisualStudio.Services
                 }
                 else
                 {
-                    result.Message = "The snippets  is not enabled";
+                    result.Message = Strings.TheSnippetsIsNotEnabled;
                 }
             }
             catch (Exception ex)

@@ -13,19 +13,19 @@
                mc:Ignorable="d"
          Height="300" Width="300">
     <Grid>
-        <Label Content="文件名" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.304,0.52"/>
+        <Label Content="{x:Static shared:Strings.FileName}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.304,0.52"/>
         <TextBox x:Name="txtFileName" HorizontalAlignment="Left" Height="23" Margin="61,15,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="221" Text="{Binding FileName}"/>
-        <Label Content="标题" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,-0.12"/>
+        <Label Content="{x:Static shared:Strings.Title}" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,-0.12"/>
         <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="23" Margin="61,54,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="221" Text="{Binding  Title}"/>
-        <Label Content="描述" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.174,0.4"/>
+        <Label Content="{x:Static shared:Strings.Common_Description}" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.174,0.4"/>
         <ComboBox x:Name="cbxVisibility" HorizontalAlignment="Left" Margin="61,195,0,0" VerticalAlignment="Top" Width="210"   Text="{Binding Visibility}" >
             <ComboBoxItem Content="private" HorizontalAlignment="Left" Width="208" Selected="ComboBoxItem_Selected"/>
             <ComboBoxItem Content="internal" HorizontalAlignment="Left" Width="208"/>
             <ComboBoxItem Content="public" HorizontalAlignment="Left" Width="208" IsSelected="True"/>
         </ComboBox>
-        <Label Content="可见性" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
-        <Button Content="创建" HorizontalAlignment="Left" Margin="61,230,0,0" VerticalAlignment="Top" Width="95" Height="29"  Command="{Binding  CreateSnippetCommand}"/>
-        <Button x:Name="btnClose" Content="关闭" HorizontalAlignment="Left" Margin="171,230,0,0" VerticalAlignment="Top" Width="100" Height="29" Click="btnClose_Click"/>
+        <Label Content="{x:Static shared:Strings.Visibility}" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
+        <Button Content="{x:Static shared:Strings.CreateSnippet_Button}" HorizontalAlignment="Left" Margin="61,230,0,0" VerticalAlignment="Top" Width="95" Height="29"  Command="{Binding  CreateSnippetCommand}"/>
+        <Button x:Name="btnClose" Content="{x:Static shared:Strings.Close}" HorizontalAlignment="Left" Margin="171,230,0,0" VerticalAlignment="Top" Width="100" Height="29" Click="btnClose_Click"/>
         <TextBox x:Name="txtDesc" HorizontalAlignment="Left" Height="84" Margin="61,89,0,0" TextWrapping="Wrap" Text="{Binding  Desc}" VerticalAlignment="Top" Width="221"/>
         <CheckBox x:Name="chkOpenInGitLabAfteCreated" Content="CheckBox" HorizontalAlignment="Left" Margin="70,264,0,0" VerticalAlignment="Top" IsChecked="{Binding  NeedOpen}" />
         <controls:BusyIndicator IsBusy="{Binding IsBusy}"      BusyContent="{Binding BusyContent}" HorizontalAlignment="Left" Height="251" Margin="33,28,0,0" VerticalAlignment="Top" Width="257"/>

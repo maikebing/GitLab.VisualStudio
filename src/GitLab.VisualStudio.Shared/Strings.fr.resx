@@ -330,4 +330,43 @@
   <data name="CreatingASnippetPleaseWait" xml:space="preserve">
     <value>Créer un extrait de code, s’il vous plaît patienter... </value>
   </data>
+  <data name="TheSnippetsIsNotEnabled" xml:space="preserve">
+    <value>Les extraits de code n’est pas activé !</value>
+  </data>
+  <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
+    <value>... (ID complet !)</value>
+  </data>
+  <data name="GitAnalysis_Revision" xml:space="preserve">
+    <value>Révision :</value>
+  </data>
+  <data name="GitAnalysisn_Branch" xml:space="preserve">
+    <value>Agence :</value>
+  </data>
+  <data name="GitAnalysis_Blame" xml:space="preserve">
+    <value>Le blâme</value>
+  </data>
+  <data name="GitAnalysis_Commits" xml:space="preserve">
+    <value>gèle</value>
+  </data>
+  <data name="OpenOnGitLabPackage_CreateSnippet" xml:space="preserve">
+    <value>Créer un Extrait</value>
+  </data>
+  <data name="CreateSnippetNoTitle" xml:space="preserve">
+    <value>Pas de titre!</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CreateSnippet_Button" xml:space="preserve">
+    <value>Créer !</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>Visibilité</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Nom du fichier</value>
+  </data>
 </root>

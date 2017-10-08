@@ -241,7 +241,7 @@
     <value>忘記密碼？</value>
   </data>
   <data name="Login_Host" xml:space="preserve">
-    <value>GitLab(HTTPs://gitclub.cn)!</value>
+    <value>GitLab(https://gitclub.cn)!</value>
   </data>
   <data name="Login_Login" xml:space="preserve">
     <value>登入</value>
@@ -310,13 +310,13 @@
     <value>還沒登錄</value>
   </data>
   <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
-    <value>未能創建片段 ！</value>
+    <value>未能創建片段</value>
   </data>
   <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
-    <value>可見度為必填項 ！</value>
+    <value>可見度為必填項 </value>
   </data>
   <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
-    <value>描述項為必填項 ！</value>
+    <value>描述項為必填項</value>
   </data>
   <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
     <value>文件名是必需的.</value>
@@ -329,5 +329,44 @@
   </data>
   <data name="CreatingASnippetPleaseWait" xml:space="preserve">
     <value>創建一個片段，請稍候...</value>
+  </data>
+  <data name="TheSnippetsIsNotEnabled" xml:space="preserve">
+    <value>未啟用片段 </value>
+  </data>
+  <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
+    <value>...(充分 ID)</value>
+  </data>
+  <data name="GitAnalysis_Revision" xml:space="preserve">
+    <value>修订：</value>
+  </data>
+  <data name="GitAnalysisn_Branch" xml:space="preserve">
+    <value>分支:</value>
+  </data>
+  <data name="GitAnalysis_Blame" xml:space="preserve">
+    <value>追溯</value>
+  </data>
+  <data name="GitAnalysis_Commits" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="OpenOnGitLabPackage_CreateSnippet" xml:space="preserve">
+    <value>創建程式碼片段 </value>
+  </data>
+  <data name="CreateSnippetNoTitle" xml:space="preserve">
+    <value>无标题</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>点击收起</value>
+  </data>
+  <data name="CreateSnippet_Button" xml:space="preserve">
+    <value>創建倉庫</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>可见度</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>文件名</value>
   </data>
 </root>

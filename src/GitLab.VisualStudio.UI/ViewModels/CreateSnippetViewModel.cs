@@ -34,7 +34,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 if (string.IsNullOrEmpty(_title) || string.IsNullOrWhiteSpace(_title))
                 {
-                    _title = "no title";
+                    _title = Strings.CreateSnippetNoTitle;
                 }
                 return _title;
             }

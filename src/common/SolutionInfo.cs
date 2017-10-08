@@ -13,5 +13,5 @@ using System.Runtime.InteropServices;
 
 static class PackageVersion
 {
-    public const string Version = "1.0.0.78";
+    public const string Version = "1.0.0.92";
 }

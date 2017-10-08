@@ -1,4 +1,5 @@
-﻿using LibGit2Sharp;
+﻿using GitLab.VisualStudio.Shared;
+using LibGit2Sharp;
 using System;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace GitLab.VisualStudio.Services
 
     public sealed class GitAnalysis : IDisposable
     {
-        readonly Repository repository;
+        readonly LibGit2Sharp.Repository repository;
         readonly string targetFullPath;
 
         public bool IsDiscoveredGitRepository => repository != null;
@@ -37,7 +38,7 @@ namespace GitLab.VisualStudio.Services
             
         }
         public string RepositoryPath { get; private set; }
-        public Repository Repository { get { return repository; } }
+        public LibGit2Sharp.Repository Repository { get { return repository; } }
 
         public string GetGitLabTargetPath(GitLabUrlType urlType)
         {
@@ -60,15 +61,15 @@ namespace GitLab.VisualStudio.Services
             switch (urlType)
             {
                 case GitLabUrlType.CurrentBranch:
-                    return "Branch: " + repository.Head.FriendlyName.Replace("origin/", "");
+                    return Strings.GitAnalysisn_Branch + repository.Head.FriendlyName.Replace("origin/", "");
                 case GitLabUrlType.CurrentRevision:
-                    return "Revision: " + repository.Commits.First().Id.ToString(8);
+                    return Strings.GitAnalysis_Revision + repository.Commits.First().Id.ToString(8);
                 case GitLabUrlType.CurrentRevisionFull:
-                    return "Revision: " + repository.Commits.First().Id.ToString(8) + "... (Full ID)";
+                    return Strings.GitAnalysis_Revision + repository.Commits.First().Id.ToString(8) + Strings.GitAnalysis_GetGitLabTargetDescription_FullID;
                 case GitLabUrlType.Blame:
-                    return "Blame";
+                    return Strings.GitAnalysis_Blame;
                 case GitLabUrlType.Commits:
-                    return "Commits";
+                    return Strings.GitAnalysis_Commits;
                 case GitLabUrlType.Master:
                 default:
                     return "master";

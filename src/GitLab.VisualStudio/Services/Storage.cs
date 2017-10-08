@@ -13,13 +13,6 @@ namespace GitLab.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class Storage : IStorage
     {
-    
-
-        static Storage()
-        {
-         
-        }
-
  
         public bool IsLogined
         {
@@ -31,7 +24,6 @@ namespace GitLab.VisualStudio.Services
                 return islogin;
             }
         }
-
 
         public string Host
         {

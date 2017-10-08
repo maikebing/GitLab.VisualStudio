@@ -88,6 +88,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Close 的本地化字符串。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Browse 的本地化字符串。
         /// </summary>
         public static string Common_Browse {
@@ -259,6 +268,24 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Create 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippet_Button {
+            get {
+                return ResourceManager.GetString("CreateSnippet_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 no title 的本地化字符串。
+        /// </summary>
+        public static string CreateSnippetNoTitle {
+            get {
+                return ResourceManager.GetString("CreateSnippetNoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Code IsRequired 的本地化字符串。
         /// </summary>
         public static string CreateSnippetViewModel_CodeIsRequired {
@@ -372,6 +399,60 @@ namespace GitLab.VisualStudio.Shared {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 File Name 的本地化字符串。
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Blame 的本地化字符串。
+        /// </summary>
+        public static string GitAnalysis_Blame {
+            get {
+                return ResourceManager.GetString("GitAnalysis_Blame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Commits 的本地化字符串。
+        /// </summary>
+        public static string GitAnalysis_Commits {
+            get {
+                return ResourceManager.GetString("GitAnalysis_Commits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ... (Full ID) 的本地化字符串。
+        /// </summary>
+        public static string GitAnalysis_GetGitLabTargetDescription_FullID {
+            get {
+                return ResourceManager.GetString("GitAnalysis_GetGitLabTargetDescription_FullID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Revision:  的本地化字符串。
+        /// </summary>
+        public static string GitAnalysis_Revision {
+            get {
+                return ResourceManager.GetString("GitAnalysis_Revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Branch:  的本地化字符串。
+        /// </summary>
+        public static string GitAnalysisn_Branch {
+            get {
+                return ResourceManager.GetString("GitAnalysisn_Branch", resourceCulture);
             }
         }
         
@@ -601,6 +682,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Create Snippet 的本地化字符串。
+        /// </summary>
+        public static string OpenOnGitLabPackage_CreateSnippet {
+            get {
+                return ResourceManager.GetString("OpenOnGitLabPackage_CreateSnippet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 GitLab 的本地化字符串。
         /// </summary>
         public static string Provider {
@@ -682,11 +772,38 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 The snippets  is not enabled 的本地化字符串。
+        /// </summary>
+        public static string TheSnippetsIsNotEnabled {
+            get {
+                return ResourceManager.GetString("TheSnippetsIsNotEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Title 的本地化字符串。
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Two Factor Authentication 的本地化字符串。
         /// </summary>
         public static string TwoFactorAuthentication {
             get {
                 return ResourceManager.GetString("TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Visibility 的本地化字符串。
+        /// </summary>
+        public static string Visibility {
+            get {
+                return ResourceManager.GetString("Visibility", resourceCulture);
             }
         }
         

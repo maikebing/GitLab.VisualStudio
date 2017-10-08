@@ -202,7 +202,7 @@
     <value>注册</value>
   </data>
   <data name="Items_builds" xml:space="preserve">
-    <value>构建</value>
+    <value>流水线</value>
   </data>
   <data name="Items_Graph" xml:space="preserve">
     <value>图表</value>
@@ -331,5 +331,44 @@
   </data>
   <data name="CreatingASnippetPleaseWait" xml:space="preserve">
     <value>正在创建代码片段，请稍候...</value>
+  </data>
+  <data name="TheSnippetsIsNotEnabled" xml:space="preserve">
+    <value>未启用代码片段</value>
+  </data>
+  <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
+    <value>...(完整 ID) </value>
+  </data>
+  <data name="GitAnalysis_Revision" xml:space="preserve">
+    <value>修订：</value>
+  </data>
+  <data name="GitAnalysisn_Branch" xml:space="preserve">
+    <value>分支:</value>
+  </data>
+  <data name="GitAnalysis_Blame" xml:space="preserve">
+    <value>追溯</value>
+  </data>
+  <data name="GitAnalysis_Commits" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="OpenOnGitLabPackage_CreateSnippet" xml:space="preserve">
+    <value>创建代码段</value>
+  </data>
+  <data name="CreateSnippetNoTitle" xml:space="preserve">
+    <value>无标题</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="CreateSnippet_Button" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>可见性</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>文件名</value>
   </data>
 </root>
