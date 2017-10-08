@@ -61,6 +61,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 After created open  in the browser 的本地化字符串。
+        /// </summary>
+        public static string AfterCreatedOpenInTheBrowser {
+            get {
+                return ResourceManager.GetString("AfterCreatedOpenInTheBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Failed to load 的本地化字符串。
         /// </summary>
         public static string CloneView_FailedToLoadProjects {

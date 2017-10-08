@@ -291,7 +291,7 @@
     <value>名称</value>
   </data>
   <data name="Items_MergeRequests" xml:space="preserve">
-    <value>Merge Requests</value>
+    <value>合并请求</value>
   </data>
   <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
     <value>项目 {0} 已经存在!</value>
@@ -339,7 +339,7 @@
     <value>...(完整 ID) </value>
   </data>
   <data name="GitAnalysis_Revision" xml:space="preserve">
-    <value>修订：</value>
+    <value>修订:</value>
   </data>
   <data name="GitAnalysisn_Branch" xml:space="preserve">
     <value>分支:</value>

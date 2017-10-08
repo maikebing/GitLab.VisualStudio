@@ -371,4 +371,7 @@
   <data name="FileName" xml:space="preserve">
     <value>File Name</value>
   </data>
+  <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
+    <value>After created open  in the browser</value>
+  </data>
 </root>
