@@ -13,8 +13,7 @@ buildGitLabForVS:
   -  rebuildself.cmd    GitLabVS.sln
  
   artifacts:
-    expire_in: 1 mos
-    name: "%CI_PROJECT_NAME%_%CI_BUILD_ID%"
+    expire_in: 2 mos
     paths:
     -  build/Release/GitLab.VisualStudio.vsix
     -  README.md
