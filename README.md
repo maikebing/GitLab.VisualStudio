@@ -56,7 +56,7 @@ https://gitee.com/GitGroup/CodeCloud.VisualStudio
 #### Visual Studio Extension for opening files on GitHub.com
 https://github.com/neuecc/Open-on-GitHub 
 
- #### NGitLab
+#### NGitLab
 https://github.com/Xarlot/NGitLab
 https://github.com/Franklin89/NGitLab
 https://github.com/maikebing/NGitLab
