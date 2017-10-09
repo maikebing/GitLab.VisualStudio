@@ -9,12 +9,12 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 ## What's new ?
 #### V1.0.0.95
 
-1.French, Japanese, German and other languages have been added, but these are Google's translations, so we need human translation!
-2.Open on GitLab move to  submenu!
-3.Fixed issue #3,Thanks luky92!
-4.The selected code can create code snippets directly
-5.When you create a project, you can select namespases.
-6.GitLab's Api is updated from V3 to V4.
+1. French, Japanese, German and other languages have been added, but these are Google's translations, so we need human translation!
+2. Open on GitLab move to  submenu!
+3. Fixed issue #3,Thanks luky92!
+4. The selected code can create code snippets directly
+5. When you create a project, you can select namespases.
+6. GitLab's Api is updated from V3 to V4.
 
 
 #### V1.0.0.70
