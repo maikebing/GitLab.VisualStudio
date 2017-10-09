@@ -47,7 +47,7 @@ https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionfor
 
 ### Thanks
  
-####  GitLab Extension for Visual Studio
+####  GitHub Extension for Visual Studio
   
 ####  CodeCloud Extension for  Visual Studio
 
@@ -61,7 +61,9 @@ https://github.com/Xarlot/NGitLab
 https://github.com/Franklin89/NGitLab
 https://github.com/maikebing/NGitLab
 
-### Open On GitHub 
+
+
+### Open On GitLab
 
 ![image](./docs/images/OpenOnGitLab.png)
 ###  Team Home Page
