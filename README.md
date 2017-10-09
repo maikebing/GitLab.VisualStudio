@@ -7,7 +7,7 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 
 ## What't new ?
-#### V1.0.0.85
+#### V1.0.0.95
 1.Add multiple languages!
 2.Open on GitLab move to  submenu!
 3.Fixed issue #3,Thanks luky92!
@@ -51,8 +51,10 @@ https://gitee.com/GitGroup/CodeCloud.VisualStudio
 #### Visual Studio Extension for opening files on GitHub.com
 https://github.com/neuecc/Open-on-GitHub 
 
- 
-
+ #### NGitLab
+https://github.com/Xarlot/NGitLab
+https://github.com/Franklin89/NGitLab
+https://github.com/maikebing/NGitLab
 
 ### Open On GitHub 
 
@@ -63,7 +65,6 @@ https://github.com/neuecc/Open-on-GitHub
 
 ### Team Connct Page
 ![image](./docs/images/TeamConnect.PNG)
- 
  
 [![image](http://s07.flagcounter.com/map/7uzT/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/)](http://info.flagcounter.com/7uzT)
 

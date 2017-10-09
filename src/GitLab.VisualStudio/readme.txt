@@ -21,7 +21,7 @@ Build
 
 Clone the repository and its submodules in a git GUI client or via the command line:
 
-git clone https://www.gitlab.com/maikebing/GitLab.VisualStudio
+git clone https://gitlab.com/maikebing/GitLab.VisualStudio
 cd VisualStudio
 
 Open the GitLabVS.sln solution with Visual Studio 2015.  

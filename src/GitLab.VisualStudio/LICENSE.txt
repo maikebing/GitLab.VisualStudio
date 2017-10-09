@@ -1,6 +1,11 @@
 The MIT License (MIT)
 GitLabVS
 	Copyright (c) 2017 MaikeBing
+NGitLab
+ Franklin89/NGitLab
+	 Xarlot/NGitLab
+		MaikeBing/NGitLab
+
 CodeCloud.VisualStudio	
 	Copyright (C) 2017 OSChina.NET.
 OpenOnGitHub  
