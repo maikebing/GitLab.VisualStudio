@@ -6,7 +6,7 @@ The GitLab Extension for Visual Studio provides GitLab integration in Visual Stu
 Most of the extension UI lives in the Team Explorer pane, which is available from the View menu.
 
 
-## What't new ?
+## What's new ?
 #### V1.0.0.95
 
 1.French, Japanese, German and other languages have been added, but these are Google's translations, so we need human translation!
