@@ -371,4 +371,7 @@
   <data name="FileName" xml:space="preserve">
     <value>文件名</value>
   </data>
+  <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
+    <value>创建之后在浏览器中打开 </value>
+  </data>
 </root>

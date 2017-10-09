@@ -369,4 +369,7 @@
   <data name="FileName" xml:space="preserve">
     <value>ファイル名</value>
   </data>
+  <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
+    <value>後に、ブラウザーで開いてを作成</value>
+  </data>
 </root>
