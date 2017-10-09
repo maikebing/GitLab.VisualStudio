@@ -149,18 +149,58 @@ namespace GitLab.VisualStudio.Shared
         public string Message { get; set; }
         public Project Project { get; set; }
     }
+    public class NamespacesPath
+    {
+        public static implicit operator NamespacesPath(NGitLab.Models.Namespaces p)
+        {
+            if (p != null)
+            {
+                return new NamespacesPath()
+                {
+                    id = p.Id,
+                    kind = p.Kind,
+                    name = p.Name,
+                    path = p.Path,
+                    full_path = p.FullPath
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        public int id { get; set; }
+        public string name { get; set; }
+        public string path { get; set; }
+        public string kind { get; set; }
+        public string full_path { get; set; }
+   
+    }
     public class CreateSnippetResult
     {
         public string Message { get; set; }
         public Snippet Snippet { get; set; }
     }
-
+    public enum ProjectListType
+    {
+        Accessible,
+        Owned,
+        Membership,
+        Starred,
+        Forked
+    }
     public interface IWebService
     {
         User LoginAsync(bool enable2fa, string host,string email, string password);
         IReadOnlyList<Project> GetProjects();
-        CreateProjectResult CreateProject(string name, string description, bool isPrivate);
+         CreateProjectResult CreateProject(string name, string description, bool isPrivate, string namespaceid);
+         CreateProjectResult CreateProject(string name, string description, bool isPrivate);
         CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility);
         Project GetActiveProject();
+        Project GetActiveProject(ProjectListType projectListType);
+        IReadOnlyList<Project> GetProjects(ProjectListType projectListType);
+        Project GetProject(string namespacedpath);
+        IReadOnlyList<NamespacesPath> GetNamespacesPathList();
     }
 }

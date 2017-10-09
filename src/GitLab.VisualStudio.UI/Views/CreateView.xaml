@@ -9,7 +9,7 @@
                xmlns:vms="clr-namespace:GitLab.VisualStudio.UI.ViewModels"
                d:DataContext="{d:DesignInstance Type=vms:CreateViewModel, IsDesignTimeCreatable=False}"
                mc:Ignorable="d"
-               Width="360">
+               Width="426">
     <controls:BusyIndicator IsBusy="{Binding IsBusy}"
                             BusyContent="{Binding BusyContent}">
         <Grid Margin="15">
@@ -20,8 +20,8 @@
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="17*" />
+                <ColumnDefinition Width="82*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
@@ -35,15 +35,15 @@
             </Grid.RowDefinitions>
 
             <Label Content="{x:Static shared:Strings.Common_Name}"
-                   VerticalAlignment="Center" />
+                   VerticalAlignment="Center" Height="24" Margin="0,8" Width="34" />
             <controls:IconedTextBox Grid.Column="1"
                                     Height="40"
                                     VerticalAlignment="Top"
                                     Wartermark="{x:Static shared:Strings.Common_Name}"
-                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="138,0,0,0" />
 
             <Label Content="{x:Static shared:Strings.Common_Description}"
-                   Grid.Row="2" />
+                   Grid.Row="2" Width="34" />
             <controls:IconedTextBox Grid.Row="2"
                                     Grid.Column="1"
                                     VerticalContentAlignment="Top"
@@ -54,7 +54,7 @@
                                     VerticalScrollBarVisibility="Auto" />
 
             <Label Content="{x:Static shared:Strings.Common_GitIgnore}"
-                   Grid.Row="3" />
+                   Grid.Row="3" Width="67" />
             <ComboBox x:Name="GitIgnoresComboBox"
                       Grid.Row="3"
                       Grid.Column="1"
@@ -62,10 +62,10 @@
                       ItemsSource="{Binding GitIgnores}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedGitIgnore}" />
+                      SelectedValue="{Binding SelectedGitIgnore}" Height="25" Margin="0,5,0,0" />
 
             <Label Content="{x:Static shared:Strings.Common_License}"
-                   Grid.Row="4" />
+                   Grid.Row="4" Width="34" />
             <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="4"
                       Grid.Column="1"
@@ -73,15 +73,15 @@
                       ItemsSource="{Binding Licenses}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedLicense}" />
+                      SelectedValue="{Binding SelectedLicense}" Height="27" Margin="0,5,0,28" Grid.RowSpan="2" />
 
             <Label Content="{x:Static shared:Strings.Common_Property}"
                    Grid.Row="5"
-                   VerticalAlignment="Center" />
+                   VerticalAlignment="Center" Height="24" Margin="0,3" Width="34" />
             <CheckBox Grid.Row="5"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsPrivate}"
-                      Grid.Column="1">
+                      Grid.Column="1" Height="16" Margin="0,7">
                 <TextBlock>
                     <Run Text="{x:Static shared:Strings.Common_Private}" /><Run Text="?" />
                 </TextBlock>
@@ -89,7 +89,7 @@
 
             <Label Content="{x:Static shared:Strings.Common_Path}"
                    Grid.Row="6"
-                   VerticalAlignment="Center" />
+                   VerticalAlignment="Center" Height="24" Margin="0,3" Width="34" />
             <DockPanel Grid.Row="6"
                        Grid.Column="1">
                 <Button Content="{x:Static shared:Strings.Common_Browse}"
@@ -102,7 +102,7 @@
                         Command="{Binding BrowseCommand}" />
                 <controls:IconedTextBox IsReadOnly="True"
                                         Text="{Binding Path}"
-                                        VerticalContentAlignment="Center" Width="170" />
+                                        VerticalContentAlignment="Center" Width="241" />
             </DockPanel>
 
             <StackPanel Grid.Row="7"
@@ -127,6 +127,10 @@
                         Margin="10,-8,0,1"
                         Click="OnCancel" />
             </StackPanel>
+            <ComboBox x:Name="cbxNamespaces"   ItemsSource="{Binding  Namespaces}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding SelectedNamespaces}"  Grid.Column="1" HorizontalAlignment="Left" Margin="8,3,0,0" VerticalAlignment="Top" Width="128" Height="32"/>
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

@@ -34,11 +34,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             GitIgnores = new Dictionary<string, string>();
             Licenses = new Dictionary<string, string>();
-
+            Namespaces=new    Dictionary<string, string>();
             _path = storage.GetBaseRepositoryDirectory();
 
             LoadResources();
-
+            
             _newCommand = new DelegateCommand(OnSave, CanSave);
             _browseCommand = new DelegateCommand(OnBrowse);
         }
@@ -57,6 +57,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
             foreach (var line in _git.GetLicenses())
             {
                 Licenses.Add(line, line);
+            }
+            string defaultnamespace = _storage.GetUser().Username;
+        
+            foreach (var path in _web.GetNamespacesPathList())
+            {
+                Namespaces.Add(path.id.ToString(), $"{path.name} - {path.full_path}");
+                if (path.full_path== defaultnamespace)
+                {
+                    SelectedNamespaces = path.id.ToString();
+                }
             }
         }
 
@@ -115,6 +125,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         public IDictionary<string, string> GitIgnores { get; }
+        public IDictionary<string, string> Namespaces { get; }
 
         private string _selectedGitIgnore;
         public string SelectedGitIgnore
@@ -143,6 +154,14 @@ namespace GitLab.VisualStudio.UI.ViewModels
         {
             get { return _newCommand; }
         }
+        private string _selectedNamespaces;
+        public string SelectedNamespaces
+        {
+            get { return _selectedNamespaces; }
+            set { SetProperty(ref _selectedNamespaces, value); }
+        }
+
+       
 
         private void OnBrowse()
         {
@@ -164,13 +183,14 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 try
                 {
+
                     if (_web.GetProjects().Any(p => p.Name == Name))
                     {
                         error = string.Format(Strings.CreateViewModel_OnSave_TheProject0AlreadyExists, Name);
                     }
                     else
                     {
-                        result = _web.CreateProject(Name, Description, IsPrivate);
+                        result = _web.CreateProject(Name, Description, IsPrivate,SelectedNamespaces);
                         if (result.Project != null)
                         {
                             clonePath = System.IO.Path.Combine(Path, result.Project.Name);
