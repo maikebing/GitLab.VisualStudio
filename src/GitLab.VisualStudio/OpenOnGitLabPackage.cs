@@ -84,6 +84,7 @@ namespace GitLab.VisualStudio
             {
                 if (command.CommandID.ID == PackageCommanddIDs.CreateSnippet)
                 {
+                    command.Text = Strings.OpenOnGitLabPackage_CreateSnippet;
                     var selectionLineRange = GetSelectionLineRange();
                     command.Enabled = selectionLineRange.Item1 < selectionLineRange.Item2;
                 }

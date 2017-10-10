@@ -303,7 +303,7 @@
     <value>未登录</value>
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
-    <value>双因子验证</value>
+    <value>双重认证</value>
   </data>
   <data name="DefaultHost" xml:space="preserve">
     <value>https://gitclub.cn</value>
@@ -336,7 +336,7 @@
     <value>未启用代码片段</value>
   </data>
   <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
-    <value>...(完整 ID) </value>
+    <value>...(完整ID) </value>
   </data>
   <data name="GitAnalysis_Revision" xml:space="preserve">
     <value>修订:</value>

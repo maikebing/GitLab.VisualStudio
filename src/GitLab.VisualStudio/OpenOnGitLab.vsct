@@ -8,7 +8,7 @@
       <Menu guid="guidOpenOnGitLabCmdSet" id="SubMenu" priority="0x1000" type="Menu">
         <Parent guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" />
         <Strings>
-          <ButtonText>Open on GitLab</ButtonText>
+          <ButtonText>GitLab</ButtonText>
         </Strings>
       </Menu>
     </Menus>
@@ -74,7 +74,7 @@
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
         <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>CreateSnippet</ButtonText>
+          <ButtonText>Create Snippet</ButtonText>
           <CommandName>CreateSnippet</CommandName>
         </Strings>
       </Button>
