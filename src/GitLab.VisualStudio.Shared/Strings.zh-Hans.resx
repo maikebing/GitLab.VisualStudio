@@ -202,7 +202,7 @@
     <value>注册</value>
   </data>
   <data name="Items_builds" xml:space="preserve">
-    <value>流水线</value>
+    <value>作业</value>
   </data>
   <data name="Items_Graph" xml:space="preserve">
     <value>图表</value>
