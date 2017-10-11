@@ -141,4 +141,10 @@
   <data name="OpenOnGitLab_OpenOnGitLab_OpenBlame" xml:space="preserve">
     <value>浏览审查</value>
   </data>
+  <data name="101" xml:space="preserve">
+    <value>GitLab Extension for Visual Studio</value>
+  </data>
+  <data name="121" xml:space="preserve">
+    <value>A Visual Studio Extension that brings the GitLab Flow into Visual Studio.</value>
+  </data>
 </root>

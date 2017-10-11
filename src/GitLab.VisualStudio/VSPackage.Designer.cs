@@ -63,6 +63,24 @@ namespace GitLab.VisualStudio {
         /// <summary>
         ///   查找类似 GitLab Extension for Visual Studio 的本地化字符串。
         /// </summary>
+        internal static string _101 {
+            get {
+                return ResourceManager.GetString("101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 A Visual Studio Extension that brings the GitLab Flow into Visual Studio. 的本地化字符串。
+        /// </summary>
+        internal static string _121 {
+            get {
+                return ResourceManager.GetString("121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Open on GitLab 的本地化字符串。
+        /// </summary>
         internal static string _8110 {
             get {
                 return ResourceManager.GetString("8110", resourceCulture);
@@ -70,7 +88,7 @@ namespace GitLab.VisualStudio {
         }
         
         /// <summary>
-        ///   查找类似 A Visual Studio Extension that brings the GitLab Flow into Visual Studio. 的本地化字符串。
+        ///   查找类似 Visual Studio Extension for opening files on GitLab 的本地化字符串。
         /// </summary>
         internal static string _8112 {
             get {

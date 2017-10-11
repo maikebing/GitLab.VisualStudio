@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace GitLab.VisualStudio
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#8110", "#8112", PackageVersion.Version, IconResourceID = 8400)]
+    [InstalledProductRegistration("#110", "#112", PackageVersion.Version, IconResourceID = 8400)]
     [Guid(PackageGuids.guidGitLabPkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     // this is the Git service GUID, so we load whenever it loads
@@ -57,6 +57,12 @@ namespace GitLab.VisualStudio
 
             }
             return path;
+        }
+        public static bool UrlEquals(string url1,string url2)
+        {
+            var uri1 = new Uri(url1.ToLower());
+            var uri2 = new Uri(url2.ToLower());
+            return uri1.PathAndQuery == uri2.PathAndQuery && uri1.Host == uri2.Host;
         }
         static string GetExactPathName(string pathName)
         {
