@@ -8,9 +8,11 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 ## What's new ?
 V1.0.0.115
+
 1.You can select GitLab Api version .
 
 V1.0.0.112
+
 1.modify "Open On GitLab" to "GitLab"
 
 #### V1.0.0.95
