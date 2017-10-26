@@ -7,6 +7,12 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 
 ## What's new ?
+V1.0.0.115
+1.You can select GitLab Api version .
+
+V1.0.0.112
+1.modify "Open On GitLab" to "GitLab"
+
 #### V1.0.0.95
 
 1. French, Japanese, German and other languages have been added, but these are Google's translations, so we need human translation!
@@ -38,8 +44,7 @@ Official builds of this extension are available at [the official website](http:/
  http://visualstudio.gitclub.cn/
 
 ### BUG And Issues
-https://gitlab.com/maikebing/GitLab.VisualStudio/issues
-or 
+
 https://github.com/maikebing/GitLab.VisualStudio/issues
 
 ###    Visual Studio    |   Marketplace
