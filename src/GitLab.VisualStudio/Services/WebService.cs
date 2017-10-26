@@ -36,7 +36,7 @@ namespace GitLab.VisualStudio.Services
                     {
                         throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
                     }
-                    var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+                    var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
                     foreach (var item in client.Projects.Membership())
                     {
                         lstProject.Add(item);
@@ -55,7 +55,7 @@ namespace GitLab.VisualStudio.Services
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
-            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
             var pjt = client.Projects.Get(namespacedpath);
             return pjt;
         }
@@ -67,7 +67,7 @@ namespace GitLab.VisualStudio.Services
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
-            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
             NGitLab.Models.Project[] project = null;
             switch (projectListType)
             {
@@ -96,22 +96,24 @@ namespace GitLab.VisualStudio.Services
             return lstpjt;
         }
 
-        public User LoginAsync(bool enable2fa, string host, string email, string password)
+        public User LoginAsync(bool enable2fa, string host, string email, string password,ApiVersion apiVersion)
         {
             NGitLab.GitLabClient client = null;
             User user = null;
+            NGitLab.Impl.Api.ApiVersion _apiVersion = VsApiVersionToNgitLabversion(apiVersion);
             if (enable2fa)
             {
-                client = NGitLab.GitLabClient.Connect(host, password);
+                client = NGitLab.GitLabClient.Connect(host, password, _apiVersion);
             }
             else
             {
-                client = NGitLab.GitLabClient.Connect(host, email, password);
+                client = NGitLab.GitLabClient.Connect(host, email, password, _apiVersion);
             }
             try
             {
                 user = client.Users.Current();
                 user.PrivateToken = client.ApiToken;
+                user.ApiVersion = apiVersion;
             }
             catch (WebException ex)
             {
@@ -122,6 +124,12 @@ namespace GitLab.VisualStudio.Services
             }
             return user;
         }
+
+        private static NGitLab.Impl.Api.ApiVersion VsApiVersionToNgitLabversion(ApiVersion apiVersion)
+        {
+            return apiVersion == ApiVersion.V3 ? NGitLab.Impl.Api.ApiVersion.V3 : NGitLab.Impl.Api.ApiVersion.V4;
+        }
+
         public CreateProjectResult CreateProject(string name, string description, bool isPrivate)
         {
             return CreateProject(name, description, isPrivate, null);
@@ -134,7 +142,7 @@ namespace GitLab.VisualStudio.Services
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
-            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
             foreach (var item in client.Groups.GetNamespaces())
             {
                 nplist.Add(item);
@@ -155,7 +163,7 @@ namespace GitLab.VisualStudio.Services
                 {
                     namespaceid = user.Username;
                 }
-                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
                 var pjt = client.Projects.Create(
                     new NGitLab.Models.ProjectCreate()
                     {
@@ -184,7 +192,7 @@ namespace GitLab.VisualStudio.Services
             }
             try
             {
-                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken);
+                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
                 var pjt = GetActiveProject();
                 if (pjt.SnippetsEnabled)
                 {

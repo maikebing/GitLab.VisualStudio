@@ -1,6 +1,8 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,7 +34,10 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _web = web;
 
             _mediator = mediator;
-
+            ApiVersions = new Dictionary<string, string>();
+            ApiVersions.Add("v4", "GitLab ApiV4");
+            ApiVersions.Add("v3", "GitLab ApiV3");
+            SelectedApiVersion = "v4";
             _loginCommand = new DelegateCommand(OnLogin);
             _forgetPasswordCommand = new DelegateCommand(OnForgetPassword);
             _activeAccountCommand = new DelegateCommand(OnActiveAccount);
@@ -40,10 +45,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _host;
-        [Required(ErrorMessageResourceType = typeof(Strings),AllowEmptyStrings =false, ErrorMessageResourceName = "Login_HostIsRequired")]
+        [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "Login_HostIsRequired")]
         public string Host
         {
-            get {
+            get
+            {
                 if (string.IsNullOrEmpty(_host) || string.IsNullOrWhiteSpace(_host))
                 {
                     _host = Strings.DefaultHost;
@@ -52,9 +58,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }
             set { SetProperty(ref _host, value); }
         }
-
+        public IDictionary<string, string> ApiVersions { get; }
         private string _email;
-        [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
+        [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
         public string Email
         {
             get { return _email; }
@@ -80,6 +86,13 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string _apiversion;
+        public string SelectedApiVersion
+        {
+            get { return _apiversion; }
+            set { SetProperty(ref _apiversion, value); }
+        }
+
 
         private bool _isBusy;
         public bool IsBusy
@@ -134,15 +147,17 @@ namespace GitLab.VisualStudio.UI.ViewModels
             var successed = false;
             Task.Run(() =>
             {
-                
-                    var user = _web.LoginAsync(Enable2FA, Host, Email, Password);
-                    if (user != null)
-                    {
-                        successed = true;
-                        user.Host = Host;
-                        _storage.SaveUser(user, Password);
-                    }
-              
+                ApiVersion apiVersion = ApiVersion.V4;
+                bool ok = Enum.TryParse<ApiVersion>(SelectedApiVersion, true, out apiVersion);
+                if (!ok) apiVersion = ApiVersion.V4;
+                var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
+                if (user != null)
+                {
+                    successed = true;
+                    user.Host = Host;
+                    _storage.SaveUser(user, Password);
+                }
+
             }).ContinueWith(task =>
             {
                 IsBusy = false;

@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace GitLab.VisualStudio.Shared
 {
+    public enum ApiVersion
+    {
+        V3,
+        V4
+    }
     public class User
     {
         public static implicit operator User(NGitLab.Models.Session session)
@@ -25,7 +30,7 @@ namespace GitLab.VisualStudio.Shared
                     Id = session.Id,
                     Name = session.Name,
                     TwoFactorEnabled = session.TwoFactorEnabled,
-                    Username = session.Username
+                    Username = session.Username,
                 };
             }
             else
@@ -41,7 +46,8 @@ namespace GitLab.VisualStudio.Shared
         public string PrivateToken { get; set; }
         public string Host { get; set; }
         public bool TwoFactorEnabled { get; set; }
- 
+        public ApiVersion ApiVersion { get; set; }
+
     }
 
     public class Project
@@ -192,7 +198,7 @@ namespace GitLab.VisualStudio.Shared
     }
     public interface IWebService
     {
-        User LoginAsync(bool enable2fa, string host,string email, string password);
+        User LoginAsync(bool enable2fa, string host,string email, string password,ApiVersion apiVersion);
         IReadOnlyList<Project> GetProjects();
          CreateProjectResult CreateProject(string name, string description, bool isPrivate, string namespaceid);
          CreateProjectResult CreateProject(string name, string description, bool isPrivate);
