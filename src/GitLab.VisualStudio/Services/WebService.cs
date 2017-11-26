@@ -120,7 +120,11 @@ namespace GitLab.VisualStudio.Services
                 var res = (HttpWebResponse)ex.Response;
                 var statusCode = (int)res.StatusCode;
 
-                throw new Exception($"错误代码: {statusCode}");
+                throw ex;
+            }
+            catch (Exception ex1)
+            {
+                throw ex1;
             }
             return user;
         }

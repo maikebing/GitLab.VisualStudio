@@ -135,34 +135,38 @@ namespace GitLab.VisualStudio.UI.ViewModels
         private void OnLogin()
         {
             Validate();
-
             if (HasErrors)
             {
                 return;
             }
-
             IsBusy = true;
             BusyContent = Strings.Common_Loading;
-
             var successed = false;
+            Exception exlogin = null;
             Task.Run(() =>
             {
                 ApiVersion apiVersion = ApiVersion.V4;
-                bool ok = Enum.TryParse<ApiVersion>(SelectedApiVersion, true, out apiVersion);
+                bool ok = Enum.TryParse(SelectedApiVersion, true, out apiVersion);
                 if (!ok) apiVersion = ApiVersion.V4;
-                var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
-                if (user != null)
+                try
                 {
-                    successed = true;
-                    user.Host = Host;
-                    _storage.SaveUser(user, Password);
+                    var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
+                    if (user != null)
+                    {
+                        successed = true;
+                        user.Host = Host;
+                        _storage.SaveUser(user, Password);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exlogin = ex;
                 }
 
             }).ContinueWith(task =>
             {
                 IsBusy = false;
                 BusyContent = null;
-
                 if (successed)
                 {
                     _dialog.Close();
@@ -170,7 +174,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show(Strings.Login_FailedToLogin);
+                    MessageBox.Show(Strings.Login_FailedToLogin+"\r\n"+exlogin.Message);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
