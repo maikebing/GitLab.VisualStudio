@@ -7,6 +7,18 @@ Most of the extension UI lives in the Team Explorer pane, which is available fro
 
 
 ## What's new ?
+
+**V1.0.0.122**
+
+Fix HttpUtility.UrlEncode processing username or email causing problems that cannot be logged in
+
+V1.0.0.119
+
+Now update login mode is OAuth2, which can't be logon before because the new version of GitLab's API session has been discarded.
+
+The two API login methods are supported in the login interface, and the old version of GitLab needs to be selected manually. The default is that the login mode is OAuth2 and V4 !
+
+
 V1.0.0.115
 
 1.You can select GitLab Api version .
