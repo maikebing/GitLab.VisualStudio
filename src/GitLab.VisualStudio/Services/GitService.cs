@@ -171,6 +171,10 @@ namespace GitLab.VisualStudio.Services
                 }
                 repo.Network.Remotes.Add("origin", url);
                 var remote = repo.Network.Remotes["origin"];
+                //https://stackoverflow.com/questions/22596367/pushing-to-bitbucket-with-libgit2sharp
+                repo.Branches.Update(repo.Head,
+                    b => b.Remote = remote.Name,
+                    b => b.UpstreamBranch = repo.Head.CanonicalName);
                 var options = new PushOptions();
                 options.CredentialsProvider = (_url, _user, _cred) =>
                     new UsernamePasswordCredentials { Username = (string.IsNullOrEmpty(username) ? email : username), Password = password };

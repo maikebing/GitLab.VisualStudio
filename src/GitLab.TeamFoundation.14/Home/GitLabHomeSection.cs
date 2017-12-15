@@ -28,7 +28,7 @@ namespace GitLab.TeamFoundation.Home
         }
         public override async void Refresh()
         {
-            IsVisible = await System.Threading.Tasks.Task.Factory.StartNew(() => _tes.IsGitLabRepo());
+            IsVisible = await _tes.IsGitLabRepoAsync();
             base.Refresh();
         }
 

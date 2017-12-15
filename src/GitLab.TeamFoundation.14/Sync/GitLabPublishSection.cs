@@ -44,11 +44,10 @@ namespace GitLab.TeamFoundation.Sync
             return temp;
         }
 
-        public override void Initialize(object sender, SectionInitializeEventArgs e)
+        public override async void Initialize(object sender, SectionInitializeEventArgs e)
         {
             base.Initialize(sender, e);
-
-            IsVisible = !_tes.IsGitLabRepo();
+            IsVisible = !(await _tes.IsGitLabRepoAsync());
         }
 
         protected override object CreateView(SectionInitializeEventArgs e)

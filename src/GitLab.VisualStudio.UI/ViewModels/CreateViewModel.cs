@@ -190,7 +190,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     }
                     else
                     {
-                        result = _web.CreateProject(Name, Description, IsPrivate,SelectedNamespaces);
+                        int namespaceid = -1;
+                        int.TryParse(SelectedNamespaces,out namespaceid);
+                        result = _web.CreateProject(Name, Description, IsPrivate, namespaceid);
                         if (result.Project != null)
                         {
                             clonePath = System.IO.Path.Combine(Path, result.Project.Name);

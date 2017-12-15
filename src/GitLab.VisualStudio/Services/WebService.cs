@@ -131,12 +131,12 @@ namespace GitLab.VisualStudio.Services
 
         private static NGitLab.Impl.Api.ApiVersion VsApiVersionToNgitLabversion(ApiVersion apiVersion)
         {
-            return apiVersion == ApiVersion.V3 ? NGitLab.Impl.Api.ApiVersion.V3 : NGitLab.Impl.Api.ApiVersion.V4;
+            return (NGitLab.Impl.Api.ApiVersion)Enum.Parse(typeof(NGitLab.Impl.Api.ApiVersion), apiVersion.ToString());
         }
 
         public CreateProjectResult CreateProject(string name, string description, bool isPrivate)
         {
-            return CreateProject(name, description, isPrivate, null);
+            return CreateProject(name, description, isPrivate, 0);
         }
        public  IReadOnlyList<NamespacesPath> GetNamespacesPathList()
         {
@@ -153,7 +153,7 @@ namespace GitLab.VisualStudio.Services
             }
             return nplist;
         }
-        public CreateProjectResult CreateProject(string name, string description, bool isPrivate,string namespaceid)
+        public CreateProjectResult CreateProject(string name, string description, bool isPrivate,int  namespaceid)
         {
             var user = _storage.GetUser();
             if (user == null)
@@ -163,10 +163,7 @@ namespace GitLab.VisualStudio.Services
             var result = new CreateProjectResult();
             try
             {
-                if (string.IsNullOrEmpty(namespaceid))
-                {
-                    namespaceid = user.Username;
-                }
+              
                 var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
                 var pjt = client.Projects.Create(
                     new NGitLab.Models.ProjectCreate()

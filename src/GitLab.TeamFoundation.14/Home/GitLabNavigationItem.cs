@@ -39,7 +39,7 @@ namespace GitLab.TeamFoundation.Home
         public override async void Invalidate()
         {
             IsVisible = false;
-            IsVisible = await System.Threading.Tasks.Task.Factory.StartNew(() => _tes.IsGitLabRepo()) && _tes.Project != null;
+            IsVisible = await  _tes.IsGitLabRepoAsync() && _tes.Project != null;
         }
         void OnThemeChanged()
         {

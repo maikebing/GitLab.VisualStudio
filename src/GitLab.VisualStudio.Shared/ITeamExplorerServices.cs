@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GitLab.VisualStudio.Shared
@@ -22,7 +23,7 @@ namespace GitLab.VisualStudio.Shared
         void ClearNotifications();
         RepositoryInfo GetActiveRepository();
         string GetSolutionPath();
-        bool IsGitLabRepo();
+        Task<bool> IsGitLabRepoAsync();
 
         Project Project { get; }
     }

@@ -35,9 +35,12 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             _mediator = mediator;
             ApiVersions = new Dictionary<string, string>();
-            ApiVersions.Add("v4", "GitLab ApiV4");
-            ApiVersions.Add("v3", "GitLab ApiV3");
-            SelectedApiVersion = "v4";
+         
+            ApiVersions.Add("V4_Oauth", "GitLab ApiV4 Oauth2");
+            ApiVersions.Add("V3_Oauth", "GitLab ApiV3 Oauth2");
+            ApiVersions.Add("V4", "GitLab ApiV4 ");
+            ApiVersions.Add("V3", "GitLab ApiV3");
+            SelectedApiVersion = "V4_Oauth";
             _loginCommand = new DelegateCommand(OnLogin);
             _forgetPasswordCommand = new DelegateCommand(OnForgetPassword);
             _activeAccountCommand = new DelegateCommand(OnActiveAccount);
@@ -145,9 +148,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Exception exlogin = null;
             Task.Run(() =>
             {
-                ApiVersion apiVersion = ApiVersion.V4;
+                ApiVersion apiVersion = ApiVersion.V4_Oauth;
                 bool ok = Enum.TryParse(SelectedApiVersion, true, out apiVersion);
-                if (!ok) apiVersion = ApiVersion.V4;
+                if (!ok) apiVersion = ApiVersion.V4_Oauth;
                 try
                 {
                     var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
