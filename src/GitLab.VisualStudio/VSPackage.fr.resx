@@ -121,26 +121,27 @@
     <value>OpenOnGitLab Extension !</value>
   </data>
   <data name="8112" xml:space="preserve">
-    <value>Extension de Visual Studio pour ouvrir des fichiers sur votre GitLab Site !!</value>
+    <value>Une extension Visual Studio d'intégration de GitLab !!</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenMaster" xml:space="preserve">
-    <value>Master</value>
+    <value>Ouvrir "Master"</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenBranch" xml:space="preserve">
-    <value>Agence</value>
+    <value>Ouvrir une branche</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenRevision" xml:space="preserve">
-    <value>Révision</value>
+    <value>Ouvrir Révision</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenRevisionFull" xml:space="preserve">
-    <value>RevisionFull ouvert !</value>
+    <value>Ouvrir Révision complète</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenCommits" xml:space="preserve">
-    <value>gèle</value>
+    <value>Ouvrir Soumission</value>
   </data>
   <data name="OpenOnGitLab_OpenOnGitLab_OpenBlame" xml:space="preserve">
-    <value>Blâme ouvert !</value>
+    <value>Afficher le responsable</value>
   </data>
+
   <data name="101" xml:space="preserve">
     <value>GitLab Extension for Visual Studio</value>
   </data>
