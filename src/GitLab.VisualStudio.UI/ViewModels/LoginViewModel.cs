@@ -59,7 +59,35 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 return _host;
             }
-            set { SetProperty(ref _host, value); }
+            set
+            {
+                try
+                {
+                    string tmpurl = value;
+                    if (value.StartsWith("git@"))
+                    {
+                        var ary = value.Split('@', ':', '/');
+                        tmpurl = $"https://{ary[2]}@{ary[1]}";
+                    }
+                    var urlhost = new UriBuilder(tmpurl);
+                    if (!string.IsNullOrEmpty(urlhost.UserName))
+                    {
+                        Email = urlhost.UserName;
+                        urlhost.UserName = "";
+                    }
+                    if (!string.IsNullOrEmpty(urlhost.Password))
+                    {
+                        Password = urlhost.Password;
+                        urlhost.Password = "";
+                    }
+                    SetProperty(ref _host, urlhost.Uri.ToString());
+                }
+                catch (Exception ex)
+                {
+                    _dialog.Error(ex.Message);
+                }
+
+            }
         }
         public IDictionary<string, string> ApiVersions { get; }
         private string _email;
