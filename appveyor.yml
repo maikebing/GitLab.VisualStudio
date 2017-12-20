@@ -14,7 +14,8 @@ assembly_info:
 before_build:
   - git submodule sync --recursive
   - git submodule update --init --recursive
-  - nuget restore
+  - nuget restore GitLabVS.sln
+  - nuget restore NGitLab\NGitLab\NGitLab.sln
   - ps: Vsix-IncrementVsixVersion | Vsix-UpdateBuildVersion
   - ps: Vsix-TokenReplacement src\GitLab.VisualStudio\Constants.cs 'Version = "([0-9\\.]+)"' 'Version = "{version}"'
 
