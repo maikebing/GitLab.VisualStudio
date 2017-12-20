@@ -1,4 +1,4 @@
-version: 10.4.{build}
+version: 1.0.{build}
 image: Visual Studio 2017
 
 install:
