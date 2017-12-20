@@ -1,0 +1,26 @@
+version: 10.4.{build}
+image: Visual Studio 2017
+
+install:
+  - ps: (new-object Net.WebClient).DownloadString("https://raw.github.com/madskristensen/ExtensionScripts/master/AppVeyor/vsix.ps1") | iex
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+before_build:
+  - nuget restore
+  - ps: Vsix-IncrementVsixVersion | Vsix-UpdateBuildVersion
+  - ps: Vsix-TokenReplacement src\GitLab.VisualStudio\Constants.cs 'Version = "([0-9\\.]+)"' 'Version = "{version}"'
+
+build_script:
+  - msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m
+
+
+
+after_test:
+  - ps: if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -or $env:APPVEYOR_REPO_BRANCH -eq 'stable') { Vsix-PushArtifacts | Vsix-PublishToGallery }
+  - ps: if ($env:APPVEYOR_REPO_BRANCH -ne 'master' -and $env:APPVEYOR_REPO_BRANCH -ne 'stable') { Vsix-PushArtifacts }
