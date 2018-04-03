@@ -219,10 +219,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NGitLab\NGitLab\NGitLab\NGitLab.csproj">
-      <Project>{eb69c6ad-64a6-4fe5-880c-38607a2430fb}</Project>
-      <Name>NGitLab</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj">
       <Project>{c3150b82-8e79-4ff6-a9ff-e361c108384f}</Project>
       <Name>GitLab.VisualStudio.Shared</Name>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio.Shared", "src\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj", "{C3150B82-8E79-4FF6-A9FF-E361C108384F}"
 EndProject
@@ -22,8 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		rebuildself.cmd = rebuildself.cmd
 		ResetEnvironment.cmd = ResetEnvironment.cmd
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGitLab", "NGitLab\NGitLab\NGitLab\NGitLab.csproj", "{EB69C6AD-64A6-4FE5-880C-38607A2430FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,26 +137,6 @@ Global
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|Any CPU.Build.0 = Release|Any CPU
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|x86.ActiveCfg = Release|Any CPU
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|x86.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Debug|x86.Build.0 = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.DebugVS2015|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.DebugVS2015|Any CPU.Build.0 = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.DebugVS2015|x86.ActiveCfg = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.DebugVS2015|x86.Build.0 = Debug|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Publish|Any CPU.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Publish|Any CPU.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Publish|x86.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Publish|x86.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Release|x86.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.Release|x86.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.XamlDesign|Any CPU.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.XamlDesign|Any CPU.Build.0 = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.XamlDesign|x86.ActiveCfg = Release|Any CPU
-		{EB69C6AD-64A6-4FE5-880C-38607A2430FB}.XamlDesign|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

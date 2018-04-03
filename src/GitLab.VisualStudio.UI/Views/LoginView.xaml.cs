@@ -22,7 +22,7 @@ namespace GitLab.VisualStudio.UI
 
         public string Password
         {
-            get { return PasswordTextBox.Text; }
+            get { return  PasswordTextBox.Text; }
             set { PasswordTextBox.Text = value; }
         }
 
@@ -35,5 +35,7 @@ namespace GitLab.VisualStudio.UI
                 SignInButton.Command.Execute(null);
             }
         }
+
+   
     }
 }

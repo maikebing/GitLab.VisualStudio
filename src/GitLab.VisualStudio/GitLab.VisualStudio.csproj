@@ -423,8 +423,11 @@
       <HintPath>..\..\packages\Microsoft.VisualStudio.Validation.15.3.32\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NGitLab, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NGitLab.Plus.2.0.0\lib\net45\NGitLab.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -435,6 +438,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -459,10 +463,6 @@
     <Reference Include="System.Xaml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NGitLab\NGitLab\NGitLab\NGitLab.csproj">
-      <Project>{eb69c6ad-64a6-4fe5-880c-38607a2430fb}</Project>
-      <Name>NGitLab</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GitLab.TeamFoundation.14\GitLab.TeamFoundation.14.csproj">
       <Project>{161DBF01-1DBF-4B00-8551-C5C00F26720D}</Project>
       <Name>GitLab.TeamFoundation.14</Name>
