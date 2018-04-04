@@ -1,16 +1,20 @@
-﻿using System;
+﻿using GitLab.VisualStudio.Shared.Models;
 
 namespace GitLab.VisualStudio.Shared
 {
     public interface IStorage
     {
         bool IsLogined { get; }
+
         User GetUser();
-        string Host { get;  }
+
+        string Host { get; }
         string Path { get; }
+
         string GetPassword(string _host);
 
-        void SaveUser( User user, string password);
+        void SaveUser(User user, string password);
+
         void Erase();
 
         string GetBaseRepositoryDirectory();

@@ -1,5 +1,6 @@
 using GitLab.TeamFoundation.Sync;
 using GitLab.VisualStudio.Shared;
+using GitLab.VisualStudio.Shared.Models;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;

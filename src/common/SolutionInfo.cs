@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
-static class PackageVersion
+internal static class PackageVersion
 {
-    public const string Version = "1.0.0.95";
+    public const string Version = "1.0.0.129";
 }

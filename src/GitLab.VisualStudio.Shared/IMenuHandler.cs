@@ -10,6 +10,7 @@ namespace GitLab.VisualStudio.Shared
     {
         Guid Guid { get; }
         int CmdId { get; }
+
         void Activate(object data = null);
     }
 

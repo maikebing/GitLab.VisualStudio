@@ -1,5 +1,6 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Controls;
+using GitLab.VisualStudio.Shared.Models;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.VisualStudio.PlatformUI;

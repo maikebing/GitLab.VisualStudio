@@ -140,6 +140,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -188,6 +189,12 @@
     <Compile Include="IViewFactory.cs" />
     <Compile Include="IShellService.cs" />
     <Compile Include="IWebService.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\CreateSnippetResult.cs" />
+    <Compile Include="Models\NamespacesPath.cs" />
+    <Compile Include="Models\Snippet.cs" />
+    <Compile Include="Models\CreateProjectResult.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="NotificationAwareObject.cs" />
     <Compile Include="..\common\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>

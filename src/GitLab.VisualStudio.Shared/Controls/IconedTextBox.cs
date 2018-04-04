@@ -89,10 +89,10 @@ namespace GitLab.VisualStudio.Shared.Controls
         }
 
         // Fake char to display in Visual Tree
-        const char PasswordChar = '●';
+        private const char PasswordChar = '●';
 
         // flag used to bypass OnTextChanged
-        bool _dirtyBaseText;
+        private bool _dirtyBaseText;
 
         /// <summary>
         ///   Only copy of real password
@@ -100,7 +100,7 @@ namespace GitLab.VisualStudio.Shared.Controls
         /// <remarks>
         ///   For more security use System.Security.SecureString type instead
         /// </remarks>
-        string _text = string.Empty;
+        private string _text = string.Empty;
 
         /// <summary>
         ///   Provide access to base.Text without call OnTextChanged

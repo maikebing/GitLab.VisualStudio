@@ -1,5 +1,6 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Controls;
+using GitLab.VisualStudio.Shared.Models;
 using System;
 
 namespace GitLab.VisualStudio.UI.ViewModels

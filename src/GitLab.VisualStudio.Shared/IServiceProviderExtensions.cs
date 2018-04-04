@@ -5,7 +5,7 @@ namespace GitLab.VisualStudio.Shared
 {
     public static class IServiceProviderExtensions
     {
-        static IUIProvider cachedUIProvider = null;
+        private static IUIProvider cachedUIProvider = null;
 
         /// <summary>
         /// Safe variant of GetService that doesn't throw exceptions if the service is
@@ -23,7 +23,7 @@ namespace GitLab.VisualStudio.Shared
                 : GetServiceAndCache(serviceProvider, type, ref cachedUIProvider);
         }
 
-        static object GetServiceAndCache<CacheType>(IServiceProvider provider, Type type, ref CacheType cache)
+        private static object GetServiceAndCache<CacheType>(IServiceProvider provider, Type type, ref CacheType cache)
         {
             object ret = null;
             try
@@ -39,7 +39,6 @@ namespace GitLab.VisualStudio.Shared
                 cache = (CacheType)ret;
             return ret;
         }
-
 
         /// <summary>
         /// Safe generic variant that calls <see cref="TryGetService(IServiceProvider, Type)"/>

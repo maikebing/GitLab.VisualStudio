@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
-using ThreadHelper = Microsoft.VisualStudio.Shell.ThreadHelper;
+﻿using System;
 using System.Runtime.CompilerServices;
-using System;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-using static Microsoft.VisualStudio.Threading.JoinableTaskFactory;
-using static Microsoft.VisualStudio.Threading.AwaitExtensions;
 using System.Windows.Threading;
+using static Microsoft.VisualStudio.Threading.AwaitExtensions;
+using static Microsoft.VisualStudio.Threading.JoinableTaskFactory;
+using ThreadHelper = Microsoft.VisualStudio.Shell.ThreadHelper;
 
 namespace GitLab.VisualStudio.Shared.Helpers
 {
@@ -18,6 +17,7 @@ namespace GitLab.VisualStudio.Shared.Helpers
     public interface IAwaiter : INotifyCompletion
     {
         bool IsCompleted { get; }
+
         void GetResult();
     }
 
@@ -51,9 +51,9 @@ namespace GitLab.VisualStudio.Shared.Helpers
             return new AwaitableWrapper(scheduler ?? TaskScheduler.Default);
         }
 
-        class AwaitableWrapper : IAwaitable
+        private class AwaitableWrapper : IAwaitable
         {
-            Func<IAwaiter> getAwaiter;
+            private Func<IAwaiter> getAwaiter;
 
             public AwaitableWrapper()
             {
@@ -73,11 +73,11 @@ namespace GitLab.VisualStudio.Shared.Helpers
             public IAwaiter GetAwaiter() => getAwaiter();
         }
 
-        class AwaiterWrapper : IAwaiter
+        private class AwaiterWrapper : IAwaiter
         {
-            Func<bool> isCompleted;
-            Action<Action> onCompleted;
-            Action getResult;
+            private Func<bool> isCompleted;
+            private Action<Action> onCompleted;
+            private Action getResult;
 
             public AwaiterWrapper()
             {

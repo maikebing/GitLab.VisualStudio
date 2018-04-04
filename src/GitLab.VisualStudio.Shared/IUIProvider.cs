@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GitLab.VisualStudio.Shared
 {
@@ -14,11 +10,15 @@ namespace GitLab.VisualStudio.Shared
         //IServiceProvider GitServiceProvider { get; set; }
 
         object TryGetService(Type t);
+
         object TryGetService(string typename);
+
         T TryGetService<T>() where T : class;
 
         void AddService(Type t, object owner, object instance);
+
         void AddService<T>(object owner, T instance);
+
         /// <summary>
         /// Removes a service from the catalog
         /// </summary>

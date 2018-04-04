@@ -70,6 +70,16 @@ namespace GitLab.VisualStudio {
         }
         
         /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon _10400 {
+            get {
+                object obj = ResourceManager.GetObject("10400", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 A Visual Studio Extension that brings the GitLab Flow into Visual Studio. 的本地化字符串。
         /// </summary>
         internal static string _121 {
@@ -79,29 +89,39 @@ namespace GitLab.VisualStudio {
         }
         
         /// <summary>
-        ///   查找类似 Open on GitLab 的本地化字符串。
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static string _8110 {
+        internal static System.Drawing.Icon _8400 {
             get {
-                return ResourceManager.GetString("8110", resourceCulture);
+                object obj = ResourceManager.GetObject("8400", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似 Visual Studio Extension for opening files on GitLab 的本地化字符串。
+        ///   查找类似 IssuesToolWindow Extension 的本地化字符串。
         /// </summary>
-        internal static string _8112 {
+        internal static string _9110 {
             get {
-                return ResourceManager.GetString("8112", resourceCulture);
+                return ResourceManager.GetString("9110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 IssuesToolWindow Visual Stuido Extension Detailed Info 的本地化字符串。
+        /// </summary>
+        internal static string _9112 {
+            get {
+                return ResourceManager.GetString("9112", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon _8400 {
+        internal static System.Drawing.Icon _9400 {
             get {
-                object obj = ResourceManager.GetObject("8400", resourceCulture);
+                object obj = ResourceManager.GetObject("9400", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

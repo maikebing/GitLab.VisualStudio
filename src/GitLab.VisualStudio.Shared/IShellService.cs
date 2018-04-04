@@ -13,6 +13,7 @@
         /// </summary>
         /// <param name="url">The absolute URI to open</param>
         void OpenUrl(string url);
+
         void ShowDialog(string title, Dialog content);
 
         string BrowseFolder(string title = null, string selectedPath = null);

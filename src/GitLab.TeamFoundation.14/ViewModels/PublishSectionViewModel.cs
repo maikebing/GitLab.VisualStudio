@@ -1,6 +1,7 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
+using GitLab.VisualStudio.Shared.Models;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
 using System.Collections.Generic;

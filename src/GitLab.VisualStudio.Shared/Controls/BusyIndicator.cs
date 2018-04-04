@@ -322,5 +322,4 @@ namespace GitLab.VisualStudio.Shared.Controls
         /// </summary>
         public const string StateHidden = "Hidden";
     }
-
 }

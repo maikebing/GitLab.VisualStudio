@@ -1,4 +1,5 @@
 ﻿using GitLab.VisualStudio.Shared;
+using GitLab.VisualStudio.Shared.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -31,12 +32,7 @@ namespace GitLab.VisualStudio.Services
                 if (lstProject.Count == 0 || Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds) > 5)//缓存五秒
                 {
                     lstProject.Clear();
-                    var user = _storage.GetUser();
-                    if (user == null)
-                    {
-                        throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
-                    }
-                    var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
+                    var client = GetClient();
                     foreach (var item in client.Projects.Membership())
                     {
                         lstProject.Add(item);
@@ -141,30 +137,33 @@ namespace GitLab.VisualStudio.Services
        public  IReadOnlyList<NamespacesPath> GetNamespacesPathList()
         {
             List<NamespacesPath> nplist = new List<NamespacesPath>();
-            var user = _storage.GetUser();
-            if (user == null)
-            {
-                throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
-            }
-            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
+            NGitLab.GitLabClient client = GetClient();
             foreach (var item in client.Groups.GetNamespaces())
             {
                 nplist.Add(item);
             }
             return nplist;
         }
-        public CreateProjectResult CreateProject(string name, string description, bool isPrivate,int  namespaceid)
+
+        private NGitLab.GitLabClient GetClient()
         {
             var user = _storage.GetUser();
             if (user == null)
             {
                 throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
             }
+            var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
+            return client;
+        }
+
+        public CreateProjectResult CreateProject(string name, string description, bool isPrivate,int  namespaceid)
+        {
+            
             var result = new CreateProjectResult();
             try
             {
-              
-                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
+
+                var client = GetClient();
                 var pjt = client.Projects.Create(
                     new NGitLab.Models.ProjectCreate()
                     {
@@ -177,7 +176,6 @@ namespace GitLab.VisualStudio.Services
             }
             catch (Exception ex)
             {
-
                 result.Message = ex.Message;
             }
             return result;
@@ -185,15 +183,10 @@ namespace GitLab.VisualStudio.Services
         public CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility)
         {
             CreateSnippetResult result = new CreateSnippetResult() { Message = "", Snippet = null };
-            var user = _storage.GetUser();
-
-            if (user == null)
-            {
-                throw new UnauthorizedAccessException(Strings.WebService_CreateProject_NotLoginYet);
-            }
+           
             try
             {
-                var client = NGitLab.GitLabClient.Connect(user.Host, user.PrivateToken, VsApiVersionToNgitLabversion(user.ApiVersion));
+                var client = GetClient();
                 var pjt = GetActiveProject();
                 if (pjt.SnippetsEnabled)
                 {
@@ -246,6 +239,17 @@ namespace GitLab.VisualStudio.Services
                 var pjt = from project in this.GetProjects(projectListType) where string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase) select project;
                 return pjt.FirstOrDefault();
             }
+        }
+        public bool CheckHaveNewChange()
+        {
+            bool ok = false;
+            var pjt = GetActiveProject();
+            if (pjt!=null)
+            {
+                var client = GetClient();
+                
+            }
+            return ok;
         }
     }
 }

@@ -136,7 +136,7 @@
                     from m in r.MemberNames
                     group r by m
                         into g
-                        select g;
+                    select g;
 
             foreach (var prop in q)
             {

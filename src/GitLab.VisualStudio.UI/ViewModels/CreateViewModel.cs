@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using System.Threading;
+using GitLab.VisualStudio.Shared.Models;
 
 namespace GitLab.VisualStudio.UI.ViewModels
 {

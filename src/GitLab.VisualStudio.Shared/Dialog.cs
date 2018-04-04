@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,7 +7,7 @@ namespace GitLab.VisualStudio.Shared
     public class Dialog : ContentControl, IDialog
     {
         public event Action Closed;
-        
+
         public void Close()
         {
             Closed?.Invoke();

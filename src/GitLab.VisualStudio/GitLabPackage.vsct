@@ -3,7 +3,7 @@
   <Extern href="stdidcmd.h" />
   <Extern href="vsshlids.h" />
 
-  <Commands package="guidOpenOnGitLabPkg">
+  <Commands package="guidGitLabPackagePkg">
     <Menus>
       <Menu guid="guidOpenOnGitLabCmdSet" id="SubMenu" priority="0x1000" type="Menu">
         <Parent guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" />
@@ -22,6 +22,14 @@
     </Groups>
 
     <Buttons>
+      <Button guid="guidIssuesToolWindowPackageCmdSet" id="IssuesToolWindowCommandId" priority="0x0800" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Strings>
+          <ButtonText>GitLab Issues</ButtonText>
+          <CommandName>issuestoolwindow</CommandName>
+        </Strings>
+      </Button>
+    
       <Button guid="guidOpenOnGitLabCmdSet" id="OpenMaster" priority="0x0100" type="Button">
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
         <Strings>
@@ -82,6 +90,7 @@
  
   </Commands>
   <CommandPlacements>
+ 
     <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
     </CommandPlacement>
@@ -132,7 +141,10 @@
     </CommandPlacement>
   </CommandPlacements>
   <Symbols>
-    <GuidSymbol name="guidOpenOnGitLabPkg" value="{F43CFE82-0372-4230-9162-038E51408B2F}" />
+ 
+    <!-- This is the guid used to group the menu commands together -->
+  
+    <GuidSymbol name="guidGitLabPackagePkg" value="{54803a44-49e0-4935-bba4-7d7d91682273}" />
     <GuidSymbol name="guidOpenOnGitLabCmdSet" value="{72B54F2E-FE93-4950-88BF-C536D1CFD91F}">
       <IDSymbol name="ContextMenuGroup" value="0x1020" />
       <IDSymbol name="SubMenuGroup" value="0x1030" />
@@ -145,9 +157,11 @@
       <IDSymbol name="OpenBlame" value="0x0500" />
       <IDSymbol name="OpenCommits" value="0x0600" />
       <IDSymbol name="OpenCreateSnippet" value="0x0700" />
-
+      
     </GuidSymbol>
-
+    <GuidSymbol name="guidIssuesToolWindowPackageCmdSet" value="{78e9c435-500f-4e4d-8e31-dc16d9f26032}">
+      <IDSymbol name="IssuesToolWindowCommandId" value="0x0800" />
+    </GuidSymbol>
     <!-- List for various editor types -->
     <GuidSymbol name="HtmlEditorWindowLibra" value="{78F03954-2FB8-4087-8CE7-59D71710B3BB}">
       <IDSymbol name="IDMX_HTML_SOURCE" value="1" />

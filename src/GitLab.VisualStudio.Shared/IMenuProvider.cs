@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 
 namespace GitLab.VisualStudio.Shared
 {
@@ -8,7 +6,7 @@ namespace GitLab.VisualStudio.Shared
     /// Container for static and dynamic visibility menus (context, toolbar, top, etc)
     /// Get a reference to this via MEF and register the menus
     /// </summary>
- 
+
     public interface IMenuProvider
     {
         /// <summary>

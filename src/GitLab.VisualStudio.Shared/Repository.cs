@@ -9,6 +9,7 @@ namespace GitLab.VisualStudio.Shared
         public string Path { get; set; }
 
         private bool _isActived;
+
         public bool IsActived
         {
             get { return _isActived; }

@@ -6,7 +6,7 @@ namespace GitLab.VisualStudio.Shared
 {
     public static class SharedResources
     {
-        static readonly Dictionary<string, DrawingBrush> drawingBrushes = new Dictionary<string, DrawingBrush>();
+        private static readonly Dictionary<string, DrawingBrush> drawingBrushes = new Dictionary<string, DrawingBrush>();
 
         public static DrawingBrush GetDrawingForIcon(Octicon icon, Color color, string theme = null)
         {
@@ -36,7 +36,6 @@ namespace GitLab.VisualStudio.Shared
 
             var brush = new DrawingBrush()
             {
-
                 Drawing = drawing,
                 Stretch = Stretch.Uniform
             };
