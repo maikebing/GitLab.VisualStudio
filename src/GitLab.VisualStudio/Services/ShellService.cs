@@ -1,8 +1,8 @@
 ﻿using GitLab.VisualStudio.Shared;
+using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows;
-using Microsoft.VisualStudio.PlatformUI;
 using System.Windows.Forms;
 
 namespace GitLab.VisualStudio.Services

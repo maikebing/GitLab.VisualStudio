@@ -27,10 +27,9 @@ namespace GitLab.TeamFoundation
             return Color.FromArgb(color.A, color.R, color.G, color.B);
         }
 
-
-        static Color AccentMediumDarkTheme = Color.FromRgb(45, 45, 48);
-        static Color AccentMediumLightTheme = Color.FromRgb(238, 238, 242);
-        static Color AccentMediumBlueTheme = Color.FromRgb(255, 236, 181);
+        private static Color AccentMediumDarkTheme = Color.FromRgb(45, 45, 48);
+        private static Color AccentMediumLightTheme = Color.FromRgb(238, 238, 242);
+        private static Color AccentMediumBlueTheme = Color.FromRgb(255, 236, 181);
 
         public static string DetectTheme()
         {

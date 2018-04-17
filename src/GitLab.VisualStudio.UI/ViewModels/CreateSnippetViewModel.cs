@@ -12,10 +12,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
     public class CreateSnippetViewModel : Validatable
     {
         private IDialog _dialog;
-        IMessenger _messenger;
-        IShellService _shell;
-        IStorage _storage;
-        IWebService _web;
+        private IMessenger _messenger;
+        private IShellService _shell;
+        private IStorage _storage;
+        private IWebService _web;
+
         public CreateSnippetViewModel(IDialog dialog, IMessenger messenger, IShellService shell, IStorage storage, IWebService web)
         {
             _dialog = dialog;
@@ -27,7 +28,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Visibility = "private";
             _createSnippetCommand = new DelegateCommand(OnCreateSnippet);
         }
+
         private string _title;
+
         [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "CreateSnippetViewModel_TitleIsRequired")]
         public string Title
         {
@@ -41,7 +44,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }
             set { SetProperty(ref _title, value); }
         }
+
         private string _filename;
+
         [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "CreateSnippetViewModel_FileNameIsRequired")]
         public string FileName
         {
@@ -53,6 +58,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _desc;
+
         public string Desc
         {
             get
@@ -61,7 +67,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }
             set { SetProperty(ref _desc, value); }
         }
+
         private bool _needopen;
+
         public bool NeedOpen
         {
             get
@@ -70,7 +78,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }
             set { SetProperty(ref _needopen, value); }
         }
+
         private string _code;
+
         [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "CreateSnippetViewModel_CodeIsRequired")]
         public string Code
         {
@@ -80,7 +90,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }
             set { SetProperty(ref _code, value); }
         }
+
         private string _visibility;
+
         [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "CreateSnippetViewModel_VisibilityIsRequired")]
         public string Visibility
         {
@@ -91,8 +103,8 @@ namespace GitLab.VisualStudio.UI.ViewModels
             set { SetProperty(ref _visibility, value); }
         }
 
-
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -100,16 +112,15 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _busyContent;
+
         public string BusyContent
         {
             get { return _busyContent; }
             set { SetProperty(ref _busyContent, value); }
         }
 
-
-
-
         private DelegateCommand _createSnippetCommand;
+
         public ICommand CreateSnippetCommand
         {
             get { return _createSnippetCommand; }
@@ -127,7 +138,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             IsBusy = true;
             BusyContent = Strings.CreatingASnippetPleaseWait;
             var successed = false;
-            CreateSnippetResult createSnippetResult=null;
+            CreateSnippetResult createSnippetResult = null;
             Task.Run(() =>
             {
                 createSnippetResult = _web.CreateSnippet(Title, FileName, Desc, Code, Visibility);
@@ -143,16 +154,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 IsBusy = false;
                 BusyContent = null;
-               
-                if (successed )
+
+                if (successed)
                 {
                     _dialog.Close();
                 }
-                else if ( createSnippetResult != null && !string.IsNullOrEmpty(createSnippetResult.Message))
+                else if (createSnippetResult != null && !string.IsNullOrEmpty(createSnippetResult.Message))
                 {
                     MessageBox.Show(createSnippetResult.Message);
                 }
-                else 
+                else
                 {
                     MessageBox.Show(Strings.CreateSnippetViewModel_FailedToCreateSnippet);
                 }

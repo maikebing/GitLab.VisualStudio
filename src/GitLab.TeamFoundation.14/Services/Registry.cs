@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace GitLab.TeamFoundation.Services
 {
-    public partial  class Registry
+    public partial class Registry
     {
-        static RegistryKey OpenGitKey(string path)
+        private static RegistryKey OpenGitKey(string path)
         {
             return Microsoft.Win32.Registry.CurrentUser.OpenSubKey(TEGitKey + "\\" + path, true);
         }

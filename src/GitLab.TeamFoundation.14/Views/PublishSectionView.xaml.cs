@@ -1,6 +1,4 @@
-﻿using GitLab.TeamFoundation.ViewModels;
-using GitLab.VisualStudio.Shared;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Interactivity;

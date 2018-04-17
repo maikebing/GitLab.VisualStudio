@@ -2,7 +2,7 @@
 
 namespace GitLab.TeamFoundation
 {
-    static class Settings
+    internal static class Settings
     {
         public const string InvitationSectionId = "C2443FCC-6D62-4D31-B08A-C4DE70109C7F";
         public const int InvitationSectionPriority = 100;

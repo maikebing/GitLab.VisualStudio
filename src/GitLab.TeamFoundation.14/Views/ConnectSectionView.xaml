@@ -28,7 +28,6 @@
                         <RotateTransform Angle="90" />
                     </Setter.Value>
                 </Setter>
-
             </Style>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -68,26 +67,26 @@
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsMouseOver" Value="True"/>
+                                        <Condition Property="IsMouseOver" Value="True" />
                                     </MultiTrigger.Conditions>
                                     <Setter Property="Background" Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarHoverKey}}" />
                                 </MultiTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                                        <Condition Property="IsSelected" Value="True"/>
+                                        <Condition Property="Selector.IsSelectionActive" Value="True" />
+                                        <Condition Property="IsSelected" Value="True" />
                                     </MultiTrigger.Conditions>
                                     <Setter Property="Background" Value="{DynamicResource SelectedItemBackground}" />
                                 </MultiTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                                        <Condition Property="IsSelected" Value="True"/>
+                                        <Condition Property="Selector.IsSelectionActive" Value="False" />
+                                        <Condition Property="IsSelected" Value="True" />
                                     </MultiTrigger.Conditions>
                                     <Setter Property="Background" Value="{DynamicResource {x:Static shell:VsBrushes.InactiveBorderKey}}" />
                                 </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.3"/>
+                                    <Setter Property="Opacity" Value="0.3" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -166,7 +165,7 @@
                 <Style.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}" Value="True"/>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowTextKey}}" />
                     </MultiDataTrigger>
@@ -179,7 +178,7 @@
                     <!--<DataTrigger Value="True">
                         <DataTrigger.Binding>
                             <MultiBinding Converter="{StaticResource IsCurrentRepositoryConverter}" ConverterParameter="IsCurrentRepository">
-                                <Binding/>
+                                <Binding />
                                 <Binding Path="ViewModel" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:GitLabConnectContent}}" />
                             </MultiBinding>
                         </DataTrigger.Binding>
@@ -188,7 +187,6 @@
                 </Style.Triggers>
             </Style>
         </ResourceDictionary>
-
     </UserControl.Resources>
 
     <DockPanel>

@@ -4,8 +4,8 @@ using GitLab.VisualStudio.Shared.Models;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.VisualStudio.PlatformUI;
-using System;
 using System.Windows.Media;
+
 namespace GitLab.TeamFoundation.Home
 {
     public abstract class GitLabNavigationItem : TeamExplorerNavigationItemBase, ITeamExplorerNavigationItem2
@@ -19,6 +19,7 @@ namespace GitLab.TeamFoundation.Home
         private Project _project;
         private string _branch;
         private Octicon octicon;
+
         public GitLabNavigationItem(Octicon icon, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService web)
         {
             _git = git;
@@ -37,23 +38,27 @@ namespace GitLab.TeamFoundation.Home
                 Invalidate();
             };
         }
+
         public override async void Invalidate()
         {
             IsVisible = false;
-            IsVisible = await  _tes.IsGitLabRepoAsync() && _tes.Project != null;
+            IsVisible = await _tes.IsGitLabRepoAsync() && _tes.Project != null;
         }
-        void OnThemeChanged()
+
+        private void OnThemeChanged()
         {
             var theme = Colors.DetectTheme();
             var dark = theme == "Dark";
-            m_defaultArgbColorBrush = new SolidColorBrush(dark ? Colors.DarkThemeNavigationItem :  Colors.LightBlueNavigationItem);
+            m_defaultArgbColorBrush = new SolidColorBrush(dark ? Colors.DarkThemeNavigationItem : Colors.LightBlueNavigationItem);
             m_icon = SharedResources.GetDrawingForIcon(octicon, dark ? Colors.DarkThemeNavigationItem : Colors.LightThemeNavigationItem, theme);
         }
+
         protected void OpenInBrowser(string endpoint)
         {
             var url = $"{_tes.Project.WebUrl}/{endpoint}";
             _shell.OpenUrl(url);
         }
+
         protected void OpenHostUrlInBrowser(string endpoint)
         {
             var url = $"{_storage.Host}/{endpoint}";

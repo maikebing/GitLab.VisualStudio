@@ -2,10 +2,8 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
-using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -42,7 +40,6 @@ namespace GitLab.TeamFoundation.ViewModels
             Name = Strings.Name;
             if (string.IsNullOrEmpty(storage.Host))
             {
-               
                 Provider = Strings.Provider;
             }
             else
@@ -76,6 +73,7 @@ namespace GitLab.TeamFoundation.ViewModels
         public IDictionary<string, string> Licenses { get; } = new Dictionary<string, string>();
 
         private string _selectedLicense;
+
         public string SelectedLicense
         {
             get { return _selectedLicense; }
@@ -83,6 +81,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private bool _isStarted;
+
         public bool IsStarted
         {
             get { return _isStarted; }
@@ -100,6 +99,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private bool _showGetStarted;
+
         public bool ShowGetStarted
         {
             get { return _showGetStarted; }
@@ -107,6 +107,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -114,6 +115,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private bool _isPrivate;
+
         public bool IsPrivate
         {
             get { return _isPrivate; }
@@ -121,6 +123,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private DelegateCommand _loginCommand;
+
         public ICommand LoginCommand
         {
             get
@@ -130,6 +133,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private DelegateCommand _signUpCommand;
+
         public ICommand SignUpCommand
         {
             get
@@ -139,6 +143,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private DelegateCommand _getStartedCommand;
+
         public ICommand GetStartedCommand
         {
             get
@@ -148,12 +153,14 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private DelegateCommand _publishCommand;
+
         public ICommand PublishCommand
         {
             get { return _publishCommand; }
         }
 
         private string _repositoryName;
+
         public string RepositoryName
         {
             get { return _repositoryName; }
@@ -167,12 +174,12 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private string _repositoryDescription;
+
         public string RepositoryDescription
         {
             get { return _repositoryDescription; }
             set { SetProperty(ref _repositoryDescription, value); }
         }
-
 
         private void OnLogin()
         {
@@ -244,7 +251,7 @@ namespace GitLab.TeamFoundation.ViewModels
                         var user = _storage.GetUser();
                         var password = _storage.GetPassword(user.Host);
 
-                        _git.PushWithLicense(user.Name, user.Email,user.Username, password, result.Project.Url, path, SelectedLicense);
+                        _git.PushWithLicense(user.Name, user.Email, user.Username, password, result.Project.Url, path, SelectedLicense);
                     }
                 }
                 catch (Exception ex)

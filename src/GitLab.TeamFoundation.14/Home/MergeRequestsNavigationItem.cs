@@ -2,8 +2,6 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -27,6 +25,7 @@ namespace GitLab.TeamFoundation.Home
 
             IsVisible = IsVisible && _tes.Project != null && _tes.Project.MergeRequestsEnabled;
         }
+
         public override void Execute()
         {
             OpenInBrowser("merge_requests");

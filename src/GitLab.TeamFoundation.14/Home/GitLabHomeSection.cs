@@ -1,10 +1,7 @@
-﻿using GitLab.TeamFoundation.Views;
-using GitLab.VisualStudio.Shared;
-using GitLab.VisualStudio.Shared.Helpers;
+﻿using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace GitLab.TeamFoundation.Home
@@ -26,6 +23,7 @@ namespace GitLab.TeamFoundation.Home
             IsVisible = false;
             base.Initialize(sender, e);
         }
+
         public override async void Refresh()
         {
             IsVisible = await _tes.IsGitLabRepoAsync();
@@ -44,7 +42,7 @@ namespace GitLab.TeamFoundation.Home
         {
             return new TextBlock
             {
-                Text = Strings.Description, 
+                Text = Strings.Description,
                 TextWrapping = System.Windows.TextWrapping.Wrap
             };
         }

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("GitLab Extension for Visual Studio")]
 [assembly: ComVisible(false)]
 [assembly: AssemblyCompany("MaikeBing")]
-[assembly: AssemblyCopyright("Copyright ? MaikeBing. 2017")]
+[assembly: AssemblyCopyright("Copyright ? MaikeBing. 2018")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

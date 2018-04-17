@@ -18,18 +18,17 @@
       <Group guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" priority="0x0600">
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenu" />
       </Group>
-    
     </Groups>
 
     <Buttons>
       <Button guid="guidIssuesToolWindowPackageCmdSet" id="IssuesToolWindowCommandId" priority="0x0800" type="Button">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
         <Strings>
           <ButtonText>GitLab Issues</ButtonText>
           <CommandName>issuestoolwindow</CommandName>
         </Strings>
       </Button>
-    
+
       <Button guid="guidOpenOnGitLabCmdSet" id="OpenMaster" priority="0x0100" type="Button">
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
         <Strings>
@@ -78,7 +77,7 @@
           <CommandName>Commits</CommandName>
         </Strings>
       </Button>
-       <Button guid="guidOpenOnGitLabCmdSet" id="OpenCreateSnippet" priority="0x0700" type="Button">
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenCreateSnippet" priority="0x0700" type="Button">
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
         <CommandFlag>TextChanges</CommandFlag>
         <Strings>
@@ -87,10 +86,9 @@
         </Strings>
       </Button>
     </Buttons>
- 
   </Commands>
   <CommandPlacements>
- 
+
     <CommandPlacement guid="guidOpenOnGitLabCmdSet" id="ContextMenuGroup" priority="0x0600">
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
     </CommandPlacement>
@@ -141,9 +139,9 @@
     </CommandPlacement>
   </CommandPlacements>
   <Symbols>
- 
+
     <!-- This is the guid used to group the menu commands together -->
-  
+
     <GuidSymbol name="guidGitLabPackagePkg" value="{54803a44-49e0-4935-bba4-7d7d91682273}" />
     <GuidSymbol name="guidOpenOnGitLabCmdSet" value="{72B54F2E-FE93-4950-88BF-C536D1CFD91F}">
       <IDSymbol name="ContextMenuGroup" value="0x1020" />
@@ -157,7 +155,6 @@
       <IDSymbol name="OpenBlame" value="0x0500" />
       <IDSymbol name="OpenCommits" value="0x0600" />
       <IDSymbol name="OpenCreateSnippet" value="0x0700" />
-      
     </GuidSymbol>
     <GuidSymbol name="guidIssuesToolWindowPackageCmdSet" value="{78e9c435-500f-4e4d-8e31-dc16d9f26032}">
       <IDSymbol name="IssuesToolWindowCommandId" value="0x0800" />
@@ -191,6 +188,5 @@
     <GuidSymbol name="XamlEditorWindows" value="{4C87B692-1202-46AA-B64C-EF01FAEC53DA}">
       <IDSymbol name="IDMX_XAML_SOURCE_BASIC" value="0x0103" />
     </GuidSymbol>
-   
   </Symbols>
 </CommandTable>

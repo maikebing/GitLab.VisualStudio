@@ -7,8 +7,6 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
@@ -21,7 +19,7 @@ namespace GitLab.TeamFoundation
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class TeamExplorerServices : ITeamExplorerServices
     {
-        readonly IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
 
         [Import]
         private IGitService _git;
@@ -35,7 +33,7 @@ namespace GitLab.TeamFoundation
         /// (otherwise we'll have multiple instances of ITeamExplorerServices exports, and that would be Bad(tm))
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        ITeamExplorerNotificationManager manager;
+        private ITeamExplorerNotificationManager manager;
 
         [ImportingConstructor]
         public TeamExplorerServices([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
@@ -80,6 +78,7 @@ namespace GitLab.TeamFoundation
             manager = serviceProvider.TryGetService<ITeamExplorer>() as ITeamExplorerNotificationManager;
             manager?.ClearNotifications();
         }
+
         public RepositoryInfo GetActiveRepository()
         {
             if (serviceProvider == null)
@@ -100,7 +99,7 @@ namespace GitLab.TeamFoundation
 
             var repo = git.ActiveRepositories.FirstOrDefault();
 
-            if (repo != null && repo.CurrentBranch!=null && !string.IsNullOrEmpty(repo.CurrentBranch.Name))
+            if (repo != null && repo.CurrentBranch != null && !string.IsNullOrEmpty(repo.CurrentBranch.Name))
             {
                 return new RepositoryInfo
                 {
@@ -133,9 +132,7 @@ namespace GitLab.TeamFoundation
             return solutionDir;
         }
 
-
         public Project Project { get; private set; }
-
 
         public async Task<bool> IsGitLabRepoAsync()
         {
@@ -160,7 +157,6 @@ namespace GitLab.TeamFoundation
 
             if (Project == null || !string.Equals(Project.Url, url, StringComparison.OrdinalIgnoreCase))
             {
-
                 try
                 {
                     var projects = _web.GetProjects();
@@ -178,11 +174,10 @@ namespace GitLab.TeamFoundation
                     Debug.WriteLine(ex.Message);
                     // Ignore
                 }
-
             }
             bool isgitlab = false;
-            if (Project!=null &&  !string.IsNullOrEmpty(Project.HttpUrl) && Uri.IsWellFormedUriString(Project.HttpUrl, UriKind.Absolute )
-                &&  !string.IsNullOrEmpty(url) && Uri.IsWellFormedUriString(url , UriKind.Absolute ))
+            if (Project != null && !string.IsNullOrEmpty(Project.HttpUrl) && Uri.IsWellFormedUriString(Project.HttpUrl, UriKind.Absolute)
+                && !string.IsNullOrEmpty(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
             {
                 try
                 {

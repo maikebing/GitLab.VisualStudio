@@ -1,8 +1,5 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.UI.ViewModels;
-using System.ComponentModel.Composition;
-using System.Windows.Controls;
-using System;
 
 namespace GitLab.VisualStudio.UI
 {
@@ -22,11 +19,9 @@ namespace GitLab.VisualStudio.UI
 
         public string Password
         {
-            get { return  PasswordTextBox.Text; }
+            get { return PasswordTextBox.Text; }
             set { PasswordTextBox.Text = value; }
         }
-
-        
 
         private void PasswordTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -35,7 +30,5 @@ namespace GitLab.VisualStudio.UI
                 SignInButton.Command.Execute(null);
             }
         }
-
-   
     }
 }

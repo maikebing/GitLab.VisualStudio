@@ -35,10 +35,10 @@ namespace GitLab.TeamFoundation.Connect
             ConnectLabel = Strings.Invitation_Connect;
             SignUpLabel = Strings.Invitation_SignUp;
             Name = Strings.Name;
-            Provider = Strings.Provider+ (storage.IsLogined?"(" +storage.Host+")": Strings.GitLabInvitationSection_GitLabInvitationSection_NoLogin);
+            Provider = Strings.Provider + (storage.IsLogined ? "(" + storage.Host + ")" : Strings.GitLabInvitationSection_GitLabInvitationSection_NoLogin);
             Description = Strings.Description;
             var assembly = Assembly.GetExecutingAssembly().GetName().Name;
-            var image = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute));;
+            var image = new BitmapImage(new Uri($"pack://application:,,,/{assembly};component/Resources/logo.png", UriKind.Absolute)); ;
 
             var drawing = new DrawingGroup();
             drawing.Children.Add(new GeometryDrawing

@@ -170,7 +170,7 @@
                         IsDefault="True"
                         DockPanel.Dock="Bottom"
                         Command="{Binding CloneCommand}"
-                        Content="{x:Static shared:Strings.Common_Clone}" Height="46"/>
+                        Content="{x:Static shared:Strings.Common_Clone}" Height="46" />
 
                 <Border DockPanel.Dock="Bottom"
                         Style="{StaticResource repositoryBorderStyle}" Height="56">

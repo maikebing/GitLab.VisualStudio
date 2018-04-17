@@ -20,8 +20,8 @@ namespace GitLab.VisualStudio.Services
 
     public sealed class GitAnalysis : IDisposable
     {
-        readonly LibGit2Sharp.Repository repository;
-        readonly string targetFullPath;
+        private readonly LibGit2Sharp.Repository repository;
+        private readonly string targetFullPath;
 
         public bool IsDiscoveredGitRepository => repository != null;
 
@@ -34,9 +34,8 @@ namespace GitLab.VisualStudio.Services
                 this.repository = new LibGit2Sharp.Repository(repositoryPath);
                 RepositoryPath = repositoryPath;
             }
-            
-            
         }
+
         public string RepositoryPath { get; private set; }
         public LibGit2Sharp.Repository Repository { get { return repository; } }
 
@@ -46,10 +45,13 @@ namespace GitLab.VisualStudio.Services
             {
                 case GitLabUrlType.CurrentBranch:
                     return repository.Head.FriendlyName.Replace("origin/", "");
+
                 case GitLabUrlType.CurrentRevision:
                     return repository.Commits.First().Id.ToString(8);
+
                 case GitLabUrlType.CurrentRevisionFull:
                     return repository.Commits.First().Id.Sha;
+
                 case GitLabUrlType.Master:
                 default:
                     return "master";
@@ -62,14 +64,19 @@ namespace GitLab.VisualStudio.Services
             {
                 case GitLabUrlType.CurrentBranch:
                     return Strings.GitAnalysisn_Branch + repository.Head.FriendlyName.Replace("origin/", "");
+
                 case GitLabUrlType.CurrentRevision:
                     return Strings.GitAnalysis_Revision + repository.Commits.First().Id.ToString(8);
+
                 case GitLabUrlType.CurrentRevisionFull:
                     return Strings.GitAnalysis_Revision + repository.Commits.First().Id.ToString(8) + Strings.GitAnalysis_GetGitLabTargetDescription_FullID;
+
                 case GitLabUrlType.Blame:
                     return Strings.GitAnalysis_Blame;
+
                 case GitLabUrlType.Commits:
                     return Strings.GitAnalysis_Commits;
+
                 case GitLabUrlType.Master:
                 default:
                     return "master";
@@ -111,13 +118,13 @@ namespace GitLab.VisualStudio.Services
         public string GetRepoUrlRoot()
         {
             string urlRoot = string.Empty;
-           var originUrl = repository.Config.Get<string>("remote.origin.url");
-            if (originUrl!=null )
+            var originUrl = repository.Config.Get<string>("remote.origin.url");
+            if (originUrl != null)
             {
                 // https://GitLab.com/user/repo
-                  urlRoot = (originUrl.Value.EndsWith(".git", StringComparison.InvariantCultureIgnoreCase))
-                    ? originUrl.Value.Substring(0, originUrl.Value.Length - 4) // remove .git
-                    : originUrl.Value;
+                urlRoot = (originUrl.Value.EndsWith(".git", StringComparison.InvariantCultureIgnoreCase))
+                  ? originUrl.Value.Substring(0, originUrl.Value.Length - 4) // remove .git
+                  : originUrl.Value;
 
                 // git@GitLab.com:user/repo -> http://GitLab.com/user/repo
                 urlRoot = Regex.Replace(urlRoot, "^git@(.+):(.+)/(.+)$", match => "http://" + string.Join("/", match.Groups.OfType<Group>().Skip(1).Select(group => group.Value)), RegexOptions.IgnoreCase);
@@ -127,17 +134,19 @@ namespace GitLab.VisualStudio.Services
             }
             return urlRoot;
         }
+
         public string GetRepoOriginRemoteUrl()
         {
             string urlRoot = string.Empty;
             var originUrl = repository.Config.Get<string>("remote.origin.url");
             if (originUrl != null)
             {
-                urlRoot = originUrl.Value ;
+                urlRoot = originUrl.Value;
             }
             return urlRoot;
         }
-        void Dispose(bool disposing)
+
+        private void Dispose(bool disposing)
         {
             if (repository != null)
             {

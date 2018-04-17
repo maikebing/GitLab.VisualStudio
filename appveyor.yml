@@ -16,7 +16,7 @@ before_build:
   - git submodule update --init --recursive
   - nuget restore GitLabVS.sln
   - ps: Vsix-IncrementVsixVersion | Vsix-UpdateBuildVersion
-  - ps: Vsix-TokenReplacement src\GitLab.VisualStudio\Constants.cs 'Version = "([0-9\\.]+)"' 'Version = "{version}"'
+  - ps: Vsix-TokenReplacement src\common\SolutionInfo.cs 'Version = "([0-9\\.]+)"' 'Version = "{version}"'
 
 build_script:
   - msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m

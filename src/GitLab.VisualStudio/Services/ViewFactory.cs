@@ -25,7 +25,7 @@ namespace GitLab.VisualStudio.Services
         [Import]
         private IWebService _web;
 
-        public T GetView<T>(ViewTypes type) where T: Control
+        public T GetView<T>(ViewTypes type) where T : Control
         {
             if (type == ViewTypes.Login)
             {
@@ -43,7 +43,7 @@ namespace GitLab.VisualStudio.Services
             }
             if (type == ViewTypes.CreateSnippet)
             {
-                return new CreateSnippet( _messenger, _shell, _storage, _web) as T;
+                return new CreateSnippet(_messenger, _shell, _storage, _web) as T;
             }
             return null;
         }

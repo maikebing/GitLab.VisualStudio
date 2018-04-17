@@ -13,18 +13,18 @@ namespace GitLab.VisualStudio.Services
 {
     public class Credential : IDisposable
     {
-        const int maxPasswordLengthInBytes = NativeMethods.CREDUI_MAX_PASSWORD_LENGTH * 2;
+        private const int maxPasswordLengthInBytes = NativeMethods.CREDUI_MAX_PASSWORD_LENGTH * 2;
 
-        static readonly object _lockObject = new object();
-        static readonly SecurityPermission _unmanagedCodePermission;
+        private static readonly object _lockObject = new object();
+        private static readonly SecurityPermission _unmanagedCodePermission;
 
-        CredentialType _type;
-        string _target;
-        SecureString _password;
-        string _username;
-        string _description;
-        DateTime _lastWriteTime;
-        PersistenceType _persistanceType;
+        private CredentialType _type;
+        private string _target;
+        private SecureString _password;
+        private string _username;
+        private string _description;
+        private DateTime _lastWriteTime;
+        private PersistenceType _persistanceType;
 
         static Credential()
         {
@@ -47,8 +47,9 @@ namespace GitLab.VisualStudio.Services
             _lastWriteTime = DateTime.MinValue;
         }
 
-        bool disposed;
-        void Dispose(bool disposing)
+        private bool disposed;
+
+        private void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -155,6 +156,7 @@ namespace GitLab.VisualStudio.Services
                 return LastWriteTimeUtc.ToLocalTime();
             }
         }
+
         public DateTime LastWriteTimeUtc
         {
             get
@@ -316,7 +318,7 @@ namespace GitLab.VisualStudio.Services
             LastWriteTimeUtc = DateTime.FromFileTimeUtc(credential.LastWritten);
         }
 
-        static void ValidatePasswordLength(byte[] passwordBytes)
+        private static void ValidatePasswordLength(byte[] passwordBytes)
         {
             if (passwordBytes.Length > maxPasswordLengthInBytes)
             {
@@ -328,5 +330,4 @@ namespace GitLab.VisualStudio.Services
             }
         }
     }
-
 }

@@ -2,7 +2,6 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -18,8 +17,8 @@ namespace GitLab.TeamFoundation.Home
         {
             _tes = tes;
             Text = Strings.Items_Issues;
-           
         }
+
         public override void Invalidate()
         {
             base.Invalidate();

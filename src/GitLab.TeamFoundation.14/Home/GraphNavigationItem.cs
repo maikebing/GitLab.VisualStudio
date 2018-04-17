@@ -2,8 +2,6 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -20,6 +18,7 @@ namespace GitLab.TeamFoundation.Home
             _tes = tes;
             Text = Strings.Items_Graph;
         }
+
         public override void Execute()
         {
             var repo = _tes.GetActiveRepository();

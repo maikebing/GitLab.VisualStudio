@@ -96,8 +96,8 @@
                     Content="{x:Static shared:Strings.Login_ForgetPassword}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
-                    Margin="0,8,0,56" 
-                    Command="{Binding ForgetPasswordCommand}" Grid.RowSpan="2"/>
+                    Margin="0,8,0,56"
+                    Command="{Binding ForgetPasswordCommand}" Grid.RowSpan="2" />
             <Button x:Name="SignInButton"
                     Height="40"
                     Background="#3b83c0"
@@ -184,7 +184,7 @@
                     HorizontalAlignment="Right"
                     Command="{Binding SignupCommand}"
                     Content="{x:Static shared:Strings.Login_SignUp}" Margin="0,8,10,106" />
-            <CheckBox IsChecked="{Binding Enable2FA}" x:Name="chk2FA" Content="{x:Static shared:Strings.TwoFactorAuthentication}" HorizontalAlignment="Left" Margin="151,8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="16" Width="82"/>
+            <CheckBox IsChecked="{Binding Enable2FA}" x:Name="chk2FA" Content="{x:Static shared:Strings.TwoFactorAuthentication}" HorizontalAlignment="Left" Margin="151,8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="16" Width="82" />
             <ComboBox x:Name="cbxApiVersion" HorizontalAlignment="Left" Margin="0,3,0,0" Grid.Row="4" VerticalAlignment="Top" Width="146" ItemsSource="{Binding ApiVersions}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"

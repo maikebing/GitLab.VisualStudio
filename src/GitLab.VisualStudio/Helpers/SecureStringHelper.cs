@@ -44,5 +44,4 @@ namespace GitLab.VisualStudio.Helpers
             return str;
         }
     }
-
 }

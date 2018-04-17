@@ -2,7 +2,6 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -33,4 +32,3 @@ namespace GitLab.TeamFoundation.Home
         }
     }
 }
-      

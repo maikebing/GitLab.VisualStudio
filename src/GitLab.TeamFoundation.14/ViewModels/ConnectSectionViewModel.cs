@@ -59,6 +59,7 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private Repository _selectedRepository;
+
         public Repository SelectedRepository
         {
             get { return _selectedRepository; }
@@ -66,24 +67,28 @@ namespace GitLab.TeamFoundation.ViewModels
         }
 
         private DelegateCommand _signOutCommand;
+
         public ICommand SignOutCommand
         {
             get { return _signOutCommand; }
         }
 
         private DelegateCommand _cloneCommand;
+
         public ICommand CloneCommand
         {
             get { return _cloneCommand; }
         }
 
         private DelegateCommand _createCommand;
+
         public ICommand CreateCommand
         {
             get { return _createCommand; }
         }
 
         private DelegateCommand<Repository> _openRepositoryCommand;
+
         public ICommand OpenRepositoryCommand
         {
             get { return _openRepositoryCommand; }
@@ -185,7 +190,6 @@ namespace GitLab.TeamFoundation.ViewModels
                 {
                     _teamexplorer.ShowMessage(ex.Message);
                 }
-
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 

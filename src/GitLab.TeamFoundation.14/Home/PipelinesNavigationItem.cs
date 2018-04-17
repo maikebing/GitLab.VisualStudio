@@ -2,7 +2,6 @@
 using GitLab.VisualStudio.Shared.Controls;
 using Microsoft.TeamFoundation.Controls;
 using System.ComponentModel.Composition;
-using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -17,13 +16,16 @@ namespace GitLab.TeamFoundation.Home
             Text = Strings.Items_Pipeline;
             _tes = tes;
         }
+
         private readonly ITeamExplorerServices _tes;
+
         public override void Invalidate()
         {
             base.Invalidate();
 
             IsVisible = IsVisible && _tes.Project != null && _tes.Project.BuildsEnabled;
         }
+
         public override void Execute()
         {
             OpenInBrowser("pipelines");

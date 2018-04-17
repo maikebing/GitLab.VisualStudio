@@ -20,20 +20,27 @@ namespace GitLab.VisualStudio.Helpers
         {
             public int Flags;
             public int Type;
+
             [MarshalAs(UnmanagedType.LPWStr)]
             public string TargetName;
+
             [MarshalAs(UnmanagedType.LPWStr)]
             public string Comment;
+
             public long LastWritten;
             public int CredentialBlobSize;
+
             [SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources"
                 , Justification = "Need to validate that SafeHandle works properly with native interop")]
             public IntPtr CredentialBlob;
+
             public int Persist;
             public int AttributeCount;
             public IntPtr Attributes;
+
             [MarshalAs(UnmanagedType.LPWStr)]
             public string TargetAlias;
+
             [MarshalAs(UnmanagedType.LPWStr)]
             public string UserName;
         }
@@ -44,11 +51,14 @@ namespace GitLab.VisualStudio.Helpers
         public struct CREDUI_INFO
         {
             public int cbSize;
+
             [SuppressMessage("Microsoft.Security", "CA2111:PointersShouldNotBeVisible"
                 , Justification = "This is needed for native interop")]
             public IntPtr hwndParent;
+
             public string pszMessageText;
             public string pszCaptionText;
+
             [SuppressMessage("Microsoft.Security", "CA2111:PointersShouldNotBeVisible"
                 , Justification = "This is needed for native interop")]
             public IntPtr hbmBanner;
@@ -84,34 +94,41 @@ namespace GitLab.VisualStudio.Helpers
             /// This value cannot be combined with SECURE_PROMPT.
             /// </summary>
             CREDUIWIN_GENERIC = 0x1,
+
             /// <summary>
             /// The Save check box is displayed in the dialog box.
             /// </summary>
             CREDUIWIN_CHECKBOX = 0x2,
+
             /// <summary>
             /// Only credential providers that support the authentication package specified by the authPackage parameter should be enumerated.
             /// This value cannot be combined with CREDUIWIN_IN_CRED_ONLY.
             /// </summary>
             CREDUIWIN_AUTHPACKAGE_ONLY = 0x10,
+
             /// <summary>
             /// Only the credentials specified by the InAuthBuffer parameter for the authentication package specified by the authPackage parameter should be enumerated.
             /// If this flag is set, and the InAuthBuffer parameter is NULL, the function fails.
             /// This value cannot be combined with CREDUIWIN_AUTHPACKAGE_ONLY.
             /// </summary>
             CREDUIWIN_IN_CRED_ONLY = 0x20,
+
             /// <summary>
             /// Credential providers should enumerate only administrators. This value is intended for User Account Control (UAC) purposes only. We recommend that external callers not set this flag.
             /// </summary>
             CREDUIWIN_ENUMERATE_ADMINS = 0x100,
+
             /// <summary>
             /// Only the incoming credentials for the authentication package specified by the authPackage parameter should be enumerated.
             /// </summary>
             CREDUIWIN_ENUMERATE_CURRENT_USER = 0x200,
+
             /// <summary>
             /// The credential dialog box should be displayed on the secure desktop. This value cannot be combined with CREDUIWIN_GENERIC.
             /// Windows Vista: This value is not supported until Windows Vista with SP1.
             /// </summary>
             CREDUIWIN_SECURE_PROMPT = 0x1000,
+
             /// <summary>
             /// The credential provider should align the credential BLOB pointed to by the refOutAuthBuffer parameter to a 32-bit boundary, even if the provider is running on a 64-bit system.
             /// </summary>
@@ -204,7 +221,7 @@ namespace GitLab.VisualStudio.Helpers
             }
 
             // Perform any specific actions to release the handle in the ReleaseHandle method.
-            // Often, you need to use Pinvoke to make a call into the Win32 API to release the 
+            // Often, you need to use Pinvoke to make a call into the Win32 API to release the
             // handle. In this case, however, we can use the Marshal class to release the unmanaged memory.
 
             override protected bool ReleaseHandle()
@@ -219,7 +236,7 @@ namespace GitLab.VisualStudio.Helpers
                     SetHandleAsInvalid();
                     return true;
                 }
-                // Return false. 
+                // Return false.
                 return false;
             }
         }

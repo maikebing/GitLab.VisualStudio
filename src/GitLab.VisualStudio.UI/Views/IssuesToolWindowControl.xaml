@@ -15,16 +15,16 @@
             <TabControl Height="254">
                 <TabItem Header="TabItem">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid HorizontalAlignment="Left" Height="146" Margin="10,10,0,0" VerticalAlignment="Top" Width="224"/>
+                        <DataGrid HorizontalAlignment="Left" Height="146" Margin="10,10,0,0" VerticalAlignment="Top" Width="224" />
                     </Grid>
                 </TabItem>
                 <TabItem Header="TabItem">
                     <Grid Background="#FFE5E5E5" Margin="0,0,-12,-152">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="19*"/>
-                            <ColumnDefinition Width="10*"/>
-                            <ColumnDefinition Width="200*"/>
-                            <ColumnDefinition Width="77*"/>
+                            <ColumnDefinition Width="19*" />
+                            <ColumnDefinition Width="10*" />
+                            <ColumnDefinition Width="200*" />
+                            <ColumnDefinition Width="77*" />
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </TabItem>

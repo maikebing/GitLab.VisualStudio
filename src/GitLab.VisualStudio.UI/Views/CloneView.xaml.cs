@@ -1,7 +1,5 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.UI.ViewModels;
-using System;
-using System.Windows.Media;
 
 namespace GitLab.VisualStudio.UI.Views
 {

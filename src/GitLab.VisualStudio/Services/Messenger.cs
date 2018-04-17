@@ -15,6 +15,7 @@ namespace GitLab.VisualStudio.Services
     public class Messenger : IMessenger
     {
         #region Miscellaneous
+
         private readonly IDictionary<string, HashSet<WeakAction>> Registry = new ConcurrentDictionary<string, HashSet<WeakAction>>();
 
         private class WeakAction
@@ -49,7 +50,7 @@ namespace GitLab.VisualStudio.Services
                 get { return _reference; }
             }
 
-            #endregion
+            #endregion Properties & Indexers
 
             public bool Match(Delegate action)
             {
@@ -170,12 +171,13 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        #endregion // Miscellaneous
+        #endregion Miscellaneous
 
         public void Send(string command)
         {
             Invoke(command);
         }
+
         public void Register(string command, Action action)
         {
             RegisterInternal(command, action);
@@ -185,6 +187,7 @@ namespace GitLab.VisualStudio.Services
         {
             Invoke(command, message);
         }
+
         public void Register<T>(string command, Action<T> action)
         {
             RegisterInternal(command, action);
@@ -194,6 +197,7 @@ namespace GitLab.VisualStudio.Services
         {
             Invoke(command, t1, t2);
         }
+
         public void Register<T1, T2>(string command, Action<T1, T2> action)
         {
             RegisterInternal(command, action);
@@ -203,6 +207,7 @@ namespace GitLab.VisualStudio.Services
         {
             InvokeWithCallback(command, callback);
         }
+
         public void Register<TReturn>(string command, Func<TReturn> action)
         {
             RegisterInternal(command, action);
@@ -212,6 +217,7 @@ namespace GitLab.VisualStudio.Services
         {
             InvokeWithCallback(command, callback, message);
         }
+
         public void Register<T, TReturn>(string command, Func<T, TReturn> action)
         {
             RegisterInternal(command, action);
@@ -221,6 +227,7 @@ namespace GitLab.VisualStudio.Services
         {
             InvokeWithCallback(command, callback, t1, t2);
         }
+
         public void Register<T1, T2, TReturn>(string command, Func<T1, T2, TReturn> action)
         {
             RegisterInternal(command, action);

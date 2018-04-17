@@ -35,7 +35,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             _mediator = mediator;
             ApiVersions = new Dictionary<string, string>();
-         
+
             ApiVersions.Add("V4_Oauth", "GitLab ApiV4 Oauth2");
             ApiVersions.Add("V3_Oauth", "GitLab ApiV3 Oauth2");
             ApiVersions.Add("V4", "GitLab ApiV4 ");
@@ -48,6 +48,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _host;
+
         [Required(ErrorMessageResourceType = typeof(Strings), AllowEmptyStrings = false, ErrorMessageResourceName = "Login_HostIsRequired")]
         public string Host
         {
@@ -86,23 +87,27 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     _dialog.Error(ex.Message);
                 }
-
             }
         }
+
         public IDictionary<string, string> ApiVersions { get; }
         private string _email;
+
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_EmailIsRequired")]
         public string Email
         {
             get { return _email; }
             set { SetProperty(ref _email, value); }
         }
+
         private bool _Enable2FA;
+
         public bool Enable2FA
         {
             get { return _Enable2FA; }
             set { SetProperty(ref _Enable2FA, value); }
         }
+
         [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Login_PasswordIsRequired")]
         public string Password
         {
@@ -117,15 +122,17 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private string _apiversion;
+
         public string SelectedApiVersion
         {
             get { return _apiversion; }
             set { SetProperty(ref _apiversion, value); }
         }
 
-
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -133,6 +140,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _busyContent;
+
         public string BusyContent
         {
             get { return _busyContent; }
@@ -140,24 +148,28 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private DelegateCommand _loginCommand;
+
         public ICommand LoginCommand
         {
             get { return _loginCommand; }
         }
 
         private DelegateCommand _forgetPasswordCommand;
+
         public ICommand ForgetPasswordCommand
         {
             get { return _forgetPasswordCommand; }
         }
 
         private DelegateCommand _activeAccountCommand;
+
         public ICommand ActiveAccountCommand
         {
             get { return _activeAccountCommand; }
         }
 
         private DelegateCommand _signupCommand;
+
         public ICommand SignupCommand
         {
             get { return _signupCommand; }
@@ -193,7 +205,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     exlogin = ex;
                 }
-
             }).ContinueWith(task =>
             {
                 IsBusy = false;
@@ -205,7 +216,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show(Strings.Login_FailedToLogin+"\r\n"+exlogin.Message);
+                    MessageBox.Show(Strings.Login_FailedToLogin + "\r\n" + exlogin.Message);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }

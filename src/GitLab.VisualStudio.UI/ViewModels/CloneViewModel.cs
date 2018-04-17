@@ -47,6 +47,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         public ICollectionView Repositories { get; }
 
         private string _baseRepositoryPath;
+
         public string BaseRepositoryPath
         {
             get { return _baseRepositoryPath; }
@@ -54,18 +55,21 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private DelegateCommand _browseCommand;
+
         public ICommand BrowseCommand
         {
             get { return _browseCommand; }
         }
 
         private DelegateCommand _cloneCommand;
+
         public ICommand CloneCommand
         {
             get { return _cloneCommand; }
         }
 
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -73,6 +77,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private string _message;
+
         public string Message
         {
             get { return _message; }
@@ -80,6 +85,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private ProjectViewModel _selectedRepository;
+
         public ProjectViewModel SelectedRepository
         {
             get { return _selectedRepository; }

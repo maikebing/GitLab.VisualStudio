@@ -1,16 +1,14 @@
-﻿
-
-using GitLab.VisualStudio.Shared;
+﻿using GitLab.VisualStudio.Shared;
 using LibGit2Sharp;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Microsoft.VisualStudio.Shell;
 
 namespace GitLab.VisualStudio.Services
 {
@@ -44,7 +42,7 @@ namespace GitLab.VisualStudio.Services
             return tempDirectory;
         }
 
-        public void FillAccessories(string fullname, string email,  string path, string gitignore, string license)
+        public void FillAccessories(string fullname, string email, string path, string gitignore, string license)
         {
             var assembly = Assembly.GetExecutingAssembly();
 
@@ -86,7 +84,7 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        public void PushInitialCommit(string fullname, string email,string username, string password, string url, string gitignore, string license)
+        public void PushInitialCommit(string fullname, string email, string username, string password, string url, string gitignore, string license)
         {
             var path = GetTemporaryDirectory();
             Directory.CreateDirectory(path);
@@ -100,7 +98,7 @@ namespace GitLab.VisualStudio.Services
             {
                 if (File.Exists(Path.Combine(path, ".gitignore")))
                 {
-                    LibGit2Sharp.Commands.Stage(repo,".gitignore");
+                    LibGit2Sharp.Commands.Stage(repo, ".gitignore");
                 }
 
                 if (File.Exists(Path.Combine(path, "LICENSE")))
@@ -129,16 +127,15 @@ namespace GitLab.VisualStudio.Services
                 var remote = repo.Network.Remotes["origin"];
                 var options = new PushOptions();
                 options.CredentialsProvider = (_url, _user, _cred) =>
-                    new UsernamePasswordCredentials { Username = (string.IsNullOrEmpty(username)?email: username), Password = password };
+                    new UsernamePasswordCredentials { Username = (string.IsNullOrEmpty(username) ? email : username), Password = password };
                 repo.Network.Push(remote, @"refs/heads/master", options);
             }
 
             DeleteDirectory(path);
         }
 
-        public void PushWithLicense(string fullname, string email,string username, string password, string url, string path, string license)
+        public void PushWithLicense(string fullname, string email, string username, string password, string url, string path, string license)
         {
-
             if (!LibGit2Sharp.Repository.IsValid(path))
             {
                 LibGit2Sharp.Repository.Init(path);
@@ -146,7 +143,7 @@ namespace GitLab.VisualStudio.Services
 
             using (var repo = new LibGit2Sharp.Repository(path))
             {
-                if (!string.IsNullOrEmpty(license)  )
+                if (!string.IsNullOrEmpty(license))
                 {
                     try
                     {
@@ -162,10 +159,10 @@ namespace GitLab.VisualStudio.Services
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine(ex.Message);  
+                        Debug.WriteLine(ex.Message);
                     }
                 }
-                if (repo.Network.Remotes.Any(r=>r.Name=="origin"))
+                if (repo.Network.Remotes.Any(r => r.Name == "origin"))
                 {
                     repo.Network.Remotes.Remove("origin");
                 }
@@ -239,8 +236,6 @@ namespace GitLab.VisualStudio.Services
 
             return result;
         }
-   
-
 
         public string GetRemote(string path)
         {

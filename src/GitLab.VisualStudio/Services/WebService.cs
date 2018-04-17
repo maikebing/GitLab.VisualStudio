@@ -23,8 +23,9 @@ namespace GitLab.VisualStudio.Services
         [Import]
         private IStorage _storage;
 
-        List<Project> lstProject = new List<Project>();
-        DateTime dts = DateTime.MinValue;
+        private List<Project> lstProject = new List<Project>();
+        private DateTime dts = DateTime.MinValue;
+
         public IReadOnlyList<Project> GetProjects()
         {
             lock (lstProject)
@@ -39,10 +40,10 @@ namespace GitLab.VisualStudio.Services
                     }
                     dts = DateTime.Now;
                 }
-
             }
             return lstProject;
         }
+
         public Project GetProject(string namespacedpath)
 
         {
@@ -55,6 +56,7 @@ namespace GitLab.VisualStudio.Services
             var pjt = client.Projects.Get(namespacedpath);
             return pjt;
         }
+
         public IReadOnlyList<Project> GetProjects(ProjectListType projectListType)
         {
             List<Project> lstpjt = new List<Project>();
@@ -70,15 +72,19 @@ namespace GitLab.VisualStudio.Services
                 case ProjectListType.Accessible:
                     project = client.Projects.Accessible().ToArray();
                     break;
+
                 case ProjectListType.Owned:
                     project = client.Projects.Owned().ToArray();
                     break;
+
                 case ProjectListType.Membership:
                     project = client.Projects.Membership().ToArray();
                     break;
+
                 case ProjectListType.Starred:
                     project = client.Projects.Starred().ToArray();
                     break;
+
                 default:
                     break;
             }
@@ -92,7 +98,7 @@ namespace GitLab.VisualStudio.Services
             return lstpjt;
         }
 
-        public User LoginAsync(bool enable2fa, string host, string email, string password,ApiVersion apiVersion)
+        public User LoginAsync(bool enable2fa, string host, string email, string password, ApiVersion apiVersion)
         {
             NGitLab.GitLabClient client = null;
             User user = null;
@@ -134,7 +140,8 @@ namespace GitLab.VisualStudio.Services
         {
             return CreateProject(name, description, isPrivate, 0);
         }
-       public  IReadOnlyList<NamespacesPath> GetNamespacesPathList()
+
+        public IReadOnlyList<NamespacesPath> GetNamespacesPathList()
         {
             List<NamespacesPath> nplist = new List<NamespacesPath>();
             NGitLab.GitLabClient client = GetClient();
@@ -156,23 +163,30 @@ namespace GitLab.VisualStudio.Services
             return client;
         }
 
-        public CreateProjectResult CreateProject(string name, string description, bool isPrivate,int  namespaceid)
+        public CreateProjectResult CreateProject(string name, string description, bool isPrivate, int namespaceid)
         {
-            
             var result = new CreateProjectResult();
             try
             {
-
                 var client = GetClient();
                 var pjt = client.Projects.Create(
                     new NGitLab.Models.ProjectCreate()
                     {
-                        Description = description, Name = name, VisibilityLevel = isPrivate ? NGitLab.Models.VisibilityLevel.Private : NGitLab.Models.VisibilityLevel.Public
-                       , IssuesEnabled= true, ContainerRegistryEnabled=true, JobsEnabled=true, LfsEnabled=true, SnippetsEnabled =true, WikiEnabled=true, MergeRequestsEnabled=true 
-                            , NamespaceId = namespaceid
+                        Description = description,
+                        Name = name,
+                        VisibilityLevel = isPrivate ? NGitLab.Models.VisibilityLevel.Private : NGitLab.Models.VisibilityLevel.Public
+                       ,
+                        IssuesEnabled = true,
+                        ContainerRegistryEnabled = true,
+                        JobsEnabled = true,
+                        LfsEnabled = true,
+                        SnippetsEnabled = true,
+                        WikiEnabled = true,
+                        MergeRequestsEnabled = true
+                            ,
+                        NamespaceId = namespaceid
                     });
                 result.Project = (Project)pjt;
-
             }
             catch (Exception ex)
             {
@@ -180,10 +194,11 @@ namespace GitLab.VisualStudio.Services
             }
             return result;
         }
+
         public CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility)
         {
             CreateSnippetResult result = new CreateSnippetResult() { Message = "", Snippet = null };
-           
+
             try
             {
                 var client = GetClient();
@@ -231,7 +246,8 @@ namespace GitLab.VisualStudio.Services
                 return pjt.FirstOrDefault();
             }
         }
-        public Project GetActiveProject(ProjectListType projectListType )
+
+        public Project GetActiveProject(ProjectListType projectListType)
         {
             using (GitAnalysis ga = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
             {
@@ -240,14 +256,14 @@ namespace GitLab.VisualStudio.Services
                 return pjt.FirstOrDefault();
             }
         }
+
         public bool CheckHaveNewChange()
         {
             bool ok = false;
             var pjt = GetActiveProject();
-            if (pjt!=null)
+            if (pjt != null)
             {
                 var client = GetClient();
-                
             }
             return ok;
         }

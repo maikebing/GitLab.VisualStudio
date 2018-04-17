@@ -14,7 +14,6 @@ namespace GitLab.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class Storage : IStorage
     {
- 
         public bool IsLogined
         {
             get
@@ -54,6 +53,7 @@ namespace GitLab.VisualStudio.Services
                 return url;
             }
         }
+
         public string Path
         {
             get
@@ -66,11 +66,12 @@ namespace GitLab.VisualStudio.Services
                 }
                 else
                 {
-                      _path = slnpath + "\\.vs\\.gitlab";
+                    _path = slnpath + "\\.vs\\.gitlab";
                 }
                 return _path;
             }
         }
+
         public string GetPassword(string _host)
         {
             var key = $"git:{_host}";
@@ -109,9 +110,8 @@ namespace GitLab.VisualStudio.Services
             {
                 user.PrivateToken = password;
             }
-            SaveToken(user.Host,user.Username, user.PrivateToken);
+            SaveToken(user.Host, user.Username, user.PrivateToken);
             SaveUserToLocal(user);
-          
         }
 
         private void SaveUserToLocal(User user)
@@ -139,7 +139,7 @@ namespace GitLab.VisualStudio.Services
                 if (fi.Directory.Exists)
                 {
                     fi.Directory.Create();
-                  //  fi.Directory.Attributes = FileAttributes.Hidden;
+                    //  fi.Directory.Attributes = FileAttributes.Hidden;
                 }
                 using (var writer = new JsonTextWriter(new StreamWriter(_path)))
                 {
@@ -148,10 +148,9 @@ namespace GitLab.VisualStudio.Services
                 }
                 //System.IO.File.SetAttributes(_path,   FileAttributes.Hidden);
             }
-         
         }
 
-        private void SavePassword(string _host,string username, string password)
+        private void SavePassword(string _host, string username, string password)
         {
             var key = $"git:{_host}";
             using (var credential = new Credential(username, password, key))
@@ -160,7 +159,7 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        private void SaveToken(string _host,string username, string token)
+        private void SaveToken(string _host, string username, string token)
         {
             var key = $"token:{_host}";
             using (var credential = new Credential(username, token, key))
@@ -177,7 +176,7 @@ namespace GitLab.VisualStudio.Services
                 string _path = Path;
                 if (!File.Exists(_path))
                 {
-                   var  tmp_path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".GitLab");
+                    var tmp_path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".GitLab");
                     if (System.IO.File.Exists(tmp_path))
                     {
                         System.IO.File.Copy(tmp_path, _path);
@@ -192,12 +191,9 @@ namespace GitLab.VisualStudio.Services
                     _user = token.ToObject<User>();
                     _user.PrivateToken = GetToken(_user.Host);
                 }
-
             }
             catch (Exception ex)
             {
-
-             
             }
             return _user;
         }
@@ -223,7 +219,7 @@ namespace GitLab.VisualStudio.Services
             if (!System.IO.Directory.Exists(_path))
             {
                 var user = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-              _path=   System.IO.Path.Combine(user, "Source", "Repos");
+                _path = System.IO.Path.Combine(user, "Source", "Repos");
             }
 
             return _path;

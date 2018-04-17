@@ -13,7 +13,6 @@ namespace GitLab.TeamFoundation.Sync
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class GitLabPublishSection : TeamExplorerSectionBase
     {
-
         private readonly IMessenger _messenger;
         private readonly IGitService _git;
         private readonly IShellService _shell;
@@ -23,7 +22,7 @@ namespace GitLab.TeamFoundation.Sync
         private readonly IWebService _web;
 
         [ImportingConstructor]
-        public GitLabPublishSection(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory,  IWebService web)
+        public GitLabPublishSection(IMessenger messenger, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IViewFactory viewFactory, IWebService web)
         {
             _messenger = messenger;
             _git = git;

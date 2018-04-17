@@ -23,7 +23,7 @@ namespace GitLab.TeamFoundation.Connect
         private readonly IWebService _web;
 
         [ImportingConstructor]
-        public GitLabConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory,  IWebService web)
+        public GitLabConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IWebService web)
         {
             _messenger = messenger;
             _shell = shell;
@@ -59,6 +59,7 @@ namespace GitLab.TeamFoundation.Connect
         {
             return new ConnectSectionView();
         }
+
         protected override void InitializeView(SectionInitializeEventArgs e)
         {
             var view = this.SectionContent as FrameworkElement;

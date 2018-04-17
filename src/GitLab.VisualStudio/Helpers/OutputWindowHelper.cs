@@ -21,10 +21,8 @@ namespace GitLab.VisualStudio.Helpers
 
         #region Methods
 
-    
         internal static void DiagnosticWriteLine(string message, Exception ex = null)
         {
-
             if (ex != null)
             {
                 message += $": {ex}";
@@ -33,20 +31,17 @@ namespace GitLab.VisualStudio.Helpers
             WriteLine("Diagnostic", message);
         }
 
-  
         internal static void ExceptionWriteLine(string message, Exception ex)
         {
             var exceptionMessage = $"{message}: {ex}";
             WriteLine("Handled Exception", exceptionMessage);
         }
 
-   
         internal static void WarningWriteLine(string message)
         {
             WriteLine("Warning", message);
         }
 
-     
         private static IVsOutputWindowPane GetGitLabVsOutputWindowPane()
         {
             var outputWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
@@ -61,7 +56,6 @@ namespace GitLab.VisualStudio.Helpers
             return windowPane;
         }
 
-    
         private static void WriteLine(string category, string message)
         {
             var outputWindowPane = GitLabVSOutputWindowPane;

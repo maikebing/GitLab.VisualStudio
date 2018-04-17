@@ -1,17 +1,13 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
+using GitLab.VisualStudio.Shared.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections;
-using System.IO;
-using System.Threading;
-using GitLab.VisualStudio.Shared.Models;
 
 namespace GitLab.VisualStudio.UI.ViewModels
 {
@@ -35,11 +31,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             GitIgnores = new Dictionary<string, string>();
             Licenses = new Dictionary<string, string>();
-            Namespaces=new    Dictionary<string, string>();
+            Namespaces = new Dictionary<string, string>();
             _path = storage.GetBaseRepositoryDirectory();
 
             LoadResources();
-            
+
             _newCommand = new DelegateCommand(OnSave, CanSave);
             _browseCommand = new DelegateCommand(OnBrowse);
         }
@@ -60,11 +56,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 Licenses.Add(line, line);
             }
             string defaultnamespace = _storage.GetUser().Username;
-        
+
             foreach (var path in _web.GetNamespacesPathList())
             {
                 Namespaces.Add(path.id.ToString(), $"{path.name} - {path.full_path}");
-                if (path.full_path== defaultnamespace)
+                if (path.full_path == defaultnamespace)
                 {
                     SelectedNamespaces = path.id.ToString();
                 }
@@ -73,7 +69,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private string _name;
 
-        [Required(ErrorMessageResourceType =typeof(Strings), ErrorMessageResourceName = "CreateView_NameIsRequired")]
+        [Required(ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "CreateView_NameIsRequired")]
         [MaxLength(64, ErrorMessageResourceType = typeof(Strings), ErrorMessageResourceName = "Common_NameMaxTo")]
         public string Name
         {
@@ -97,6 +93,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -104,6 +101,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private bool _isPrivate;
+
         public bool IsPrivate
         {
             get { return _isPrivate; }
@@ -129,6 +127,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         public IDictionary<string, string> Namespaces { get; }
 
         private string _selectedGitIgnore;
+
         public string SelectedGitIgnore
         {
             get { return _selectedGitIgnore; }
@@ -138,6 +137,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         public IDictionary<string, string> Licenses { get; }
 
         private string _selectedLicense;
+
         public string SelectedLicense
         {
             get { return _selectedLicense; }
@@ -145,24 +145,26 @@ namespace GitLab.VisualStudio.UI.ViewModels
         }
 
         private DelegateCommand _browseCommand;
+
         public ICommand BrowseCommand
         {
             get { return _browseCommand; }
         }
 
         private DelegateCommand _newCommand;
+
         public ICommand NewCommand
         {
             get { return _newCommand; }
         }
+
         private string _selectedNamespaces;
+
         public string SelectedNamespaces
         {
             get { return _selectedNamespaces; }
             set { SetProperty(ref _selectedNamespaces, value); }
         }
-
-       
 
         private void OnBrowse()
         {
@@ -184,7 +186,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 try
                 {
-
                     if (_web.GetProjects().Any(p => p.Name == Name))
                     {
                         error = string.Format(Strings.CreateViewModel_OnSave_TheProject0AlreadyExists, Name);
@@ -192,7 +193,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     else
                     {
                         int namespaceid = -1;
-                        int.TryParse(SelectedNamespaces,out namespaceid);
+                        int.TryParse(SelectedNamespaces, out namespaceid);
                         result = _web.CreateProject(Name, Description, IsPrivate, namespaceid);
                         if (result.Project != null)
                         {
@@ -238,8 +239,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             var user = _storage.GetUser();
             var password = _storage.GetPassword(user.Host);
 
-            _git.PushInitialCommit(user.Name, user.Email,user.Username, password, url, SelectedGitIgnore, SelectedLicense);
-          
+            _git.PushInitialCommit(user.Name, user.Email, user.Username, password, url, SelectedGitIgnore, SelectedLicense);
         }
 
         private bool CanSave()

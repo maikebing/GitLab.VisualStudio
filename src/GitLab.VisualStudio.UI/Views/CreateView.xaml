@@ -117,7 +117,7 @@
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_New}"
                         Command="{Binding NewCommand}" Margin="0,-8,0,1" />
-                <Frame x:Name="frame" Content="" Width="13"/>
+                <Frame x:Name="frame" Content="" Width="13" />
                 <Button Width="117"
                           Background="#3b83c0"
                     Foreground="#ffffff"
@@ -130,7 +130,7 @@
             <ComboBox x:Name="cbxNamespaces"   ItemsSource="{Binding  Namespaces}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedNamespaces}"  Grid.Column="1" HorizontalAlignment="Left" Margin="8,3,0,0" VerticalAlignment="Top" Width="128" Height="32"/>
+                      SelectedValue="{Binding SelectedNamespaces}"  Grid.Column="1" HorizontalAlignment="Left" Margin="8,3,0,0" VerticalAlignment="Top" Width="128" Height="32" />
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>
