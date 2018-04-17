@@ -10,8 +10,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]
-
-internal static class PackageVersion
-{
-    public const string Version = "1.0.0.129";
-}

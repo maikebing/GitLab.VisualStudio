@@ -26,7 +26,7 @@ namespace GitLab.VisualStudio
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideBindingPath]
-    [InstalledProductRegistration("#110", "#112", PackageVersion.Version, IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)]
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(IssuesToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
@@ -75,13 +75,13 @@ namespace GitLab.VisualStudio
 
         public int ProductDetails(out string pbstrProductDetails)
         {
-            pbstrProductDetails = GetResourceString("@121");
+            pbstrProductDetails = Vsix.Description;
             return VSConstants.S_OK;
         }
 
         public int ProductID(out string pbstrPID)
         {
-            pbstrPID = GetResourceString("@114");
+            pbstrPID = Vsix.Id;
             return VSConstants.S_OK;
         }
 
