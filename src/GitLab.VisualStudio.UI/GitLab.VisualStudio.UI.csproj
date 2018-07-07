@@ -175,8 +175,8 @@
     <Compile Include="Views\CreateView.xaml.cs">
       <DependentUpon>CreateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IssuesToolWindowControl.xaml.cs">
-      <DependentUpon>IssuesToolWindowControl.xaml</DependentUpon>
+    <Compile Include="Views\GitLabWindowControl.xaml.cs">
+      <DependentUpon>GitLabWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -212,7 +212,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\IssuesToolWindowControl.xaml">
+    <Page Include="Views\GitLabWindowControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -29,7 +29,7 @@ namespace GitLab.VisualStudio
     [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)]
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideToolWindow(typeof(IssuesToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
+    [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string)]
     public class GitLabPackage : Package, IVsInstalledProduct
     {
@@ -156,10 +156,10 @@ namespace GitLab.VisualStudio
             }
         }
 
-        private IssuesToolWindow _issuesTool;
+        private GitLabToolWindow _issuesTool;
 
-        public IssuesToolWindow IssuesTool =>
-      _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(IssuesToolWindow), 0, false) as IssuesToolWindow));
+        public GitLabToolWindow IssuesTool =>
+      _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));
 
         private void SolutionEvents_Opened()
         {
@@ -269,7 +269,7 @@ namespace GitLab.VisualStudio
             // Get the instance number 0 of this tool window. This window is single instance so this instance
             // is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
-            ToolWindowPane window = FindToolWindow(typeof(IssuesToolWindow), 0, true);
+            ToolWindowPane window = FindToolWindow(typeof(GitLabToolWindow), 0, true);
             if ((null == window) || (null == window.Frame))
             {
                 throw new NotSupportedException("Cannot create tool window");

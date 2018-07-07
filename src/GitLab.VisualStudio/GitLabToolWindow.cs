@@ -17,19 +17,19 @@
     /// </para>
     /// </remarks>
     [Guid("f9a7baae-1c20-42be-bd8d-54c308c5f5c7")]
-    public class IssuesToolWindow : ToolWindowPane
+    public class GitLabToolWindow : ToolWindowPane
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IssuesToolWindow"/> class.
+        /// Initializes a new instance of the <see cref="GitLabToolWindow"/> class.
         /// </summary>
-        public IssuesToolWindow() : base(null)
+        public GitLabToolWindow() : base(null)
         {
-            this.Caption = "IssuesToolWindow";
+            this.Caption = GitLab.VisualStudio.Shared.Strings.Name;
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
-            this.Content = new IssuesToolWindowControl();
+            this.Content = new GitLabWindowControl();
         }
     }
 }

@@ -7,12 +7,12 @@
     /// <summary>
     /// Interaction logic for IssuesToolWindowControl.
     /// </summary>
-    public partial class IssuesToolWindowControl : UserControl
+    public partial class GitLabWindowControl : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IssuesToolWindowControl"/> class.
+        /// Initializes a new instance of the <see cref="GitLabWindowControl"/> class.
         /// </summary>
-        public IssuesToolWindowControl()
+        public GitLabWindowControl()
         {
             this.InitializeComponent();
         }
