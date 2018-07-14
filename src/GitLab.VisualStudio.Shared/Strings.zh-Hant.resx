@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -371,5 +371,8 @@
   </data>
   <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
     <value>創建之後在瀏覽器中打開 </value>
+  </data>
+  <data name="ProjectVisibility" xml:space="preserve">
+    <value>項目可見度</value>
   </data>
 </root>

@@ -374,4 +374,7 @@
   <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
     <value>创建之后在浏览器中打开 </value>
   </data>
+  <data name="ProjectVisibility" xml:space="preserve">
+    <value>项目可见度</value>
+  </data>
 </root>

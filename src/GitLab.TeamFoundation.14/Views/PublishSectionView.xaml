@@ -113,7 +113,7 @@
                       SelectedValue="{Binding SelectedLicense}" />
                 <Label Grid.Row="3"
                    Grid.Column="0"
-                   Content="{x:Static shared:Strings.Common_Private}" />
+                   Content="{x:Static shared:Strings.ProjectVisibility}" />
                 <ComboBox x:Name="VisibilityLevelsComboBox"
                       Grid.Row="3"
                       Grid.Column="1"

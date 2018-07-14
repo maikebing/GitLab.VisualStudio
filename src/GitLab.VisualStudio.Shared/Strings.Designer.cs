@@ -700,6 +700,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Project visibility 的本地化字符串。
+        /// </summary>
+        public static string ProjectVisibility {
+            get {
+                return ResourceManager.GetString("ProjectVisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 GitLab 的本地化字符串。
         /// </summary>
         public static string Provider {

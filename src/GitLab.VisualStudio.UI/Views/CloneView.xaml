@@ -160,7 +160,7 @@
                                         IsEnabled="{Binding FilterTextIsEnabled, Mode=OneWay}" Height="28" FontSize="13" />
 
                 <Button x:Name="cloneButton"
-                        Margin="10,12"
+                        Margin="10,12,10.4,12"
                           Background="#3b83c0"
                     Foreground="#ffffff"
                     FontWeight="Bold"
@@ -170,7 +170,7 @@
                         IsDefault="True"
                         DockPanel.Dock="Bottom"
                         Command="{Binding CloneCommand}"
-                        Content="{x:Static shared:Strings.Common_Clone}" Height="46" />
+                        Content="{x:Static shared:Strings.Common_Clone}" Height="33" />
 
                 <Border DockPanel.Dock="Bottom"
                         Style="{StaticResource repositoryBorderStyle}" Height="56">
@@ -185,7 +185,7 @@
                                  Grid.Column="1"
                                  VerticalAlignment="Center"
                                  IsReadOnly="True"
-                                 Text="{Binding BaseRepositoryPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" Width="257" Height="35" FontSize="13" />
+                                 Text="{Binding BaseRepositoryPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10,0,21.2" Width="257" Height="24" FontSize="13" />
                         <Button x:Name="browsePathButton"
                                   Background="#3b83c0"
                     Foreground="#ffffff"
@@ -194,7 +194,7 @@
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Content="{x:Static shared:Strings.Common_Browse}"
-                                Command="{Binding BrowseCommand}" Margin="262,10,10,10" Height="35" />
+                                Command="{Binding BrowseCommand}" Margin="262,10,10.4,21.2" Height="24" />
                         <Label
                                Grid.Column="0"
                                Margin="3,6,5,10"

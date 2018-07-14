@@ -28,8 +28,9 @@
                 <RowDefinition Height="15" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="28.8" />
-                <RowDefinition Height="41.6" />
-                <RowDefinition Height="24" />
+                <RowDefinition Height="35.2" />
+                <RowDefinition Height="10.8" />
+                <RowDefinition Height="19.6"/>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="41.6" />
             </Grid.RowDefinitions>
@@ -37,10 +38,10 @@
             <Label Content="{x:Static shared:Strings.Common_Name}"
                    VerticalAlignment="Center" Height="24" Margin="0,8" Width="34" />
             <controls:IconedTextBox Grid.Column="1"
-                                    Height="40"
+                                    Height="32"
                                     VerticalAlignment="Top"
                                     Wartermark="{x:Static shared:Strings.Common_Name}"
-                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="138,0,0.2,0" />
+                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="138,3,0.2,0" />
 
             <Label Content="{x:Static shared:Strings.Common_Description}"
                    Grid.Row="1" Width="34" Margin="0,15,0,0.2" Grid.RowSpan="2" />
@@ -62,10 +63,10 @@
                       ItemsSource="{Binding GitIgnores}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedGitIgnore}" Height="25" Margin="0,11.8,0.2,33.6" Grid.RowSpan="2" />
+                      SelectedValue="{Binding SelectedGitIgnore}" Height="25" Margin="0,2.8,0.2,1" />
 
             <Label Content="{x:Static shared:Strings.Common_License}"
-                   Grid.Row="4" Width="34" Margin="0,3,0,3.6" />
+                   Grid.Row="4" Width="34" Margin="0,4,5,5.4" Grid.RowSpan="2" />
             <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="4"
                       Grid.Column="1"
@@ -73,16 +74,16 @@
                       ItemsSource="{Binding Licenses}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedLicense}" Height="26" Margin="0,14,0.2,1.6" />
+                      SelectedValue="{Binding SelectedLicense}" Height="26" Margin="0,4,0.2,5.2" />
 
-            <Label Content="{x:Static shared:Strings.Common_Property}"
+            <Label Content="{x:Static shared:Strings.ProjectVisibility}"
                    Grid.Row="5"
-                   VerticalAlignment="Center" Height="24" Margin="0,6.4,0,33.6" Width="34" Grid.RowSpan="2" />
+                   VerticalAlignment="Center" Height="29" Margin="-8,1.8,0,39.6" Width="76" Grid.RowSpan="3" />
 
             <Label Content="{x:Static shared:Strings.Common_Path}"
-                   Grid.Row="6"
+                   Grid.Row="7"
                    VerticalAlignment="Center" Height="24" Margin="0,11.4,0,4.6" Width="34" />
-            <DockPanel Grid.Row="6"
+            <DockPanel Grid.Row="7"
                        Grid.Column="1" Margin="0,11.4,0.2,0.6">
                 <Button Content="{x:Static shared:Strings.Common_Browse}"
                         Width="82"
@@ -97,7 +98,7 @@
                                         VerticalContentAlignment="Center" Width="241" />
             </DockPanel>
 
-            <StackPanel Grid.Row="7"
+            <StackPanel Grid.Row="8"
                         Grid.Column="1"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
@@ -108,16 +109,16 @@
                     FontWeight="Bold"
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_New}"
-                        Command="{Binding NewCommand}" Margin="0,-8,0,1" />
-                <Frame x:Name="frame" Content="" Width="13" />
+                        Command="{Binding NewCommand}" Margin="0,0,0,1" />
                 <Button Width="117"
                           Background="#3b83c0"
                     Foreground="#ffffff"
                     FontWeight="Bold"
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_Cancel}"
-                        Margin="10,-8,0,1"
+                        Margin="10,0,0,1"
                         Click="OnCancel" />
+                <Frame x:Name="frame" Content="" Width="13" />
             </StackPanel>
             <ComboBox x:Name="cbxNamespaces"   ItemsSource="{Binding  Namespaces}"
                       DisplayMemberPath="Value"
@@ -126,7 +127,7 @@
             <ComboBox x:Name="cbxVisibilityLevel" ItemsSource="{Binding   VisibilityLevels}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedVisibilityLevels}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,3.4,0,0" Grid.Row="5" VerticalAlignment="Top" Width="327" Height="28" Grid.RowSpan="2"/>
+                      SelectedValue="{Binding SelectedVisibilityLevels}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="327" Height="28" Grid.RowSpan="2"/>
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

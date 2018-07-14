@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -371,5 +371,8 @@
   </data>
   <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
     <value>Dopo aver creato aperto nel browser</value>
+  </data>
+  <data name="ProjectVisibility" xml:space="preserve">
+    <value>Visibilità del progetto</value>
   </data>
 </root>
