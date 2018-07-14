@@ -111,13 +111,17 @@
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedLicense}" />
-
-                <CheckBox Grid.Row="3"
+                <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Content="{x:Static shared:Strings.Common_Private}" />
+                <ComboBox x:Name="VisibilityLevelsComboBox"
+                      Grid.Row="3"
                       Grid.Column="1"
-                      Background="Transparent"
                       VerticalAlignment="Center"
-                      IsChecked="{Binding IsPrivate}"
-                      Content="{x:Static shared:Strings.Common_Private}" />
+                      ItemsSource="{Binding VisibilityLevels}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding SelectedVisibilityLevels}" />
                 <Button Grid.Row="3"
                     Grid.Column="1"
                     Width="75"

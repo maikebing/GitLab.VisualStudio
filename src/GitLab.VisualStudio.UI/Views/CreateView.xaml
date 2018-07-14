@@ -27,11 +27,11 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="15" />
                 <RowDefinition Height="100" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="55" />
+                <RowDefinition Height="28.8" />
+                <RowDefinition Height="41.6" />
+                <RowDefinition Height="24" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="41.6" />
             </Grid.RowDefinitions>
 
             <Label Content="{x:Static shared:Strings.Common_Name}"
@@ -40,21 +40,21 @@
                                     Height="40"
                                     VerticalAlignment="Top"
                                     Wartermark="{x:Static shared:Strings.Common_Name}"
-                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="138,0,0,0" />
+                                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="138,0,0.2,0" />
 
             <Label Content="{x:Static shared:Strings.Common_Description}"
-                   Grid.Row="2" Width="34" />
-            <controls:IconedTextBox Grid.Row="2"
+                   Grid.Row="1" Width="34" Margin="0,15,0,0.2" Grid.RowSpan="2" />
+            <controls:IconedTextBox Grid.Row="1"
                                     Grid.Column="1"
                                     VerticalContentAlignment="Top"
                                     Wartermark="{x:Static shared:Strings.CreateView_ThisIsACoollProject}"
                                     Text="{Binding Description}"
                                     TextWrapping="Wrap"
                                     AcceptsReturn="True"
-                                    VerticalScrollBarVisibility="Auto" />
+                                    VerticalScrollBarVisibility="Auto" Margin="0,15,0.2,0.2" Grid.RowSpan="2" />
 
             <Label Content="{x:Static shared:Strings.Common_GitIgnore}"
-                   Grid.Row="3" Width="67" />
+                   Grid.Row="2" Width="67" Margin="0,99.8,0,1" Grid.RowSpan="2" />
             <ComboBox x:Name="GitIgnoresComboBox"
                       Grid.Row="3"
                       Grid.Column="1"
@@ -62,10 +62,10 @@
                       ItemsSource="{Binding GitIgnores}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedGitIgnore}" Height="25" Margin="0,5,0,0" />
+                      SelectedValue="{Binding SelectedGitIgnore}" Height="25" Margin="0,11.8,0.2,33.6" Grid.RowSpan="2" />
 
             <Label Content="{x:Static shared:Strings.Common_License}"
-                   Grid.Row="4" Width="34" />
+                   Grid.Row="4" Width="34" Margin="0,3,0,3.6" />
             <ComboBox x:Name="LicensesComboBox"
                       Grid.Row="4"
                       Grid.Column="1"
@@ -73,25 +73,17 @@
                       ItemsSource="{Binding Licenses}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedLicense}" Height="27" Margin="0,5,0,28" Grid.RowSpan="2" />
+                      SelectedValue="{Binding SelectedLicense}" Height="26" Margin="0,14,0.2,1.6" />
 
             <Label Content="{x:Static shared:Strings.Common_Property}"
                    Grid.Row="5"
-                   VerticalAlignment="Center" Height="24" Margin="0,3" Width="34" />
-            <CheckBox Grid.Row="5"
-                      VerticalAlignment="Center"
-                      IsChecked="{Binding IsPrivate}"
-                      Grid.Column="1" Height="16" Margin="0,7">
-                <TextBlock>
-                    <Run Text="{x:Static shared:Strings.Common_Private}" /><Run Text="?" />
-                </TextBlock>
-            </CheckBox>
+                   VerticalAlignment="Center" Height="24" Margin="0,6.4,0,33.6" Width="34" Grid.RowSpan="2" />
 
             <Label Content="{x:Static shared:Strings.Common_Path}"
                    Grid.Row="6"
-                   VerticalAlignment="Center" Height="24" Margin="0,3" Width="34" />
+                   VerticalAlignment="Center" Height="24" Margin="0,11.4,0,4.6" Width="34" />
             <DockPanel Grid.Row="6"
-                       Grid.Column="1">
+                       Grid.Column="1" Margin="0,11.4,0.2,0.6">
                 <Button Content="{x:Static shared:Strings.Common_Browse}"
                         Width="82"
                           Background="#3b83c0"
@@ -109,7 +101,7 @@
                         Grid.Column="1"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
-                        Margin="0,17,0,10" Height="28">
+                        Margin="0,10.4,0.2,3.2" Height="28">
                 <Button Width="117"
                           Background="#3b83c0"
                     Foreground="#ffffff"
@@ -131,6 +123,10 @@
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
                       SelectedValue="{Binding SelectedNamespaces}"  Grid.Column="1" HorizontalAlignment="Left" Margin="8,3,0,0" VerticalAlignment="Top" Width="128" Height="32" />
+            <ComboBox x:Name="cbxVisibilityLevel" ItemsSource="{Binding   VisibilityLevels}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding SelectedVisibilityLevels}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,3.4,0,0" Grid.Row="5" VerticalAlignment="Top" Width="327" Height="28" Grid.RowSpan="2"/>
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

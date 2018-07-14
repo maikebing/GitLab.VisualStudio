@@ -26,9 +26,9 @@ namespace GitLab.VisualStudio.Shared
 
         IReadOnlyList<Project> GetProjects();
 
-        CreateProjectResult CreateProject(string name, string description, bool isPrivate, int namespaceid);
+        CreateProjectResult CreateProject(string name, string description, string VisibilityLevel, int namespaceid);
 
-        CreateProjectResult CreateProject(string name, string description, bool isPrivate);
+        CreateProjectResult CreateProject(string name, string description, string VisibilityLevel);
 
         CreateSnippetResult CreateSnippet(string title, string filename, string description, string code, string visibility);
 

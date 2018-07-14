@@ -136,9 +136,9 @@ namespace GitLab.VisualStudio.Services
             return (NGitLab.Impl.Api.ApiVersion)Enum.Parse(typeof(NGitLab.Impl.Api.ApiVersion), apiVersion.ToString());
         }
 
-        public CreateProjectResult CreateProject(string name, string description, bool isPrivate)
+        public CreateProjectResult CreateProject(string name, string description, string VisibilityLevel)
         {
-            return CreateProject(name, description, isPrivate, 0);
+            return CreateProject(name, description,   VisibilityLevel, 0);
         }
 
         public IReadOnlyList<NamespacesPath> GetNamespacesPathList()
@@ -163,19 +163,23 @@ namespace GitLab.VisualStudio.Services
             return client;
         }
 
-        public CreateProjectResult CreateProject(string name, string description, bool isPrivate, int namespaceid)
+        public CreateProjectResult CreateProject(string name, string description, string VisibilityLevel, int namespaceid)
         {
             var result = new CreateProjectResult();
             try
             {
+                NGitLab.Models.VisibilityLevel vl_temp= NGitLab.Models.VisibilityLevel.Private;
+                if (!Enum.TryParse(VisibilityLevel,out vl_temp))
+                {
+                    vl_temp = NGitLab.Models.VisibilityLevel.Private;
+                }
                 var client = GetClient();
                 var pjt = client.Projects.Create(
                     new NGitLab.Models.ProjectCreate()
                     {
                         Description = description,
                         Name = name,
-                        VisibilityLevel = isPrivate ? NGitLab.Models.VisibilityLevel.Private : NGitLab.Models.VisibilityLevel.Public
-                       ,
+                        VisibilityLevel = vl_temp,
                         IssuesEnabled = true,
                         ContainerRegistryEnabled = true,
                         JobsEnabled = true,

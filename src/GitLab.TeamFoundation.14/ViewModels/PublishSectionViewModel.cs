@@ -64,6 +64,10 @@ namespace GitLab.TeamFoundation.ViewModels
             {
                 Licenses.Add(line, line);
             }
+            VisibilityLevels.Add("Private", "Private");
+            VisibilityLevels.Add("Internal", "Internal");
+            VisibilityLevels.Add("Public", "Public");
+            SelectedVisibilityLevels = "Public";
         }
 
         public string Name { get; set; }
@@ -80,6 +84,13 @@ namespace GitLab.TeamFoundation.ViewModels
             set { SetProperty(ref _selectedLicense, value); }
         }
 
+        public IDictionary<string, string> VisibilityLevels { get; } = new Dictionary<string, string>();
+        private string _selectedVisibilityLevels;
+        public string SelectedVisibilityLevels
+        {
+            get { return _selectedVisibilityLevels; }
+            set { SetProperty(ref _selectedVisibilityLevels, value); }
+        }
         private bool _isStarted;
 
         public bool IsStarted
@@ -114,13 +125,7 @@ namespace GitLab.TeamFoundation.ViewModels
             set { SetProperty(ref _isBusy, value); }
         }
 
-        private bool _isPrivate;
-
-        public bool IsPrivate
-        {
-            get { return _isPrivate; }
-            set { SetProperty(ref _isPrivate, value); }
-        }
+       
 
         private DelegateCommand _loginCommand;
 
@@ -241,7 +246,7 @@ namespace GitLab.TeamFoundation.ViewModels
             {
                 try
                 {
-                    result = _web.CreateProject(RepositoryName, RepositoryDescription, IsPrivate);
+                    result = _web.CreateProject(RepositoryName, RepositoryDescription, SelectedVisibilityLevels);
                     if (result.Project != null)
                     {
                         var activeRepository = _tes.GetActiveRepository();
