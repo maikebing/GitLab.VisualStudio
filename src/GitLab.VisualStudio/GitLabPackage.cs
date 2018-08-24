@@ -88,10 +88,7 @@ namespace GitLab.VisualStudio
         public  string   GetResourceString(string resourceName)
         {
             string resourceValue;
-            if (!ThreadHelper.JoinableTaskFactory.Context.IsOnMainThread)
-            {
-                ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            }
+           
             var resourceManager =  (IVsResourceManager)GetService(typeof(SVsResourceManager));
             if (resourceManager == null)
             {
@@ -279,7 +276,6 @@ namespace GitLab.VisualStudio
             {
                 throw new NotSupportedException("Cannot create tool window");
             }
-            JoinableTaskFactory.SwitchToMainThreadAsync();
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }

@@ -1,6 +1,7 @@
 ﻿using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
+using Microsoft.VisualStudio.Shell;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 
@@ -23,12 +24,13 @@ namespace GitLab.TeamFoundation.Home
             IsVisible = false;
             base.Initialize(sender, e);
         }
-
-        public override async void Refresh()
+        public override void Refresh()
         {
-            IsVisible = await _tes.IsGitLabRepoAsync();
+            ThreadHelper.JoinableTaskFactory.RunAsync(() => _tes.IsGitLabRepoAsync());
             base.Refresh();
         }
+  
+
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {

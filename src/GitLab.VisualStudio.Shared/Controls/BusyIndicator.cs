@@ -112,6 +112,7 @@ namespace GitLab.VisualStudio.Shared.Controls
 
                 if (this.FocusAfterBusy != null)
                 {
+                 
                     this.FocusAfterBusy.Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(() =>
                     {
                         this.FocusAfterBusy.Focus();

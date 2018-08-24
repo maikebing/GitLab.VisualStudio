@@ -44,10 +44,6 @@ namespace GitLab.VisualStudio.Helpers
 
         private static IVsOutputWindowPane GetGitLabVsOutputWindowPane()
         {
-            if (!ThreadHelper.JoinableTaskFactory.Context.IsOnMainThread)
-            {
-                ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            }
             var outputWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             if (outputWindow == null) return null;
 
@@ -66,10 +62,6 @@ namespace GitLab.VisualStudio.Helpers
             if (outputWindowPane != null)
             {
                 string outputMessage = $"[GitLab for Visual Studio  {category} {DateTime.Now.ToString("hh:mm:ss tt")}] {message}{Environment.NewLine}";
-                if (!ThreadHelper.JoinableTaskFactory.Context.IsOnMainThread)
-                {
-                    ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                }
                 outputWindowPane.OutputString(outputMessage);
             }
         }
