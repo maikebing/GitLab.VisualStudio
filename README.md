@@ -17,6 +17,9 @@ The latest build of the Visual Studio Extension is available at the [Open VsixGa
 
 ## What's new ?
 
+**V1.0.150** 
+   - AddOpen URL from clipboard
+
 **V1.0.0.122**
 
 Fix HttpUtility.UrlEncode processing username or email causing problems that cannot be logged in
