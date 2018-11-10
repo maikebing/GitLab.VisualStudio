@@ -377,4 +377,13 @@
   <data name="ProjectVisibility" xml:space="preserve">
     <value>项目可见度</value>
   </data>
+  <data name="Canotopenurl" xml:space="preserve">
+    <value>无法打开网址：{0}，{1}</value>
+  </data>
+  <data name="PleaseCodes" xml:space="preserve">
+    <value>请选择代码段</value>
+  </data>
+  <data name="OpenFormURL" xml:space="preserve">
+    <value>打开剪贴板中网址</value>
+  </data>
 </root>

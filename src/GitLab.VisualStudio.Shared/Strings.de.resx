@@ -124,7 +124,7 @@
     <value>Keine Projekte</value>
   </data>
   <data name="CloneView_Search" xml:space="preserve">
-    <value>Suche!</value>
+    <value>Suche</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
     <value>Browse</value>
@@ -148,7 +148,7 @@
     <value>Beschreibung</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Maximale Länge der Beschreibung beträgt 500!</value>
+    <value>Maximale Länge der Beschreibung beträgt 500</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
     <value>Ignorieren</value>
@@ -163,7 +163,7 @@
     <value>Name</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Maximale Länge des Namens beträgt 64 Zeichen!</value>
+    <value>Maximale Länge des Namens beträgt 64 Zeichen</value>
   </data>
   <data name="Common_New" xml:space="preserve">
     <value>Neu!</value>
@@ -374,5 +374,14 @@
   </data>
   <data name="ProjectVisibility" xml:space="preserve">
     <value>Projekt-Transparenz</value>
+  </data>
+  <data name="Canotopenurl" xml:space="preserve">
+    <value>URL kann nicht geöffnet werden: {0}, {1}</value>
+  </data>
+  <data name="PleaseCodes" xml:space="preserve">
+    <value>Bitte wählen Sie Code-Snippet!</value>
+  </data>
+  <data name="OpenFormURL" xml:space="preserve">
+    <value>Von einer URL</value>
   </data>
 </root>

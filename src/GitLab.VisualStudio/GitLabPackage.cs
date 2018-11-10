@@ -236,6 +236,7 @@ namespace GitLab.VisualStudio
                         break;
                     case PackageIds.OpenFromUrl:
                         command.Enabled = Clipboard.ContainsText(TextDataFormat.Text) && Regex.IsMatch(Clipboard.GetText(TextDataFormat.Text), "[a-zA-z]+://[^\\s]*");
+                        command.Text = Strings.OpenFormURL;
                         break;
                     default:
                         // TODO:is should avoid create GitAnalysis every call?

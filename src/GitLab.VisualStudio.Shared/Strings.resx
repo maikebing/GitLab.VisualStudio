@@ -378,9 +378,12 @@
     <value>Project visibility</value>
   </data>
   <data name="Canotopenurl" xml:space="preserve">
-    <value>无法打开{0},发生异常:{1}</value>
+    <value>Can't Open URL：{0},{1}</value>
   </data>
   <data name="PleaseCodes" xml:space="preserve">
-    <value>请选择代码片段</value>
+    <value>Please select code snippet</value>
+  </data>
+  <data name="OpenFormURL" xml:space="preserve">
+    <value>Open from  URL</value>
   </data>
 </root>

@@ -213,10 +213,7 @@
     <Compile Include="ViewTypes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Strings.de.resx" />
-    <EmbeddedResource Include="Strings.fr.resx" />
-    <EmbeddedResource Include="Strings.it.resx" />
-    <EmbeddedResource Include="Strings.ja.resx" />
+ 
     <EmbeddedResource Include="Strings.resx">
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -225,7 +222,22 @@
     <EmbeddedResource Include="Strings.zh-Hans.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings.zh-Hant.resx" />
+    <EmbeddedResource Include="Strings.zh-Hant.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+	   <EmbeddedResource Include="Strings.de.resx" >
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.fr.resx" >
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.it.resx" >
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.ja.resx" >
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+	
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Controls.xaml">

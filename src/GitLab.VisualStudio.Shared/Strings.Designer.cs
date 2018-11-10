@@ -70,7 +70,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 无法打开{0},发生异常:{1} 的本地化字符串。
+        ///   查找类似 Can&apos;t Open URL：{0},{1} 的本地化字符串。
         /// </summary>
         public static string Canotopenurl {
             get {
@@ -700,6 +700,15 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 Open from  URL 的本地化字符串。
+        /// </summary>
+        public static string OpenFormURL {
+            get {
+                return ResourceManager.GetString("OpenFormURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Create Snippet 的本地化字符串。
         /// </summary>
         public static string OpenOnGitLabPackage_CreateSnippet {
@@ -709,7 +718,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 请选择代码片段 的本地化字符串。
+        ///   查找类似 Please select code snippet 的本地化字符串。
         /// </summary>
         public static string PleaseCodes {
             get {

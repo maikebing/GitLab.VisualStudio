@@ -375,4 +375,13 @@
   <data name="ProjectVisibility" xml:space="preserve">
     <value>プロジェクトの可視性</value>
   </data>
+  <data name="Canotopenurl" xml:space="preserve">
+    <value>URLを開くことができません：{0}、{1}！</value>
+  </data>
+  <data name="PleaseCodes" xml:space="preserve">
+    <value>コードスニペットを選択してください！</value>
+  </data>
+  <data name="OpenFormURL" xml:space="preserve">
+    <value>URLから開く！</value>
+  </data>
 </root>
