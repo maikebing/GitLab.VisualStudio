@@ -1,6 +1,7 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -218,7 +219,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     MessageBox.Show(Strings.Login_FailedToLogin + "\r\n" + exlogin.Message);
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
 
         private void OnForgetPassword()

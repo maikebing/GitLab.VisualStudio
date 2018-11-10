@@ -9,6 +9,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -17,6 +18,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -129,7 +131,6 @@ namespace GitLab.VisualStudio
                         var mcs = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
                         if (mcs != null)
                         {
-                            await JoinableTaskFactory.SwitchToMainThreadAsync();
                             foreach (var item in new[]
                             {
                     PackageIds.OpenMaster,
@@ -139,6 +140,7 @@ namespace GitLab.VisualStudio
                      PackageIds.OpenBlame,
                      PackageIds.OpenCommits,
                      PackageIds.OpenCreateSnippet,
+                     PackageIds.OpenFromUrl
                                })
                             {
                                 var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
@@ -149,6 +151,7 @@ namespace GitLab.VisualStudio
                             var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
                             var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
                             IssuesToolmenuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+                            IssuesToolmenuItem.Enabled = false;
                             mcs.AddCommand(IssuesToolmenuItem);
                         }
                         else
@@ -231,7 +234,9 @@ namespace GitLab.VisualStudio
                     case PackageIds.IssuesToolWindowCommandId:
                         command.Enabled = true;
                         break;
-
+                    case PackageIds.OpenFromUrl:
+                        command.Enabled = Clipboard.ContainsText(TextDataFormat.Text) && Regex.IsMatch(Clipboard.GetText(TextDataFormat.Text), "[a-zA-z]+://[^\\s]*");
+                        break;
                     default:
                         // TODO:is should avoid create GitAnalysis every call?
                         using (var git = new GitAnalysis(GetActiveFilePath()))
@@ -283,7 +288,7 @@ namespace GitLab.VisualStudio
         private void ExecuteCommand(object sender, EventArgs e)
         {
             var command = (OleMenuCommand)sender;
-            Debug.WriteLine($"ExecuteCommand {command.Text} {command.CommandID.ID} ");
+ 
             try
             {
                 switch ((uint)command.CommandID.ID)
@@ -301,7 +306,25 @@ namespace GitLab.VisualStudio
                         }
                         else
                         {
-                            Debug.Write("未选择任何内容");
+                            OutputWindowHelper.DiagnosticWriteLine(GitLab.VisualStudio.Shared.Strings.PleaseCodes);
+                        }
+                        break;
+                    case PackageIds.OpenFromUrl:
+
+                        if (Clipboard.ContainsText(TextDataFormat.Text))
+                        {
+                            var match = Regex.Match(Clipboard.GetText(TextDataFormat.Text), "[a-zA-z]+://[^\\s]*");
+                            if (match.Success)
+                            {
+                                try
+                                {
+                                    TryOpenFile(match.Value);
+                                }
+                                catch (Exception ex)
+                                {
+                                    OutputWindowHelper.ExceptionWriteLine(string.Format(GitLab.VisualStudio.Shared.Strings.Canotopenurl, match.Value,ex.Message), ex);
+                                }
+                            }
                         }
                         break;
 
@@ -322,10 +345,38 @@ namespace GitLab.VisualStudio
             }
             catch (Exception ex)
             {
-                Debug.Write(ex.ToString());
+                OutputWindowHelper.ExceptionWriteLine($"Command:{command.Text}，Message:{ex.Message}",ex);
             }
         }
-
+        public void  TryOpenFile( string url)
+        {
+            Uri uri = new Uri(url);
+            using (var git = new GitAnalysis(GetActiveFilePath()))
+            {
+                if (git.IsDiscoveredGitRepository)
+                {
+                    var blob=Regex.Match(url, "/blob/(?<treeish>[^/]*)/");
+                    if (blob.Success)
+                    {
+                        string p1 = uri.GetComponents(UriComponents.Path, UriFormat.UriEscaped).ToString();
+                        string p2 = p1.Substring(p1.IndexOf(blob.Value) + blob.Value.Length);
+                        var path = System.IO.Path.Combine(System.IO.Path.GetFullPath(System.IO.Path.Combine(git.RepositoryPath, "../")),  p2);
+                        var textView = OpenDocument(path);
+                    }
+                }
+            }
+        }
+        IVsTextView OpenDocument(string fullPath)
+        {
+            var logicalView = VSConstants.LOGVIEWID.TextView_guid;
+            IVsUIHierarchy hierarchy;
+            uint itemID;
+            IVsWindowFrame windowFrame;
+            IVsTextView view;
+          //  DTE.Solution.FindProjectItem(fullPath).Open();
+            VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, fullPath, logicalView, out hierarchy, out itemID, out windowFrame, out view);
+            return view;
+        }
         private static string GetExactPathName(string pathName)
         {
             if (!(File.Exists(pathName) || Directory.Exists(pathName)))

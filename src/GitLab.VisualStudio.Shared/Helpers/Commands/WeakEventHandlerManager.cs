@@ -2,6 +2,8 @@
 
 namespace GitLab.VisualStudio.Shared.Helpers.Commands
 {
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Threading;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -79,7 +81,9 @@ namespace GitLab.VisualStudio.Shared.Helpers.Commands
             {
                 if (SyncContext != null)
                 {
-                    SyncContext.Post((o) => eventHandler(sender, EventArgs.Empty), null);
+#pragma warning disable VSTHRD001 // ±‹√‚æ…œﬂ≥Ã«–ªª API
+                        SyncContext.Post ((o) => eventHandler(sender, EventArgs.Empty),null);
+#pragma warning restore VSTHRD001 // ±‹√‚æ…œﬂ≥Ã«–ªª API
                 }
                 else
                 {

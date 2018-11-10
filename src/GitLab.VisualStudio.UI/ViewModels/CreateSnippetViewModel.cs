@@ -2,6 +2,7 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Threading;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Windows;
@@ -167,7 +168,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     MessageBox.Show(Strings.CreateSnippetViewModel_FailedToCreateSnippet);
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
     }
 }

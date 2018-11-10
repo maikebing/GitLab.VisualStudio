@@ -65,7 +65,7 @@ namespace GitLab.VisualStudio.Helpers
                 outputWindowPane.OutputString(outputMessage);
             }
         }
-
+      
         #endregion Methods
     }
 }

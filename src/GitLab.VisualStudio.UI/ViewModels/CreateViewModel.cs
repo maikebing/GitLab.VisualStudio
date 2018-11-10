@@ -2,6 +2,7 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -242,7 +243,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
                     _dialog.Close();
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
 
         private void InitialCommit(string url)

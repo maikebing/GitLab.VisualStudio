@@ -377,4 +377,10 @@
   <data name="ProjectVisibility" xml:space="preserve">
     <value>Project visibility</value>
   </data>
+  <data name="Canotopenurl" xml:space="preserve">
+    <value>无法打开{0},发生异常:{1}</value>
+  </data>
+  <data name="PleaseCodes" xml:space="preserve">
+    <value>请选择代码片段</value>
+  </data>
 </root>

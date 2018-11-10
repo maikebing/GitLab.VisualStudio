@@ -4,6 +4,10 @@ using GitLab.VisualStudio.Shared.Models;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
+using System;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Home
@@ -38,11 +42,24 @@ namespace GitLab.TeamFoundation.Home
                 Invalidate();
             };
         }
-
-        public override async void Invalidate()
+        static DateTime dateTime = DateTime.MinValue;
+        static bool? lastIsVisible = null;
+        public override void Invalidate()
         {
-            IsVisible = false;
-            IsVisible = await _tes.IsGitLabRepoAsync() && _tes.Project != null;
+            if (DateTime.Now.Subtract(dateTime).TotalSeconds > 5 || !lastIsVisible.HasValue)
+            {
+                IsVisible = false;
+                ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+                   {
+                       IsVisible = await _tes.IsGitLabRepoAsync() && _tes.Project != null;
+                       lastIsVisible = IsVisible;
+                       dateTime = DateTime.Now;
+                   });
+            }
+            else
+            {
+                IsVisible = lastIsVisible.GetValueOrDefault();
+            }
         }
 
         private void OnThemeChanged()

@@ -2,6 +2,7 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -172,7 +173,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     Message = error;
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            }, TaskScheduler.Default).Forget();
         }
 
         private IReadOnlyList<Project> LoadRepositories()

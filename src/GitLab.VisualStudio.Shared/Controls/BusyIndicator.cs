@@ -109,15 +109,9 @@ namespace GitLab.VisualStudio.Shared.Controls
                 // No longer visible
                 _displayAfterTimer.Stop();
                 IsContentVisible = false;
-
-                if (this.FocusAfterBusy != null)
+                if (FocusAfterBusy != null)
                 {
-                 
-                    this.FocusAfterBusy.Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(() =>
-                    {
-                        this.FocusAfterBusy.Focus();
-                    }
-                    ));
+                    FocusAfterBusy.Focus();
                 }
             }
 

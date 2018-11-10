@@ -134,9 +134,12 @@ namespace GitLab.TeamFoundation
 
         public Project Project { get; private set; }
 
-        public async Task<bool> IsGitLabRepoAsync()
+        public Task<bool> IsGitLabRepoAsync()
         {
-            return await System.Threading.Tasks.Task.Factory.StartNew(() => IsGitLabRepo());
+            return ThreadHelper.JoinableTaskFactory.RunAsync(delegate ()
+         {
+             return System.Threading.Tasks.Task.FromResult(IsGitLabRepo());
+         }).Task;
         }
 
         public bool IsGitLabRepo()

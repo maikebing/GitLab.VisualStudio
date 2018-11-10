@@ -242,46 +242,46 @@ namespace GitLab.TeamFoundation.ViewModels
 
             IsBusy = true;
 
-            Task.Run(() =>
-            {
-                try
-                {
-                    result = _web.CreateProject(RepositoryName, RepositoryDescription, SelectedVisibilityLevels);
-                    if (result.Project != null)
-                    {
-                        var activeRepository = _tes.GetActiveRepository();
+            var taskc = Task.Run(() =>
+              {
+                  try
+                  {
+                      result = _web.CreateProject(RepositoryName, RepositoryDescription, SelectedVisibilityLevels);
+                      if (result.Project != null)
+                      {
+                          var activeRepository = _tes.GetActiveRepository();
 
-                        var path = activeRepository == null ? _tes.GetSolutionPath() : activeRepository.Path;
+                          var path = activeRepository == null ? _tes.GetSolutionPath() : activeRepository.Path;
 
-                        var user = _storage.GetUser();
-                        var password = _storage.GetPassword(user.Host);
+                          var user = _storage.GetUser();
+                          var password = _storage.GetPassword(user.Host);
 
-                        _git.PushWithLicense(user.Name, user.Email, user.Username, password, result.Project.Url, path, SelectedLicense);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    error = ex.Message;
-                    _tes.ShowError(ex.Message);
-                }
-            }).ContinueWith(task =>
-            {
-                IsBusy = false;
-                if (error != null)
-                {
-                    _tes.ShowError(error);
-                }
-                else if (result.Message != null)
-                {
-                    _tes.ShowError(result.Message);
-                }
-                else
-                {
-                    IsStarted = false;
-                    ShowGetStarted = true;
-                    OnPublished();
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+                          _git.PushWithLicense(user.Name, user.Email, user.Username, password, result.Project.Url, path, SelectedLicense);
+                      }
+                  }
+                  catch (Exception ex)
+                  {
+                      error = ex.Message;
+                      _tes.ShowError(ex.Message);
+                  }
+              }).ContinueWith(task =>
+              {
+                  IsBusy = false;
+                  if (error != null)
+                  {
+                      _tes.ShowError(error);
+                  }
+                  else if (result.Message != null)
+                  {
+                      _tes.ShowError(result.Message);
+                  }
+                  else
+                  {
+                      IsStarted = false;
+                      ShowGetStarted = true;
+                      OnPublished();
+                  }
+              }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private bool CanPublish()

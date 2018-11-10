@@ -85,6 +85,15 @@
           <CommandName>CreateSnippet</CommandName>
         </Strings>
       </Button>
+      <Button guid="guidOpenOnGitLabCmdSet" id="OpenFromUrl" priority="0x0900" type="Button">
+        <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Open From Url</ButtonText>
+          <CommandName>OpenFromUrl</CommandName>
+        </Strings>
+      </Button>
+   
     </Buttons>
   </Commands>
   <CommandPlacements>
@@ -155,6 +164,8 @@
       <IDSymbol name="OpenBlame" value="0x0500" />
       <IDSymbol name="OpenCommits" value="0x0600" />
       <IDSymbol name="OpenCreateSnippet" value="0x0700" />
+      <IDSymbol name="OpenFromUrl" value="0x0900" />
+      
     </GuidSymbol>
     <GuidSymbol name="guidIssuesToolWindowPackageCmdSet" value="{78e9c435-500f-4e4d-8e31-dc16d9f26032}">
       <IDSymbol name="IssuesToolWindowCommandId" value="0x0800" />

@@ -140,7 +140,7 @@ namespace GitLab.TeamFoundation.ViewModels
             IReadOnlyList<Project> remotes = null;
 
             Exception ex = null;
-            Task.Run(() =>
+          var task=  Task.Run(() =>
             {
                 try
                 {
@@ -151,8 +151,9 @@ namespace GitLab.TeamFoundation.ViewModels
                 {
                     ex = e;
                 }
-            }).ContinueWith(task =>
+            }).ContinueWith( tak =>
             {
+                
                 if (ex == null)
                 {
                     Repositories.Clear();
