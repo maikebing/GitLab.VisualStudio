@@ -355,10 +355,10 @@
     <value>无标题</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>点击收起</value>
+    <value>关闭</value>
   </data>
   <data name="CreateSnippet_Button" xml:space="preserve">
-    <value>創建倉庫</value>
+    <value>創建</value>
   </data>
   <data name="Visibility" xml:space="preserve">
     <value>可见度</value>
@@ -383,5 +383,20 @@
   </data>
   <data name="OpenFormURL" xml:space="preserve">
     <value>打开剪贴板中网址</value>
+  </data>
+  <data name="GitLabApiV31" xml:space="preserve">
+    <value>码云(Gitee.com)</value>
+  </data>
+  <data name="GitLabApiV3" xml:space="preserve">
+    <value>GitLab ApiV3</value>
+  </data>
+  <data name="GitLabApiV4" xml:space="preserve">
+    <value>GitLab ApiV4 </value>
+  </data>
+  <data name="GitLabApiV3Oauth2" xml:space="preserve">
+    <value>GitLab ApiV3 Oauth2</value>
+  </data>
+  <data name="GitLabApiV4Oauth2" xml:space="preserve">
+    <value>GitLab ApiV4 Oauth2</value>
   </data>
 </root>

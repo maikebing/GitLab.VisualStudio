@@ -37,11 +37,12 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _mediator = mediator;
             ApiVersions = new Dictionary<string, string>();
 
-            ApiVersions.Add("V4_Oauth", "GitLab ApiV4 Oauth2");
-            ApiVersions.Add("V3_Oauth", "GitLab ApiV3 Oauth2");
-            ApiVersions.Add("V4", "GitLab ApiV4 ");
-            ApiVersions.Add("V3", "GitLab ApiV3");
-            SelectedApiVersion = "V4_Oauth";
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V4_Oauth), Strings.GitLabApiV4Oauth2);
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3_Oauth), Strings.GitLabApiV3Oauth2);
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V4), Strings.GitLabApiV4);
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3), Strings.GitLabApiV3);
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3_1), Strings.GitLabApiV31);
+            SelectedApiVersion = Enum.GetName(typeof(ApiVersion), ApiVersion.V4_Oauth);
             _loginCommand = new DelegateCommand(OnLogin);
             _forgetPasswordCommand = new DelegateCommand(OnForgetPassword);
             _activeAccountCommand = new DelegateCommand(OnActiveAccount);

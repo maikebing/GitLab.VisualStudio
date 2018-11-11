@@ -475,6 +475,51 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
+        ///   查找类似 GitLab ApiV3 的本地化字符串。
+        /// </summary>
+        public static string GitLabApiV3 {
+            get {
+                return ResourceManager.GetString("GitLabApiV3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GitLab ApiV3 1 的本地化字符串。
+        /// </summary>
+        public static string GitLabApiV31 {
+            get {
+                return ResourceManager.GetString("GitLabApiV31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GitLab ApiV3 Oauth2 的本地化字符串。
+        /// </summary>
+        public static string GitLabApiV3Oauth2 {
+            get {
+                return ResourceManager.GetString("GitLabApiV3Oauth2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GitLab ApiV4  的本地化字符串。
+        /// </summary>
+        public static string GitLabApiV4 {
+            get {
+                return ResourceManager.GetString("GitLabApiV4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GitLab ApiV4 Oauth2 的本地化字符串。
+        /// </summary>
+        public static string GitLabApiV4Oauth2 {
+            get {
+                return ResourceManager.GetString("GitLabApiV4Oauth2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No Login  的本地化字符串。
         /// </summary>
         public static string GitLabInvitationSection_GitLabInvitationSection_NoLogin {

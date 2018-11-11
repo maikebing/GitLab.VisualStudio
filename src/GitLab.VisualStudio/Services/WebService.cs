@@ -144,10 +144,17 @@ namespace GitLab.VisualStudio.Services
         public IReadOnlyList<NamespacesPath> GetNamespacesPathList()
         {
             List<NamespacesPath> nplist = new List<NamespacesPath>();
-            NGitLab.GitLabClient client = GetClient();
-            foreach (var item in client.Groups.GetNamespaces())
+            try
             {
-                nplist.Add(item);
+                NGitLab.GitLabClient client = GetClient();
+                foreach (var item in client.Groups.GetNamespaces())
+                {
+                    nplist.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
             return nplist;
         }

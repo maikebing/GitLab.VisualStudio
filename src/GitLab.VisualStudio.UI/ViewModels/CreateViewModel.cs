@@ -66,6 +66,12 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     SelectedNamespaces = path.id.ToString();
                 }
             }
+            if (Namespaces.Count==0)
+            {
+                Namespaces.Add("0", defaultnamespace);
+                SelectedNamespaces = "0";
+            }
+        
             VisibilityLevels.Add("Private", "Private");
             VisibilityLevels.Add("Internal", "Internal");
             VisibilityLevels.Add("Public", "Public");
@@ -193,7 +199,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             string error = null;
             string clonePath = null;
             IsBusy = true;
-
+            string giturl = null;
             Task.Run(() =>
             {
                 try
@@ -209,9 +215,15 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         result = _web.CreateProject(Name, Description, SelectedVisibilityLevels, namespaceid);
                         if (result.Project != null)
                         {
+                            giturl = result.Project.Url;
+                            if (string.IsNullOrEmpty(result.Project.Url))
+                            {
+                                //    https://gitee.com/maikebing/asdfasdf.git
+                                giturl = $"{_storage.Host}/{result.Project.Owner.Username}/{result.Project.Name}.git";
+                            }
                             clonePath = System.IO.Path.Combine(Path, result.Project.Name);
 
-                            InitialCommit(result.Project.Url);
+                            InitialCommit(giturl);
                         }
                     }
                 }
@@ -239,7 +251,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         Icon = result.Project.Icon
                     };
 
-                    _messenger.Send("OnClone", result.Project.Url, repository);
+                    _messenger.Send("OnClone", giturl, repository);
 
                     _dialog.Close();
                 }
