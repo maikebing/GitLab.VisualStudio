@@ -33,7 +33,7 @@ namespace GitLab.VisualStudio
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.RepositoryOpen_string, PackageAutoLoadFlags.BackgroundLoad )]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad )]
     public class GitLabPackage : AsyncPackage, IVsInstalledProduct
     {
         [Import]
@@ -120,57 +120,63 @@ namespace GitLab.VisualStudio
         {
             await base.InitializeAsync(cancellationToken, progress);
             await JoinableTaskFactory.RunAsync(VsTaskRunContext.UIThreadNormalPriority, async delegate
+            {
+                timer = new System.Timers.Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
+                timer.Elapsed += Timer_Elapsed;
+                DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
+                DTE.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+                var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
+                CompositionContainer container = new CompositionContainer(assemblyCatalog);
+                container.ComposeParts(this);
+                var mcs = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+                if (mcs != null)
+                {
+                 await     ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+                    try
                     {
-
-                        timer = new System.Timers.Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
-                        timer.Elapsed += Timer_Elapsed;
-                        DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
-                        DTE.Events.SolutionEvents.Opened += SolutionEvents_Opened;
-                        var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
-                        CompositionContainer container = new CompositionContainer(assemblyCatalog);
-                        container.ComposeParts(this);
-                        var mcs = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-                        if (mcs != null)
+                        foreach (var item in new[]
+                                             {
+                                                PackageIds.OpenMaster,
+                                                PackageIds.OpenBranch,
+                                                PackageIds.OpenRevision,
+                                                PackageIds.OpenRevisionFull,
+                                                PackageIds.OpenBlame,
+                                                PackageIds.OpenCommits,
+                                                PackageIds.OpenCreateSnippet,
+                                                PackageIds.OpenFromUrl
+                                             })
                         {
-                            foreach (var item in new[]
-                            {
-                    PackageIds.OpenMaster,
-                    PackageIds.OpenBranch,
-                    PackageIds.OpenRevision,
-                    PackageIds.OpenRevisionFull,
-                     PackageIds.OpenBlame,
-                     PackageIds.OpenCommits,
-                     PackageIds.OpenCreateSnippet,
-                     PackageIds.OpenFromUrl
-                               })
-                            {
-                                var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
-                                var menuItem = new OleMenuCommand(ExecuteCommand, menuCommandID);
-                                menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                                mcs.AddCommand(menuItem);
-                            }
-                            var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
-                            var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
-                            IssuesToolmenuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                            IssuesToolmenuItem.Enabled = false;
-                            mcs.AddCommand(IssuesToolmenuItem);
+                            var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
+                            var menuItem = new OleMenuCommand(ExecuteCommand, menuCommandID);
+                            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+                             mcs.AddCommand(menuItem);
                         }
-                        else
-                        {
-                            OutputWindowHelper.DiagnosticWriteLine("mcs 为空");
-                        }
-
-                    });
+                        var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
+                        var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
+                        IssuesToolmenuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+                        IssuesToolmenuItem.Enabled = false;
+                        mcs.AddCommand(IssuesToolmenuItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        OutputWindowHelper.DiagnosticWriteLine( ex.Message);
+                    }
+                }
+                else
+                {
+                    OutputWindowHelper.DiagnosticWriteLine("mcs 为空");
+                }
+            });
+       
         }
         private GitLabToolWindow _issuesTool;
 
-        public GitLabToolWindow IssuesTool =>
-      _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));
+        public GitLabToolWindow IssuesTool => _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));
 
         private void SolutionEvents_Opened()
         {
-            timer.Start();
-
+           // timer.Start();
+           //TODO: 消息提示
             //  var pjt = _webService.GetActiveProject();
         }
 
@@ -181,6 +187,8 @@ namespace GitLab.VisualStudio
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            //_webService.GetActiveProject().HttpUrl
+            //GitAnalysis.GetBy(GetActiveFilePath()).GetRepoUrlRoot()
         }
 
         public Document ActiveDocument
@@ -231,7 +239,7 @@ namespace GitLab.VisualStudio
             }
             return path;
         }
-
+   
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             var command = (OleMenuCommand)sender;
@@ -255,25 +263,22 @@ namespace GitLab.VisualStudio
                         break;
                     default:
                         // TODO:is should avoid create GitAnalysis every call?
-                        using (var git = new GitAnalysis(GetActiveFilePath()))
+                        var git = GitAnalysis.GetBy(GetActiveFilePath());
+                        if (!git.IsDiscoveredGitRepository)
                         {
-                            if (!git.IsDiscoveredGitRepository)
-                            {
-                                command.Enabled = false;
-                                return;
-                            }
-
-                            var type = ToGitLabUrlType(command.CommandID.ID);
-                            var targetPath = git.GetGitLabTargetPath(type);
-                            if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
-                            {
-                                command.Visible = false;
-                            }
-                            else
-                            {
-                                command.Text = git.GetGitLabTargetDescription(type);
-                                command.Enabled = true;
-                            }
+                            command.Enabled = false;
+                            return;
+                        }
+                        var type = ToGitLabUrlType(command.CommandID.ID);
+                        var targetPath = git.GetGitLabTargetPath(type);
+                        if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
+                        {
+                            command.Visible = false;
+                        }
+                        else
+                        {
+                            command.Text = git.GetGitLabTargetDescription(type);
+                            command.Enabled = true;
                         }
                         break;
                 }
@@ -281,7 +286,7 @@ namespace GitLab.VisualStudio
             catch (Exception ex)
             {
                 var exstr = ex.ToString();
-                Debug.Write(exstr);
+                OutputWindowHelper.ExceptionWriteLine(exstr, ex);
                 command.Text = "error:" + ex.GetType().Name;
                 command.Enabled = false;
             }
@@ -389,7 +394,6 @@ namespace GitLab.VisualStudio
             uint itemID;
             IVsWindowFrame windowFrame;
             IVsTextView view;
-          //  DTE.Solution.FindProjectItem(fullPath).Open();
             VsShellUtilities.OpenDocument(ServiceProvider.GlobalProvider, fullPath, logicalView, out hierarchy, out itemID, out windowFrame, out view);
             return view;
         }
