@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -199,7 +200,21 @@ namespace GitLab.VisualStudio
         }
 
         private DTE2 _ide;
-        public DTE2 DTE => _ide ?? (_ide = (DTE2)GetService(typeof(DTE)));
+        public DTE2 DTE
+        {
+            get
+            {
+                if (_ide == null)
+                {
+                    ThreadHelper.JoinableTaskFactory.Run(async delegate
+                    {
+                        _ide = (DTE2)await GetServiceAsync(typeof(DTE));
+                    });
+                }
+                return _ide;
+            }
+        }
+
         private IComponentModel _componentModel;
 
         public IComponentModel ComponentModel =>

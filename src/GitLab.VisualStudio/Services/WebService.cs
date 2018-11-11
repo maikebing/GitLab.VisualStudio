@@ -190,7 +190,7 @@ namespace GitLab.VisualStudio.Services
                             ,
                         NamespaceId = namespaceid
                     });
-                result.Project = (Project)pjt;
+                result.Project = pjt;
             }
             catch (Exception ex)
             {

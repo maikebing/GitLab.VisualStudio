@@ -173,7 +173,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 {
                     Message = error;
                 }
-            }, TaskScheduler.Default).Forget();
+            }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
 
         private IReadOnlyList<Project> LoadRepositories()
