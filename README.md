@@ -19,6 +19,8 @@ The latest build of the Visual Studio Extension is available at the [Open VsixGa
 
 **V1.0.150** 
    - AddOpen URL from clipboard
+   - Support Gitee.com 
+   - fix #35
 
 **V1.0.0.122**
 
