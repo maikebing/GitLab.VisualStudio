@@ -1,18 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio.Shared", "src\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj", "{C3150B82-8E79-4FF6-A9FF-E361C108384F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio", "src\GitLab.VisualStudio\GitLab.VisualStudio.csproj", "{11569514-5AE5-4B5B-92A2-F10B0967DE5F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio.UI", "src\GitLab.VisualStudio.UI\GitLab.VisualStudio.UI.csproj", "{EC0FA794-798E-4949-A9A1-608E0B5E5EEA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.15", "src\GitLab.TeamFoundation.15\GitLab.TeamFoundation.15.csproj", "{C7EF7CBE-77AD-41B7-8DDE-C685D63D2EB3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.14", "src\GitLab.TeamFoundation.14\GitLab.TeamFoundation.14.csproj", "{161DBF01-1DBF-4B00-8551-C5C00F26720D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10559CEB-2FF0-4617-9122-928F7D8D2E3F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitlab-ci.yml = .gitlab-ci.yml
@@ -24,6 +14,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		rebuildself.cmd = rebuildself.cmd
 		ResetEnvironment.cmd = ResetEnvironment.cmd
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio.Shared", "src\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj", "{C3150B82-8E79-4FF6-A9FF-E361C108384F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio", "src\GitLab.VisualStudio\GitLab.VisualStudio.csproj", "{11569514-5AE5-4B5B-92A2-F10B0967DE5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.VisualStudio.UI", "src\GitLab.VisualStudio.UI\GitLab.VisualStudio.UI.csproj", "{EC0FA794-798E-4949-A9A1-608E0B5E5EEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.15", "src\GitLab.TeamFoundation.15\GitLab.TeamFoundation.15.csproj", "{C7EF7CBE-77AD-41B7-8DDE-C685D63D2EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.14", "src\GitLab.TeamFoundation.14\GitLab.TeamFoundation.14.csproj", "{161DBF01-1DBF-4B00-8551-C5C00F26720D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab.TeamFoundation.16", "src\GitLab.TeamFoundation.16\GitLab.TeamFoundation.16.csproj", "{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +141,26 @@ Global
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|Any CPU.Build.0 = Release|Any CPU
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|x86.ActiveCfg = Release|Any CPU
 		{161DBF01-1DBF-4B00-8551-C5C00F26720D}.XamlDesign|x86.Build.0 = Release|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Debug|x86.Build.0 = Debug|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.DebugVS2015|Any CPU.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.DebugVS2015|Any CPU.Build.0 = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.DebugVS2015|x86.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.DebugVS2015|x86.Build.0 = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Publish|Any CPU.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Publish|Any CPU.Build.0 = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Publish|x86.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Publish|x86.Build.0 = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.Release|x86.Build.0 = Release|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.XamlDesign|Any CPU.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.XamlDesign|Any CPU.Build.0 = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.XamlDesign|x86.ActiveCfg = DebugVS2015|Any CPU
+		{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}.XamlDesign|x86.Build.0 = DebugVS2015|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
