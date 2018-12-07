@@ -17,7 +17,12 @@ The latest build of the Visual Studio Extension is available at the [Open VsixGa
 
 ## What's new ?
 
+**V1.0.154**
+
+* Visual Studio 2019 support
+
 **V1.0.150** 
+
    - AddOpen URL from clipboard
    - Support Gitee.com 
    - fix #35
@@ -79,9 +84,9 @@ https://github.com/maikebing/GitLab.VisualStudio/issues
 https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionforVisualStudio
 
 ### Thanks
- 
+
 ####  GitHub Extension for Visual Studio
-  
+
 ####  CodeCloud Extension for  Visual Studio
 
 https://gitee.com/GitGroup/CodeCloud.VisualStudio
@@ -105,6 +110,6 @@ https://github.com/maikebing/NGitLab
 
 ### Team Connct Page
 ![image](./docs/images/TeamConnect.PNG)
- 
+
 [![image](http://s07.flagcounter.com/map/7uzT/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/)](http://info.flagcounter.com/7uzT)
 
