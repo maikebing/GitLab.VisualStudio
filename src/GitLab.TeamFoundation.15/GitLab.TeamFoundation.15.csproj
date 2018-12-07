@@ -214,9 +214,6 @@
     <Compile Include="..\GitLab.TeamFoundation.14\Services\Registry.cs">
       <Link>Services\Registry.cs</Link>
     </Compile>
-    <Compile Include="..\GitLab.TeamFoundation.14\Services\Registry.key.cs">
-      <Link>Services\Registry.key.cs</Link>
-    </Compile>
     <Compile Include="..\GitLab.TeamFoundation.14\Services\TeamExplorerServices.cs">
       <Link>Services\TeamExplorerServices.cs</Link>
     </Compile>
