@@ -9,9 +9,15 @@ namespace GitLab.TeamFoundation.Services
 {
     public partial class Registry
     {
+        static string tfver = null;
         private static RegistryKey OpenGitKey(string path)
         {
-            return Microsoft.Win32.Registry.CurrentUser.OpenSubKey(TEGitKey + "\\" + path, true);
+            if (tfver == null)
+            {
+                string asmname = typeof(Registry).Assembly.GetName().Name;
+                tfver = asmname.Substring(asmname.LastIndexOf('.') + 1);
+            }
+            return Microsoft.Win32.Registry.CurrentUser.OpenSubKey($@"Software\Microsoft\VisualStudio\{tfver}.0\TeamFoundation\GitSourceControl\{path}", true);
         }
 
         public static IReadOnlyList<Repository> GetKnownRepositories()
