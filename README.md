@@ -14,13 +14,45 @@ The latest build of the Visual Studio Extension is available at the [Open VsixGa
 
 
 
+### When you login with a user name and password.
+  
+For the new version of Gitlab：
+1. https//gitlab.com or your GitLab server 
+1. input your email address or username 
+1. your password (not the token)
+1. use "GitLab ApiV4 Oauth2" don't use "API v4" as the instructions direct
+1. Two-Factor : Off
+
+For older versions of Gitlab
+1. Your GitLab server 
+1. input your email address or username 
+1. your password (not the token)
+1.use "GitLab ApiV3 Oauth2"  or  "API v3" 
+
+
+***by Brett Winters***
+
+
+### When you login with  2FA :
+
+1) In GitLab, [top right] go to Settings then Access Tokens (left menu)
+2) Enter a name & expire time (optional).
+3) Check off "api" as the scope.
+4) Click "Create Personal Access Token". This will appear in a textbox at the TOP of the page.
+5) In Visual Studio, click "Connect" beside GitLab.
+6) Enter your GitLab Username and paste in the Access Token.
+7) Change it to "API v4" instead of "API v4 OAUTH2". 
+8) Make sure "Two Factor Authentication" is CHECKED.
+9) Save. You're DONE.
+
+
 
 ## What's new ?
 **V1.0.160**
 
 * Automatically detects the API version of Gitlab
 
-**V1.0.154**
+**V1.0.156**
 
 * Visual Studio 2019 support
 
