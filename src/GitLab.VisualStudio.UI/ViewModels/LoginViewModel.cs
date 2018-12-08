@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -36,13 +37,13 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             _mediator = mediator;
             ApiVersions = new Dictionary<string, string>();
-
+            ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.AutoDiscovery), Strings.AutoDiscovery);
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V4_Oauth), Strings.GitLabApiV4Oauth2);
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3_Oauth), Strings.GitLabApiV3Oauth2);
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V4), Strings.GitLabApiV4);
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3), Strings.GitLabApiV3);
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.V3_1), Strings.GitLabApiV31);
-            SelectedApiVersion = Enum.GetName(typeof(ApiVersion), ApiVersion.V4_Oauth);
+            SelectedApiVersion = Enum.GetName(typeof(ApiVersion), ApiVersion.AutoDiscovery);
             _loginCommand = new DelegateCommand(OnLogin);
             _forgetPasswordCommand = new DelegateCommand(OnForgetPassword);
             _activeAccountCommand = new DelegateCommand(OnActiveAccount);
@@ -84,6 +85,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         urlhost.Password = "";
                     }
                     SetProperty(ref _host, urlhost.Uri.ToString());
+                    var apiver = _storage.GetApiVersion(_host);
+                    if (apiver != ApiVersion.AutoDiscovery)
+                    {
+                        SelectedApiVersion = Enum.GetName(typeof(ApiVersion), apiver);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -190,9 +196,29 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Exception exlogin = null;
             Task.Run(() =>
             {
-                ApiVersion apiVersion = ApiVersion.V4_Oauth;
-                bool ok = Enum.TryParse(SelectedApiVersion, true, out apiVersion);
-                if (!ok) apiVersion = ApiVersion.V4_Oauth;
+                bool ok = Enum.TryParse(SelectedApiVersion, true, out ApiVersion apiVersion);
+                if (!ok || apiVersion == ApiVersion.AutoDiscovery)
+                {
+                    var arys = new ApiVersion[]{ ApiVersion.V4_Oauth, ApiVersion.V4, ApiVersion.V3_Oauth, ApiVersion.V3, ApiVersion.V3_1 };
+                    foreach (var apiv in arys)
+                    {
+                        try
+                        {
+                            BusyContent =Strings.Trying+ apiv.ToString();
+                            var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiv);
+                            if (user != null)
+                            {
+                                apiVersion = apiv;
+                                BusyContent = null;
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            BusyContent = ex.Message;
+                        }
+                    }
+                }
                 try
                 {
                     var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
@@ -200,7 +226,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     {
                         successed = true;
                         user.Host = Host;
+                        _storage.AddHostVersionInfo(Host, apiVersion);
                         _storage.SaveUser(user, Password);
+
                     }
                 }
                 catch (Exception ex)
@@ -218,7 +246,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show(Strings.Login_FailedToLogin + "\r\n" + exlogin.Message);
+                    _dialog.Warning(Strings.Login_FailedToLogin + "\r\n" + exlogin.Message);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }

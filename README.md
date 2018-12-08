@@ -16,6 +16,9 @@ The latest build of the Visual Studio Extension is available at the [Open VsixGa
 
 
 ## What's new ?
+**V1.0.160**
+
+* Automatically detects the API version of Gitlab
 
 **V1.0.154**
 

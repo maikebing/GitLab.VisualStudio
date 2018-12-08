@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using GitLab.VisualStudio.Helpers;
 
 namespace GitLab.VisualStudio.Services
 {
@@ -223,6 +226,73 @@ namespace GitLab.VisualStudio.Services
             }
 
             return _path;
+        }
+        Dictionary<string, ApiVersion> HostVersionInfo { get; set; }
+        public ApiVersion GetApiVersion(string host)
+        {
+            ApiVersion apiVersion = ApiVersion.AutoDiscovery;
+            if (HostVersionInfo==null)
+            {
+                LoadHostVersionInfo();
+            }
+            if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
+            {
+                if (HostVersionInfo.ContainsKey(uri.Host))
+                {
+                    apiVersion = HostVersionInfo[uri.Host];
+                }
+            }
+            return apiVersion;
+        }
+        public void LoadHostVersionInfo()
+        {
+
+            try
+            {
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "hostinfo.json");
+                HostVersionInfo = JsonConvert.DeserializeObject<Dictionary<string, ApiVersion>>(System.IO.File.ReadAllText(filename));
+            }
+            catch (Exception ex)
+            {
+                HostVersionInfo = new Dictionary<string, ApiVersion>();
+                OutputWindowHelper.ExceptionWriteLine("LoadHostVersionInfo", ex);
+            }
+            if (HostVersionInfo == null) HostVersionInfo = new Dictionary<string, ApiVersion>();
+            if (HostVersionInfo.Count == 0)
+            {
+                HostVersionInfo.Add("gitlab.com", ApiVersion.V4_Oauth);
+                HostVersionInfo.Add("gitee.com", ApiVersion.V3_1);
+                SaveHostVersion();
+            }
+        }
+        public void AddHostVersionInfo(string host, ApiVersion apiVersion)
+        {
+
+            try
+            {
+                if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
+                {
+                    HostVersionInfo.Add(uri.Host, apiVersion);
+                }
+                SaveHostVersion();
+            }
+            catch (Exception ex)
+            {
+                OutputWindowHelper.ExceptionWriteLine("AddHostVersionInfo", ex);
+            }
+        }
+
+        private void SaveHostVersion()
+        {
+            try
+            {
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "hostinfo.json");
+                System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(HostVersionInfo));
+            }
+            catch (Exception ex)
+            {
+                OutputWindowHelper.ExceptionWriteLine("SaveHostVersion", ex);
+            }
         }
     }
 }

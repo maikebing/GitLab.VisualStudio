@@ -18,5 +18,8 @@ namespace GitLab.VisualStudio.Shared
         void Erase();
 
         string GetBaseRepositoryDirectory();
+         void LoadHostVersionInfo();
+          ApiVersion GetApiVersion(string host);
+        void AddHostVersionInfo(string host, ApiVersion apiVersion);
     }
 }

@@ -10,6 +10,7 @@ namespace GitLab.VisualStudio.Shared
         V3_Oauth,
         V4_Oauth,
         V3_1,
+        AutoDiscovery
     }
 
     public enum ProjectListType
