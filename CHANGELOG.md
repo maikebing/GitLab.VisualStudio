@@ -11,10 +11,10 @@ download in the
 
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
-##V1.0.160**
+##V1.0.160
 - Automatically detects the API version of Gitlab
 
-## V1.0.154**
+## V1.0.154
 - Visual Studio 2019 support
 
 ## V1.0.150
