@@ -4,10 +4,11 @@
         <Identity Id="54803a44-49e0-4935-bba4-7d7d91682273" Version="1.0.158" Language="en-US" Publisher="MysticBoy" />
         <DisplayName>GitLab Extension for Visual Studio</DisplayName>
         <Description xml:space="preserve">A Visual Studio Extension that brings the GitLab Flow into Visual Studio.</Description>
-        <MoreInfo>http://visualstudio.gitclub.cn</MoreInfo>
+        <MoreInfo>https://github.com/maikebing/GitLab.VisualStudio</MoreInfo>
         <License>LICENSE.txt</License>
-        <ReleaseNotes>readme.txt</ReleaseNotes>
-        <Icon>Resources\logo_32x32@2x.png</Icon>
+        <GettingStartedGuide>https://github.com/maikebing/GitLab.VisualStudio/wiki</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/maikebing/GitLab.VisualStudio/blob/master/CHANGELOG.md</ReleaseNotes>
+        <Icon>Resources\GitLab4VS360X360.png</Icon>
         <PreviewImage>Resources\preview_200x200.png</PreviewImage>
         <Tags>GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki</Tags>
     </Metadata>
