@@ -26,8 +26,14 @@ namespace GitLab.TeamFoundation.Home
         }
         public override void Refresh()
         {
-            ThreadHelper.JoinableTaskFactory.RunAsync(() => _tes.IsGitLabRepoAsync());
-            base.Refresh();
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                  _tes.IsGitLabRepo();
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                base.Refresh();
+            }
+            );
+
         }
   
 

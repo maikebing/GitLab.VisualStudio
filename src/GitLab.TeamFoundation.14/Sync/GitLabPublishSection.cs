@@ -3,6 +3,7 @@ using GitLab.TeamFoundation.Views;
 using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows;
@@ -43,10 +44,16 @@ namespace GitLab.TeamFoundation.Sync
             return temp;
         }
 
-        public override async void Initialize(object sender, SectionInitializeEventArgs e)
+        public override  void Initialize(object sender, SectionInitializeEventArgs e)
         {
             base.Initialize(sender, e);
-            IsVisible = !(await _tes.IsGitLabRepoAsync());
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                var isvisible =   _tes.IsGitLabRepo();
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                IsVisible = isvisible;
+            }
+         );
         }
 
         protected override object CreateView(SectionInitializeEventArgs e)

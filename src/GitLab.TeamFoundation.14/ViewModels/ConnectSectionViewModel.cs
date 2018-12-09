@@ -3,6 +3,8 @@ using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -140,7 +142,7 @@ namespace GitLab.TeamFoundation.ViewModels
             IReadOnlyList<Project> remotes = null;
 
             Exception ex = null;
-          var task=  Task.Run(() =>
+            ThreadHelper.JoinableTaskFactory.RunAsync( async () =>
             {
                 try
                 {
@@ -151,9 +153,8 @@ namespace GitLab.TeamFoundation.ViewModels
                 {
                     ex = e;
                 }
-            }).ContinueWith( tak =>
-            {
-                
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
                 if (ex == null)
                 {
                     Repositories.Clear();
@@ -191,7 +192,7 @@ namespace GitLab.TeamFoundation.ViewModels
                 {
                     _teamexplorer.ShowMessage(ex.Message);
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            }).Task.Forget();
         }
 
         public void OnRepositoryCloned(string url, Repository repository)

@@ -2,6 +2,7 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -239,11 +240,9 @@ namespace GitLab.TeamFoundation.ViewModels
         {
             CreateProjectResult result = null;
             string error = null;
-
             IsBusy = true;
-
-            var taskc = Task.Run(() =>
-              {
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
                   try
                   {
                       result = _web.CreateProject(RepositoryName, RepositoryDescription, SelectedVisibilityLevels);
@@ -264,8 +263,7 @@ namespace GitLab.TeamFoundation.ViewModels
                       error = ex.Message;
                       _tes.ShowError(ex.Message);
                   }
-              }).ContinueWith(task =>
-              {
+                  await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                   IsBusy = false;
                   if (error != null)
                   {
@@ -281,7 +279,7 @@ namespace GitLab.TeamFoundation.ViewModels
                       ShowGetStarted = true;
                       OnPublished();
                   }
-              }, TaskScheduler.FromCurrentSynchronizationContext());
+              });
         }
 
         private bool CanPublish()

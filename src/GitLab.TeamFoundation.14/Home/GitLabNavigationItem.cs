@@ -49,11 +49,13 @@ namespace GitLab.TeamFoundation.Home
             if (DateTime.Now.Subtract(dateTime).TotalSeconds > 5 || !lastIsVisible.HasValue)
             {
                 IsVisible = false;
-                ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+                ThreadHelper.JoinableTaskFactory.Run(async () =>
                    {
-                       IsVisible = await _tes.IsGitLabRepoAsync() && _tes.Project != null;
-                       lastIsVisible = IsVisible;
+                       lastIsVisible= _tes.IsGitLabRepo() && _tes.Project != null;
+                       await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                       IsVisible = lastIsVisible.GetValueOrDefault();
                        dateTime = DateTime.Now;
+                      
                    });
             }
             else

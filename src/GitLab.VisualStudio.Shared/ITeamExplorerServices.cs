@@ -31,7 +31,7 @@ namespace GitLab.VisualStudio.Shared
 
         string GetSolutionPath();
 
-        Task<bool> IsGitLabRepoAsync();
+         bool IsGitLabRepo();
 
         Project Project { get; }
     }

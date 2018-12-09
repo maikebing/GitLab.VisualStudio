@@ -1,4 +1,5 @@
 ﻿using EnvDTE;
+using EnvDTE100;
 using EnvDTE80;
 using GitLab.VisualStudio.Helpers;
 using GitLab.VisualStudio.Services;
