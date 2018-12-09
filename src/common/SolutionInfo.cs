@@ -10,3 +10,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]
+namespace System
+{
+    internal static class AssemblyVersionInformation
+    {
+        internal const string Version = "1.0.0.0";
+    }
+}
