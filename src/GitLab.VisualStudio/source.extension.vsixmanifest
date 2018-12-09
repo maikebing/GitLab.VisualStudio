@@ -8,7 +8,7 @@
         <License>LICENSE.txt</License>
         <GettingStartedGuide>https://github.com/maikebing/GitLab.VisualStudio/wiki</GettingStartedGuide>
         <ReleaseNotes>https://github.com/maikebing/GitLab.VisualStudio/blob/master/CHANGELOG.md</ReleaseNotes>
-        <Icon>Resources\GitLab4VS360X360.png</Icon>
+        <Icon>Resources\GitLab4VS128X128.png</Icon>
         <PreviewImage>Resources\preview_200x200.png</PreviewImage>
         <Tags>GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki</Tags>
     </Metadata>
