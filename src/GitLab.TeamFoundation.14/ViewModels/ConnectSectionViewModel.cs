@@ -142,7 +142,7 @@ namespace GitLab.TeamFoundation.ViewModels
             IReadOnlyList<Project> remotes = null;
 
             Exception ex = null;
-            ThreadHelper.JoinableTaskFactory.RunAsync( async () =>
+            ThreadHelper.JoinableTaskFactory.Run(  async ( ) =>
             {
                 try
                 {
@@ -154,7 +154,6 @@ namespace GitLab.TeamFoundation.ViewModels
                     ex = e;
                 }
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
                 if (ex == null)
                 {
                     Repositories.Clear();
@@ -192,7 +191,7 @@ namespace GitLab.TeamFoundation.ViewModels
                 {
                     _teamexplorer.ShowMessage(ex.Message);
                 }
-            }).Task.Forget();
+            }, JoinableTaskCreationOptions.None);
         }
 
         public void OnRepositoryCloned(string url, Repository repository)

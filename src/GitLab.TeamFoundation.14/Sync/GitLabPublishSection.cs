@@ -49,7 +49,7 @@ namespace GitLab.TeamFoundation.Sync
             base.Initialize(sender, e);
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                var isvisible =   _tes.IsGitLabRepo();
+                var isvisible =   !_tes.IsGitLabRepo();
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 IsVisible = isvisible;
             }

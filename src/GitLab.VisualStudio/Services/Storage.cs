@@ -33,24 +33,24 @@ namespace GitLab.VisualStudio.Services
             get
             {
                 string url = string.Empty;
-                using (var git = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
+                var _u = LoadUser();
+                if (_u != null)
                 {
-                    if (git != null && git.IsDiscoveredGitRepository)
-                    {
-                        string hurl = git.GetRepoUrlRoot();
-                        if (!string.IsNullOrEmpty(hurl))
-                        {
-                            Uri uri = new Uri(hurl);
-                            url = uri.Host;
-                        }
-                    }
+                    url = _u.Host;
                 }
                 if (string.IsNullOrEmpty(url))
                 {
-                    var _u = LoadUser();
-                    if (_u != null)
+                    using (var git = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
                     {
-                        url = _u.Host;
+                        if (git != null && git.IsDiscoveredGitRepository)
+                        {
+                            string hurl = git.GetRepoUrlRoot();
+                            if (!string.IsNullOrEmpty(hurl))
+                            {
+                                Uri uri = new Uri(hurl);
+                                url = uri.Host;
+                            }
+                        }
                     }
                 }
                 return url;

@@ -284,7 +284,7 @@ namespace GitLab.TeamFoundation.ViewModels
 
         private bool CanPublish()
         {
-            return _repositoryName != null && _repositoryName.Trim().Length < 64;
+            return _storage.IsLogined && !_tes.IsGitLabRepo();
         }
 
         public void Dispose()
