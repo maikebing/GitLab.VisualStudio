@@ -227,11 +227,13 @@ namespace GitLab.VisualStudio.Services
 
             return _path;
         }
-        Dictionary<string, ApiVersion> HostVersionInfo { get; set; }
+
+        private Dictionary<string, ApiVersion> HostVersionInfo { get; set; }
+
         public ApiVersion GetApiVersion(string host)
         {
             ApiVersion apiVersion = ApiVersion.AutoDiscovery;
-            if (HostVersionInfo==null)
+            if (HostVersionInfo == null)
             {
                 LoadHostVersionInfo();
             }
@@ -244,9 +246,9 @@ namespace GitLab.VisualStudio.Services
             }
             return apiVersion;
         }
+
         public void LoadHostVersionInfo()
         {
-
             try
             {
                 var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "hostinfo.json");
@@ -265,14 +267,17 @@ namespace GitLab.VisualStudio.Services
                 SaveHostVersion();
             }
         }
+
         public void AddHostVersionInfo(string host, ApiVersion apiVersion)
         {
-
             try
             {
                 if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
                 {
-                    HostVersionInfo.Add(uri.Host, apiVersion);
+                    if (!HostVersionInfo.ContainsKey(uri.Host))
+                    {
+                        HostVersionInfo.Add(uri.Host, apiVersion);
+                    }
                 }
                 SaveHostVersion();
             }
