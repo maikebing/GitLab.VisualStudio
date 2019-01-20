@@ -26,21 +26,28 @@ namespace GitLab.VisualStudio.Services
         private List<Project> lstProject = new List<Project>();
         private DateTime dts = DateTime.MinValue;
 
-        public IReadOnlyList<Project> GetProjects()
+        public void LoadProjects()
         {
             lock (lstProject)
             {
-                if (lstProject.Count == 0 || Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds) > 5)//缓存五秒
+                if (lstProject.Count == 0 || Math.Abs(DateTime.Now.Subtract(dts).TotalSeconds) > 30)
                 {
-                    lstProject.Clear();
                     var client = GetClient();
                     foreach (var item in client.Projects.Membership())
                     {
-                        lstProject.Add(item);
+                        if (!lstProject.Any(p => p.Id == item.Id))
+                        {
+                            lstProject.Add(item);
+                        }
                     }
                     dts = DateTime.Now;
                 }
             }
+        }
+
+        public IReadOnlyList<Project> GetProjects()
+        {
+            LoadProjects();
             return lstProject;
         }
 
@@ -116,6 +123,7 @@ namespace GitLab.VisualStudio.Services
                 user = client.Users.Current();
                 user.PrivateToken = client.ApiToken;
                 user.ApiVersion = apiVersion;
+                LoadProjects();
             }
             catch (WebException ex)
             {
@@ -138,7 +146,7 @@ namespace GitLab.VisualStudio.Services
 
         public CreateProjectResult CreateProject(string name, string description, string VisibilityLevel)
         {
-            return CreateProject(name, description,   VisibilityLevel, 0);
+            return CreateProject(name, description, VisibilityLevel, 0);
         }
 
         public IReadOnlyList<NamespacesPath> GetNamespacesPathList()
@@ -175,8 +183,8 @@ namespace GitLab.VisualStudio.Services
             var result = new CreateProjectResult();
             try
             {
-                NGitLab.Models.VisibilityLevel vl_temp= NGitLab.Models.VisibilityLevel.Private;
-                if (!Enum.TryParse(VisibilityLevel,out vl_temp))
+                NGitLab.Models.VisibilityLevel vl_temp = NGitLab.Models.VisibilityLevel.Private;
+                if (!Enum.TryParse(VisibilityLevel, out vl_temp))
                 {
                     vl_temp = NGitLab.Models.VisibilityLevel.Private;
                 }

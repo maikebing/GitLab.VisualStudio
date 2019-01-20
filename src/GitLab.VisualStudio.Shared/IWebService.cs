@@ -28,6 +28,8 @@ namespace GitLab.VisualStudio.Shared
 
         IReadOnlyList<Project> GetProjects();
 
+        void LoadProjects();
+
         CreateProjectResult CreateProject(string name, string description, string VisibilityLevel, int namespaceid);
 
         CreateProjectResult CreateProject(string name, string description, string VisibilityLevel);

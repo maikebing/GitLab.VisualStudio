@@ -27,6 +27,9 @@ namespace GitLab.TeamFoundation
         [Import]
         private IWebService _web;
 
+        [Import]
+        private IStorage _storage;
+
         /// <summary>
         /// This MEF export requires specific versions of TeamFoundation. ITeamExplorerNotificationManager is declared here so
         /// that instances of this type cannot be created if the TeamFoundation dlls are not available
@@ -134,7 +137,6 @@ namespace GitLab.TeamFoundation
 
         public Project Project { get; private set; }
 
-     
         public bool IsGitLabRepo()
         {
             var repo = GetActiveRepository();
@@ -147,6 +149,10 @@ namespace GitLab.TeamFoundation
             var url = _git.GetRemote(path);
 
             if (url == null)
+            {
+                return false;
+            }
+            if (!_storage.HaveHost(url))
             {
                 return false;
             }

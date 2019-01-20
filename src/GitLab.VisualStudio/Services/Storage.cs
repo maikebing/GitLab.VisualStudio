@@ -230,6 +230,20 @@ namespace GitLab.VisualStudio.Services
 
         private Dictionary<string, ApiVersion> HostVersionInfo { get; set; }
 
+        public bool HaveHost(string host)
+        {
+            bool result = false;
+            if (HostVersionInfo == null)
+            {
+                LoadHostVersionInfo();
+            }
+            if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
+            {
+                result = HostVersionInfo.ContainsKey(uri.Host);
+            }
+            return result;
+        }
+
         public ApiVersion GetApiVersion(string host)
         {
             ApiVersion apiVersion = ApiVersion.AutoDiscovery;
