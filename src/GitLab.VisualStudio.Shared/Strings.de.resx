@@ -256,7 +256,7 @@
     <value>Passwort sollte mindestens 6 Zeichen sein!</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
-    <value>Ärgern sich über e-Mail an aktiven Account!</value>
+    <value>E-Mail an aktiven Account erneut senden!</value>
   </data>
   <data name="Login_SignUp" xml:space="preserve">
     <value>Jetzt registrieren!</value>
