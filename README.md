@@ -47,7 +47,9 @@ For older versions of Gitlab
 
 ### When you login with  LDAP credentials :
 If you create a personal access token (https://yourgitlaburl.com/profile/personal_access_tokens) and select 2fa and use your ldap username + your PAT you will be able to login and use the plug-in.
+
 ***by  dominicdejacomo***
+
 
 ## What's new ?
 **V1.0.160**
