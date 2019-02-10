@@ -141,7 +141,9 @@ namespace GitLab.VisualStudio.Services
 
         private static NGitLab.Impl.Api.ApiVersion VsApiVersionToNgitLabversion(ApiVersion apiVersion)
         {
-            return (NGitLab.Impl.Api.ApiVersion)Enum.Parse(typeof(NGitLab.Impl.Api.ApiVersion), apiVersion.ToString());
+            var result = NGitLab.Impl.Api.ApiVersion.V4_Oauth;
+            Enum.TryParse(apiVersion.ToString(), out result);
+            return result;
         }
 
         public CreateProjectResult CreateProject(string name, string description, string VisibilityLevel)

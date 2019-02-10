@@ -407,4 +407,19 @@
   <data name="Trying" xml:space="preserve">
     <value>尝试</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="PleaseCheckYourUsernameOrPassword" xml:space="preserve">
+    <value>请检查您的用户名或密码</value>
+  </data>
 </root>

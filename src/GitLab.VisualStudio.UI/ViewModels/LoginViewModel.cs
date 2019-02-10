@@ -194,6 +194,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             BusyContent = Strings.Common_Loading;
             var successed = false;
             Exception exlogin = null;
+            string logmsg = "";
             Task.Run(() =>
             {
                 bool ok = Enum.TryParse(SelectedApiVersion, true, out ApiVersion apiVersion);
@@ -216,6 +217,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         catch (Exception ex)
                         {
                             BusyContent = ex.Message;
+                            logmsg += apiv.ToString()+":"+ ex.Message+Environment.NewLine;
                         }
                     }
                 }
@@ -234,6 +236,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 catch (Exception ex)
                 {
                     exlogin = ex;
+                    logmsg +="Last try"+ apiVersion.ToString ()+":"+ ex.Message + Environment.NewLine;
                 }
             }).ContinueWith(task =>
             {
@@ -246,7 +249,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    _dialog.Warning(Strings.Login_FailedToLogin + "\r\n" + exlogin.Message);
+                    _dialog.Warning(Strings.Login_FailedToLogin +Environment.NewLine + Strings.PleaseCheckYourUsernameOrPassword + Environment.NewLine + logmsg);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }

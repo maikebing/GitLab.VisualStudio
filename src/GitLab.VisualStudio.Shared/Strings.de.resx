@@ -405,4 +405,19 @@
   <data name="Trying" xml:space="preserve">
     <value>Probieren</value>
   </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Achtung</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information!</value>
+  </data>
+  <data name="PleaseCheckYourUsernameOrPassword" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort.</value>
+  </data>
 </root>

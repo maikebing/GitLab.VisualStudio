@@ -405,4 +405,16 @@
   <data name="Trying" xml:space="preserve">
     <value>しよう</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="PleaseCheckYourUsernameOrPassword" xml:space="preserve">
+    <value>ユーザー名またはパスワードを確認してください。</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
 </root>
