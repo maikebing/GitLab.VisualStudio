@@ -63,7 +63,7 @@ namespace GitLab.VisualStudio.Services
 
                 case GitLabUrlType.Master:
                 default:
-                    return repository.Head.FriendlyName.Replace("origin/", "");
+                    return "master";
             }
         }
 
