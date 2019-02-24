@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CloneView_FailedToLoadProjects" xml:space="preserve">
-    <value>Laden fehlgeschlagen.</value>
+    <value>Laden fehlgeschlagen</value>
   </data>
   <data name="CloneView_NoProjects" xml:space="preserve">
     <value>Keine Projekte</value>
@@ -127,82 +127,82 @@
     <value>Suche</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
-    <value>Browse</value>
+    <value>Durchsuche</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Abbrechen!</value>
+    <value>Stornieren</value>
   </data>
   <data name="Common_ChooseAGitIgnore" xml:space="preserve">
-    <value>Hinzufügen einer .gitignore!</value>
+    <value>Fügen Sie einen .gitignore hinzu</value>
   </data>
   <data name="Common_ChooseALicense" xml:space="preserve">
-    <value>Eine Lizenz hinzufügen!</value>
+    <value>Fügen Sie eine Lizenz hinzu</value>
   </data>
   <data name="Common_Clone" xml:space="preserve">
-    <value>Klonen</value>
+    <value>Klon</value>
   </data>
   <data name="Common_CreateRepository" xml:space="preserve">
-    <value>Erstellen!</value>
+    <value>Erstellen</value>
   </data>
   <data name="Common_Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Maximale Länge der Beschreibung beträgt 500</value>
+    <value>Die maximale Länge der Beschreibung beträgt 500</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
-    <value>Ignorieren</value>
+    <value>Git ignorieren</value>
   </data>
   <data name="Common_License" xml:space="preserve">
-    <value>Lizenzen</value>
+    <value>Lizenz</value>
   </data>
   <data name="Common_Loading" xml:space="preserve">
-    <value>Lade</value>
+    <value>Wird geladen</value>
   </data>
   <data name="Common_Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Maximale Länge des Namens beträgt 64 Zeichen</value>
+    <value>Die maximale Länge des Namens beträgt 64 Zeichen</value>
   </data>
   <data name="Common_New" xml:space="preserve">
-    <value>Neu!</value>
+    <value>Neu</value>
   </data>
   <data name="Common_Path" xml:space="preserve">
     <value>Pfad</value>
   </data>
   <data name="Common_Private" xml:space="preserve">
-    <value>Private</value>
+    <value>Privatgelände</value>
   </data>
   <data name="Common_Property" xml:space="preserve">
-    <value>Eigenschaft</value>
+    <value>Eigentum</value>
   </data>
   <data name="Common_Quit" xml:space="preserve">
-    <value>Abbrechen!</value>
+    <value>Verlassen</value>
   </data>
   <data name="Confirm_Quit" xml:space="preserve">
-    <value>Sind Sie sicher, dass Sie öffnen möchten?</value>
+    <value>Sind Sie sicher, dass Sie aufhören wollen?</value>
   </data>
   <data name="CreateView_NameIsRequired" xml:space="preserve">
-    <value>Name ist ein Pflichtfeld</value>
+    <value>Der Name ist obligatorisch</value>
   </data>
   <data name="CreateView_PathIsRequired" xml:space="preserve">
-    <value>ist obligatorisch</value>
+    <value>Pfad ist obligatorisch</value>
   </data>
   <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
-    <value>Dies ist ein cooles Projekt (optional)!</value>
+    <value>Dies ist ein cooles Projekt (optional)</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>GitLab unbegrenzte kostenlose Repositories und Mitarbeiter. Anmelden. Kostenlose öffentliche &amp; private Repositories und unbegrenzte Kollaborateure.!</value>
+    <value>GitLab unbegrenzt kostenlose Repositorys und Mitbearbeiter. Anmelden. Kostenlose öffentliche und private Repositories und unbegrenzte Mitarbeiter.</value>
   </data>
   <data name="Invitation_Connect" xml:space="preserve">
-    <value>Verbinden!</value>
+    <value>Verbinden</value>
   </data>
   <data name="Invitation_SignUp" xml:space="preserve">
-    <value>Jetzt registrieren!</value>
+    <value>Anmelden</value>
   </data>
   <data name="Items_builds" xml:space="preserve">
-    <value>Baut!</value>
+    <value>Builds</value>
   </data>
   <data name="Items_Graph" xml:space="preserve">
     <value>Diagramme</value>
@@ -214,52 +214,53 @@
     <value>Pipelines</value>
   </data>
   <data name="Items_MergeRequests" xml:space="preserve">
-    <value>Anfragen zu verschmelzen!</value>
+    <value>Anforderungen zusammenführen</value>
   </data>
   <data name="Items_Snippets" xml:space="preserve">
-    <value>Snipptes</value>
+    <value>Schnipsel</value>
   </data>
   <data name="Items_Wiki" xml:space="preserve">
     <value>Wiki</value>
   </data>
   <data name="Login_ConnectTo" xml:space="preserve">
-    <value>Verbinde mit{0}</value>
+    <value>Verbindung zu {0} herstellen</value>
+    <comment>0 = Common_Name</comment>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>Benutzername oder E-Mail</value>
+    <value>Benutzername oder E-Mail-Adresse</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
-    <value>Ungültige E-Mail!</value>
+    <value>Ungültige E-Mail</value>
   </data>
   <data name="Login_EmailIsRequired" xml:space="preserve">
-    <value>Die Email Adresse des Empfängers ist ein Pflichtfeld</value>
+    <value>E-Mail ist obligatorisch</value>
   </data>
   <data name="Login_FailedToLogin" xml:space="preserve">
-    <value>Anmeldung fehlgeschlagen!</value>
+    <value>Login fehlgeschlagen</value>
   </data>
   <data name="Login_ForgetPassword" xml:space="preserve">
-    <value>Passwort vergessen</value>
+    <value>Passwort vergessen?</value>
   </data>
   <data name="Login_Host" xml:space="preserve">
-    <value>GitLab (https://gitlab.com)!</value>
+    <value>GitLab (https://gitlab.com)</value>
   </data>
   <data name="Login_Login" xml:space="preserve">
-    <value>Anmelden!</value>
+    <value>Anmelden</value>
   </data>
   <data name="Login_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Passwort</value>
   </data>
   <data name="Login_PasswordIsRequired" xml:space="preserve">
-    <value>Passwort ist obligatorisch</value>
+    <value>Passwort ist Pflicht</value>
   </data>
   <data name="Login_PasswordMinTo" xml:space="preserve">
-    <value>Passwort sollte mindestens 6 Zeichen sein!</value>
+    <value>Das Passwort sollte mindestens 6 Zeichen betragen</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
-    <value>E-Mail an aktiven Account erneut senden!</value>
+    <value>E-Mail erneut an aktives Konto senden</value>
   </data>
   <data name="Login_SignUp" xml:space="preserve">
-    <value>Jetzt registrieren!</value>
+    <value>Anmelden</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>GitLab</value>
@@ -268,7 +269,7 @@
     <value>GitLab</value>
   </data>
   <data name="Publish_Login" xml:space="preserve">
-    <value>Anmelden!</value>
+    <value>Anmeldung</value>
   </data>
   <data name="Publish_Or" xml:space="preserve">
     <value>oder</value>
@@ -277,25 +278,26 @@
     <value>Veröffentlichen</value>
   </data>
   <data name="Publish_SignUp" xml:space="preserve">
-    <value>Jetzt registrieren!</value>
+    <value>Anmelden</value>
   </data>
   <data name="Publish_Start" xml:space="preserve">
-    <value>Start!</value>
+    <value>Start</value>
   </data>
   <data name="Publish_Submiting" xml:space="preserve">
-    <value>Übermittlung...</value>
+    <value>Einreichen</value>
   </data>
   <data name="Publish_Title" xml:space="preserve">
-    <value>Veröffentlichen auf</value>
+    <value>In {0} veröffentlichen</value>
+    <comment>0 = Common_Name</comment>
   </data>
   <data name="Repository_Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
-    <value>Das Projekt {0} ist bereits vorhanden!</value>
+    <value>Das Projekt {0} existiert bereits!</value>
   </data>
   <data name="Login_HostIsInvalid" xml:space="preserve">
-    <value>ist ungültig</value>
+    <value>Host ist ungültig</value>
   </data>
   <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
     <value>Kein Login</value>
@@ -307,82 +309,82 @@
     <value>https://gitlab.com</value>
   </data>
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
-    <value>Noch nicht einloggen!</value>
+    <value>Noch nicht anmelden</value>
   </data>
   <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
-    <value>Anlegen fehlgeschlagen</value>
+    <value>Fehler beim Erstellen des Snippets</value>
   </data>
   <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
-    <value>Sichtbarkeit ist erforderlich!</value>
+    <value>Sichtbarkeit ist erforderlich</value>
   </data>
   <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
-    <value>Deskriptoren ist erforderlich!</value>
+    <value>Deskriptoren sind erforderlich</value>
   </data>
   <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
-    <value>Dateiname ist erforderlich!</value>
+    <value>Dateiname ist erforderlich</value>
   </data>
   <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
-    <value>Titel wird benötigt</value>
+    <value>Titel ist erforderlich</value>
   </data>
   <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
-    <value>Code IsRequired!</value>
+    <value>Code ist erforderlich</value>
   </data>
   <data name="CreatingASnippetPleaseWait" xml:space="preserve">
-    <value>Erstellen ein Snippet, bitte warten Sie...</value>
+    <value>Einen Snippet erstellen, bitte warten ...</value>
   </data>
   <data name="TheSnippetsIsNotEnabled" xml:space="preserve">
-    <value>Die Schnipsel ist nicht aktiviert!</value>
+    <value>Die Ausschnitte sind nicht aktiviert</value>
   </data>
   <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
-    <value>... (Vollständige ID)!</value>
+    <value>... (vollständige ID)</value>
   </data>
   <data name="GitAnalysis_Revision" xml:space="preserve">
     <value>Revision:</value>
   </data>
   <data name="GitAnalysisn_Branch" xml:space="preserve">
-    <value>Filiale:</value>
+    <value>Ast:</value>
   </data>
   <data name="GitAnalysis_Blame" xml:space="preserve">
-    <value>Blame</value>
+    <value>Schuld</value>
   </data>
   <data name="GitAnalysis_Commits" xml:space="preserve">
-    <value>Oktober Zusagen angeboten.</value>
+    <value>Commits</value>
   </data>
   <data name="OpenOnGitLabPackage_CreateSnippet" xml:space="preserve">
-    <value>Erstellen Sie Snippet!</value>
+    <value>Schnipsel erstellen</value>
   </data>
   <data name="CreateSnippetNoTitle" xml:space="preserve">
-    <value>ohne Titel</value>
+    <value>kein Titel</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Schließen</value>
   </data>
   <data name="CreateSnippet_Button" xml:space="preserve">
-    <value>Erstellen!</value>
+    <value>Erstellen</value>
   </data>
   <data name="Visibility" xml:space="preserve">
-    <value>Sichtbarkeit</value>
+    <value>Sichtweite</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Betreff</value>
+    <value>Titel</value>
   </data>
   <data name="FileName" xml:space="preserve">
     <value>Dateiname</value>
   </data>
   <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
-    <value>Nach dem Öffnen im Browser erstellt</value>
+    <value>Nach dem Erstellen im Browser öffnen</value>
   </data>
   <data name="ProjectVisibility" xml:space="preserve">
-    <value>Projekt-Transparenz</value>
+    <value>Sichtbarkeit des Projekts</value>
   </data>
   <data name="Canotopenurl" xml:space="preserve">
     <value>URL kann nicht geöffnet werden: {0}, {1}</value>
   </data>
   <data name="PleaseCodes" xml:space="preserve">
-    <value>Bitte wählen Sie Code-Snippet!</value>
+    <value>Bitte wählen Sie einen Code-Ausschnitt</value>
   </data>
   <data name="OpenFormURL" xml:space="preserve">
-    <value>Von einer URL</value>
+    <value>Aus URL öffnen</value>
   </data>
   <data name="GitLabApiV31" xml:space="preserve">
     <value>GitLab ApiV3 1</value>
@@ -391,7 +393,7 @@
     <value>GitLab ApiV3</value>
   </data>
   <data name="GitLabApiV4" xml:space="preserve">
-    <value>GitLabApiGitLab ApiV4 V4</value>
+    <value>GitLab ApiV4</value>
   </data>
   <data name="GitLabApiV3Oauth2" xml:space="preserve">
     <value>GitLab ApiV3 Oauth2</value>
@@ -403,21 +405,21 @@
     <value>Auto Discovery</value>
   </data>
   <data name="Trying" xml:space="preserve">
-    <value>Probieren</value>
-  </data>
-  <data name="Warning" xml:space="preserve">
-    <value>Achtung</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Fehler</value>
+    <value>Versuchen:</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigen</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>Information!</value>
+    <value>Information</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="PleaseCheckYourUsernameOrPassword" xml:space="preserve">
-    <value>Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort.</value>
+    <value>Bitte überprüfen Sie Ihren Benutzernamen oder Ihr Passwort!</value>
   </data>
 </root>
