@@ -124,37 +124,37 @@
     <value>Aucun projet</value>
   </data>
   <data name="CloneView_Search" xml:space="preserve">
-    <value>Chercher!</value>
+    <value>Rechercher</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
     <value>Parcourir</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Annuler !</value>
+    <value>Annuler</value>
   </data>
   <data name="Common_ChooseAGitIgnore" xml:space="preserve">
-    <value>Ajouter un .gitignore !</value>
+    <value>Ajouter un .gitignore</value>
   </data>
   <data name="Common_ChooseALicense" xml:space="preserve">
-    <value>Une licence</value>
+    <value>Licence</value>
   </data>
   <data name="Common_Clone" xml:space="preserve">
-    <value>Dupliquer</value>
+    <value>Cloner</value>
   </data>
   <data name="Common_CreateRepository" xml:space="preserve">
-    <value>Créer !</value>
+    <value>Créer</value>
   </data>
   <data name="Common_Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Longueur maximale de description est 500 !</value>
+    <value>500 caractères maximum.</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
     <value>Ignorer</value>
   </data>
   <data name="Common_License" xml:space="preserve">
-    <value>مجوز</value>
+    <value>Licence</value>
   </data>
   <data name="Common_Loading" xml:space="preserve">
     <value>Chargement</value>
@@ -163,10 +163,10 @@
     <value>Nom</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Longueur maximale du nom est de 64 caractères !</value>
+    <value>64 caractères maximum.</value>
   </data>
   <data name="Common_New" xml:space="preserve">
-    <value>Nouveau!</value>
+    <value>Nouveau</value>
   </data>
   <data name="Common_Path" xml:space="preserve">
     <value>Chemin d'accès</value>
@@ -175,13 +175,13 @@
     <value>Privé</value>
   </data>
   <data name="Common_Property" xml:space="preserve">
-    <value>Propriété</value>
+    <value>Propriétés</value>
   </data>
   <data name="Common_Quit" xml:space="preserve">
     <value>Quitter</value>
   </data>
   <data name="Confirm_Quit" xml:space="preserve">
-    <value>Êtes-vous sûr(e) de vouloir abandonner?</value>
+    <value>Êtes-vous sûr de vouloir abandonner ?</value>
   </data>
   <data name="CreateView_NameIsRequired" xml:space="preserve">
     <value>Le nom du poste est obligatoire</value>
@@ -196,10 +196,10 @@
     <value>GitLab illimité gratuit référentiels et collaborateurs. Inscrivez-vous. Gratuit des dépôts publics &amp; privés et illimités collaborateurs. !</value>
   </data>
   <data name="Invitation_Connect" xml:space="preserve">
-    <value>Connecter&amp;nbsp;!</value>
+    <value>Se connecter</value>
   </data>
   <data name="Invitation_SignUp" xml:space="preserve">
-    <value>J'arrive !</value>
+    <value>S'inscrire</value>
   </data>
   <data name="Items_builds" xml:space="preserve">
     <value>Builds</value>
@@ -208,13 +208,13 @@
     <value>Graphiques d’évolution</value>
   </data>
   <data name="Items_Issues" xml:space="preserve">
-    <value>Enjeux</value>
+    <value>Tickets</value>
   </data>
   <data name="Items_Pipeline" xml:space="preserve">
     <value>Pipelines</value>
   </data>
   <data name="Items_MergeRequests" xml:space="preserve">
-    <value>Fusionner les requêtes !</value>
+    <value>Fusionner les requêtes</value>
   </data>
   <data name="Items_Snippets" xml:space="preserve">
     <value>Extraits</value>
@@ -223,16 +223,16 @@
     <value>Wiki</value>
   </data>
   <data name="Login_ConnectTo" xml:space="preserve">
-    <value>Connexion à{0}</value>
+    <value>Connexion à {0}</value>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>Nom d’utilisateur ou courriel</value>
+    <value>Nom d’utilisateur ou email</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
-    <value>E-mail invalide !</value>
+    <value>Adresse mail invalide !</value>
   </data>
   <data name="Login_EmailIsRequired" xml:space="preserve">
-    <value>L’e-mail est obligatoire !</value>
+    <value>L'e-mail est obligatoire !</value>
   </data>
   <data name="Login_FailedToLogin" xml:space="preserve">
     <value>Échec de connexion !</value>
@@ -253,37 +253,37 @@
     <value>Le mot de passe est obligatoire</value>
   </data>
   <data name="Login_PasswordMinTo" xml:space="preserve">
-    <value>Mot de passe doit être au moins 6 caractères !</value>
+    <value>Mot de passe doit faire au moins 6 caractères.</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
-    <value>Renvoyé par courriel au compte active !</value>
+    <value>Un mail de confirmation a été envoyé</value>
   </data>
   <data name="Login_SignUp" xml:space="preserve">
-    <value>J'arrive !</value>
+    <value>S'inscrire</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>GitLab !</value>
+    <value>GitLab</value>
   </data>
   <data name="Provider" xml:space="preserve">
-    <value>GitLab !</value>
+    <value>GitLab</value>
   </data>
   <data name="Publish_Login" xml:space="preserve">
     <value>Connexion</value>
   </data>
   <data name="Publish_Or" xml:space="preserve">
-    <value>Or</value>
+    <value>Ou</value>
   </data>
   <data name="Publish_Publish" xml:space="preserve">
     <value>Publier</value>
   </data>
   <data name="Publish_SignUp" xml:space="preserve">
-    <value>J'arrive !</value>
+    <value>S'inscrire</value>
   </data>
   <data name="Publish_Start" xml:space="preserve">
-    <value>Commencer !</value>
+    <value>Commencer</value>
   </data>
   <data name="Publish_Submiting" xml:space="preserve">
-    <value>Soumission en cours...</value>
+    <value>Envoi en cours...</value>
   </data>
   <data name="Publish_Title" xml:space="preserve">
     <value>Publier vers</value>
@@ -307,7 +307,7 @@
     <value>https://gitlab.com</value>
   </data>
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
-    <value>pas connecté</value>
+    <value>Non connecté</value>
   </data>
   <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
     <value>Impossible de créer l’extrait !</value>
