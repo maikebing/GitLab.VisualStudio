@@ -209,8 +209,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
                             var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiv);
                             if (user != null)
                             {
-                                apiVersion = apiv;
                                 BusyContent = null;
+                                successed = true;
+                                user.Host = Host;
+                                _storage.AddHostVersionInfo(Host, apiv);
+                                _storage.SaveUser(user, Password);
                                 break;
                             }
                         }
@@ -221,23 +224,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         }
                     }
                 }
-                try
-                {
-                    var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiVersion);
-                    if (user != null)
-                    {
-                        successed = true;
-                        user.Host = Host;
-                        _storage.AddHostVersionInfo(Host, apiVersion);
-                        _storage.SaveUser(user, Password);
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    exlogin = ex;
-                    logmsg +="Last try"+ apiVersion.ToString ()+":"+ ex.Message + Environment.NewLine;
-                }
+            
             }).ContinueWith(task =>
             {
                 IsBusy = false;

@@ -288,12 +288,17 @@ namespace GitLab.VisualStudio.Services
             {
                 if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
                 {
-                    if (!HostVersionInfo.ContainsKey(uri.Host))
+                    if (HostVersionInfo.ContainsKey(uri.Host))
                     {
-                        HostVersionInfo.Add(uri.Host, apiVersion);
+                        HostVersionInfo.Remove(uri.Host);
                     }
+                    HostVersionInfo.Add(uri.Host, apiVersion);
+                    SaveHostVersion();
                 }
-                SaveHostVersion();
+                else
+                {
+                    OutputWindowHelper.WarningWriteLine($"Can't Create Uri Host:{host},ApiVersion:{apiVersion}");
+                }
             }
             catch (Exception ex)
             {
