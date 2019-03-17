@@ -9,7 +9,7 @@ namespace GitLab.VisualStudio.Shared
         User GetUser();
 
         string Host { get; }
-        string Path { get; }
+        
 
         string GetPassword(string _host);
 

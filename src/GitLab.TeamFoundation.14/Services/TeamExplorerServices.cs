@@ -6,12 +6,14 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Task = System.Threading.Tasks.Task;
 
 namespace GitLab.TeamFoundation
 {
@@ -20,6 +22,7 @@ namespace GitLab.TeamFoundation
     public class TeamExplorerServices : ITeamExplorerServices
     {
         private readonly IServiceProvider serviceProvider;
+#pragma warning disable 0649
 
         [Import]
         private IGitService _git;
@@ -29,7 +32,7 @@ namespace GitLab.TeamFoundation
 
         [Import]
         private IStorage _storage;
-
+#pragma warning restore 0649
         /// <summary>
         /// This MEF export requires specific versions of TeamFoundation. ITeamExplorerNotificationManager is declared here so
         /// that instances of this type cannot be created if the TeamFoundation dlls are not available
@@ -136,7 +139,7 @@ namespace GitLab.TeamFoundation
         }
 
         public Project Project { get; private set; }
-
+        bool _loading = false;
         public bool IsGitLabRepo()
         {
             var repo = GetActiveRepository();
@@ -152,47 +155,35 @@ namespace GitLab.TeamFoundation
             {
                 return false;
             }
-            if (!_storage.HaveHost(url))
+            if (!_loading)
             {
-                return false;
-            }
-
-            if (Project == null || !string.Equals(Project.Url, url, StringComparison.OrdinalIgnoreCase))
-            {
-                try
+                Task.Run(() =>
                 {
-                    var projects = _web.GetProjects();
-                    foreach (var project in projects)
+                    _loading = true;
+                    if (Project == null || !string.Equals(Project.Url, url, StringComparison.OrdinalIgnoreCase))
                     {
-                        if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
+                        try
                         {
-                            Project = project;
-                            break;
+                            var projects = _web.GetProjects();
+                            foreach (var project in projects)
+                            {
+                                if (string.Equals(project.Url, url, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    Project = project;
+                                    break;
+                                }
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        // Ignore
                     }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    // Ignore
-                }
+                    }
+                    _loading = false;
+                }).Forget();
             }
-            bool isgitlab = false;
-            if (Project != null && !string.IsNullOrEmpty(Project.HttpUrl) && Uri.IsWellFormedUriString(Project.HttpUrl, UriKind.Absolute)
-                && !string.IsNullOrEmpty(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            {
-                try
-                {
-                    UriBuilder remoteurl = new UriBuilder(url);
-                    UriBuilder gitlaburl = new UriBuilder(Project.HttpUrl);
-                    isgitlab = remoteurl.Host.ToLower() == gitlaburl.Host.ToLower();
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            }
-            return isgitlab;
+            return _storage.HaveHost(url);
         }
     }
 }

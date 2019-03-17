@@ -2,6 +2,7 @@
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 
@@ -23,20 +24,27 @@ namespace GitLab.TeamFoundation.Home
         {
             IsVisible = false;
             base.Initialize(sender, e);
+            var gitExt = Microsoft.VisualStudio.Shell.ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
+            gitExt.PropertyChanged += GitExt_PropertyChanged;
         }
+
+        private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ActiveRepositories")
+            {
+                System.Threading.Tasks.Task.Run(async () =>
+                {
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    Refresh();
+                }).Forget();
+            }
+        }
+
         public override void Refresh()
         {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                  _tes.IsGitLabRepo();
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                base.Refresh();
-            }
-            );
-
+            base.Refresh();
+            IsVisible = _tes.IsGitLabRepo();
         }
-  
-
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
         {

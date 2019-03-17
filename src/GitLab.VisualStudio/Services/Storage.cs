@@ -32,13 +32,9 @@ namespace GitLab.VisualStudio.Services
         {
             get
             {
-                string url = string.Empty;
-                var _u = LoadUser();
-                if (_u != null)
-                {
-                    url = _u.Host;
-                }
-                if (string.IsNullOrEmpty(url))
+                string url = Strings.DefaultHost;
+                var slndir = GitLabPackage.GetSolutionDirectory();
+                if (System.IO.Directory.Exists(slndir))
                 {
                     using (var git = new GitAnalysis(GitLabPackage.GetSolutionDirectory()))
                     {
@@ -48,30 +44,12 @@ namespace GitLab.VisualStudio.Services
                             if (!string.IsNullOrEmpty(hurl))
                             {
                                 Uri uri = new Uri(hurl);
-                                url = uri.Host;
+                                url = $"{uri.Scheme}://{uri.Host}/";
                             }
                         }
                     }
                 }
                 return url;
-            }
-        }
-
-        public string Path
-        {
-            get
-            {
-                string slnpath = GitLabPackage.GetSolutionDirectory();
-                string _path = string.Empty;
-                if (string.IsNullOrEmpty(slnpath))
-                {
-                    _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".GitLab");
-                }
-                else
-                {
-                    _path = slnpath + "\\.vs\\.gitlab";
-                }
-                return _path;
             }
         }
 
@@ -119,37 +97,22 @@ namespace GitLab.VisualStudio.Services
 
         private void SaveUserToLocal(User user)
         {
-            var serializer = new JsonSerializer();
-            string _path = Path;
-            if (File.Exists(_path))
+            try
             {
-                JObject o = null;
-                using (var reader = new JsonTextReader(new StreamReader(_path)))
-                {
-                    o = (JObject)serializer.Deserialize(reader);
-
-                    o["User"] = JToken.FromObject(user);
-                }
-                using (var writer = new JsonTextWriter(new StreamWriter(_path)))
-                {
-                    writer.Formatting = Formatting.Indented;
-                    o.WriteTo(writer);
-                }
-            }
-            else
-            {
+                string _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs");
                 var fi = new System.IO.FileInfo(_path);
-                if (fi.Directory.Exists)
+                if (!fi.Directory.Exists)
                 {
                     fi.Directory.Create();
-                    //  fi.Directory.Attributes = FileAttributes.Hidden;
                 }
-                using (var writer = new JsonTextWriter(new StreamWriter(_path)))
-                {
-                    writer.Formatting = Formatting.Indented;
-                    serializer.Serialize(writer, new { User = user });
-                }
-                //System.IO.File.SetAttributes(_path,   FileAttributes.Hidden);
+                var pt = user.PrivateToken;
+                user.PrivateToken = null;
+                System.IO.File.WriteAllText(_path, Newtonsoft.Json.JsonConvert.SerializeObject(user));
+                user.PrivateToken = pt;
+            }
+            catch (Exception )
+            {
+ 
             }
         }
 
@@ -176,22 +139,10 @@ namespace GitLab.VisualStudio.Services
             User _user = null;
             try
             {
-                string _path = Path;
-                if (!File.Exists(_path))
+                var _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs");
+                if (System.IO.File.Exists(_path))
                 {
-                    var tmp_path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".GitLab");
-                    if (System.IO.File.Exists(tmp_path))
-                    {
-                        System.IO.File.Copy(tmp_path, _path);
-                    }
-                }
-                JObject o = null;
-                using (var reader = new JsonTextReader(new StreamReader(_path)))
-                {
-                    var serializer = new JsonSerializer();
-                    o = (JObject)serializer.Deserialize(reader);
-                    var token = o["User"];
-                    _user = token.ToObject<User>();
+                    _user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(System.IO.File.ReadAllText(_path));
                     _user.PrivateToken = GetToken(_user.Host);
                 }
             }
@@ -218,13 +169,8 @@ namespace GitLab.VisualStudio.Services
 
         public string GetBaseRepositoryDirectory()
         {
-            string _path = this.Path;
-            if (!System.IO.Directory.Exists(_path))
-            {
-                var user = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                _path = System.IO.Path.Combine(user, "Source", "Repos");
-            }
-
+            var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var _path = System.IO.Path.Combine(user, "Source", "Repos");
             return _path;
         }
 
@@ -237,10 +183,13 @@ namespace GitLab.VisualStudio.Services
             {
                 LoadHostVersionInfo();
             }
-            if (Uri.TryCreate(host, UriKind.RelativeOrAbsolute, out var uri))
+            result = HostVersionInfo.ContainsKey(host);
+
+            if (!result  && Uri.TryCreate(host, UriKind.Absolute, out Uri uri))
             {
                 result = HostVersionInfo.ContainsKey(uri.Host);
             }
+            
             return result;
         }
 
@@ -265,8 +214,11 @@ namespace GitLab.VisualStudio.Services
         {
             try
             {
-                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "hostinfo.json");
-                HostVersionInfo = JsonConvert.DeserializeObject<Dictionary<string, ApiVersion>>(System.IO.File.ReadAllText(filename));
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.dat");
+                if (System.IO.File.Exists(filename))
+                {
+                    HostVersionInfo = JsonConvert.DeserializeObject<Dictionary<string, ApiVersion>>(System.IO.File.ReadAllText(filename));
+                }
             }
             catch (Exception ex)
             {
@@ -277,6 +229,7 @@ namespace GitLab.VisualStudio.Services
             if (HostVersionInfo.Count == 0)
             {
                 HostVersionInfo.Add("gitlab.com", ApiVersion.V4_Oauth);
+                HostVersionInfo.Add("gitclub.cn", ApiVersion.V4_Oauth);
                 HostVersionInfo.Add("gitee.com", ApiVersion.V3_1);
                 SaveHostVersion();
             }
@@ -310,7 +263,7 @@ namespace GitLab.VisualStudio.Services
         {
             try
             {
-                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "hostinfo.json");
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.dat");
                 System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(HostVersionInfo));
             }
             catch (Exception ex)

@@ -23,7 +23,9 @@ namespace GitLab.VisualStudio.Shared.Models
                     SshUrl = p.SshUrl,
                     WikiEnabled = p.WikiEnabled,
                     Id = p.Id,
-                    WebUrl = p.WebUrl
+                    WebUrl = p.WebUrl,
+                    Description = p.Description
+                    
                 };
             }
             else
@@ -71,5 +73,7 @@ namespace GitLab.VisualStudio.Shared.Models
                     : Octicon.repo;
             }
         }
+
+        public string Description { get; set; }
     }
 }

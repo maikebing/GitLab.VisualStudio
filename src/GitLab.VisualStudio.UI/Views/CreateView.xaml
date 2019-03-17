@@ -30,7 +30,7 @@
                 <RowDefinition Height="28.8" />
                 <RowDefinition Height="35.2" />
                 <RowDefinition Height="10.8" />
-                <RowDefinition Height="19.6"/>
+                <RowDefinition Height="19.6" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="41.6" />
             </Grid.RowDefinitions>
@@ -103,21 +103,13 @@
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="0,10.4,0.2,3.2" Height="28">
-                <Button Width="117"
+                <Button Width="326"
                           Background="#3b83c0"
                     Foreground="#ffffff"
                     FontWeight="Bold"
                     FontSize="14"
                         Content="{x:Static shared:Strings.Common_New}"
                         Command="{Binding NewCommand}" Margin="0,0,0,1" />
-                <Button Width="117"
-                          Background="#3b83c0"
-                    Foreground="#ffffff"
-                    FontWeight="Bold"
-                    FontSize="14"
-                        Content="{x:Static shared:Strings.Common_Cancel}"
-                        Margin="10,0,0,1"
-                        Click="OnCancel" />
                 <Frame x:Name="frame" Content="" Width="13" />
             </StackPanel>
             <ComboBox x:Name="cbxNamespaces"   ItemsSource="{Binding  Namespaces}"
@@ -127,7 +119,7 @@
             <ComboBox x:Name="cbxVisibilityLevel" ItemsSource="{Binding   VisibilityLevels}"
                       DisplayMemberPath="Value"
                       SelectedValuePath="Key"
-                      SelectedValue="{Binding SelectedVisibilityLevels}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="327" Height="28" Grid.RowSpan="2"/>
+                      SelectedValue="{Binding SelectedVisibilityLevels}" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="327" Height="28" Grid.RowSpan="2" />
         </Grid>
     </controls:BusyIndicator>
 </shared:Dialog>

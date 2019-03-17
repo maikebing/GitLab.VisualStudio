@@ -421,7 +421,7 @@ namespace GitLab.VisualStudio.Shared {
         }
         
         /// <summary>
-        ///   查找类似 https://gitlab.com 的本地化字符串。
+        ///   查找类似 https://gitlab.com/ 的本地化字符串。
         /// </summary>
         public static string DefaultHost {
             get {

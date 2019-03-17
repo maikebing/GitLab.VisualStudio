@@ -109,7 +109,7 @@ namespace GitLab.VisualStudio.Services
         {
             NGitLab.GitLabClient client = null;
             User user = null;
-            NGitLab.Impl.Api.ApiVersion _apiVersion = VsApiVersionToNgitLabversion(apiVersion);
+            NGitLab.Impl.ApiVersion _apiVersion = VsApiVersionToNgitLabversion(apiVersion);
             if (enable2fa)
             {
                 client = NGitLab.GitLabClient.Connect(host, password, _apiVersion);
@@ -123,7 +123,12 @@ namespace GitLab.VisualStudio.Services
                 user = client.Users.Current();
                 user.PrivateToken = client.ApiToken;
                 user.ApiVersion = apiVersion;
-                LoadProjects();
+                user.Host = host;
+                if (user != null && user.Id > 0)
+                {
+                    _storage.SaveUser(user, password);
+                    LoadProjects();
+                }
             }
             catch (WebException ex)
             {
@@ -139,9 +144,9 @@ namespace GitLab.VisualStudio.Services
             return user;
         }
 
-        private static NGitLab.Impl.Api.ApiVersion VsApiVersionToNgitLabversion(ApiVersion apiVersion)
+        private static NGitLab.Impl.ApiVersion VsApiVersionToNgitLabversion(ApiVersion apiVersion)
         {
-            var result = NGitLab.Impl.Api.ApiVersion.V4_Oauth;
+            var result = NGitLab.Impl.ApiVersion.V4_Oauth;
             Enum.TryParse(apiVersion.ToString(), out result);
             return result;
         }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -114,6 +115,42 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 BaseRepositoryPath = browsed;
             }
+        }
+
+        private bool RepoFilter(object item)
+        {
+            var repo = item as ProjectViewModel;
+
+            if (string.IsNullOrEmpty(FilterText))
+            {
+                return true;
+            }
+            else
+            {
+                var compare = CultureInfo.CurrentCulture.CompareInfo;
+                return compare.IndexOf(repo.Name, FilterText, CompareOptions.IgnoreCase) != -1
+                    || compare.IndexOf(repo.Description, FilterText, CompareOptions.IgnoreCase) != -1;
+            }
+        }
+
+        private string _filterText;
+
+        public string FilterText
+        {
+            get { return _filterText; }
+            set
+            {
+                _filterText = value;
+                Repositories.Refresh();
+            }
+        }
+
+        private bool _filterTextIsEnabled;
+
+        public bool FilterTextIsEnabled
+        {
+            get { return _filterTextIsEnabled; }
+            set { SetProperty(ref _filterTextIsEnabled, value); }
         }
 
         private void OnClone()

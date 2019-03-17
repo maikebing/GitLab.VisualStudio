@@ -40,12 +40,23 @@ namespace GitLab.VisualStudio.UI.ViewModels
         public Octicon Icon { get; set; }
 
         public bool IsActive { get; set; }
+        public string Description { get; set; }
+
+        public System.Windows.Visibility DescriptionVisibility
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Description)
+                    ? System.Windows.Visibility.Collapsed
+                    : System.Windows.Visibility.Visible;
+            }
+        }
 
         public ProjectViewModel(Project repository)
         {
             Name = repository.Name;
             Url = repository.Url;
-
+            Description = repository.Description;
             if (repository.Owner != null)
             {
                 Owner = new Owner

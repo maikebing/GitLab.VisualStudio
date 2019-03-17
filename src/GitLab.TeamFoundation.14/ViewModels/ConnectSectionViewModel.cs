@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Task = System.Threading.Tasks.Task;
 
 namespace GitLab.TeamFoundation.ViewModels
 {
@@ -49,7 +50,7 @@ namespace GitLab.TeamFoundation.ViewModels
 
             LoadRepositoriesAsync();
         }
-
+        public Visibility Visibility { get; set; }
         public void OnLogined()
         {
             LoadRepositoriesAsync();
@@ -96,9 +97,9 @@ namespace GitLab.TeamFoundation.ViewModels
             get { return _openRepositoryCommand; }
         }
 
-        public bool IsRepositoriesVisible
+        public Visibility IsRepositoriesVisible
         {
-            get { return Repositories.Count > 0; }
+            get { return Repositories.Count == 0 ? Visibility.Hidden : (Repositories.Count > 10 ? Visibility.Collapsed : Visibility.Visible); }
         }
 
         private void OnSignOut()
@@ -135,6 +136,10 @@ namespace GitLab.TeamFoundation.ViewModels
                 _messenger.Send("OnOpenSolution", repo.Path);
             }
         }
+        public void Refresh()
+        {
+            LoadRepositoriesAsync();
+        }
 
         private void LoadRepositoriesAsync()
         {
@@ -142,56 +147,58 @@ namespace GitLab.TeamFoundation.ViewModels
             IReadOnlyList<Project> remotes = null;
 
             Exception ex = null;
-            ThreadHelper.JoinableTaskFactory.Run(  async ( ) =>
-            {
-                try
-                {
-                    remotes = _web.GetProjects();
-                    known = Registry.GetKnownRepositories();
-                }
-                catch (Exception e)
-                {
-                    ex = e;
-                }
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                if (ex == null)
-                {
-                    Repositories.Clear();
+            Task.Run( () =>
+           {
+               try
+               {
+                   remotes = _web.GetProjects();
+                   known = Registry.GetKnownRepositories();
+               }
+               catch (Exception e)
+               {
+                   ex = e;
+               }
+           }).ContinueWith(async tsk =>
+           {
+               await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+               if (ex == null)
+               {
+                   Repositories.Clear();
 
-                    var activeRepository = _teamexplorer.GetActiveRepository();
+                   var activeRepository = _teamexplorer.GetActiveRepository();
 
-                    var valid = new List<Repository>();
+                   var valid = new List<Repository>();
 
-                    if (known != null)
-                    {
-                        foreach (var k in known)
-                        {
-                            var r = remotes.FirstOrDefault(o => o.Name == k.Name);
-                            if (r != null)
-                            {
-                                k.Icon = r.Icon;
+                   if (known != null)
+                   {
+                       foreach (var k in known)
+                       {
+                           var r = remotes.FirstOrDefault(o => o.Name == k.Name);
+                           if (r != null)
+                           {
+                               k.Icon = r.Icon;
 
-                                valid.Add(k);
-                            }
-                        }
-                    }
+                               valid.Add(k);
+                           }
+                       }
+                   }
 
-                    if (activeRepository != null)
-                    {
-                        var matched = valid.FirstOrDefault(o => string.Equals(o.Path, activeRepository.Path, StringComparison.OrdinalIgnoreCase));
-                        if (matched != null)
-                        {
-                            matched.IsActived = true;
-                        }
-                    }
+                   if (activeRepository != null)
+                   {
+                       var matched = valid.FirstOrDefault(o => string.Equals(o.Path, activeRepository.Path, StringComparison.OrdinalIgnoreCase));
+                       if (matched != null)
+                       {
+                           matched.IsActived = true;
+                       }
+                   }
 
-                    valid.Each(o => Repositories.Add(o));
-                }
-                else if (!(ex is UnauthorizedAccessException))
-                {
-                    _teamexplorer.ShowMessage(ex.Message);
-                }
-            }, JoinableTaskCreationOptions.None);
+                   valid.Each(o => Repositories.Add(o));
+               }
+               else if (!(ex is UnauthorizedAccessException))
+               {
+                   _teamexplorer.ShowMessage(ex.Message);
+               }
+           },TaskScheduler.Default).Forget();
         }
 
         public void OnRepositoryCloned(string url, Repository repository)

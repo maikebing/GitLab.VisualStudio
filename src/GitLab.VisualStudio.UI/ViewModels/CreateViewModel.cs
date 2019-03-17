@@ -29,7 +29,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _shell = shell;
             _storage = storage;
             _web = web;
-            VisibilityLevels= new Dictionary<string, string>();
+            VisibilityLevels = new Dictionary<string, string>();
             GitIgnores = new Dictionary<string, string>();
             Licenses = new Dictionary<string, string>();
             Namespaces = new Dictionary<string, string>();
@@ -66,17 +66,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     SelectedNamespaces = path.id.ToString();
                 }
             }
-            if (Namespaces.Count==0)
+            if (Namespaces.Count == 0)
             {
                 Namespaces.Add("0", defaultnamespace);
                 SelectedNamespaces = "0";
             }
-        
+
             VisibilityLevels.Add("Private", "Private");
             VisibilityLevels.Add("Internal", "Internal");
             VisibilityLevels.Add("Public", "Public");
             SelectedVisibilityLevels = "Public";
-
         }
 
         private string _name;
@@ -137,7 +136,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         public IDictionary<string, string> GitIgnores { get; }
         public IDictionary<string, string> Namespaces { get; }
- 
+
         private string _selectedGitIgnore;
 
         public string SelectedGitIgnore
@@ -177,13 +176,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
             get { return _selectedNamespaces; }
             set { SetProperty(ref _selectedNamespaces, value); }
         }
+
         public IDictionary<string, string> VisibilityLevels { get; }
         private string _selectedVisibilityLevels;
+
         public string SelectedVisibilityLevels
         {
             get { return _selectedVisibilityLevels; }
             set { SetProperty(ref _selectedVisibilityLevels, value); }
         }
+
         private void OnBrowse()
         {
             var browsed = _shell.BrowseFolder();

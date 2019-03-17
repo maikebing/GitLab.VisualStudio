@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Threading;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Task = System.Threading.Tasks.Task;
 
 namespace GitLab.TeamFoundation.Home
 {
@@ -20,8 +21,6 @@ namespace GitLab.TeamFoundation.Home
         private readonly ITeamExplorerServices _tes;
         private readonly IWebService _web;
 
-        private Project _project;
-        private string _branch;
         private Octicon octicon;
 
         public GitLabNavigationItem(Octicon icon, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService web)
@@ -41,27 +40,26 @@ namespace GitLab.TeamFoundation.Home
                 OnThemeChanged();
                 Invalidate();
             };
+            var gitExt = ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
+            gitExt.PropertyChanged += GitExt_PropertyChanged;
         }
-        static DateTime dateTime = DateTime.MinValue;
-        static bool? lastIsVisible = null;
+
+        private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ActiveRepositories")
+            {
+                Task.Run(async () =>
+                {
+                    var isv = _tes.IsGitLabRepo();
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    IsVisible = isv;
+                }).Forget();
+            }
+        }
+
         public override void Invalidate()
         {
-            if (DateTime.Now.Subtract(dateTime).TotalSeconds > 5 || !lastIsVisible.HasValue)
-            {
-                IsVisible = false;
-                ThreadHelper.JoinableTaskFactory.Run(async () =>
-                   {
-                       lastIsVisible= _tes.IsGitLabRepo() && _tes.Project != null;
-                       await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                       IsVisible = lastIsVisible.GetValueOrDefault();
-                       dateTime = DateTime.Now;
-                      
-                   });
-            }
-            else
-            {
-                IsVisible = lastIsVisible.GetValueOrDefault();
-            }
+            IsVisible = _tes.IsGitLabRepo();
         }
 
         private void OnThemeChanged()

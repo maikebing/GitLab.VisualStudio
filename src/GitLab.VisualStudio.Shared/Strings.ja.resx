@@ -304,7 +304,7 @@
     <value>二段階認証</value>
   </data>
   <data name="DefaultHost" xml:space="preserve">
-    <value>https://gitlab.com!</value>
+    <value>https://gitlab.com/</value>
   </data>
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
     <value>まだログインしていません！</value>

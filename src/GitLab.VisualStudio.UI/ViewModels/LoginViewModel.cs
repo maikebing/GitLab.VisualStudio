@@ -34,7 +34,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _shell = shell;
             _storage = storage;
             _web = web;
-
+            Host = Strings.DefaultHost;
             _mediator = mediator;
             ApiVersions = new Dictionary<string, string>();
             ApiVersions.Add(Enum.GetName(typeof(ApiVersion), ApiVersion.AutoDiscovery), Strings.AutoDiscovery);
@@ -57,10 +57,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(_host) || string.IsNullOrWhiteSpace(_host))
-                {
-                    _host = Strings.DefaultHost;
-                }
                 return _host;
             }
             set
@@ -198,14 +194,14 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Task.Run(() =>
             {
                 bool ok = Enum.TryParse(SelectedApiVersion, true, out ApiVersion apiVersion);
-                if (!ok || apiVersion == ApiVersion.AutoDiscovery)
+                if (ok || apiVersion == ApiVersion.AutoDiscovery)
                 {
-                    var arys = new ApiVersion[]{ ApiVersion.V4_Oauth, ApiVersion.V4, ApiVersion.V3_Oauth, ApiVersion.V3, ApiVersion.V3_1 };
+                    var arys = new ApiVersion[] { ApiVersion.V4_Oauth, ApiVersion.V4, ApiVersion.V3_Oauth, ApiVersion.V3, ApiVersion.V3_1 };
                     foreach (var apiv in arys)
                     {
                         try
                         {
-                            BusyContent =Strings.Trying+ apiv.ToString();
+                            BusyContent = Strings.Trying + apiv.ToString();
                             var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiv);
                             if (user != null)
                             {
@@ -213,18 +209,16 @@ namespace GitLab.VisualStudio.UI.ViewModels
                                 successed = true;
                                 user.Host = Host;
                                 _storage.AddHostVersionInfo(Host, apiv);
-                                _storage.SaveUser(user, Password);
                                 break;
                             }
                         }
                         catch (Exception ex)
                         {
                             BusyContent = ex.Message;
-                            logmsg += apiv.ToString()+":"+ ex.Message+Environment.NewLine;
+                            logmsg += apiv.ToString() + ":" + ex.Message + Environment.NewLine;
                         }
                     }
                 }
-            
             }).ContinueWith(task =>
             {
                 IsBusy = false;
@@ -236,7 +230,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 }
                 else
                 {
-                    _dialog.Warning(Strings.Login_FailedToLogin +Environment.NewLine + Strings.PleaseCheckYourUsernameOrPassword + Environment.NewLine + logmsg);
+                    _dialog.Warning(Strings.Login_FailedToLogin + Environment.NewLine + Strings.PleaseCheckYourUsernameOrPassword + Environment.NewLine + logmsg);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }

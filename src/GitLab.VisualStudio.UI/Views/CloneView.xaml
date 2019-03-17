@@ -231,7 +231,7 @@
                                                                        Height="16"
                                                                        Margin="0,0,5,0"
                                                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                                                       Source="{Binding Items[0].Owner.Avatar}" />
+                                                                       Source="{Binding Items[0].Owner.AvatarUrl}" />
                                                                 <TextBlock Text="{Binding Path=Name.Name}" />
                                                             </StackPanel>
                                                         </Border>
@@ -258,11 +258,21 @@
                                                            VerticalAlignment="Center"
                                                            Foreground="#D0D0D0"
                                                            Icon="{Binding Icon}" />
-                                    <TextBlock x:Name="label"
-                                               VerticalAlignment="Center"
-                                               Foreground="#666"
-                                               Text="{Binding Name}"
-                                               TextTrimming="CharacterEllipsis" />
+                                    <StackPanel>
+                                        <TextBlock x:Name="label"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="Black"
+                                                   Text="{Binding Name}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   MaxWidth="275" />
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="#666"
+                                                   Text="{Binding Description}"
+                                                   Visibility="{Binding DescriptionVisibility}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   FontSize="9"
+                                                   MaxWidth="275" />
+                                    </StackPanel>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

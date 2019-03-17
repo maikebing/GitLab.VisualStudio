@@ -4,7 +4,9 @@ using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.TeamFoundation.Git.Controls.Extensibility;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Threading;
 using System;
 using System.ComponentModel.Composition;
 using System.Windows;
@@ -36,6 +38,25 @@ namespace GitLab.TeamFoundation.Connect
             messenger.Register("OnSignOuted", OnSignOuted);
             messenger.Register<string, Repository>("OnClone", OnClone);
             messenger.Register<string>("OnOpenSolution", OnOpenSolution);
+            var gitExt = Microsoft.VisualStudio.Shell.ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
+            gitExt.PropertyChanged += GitExt_PropertyChanged;
+        }
+        private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ActiveRepositories")
+            {
+                System.Threading.Tasks.Task.Run(async () =>
+                {
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    Refresh();
+                }).Forget();
+            }
+        }
+        public override void Refresh()
+        {
+
+            ((View as ConnectSectionView).DataContext as ConnectSectionViewModel).Refresh();
+            base.Refresh();
         }
 
         protected override ITeamExplorerSection CreateViewModel(SectionInitializeEventArgs e)
