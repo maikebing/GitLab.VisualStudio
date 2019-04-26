@@ -189,7 +189,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
             IsBusy = true;
             BusyContent = Strings.Common_Loading;
             var successed = false;
-            Exception exlogin = null;
             string logmsg = "";
             Task.Run(() =>
             {
