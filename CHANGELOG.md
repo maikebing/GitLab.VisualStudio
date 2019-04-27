@@ -12,6 +12,11 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## V1.0.183
+
+ - Fix for " cannot connect to custom gitlab server with different port #50"
+
+
 ## V1.0.182
 
 - Fix Login issue within new visual studio project #43
