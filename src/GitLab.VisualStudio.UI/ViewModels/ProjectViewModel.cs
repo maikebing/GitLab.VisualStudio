@@ -64,6 +64,13 @@ namespace GitLab.VisualStudio.UI.ViewModels
                     Name = repository.Owner.Name,
                     AvatarUrl = repository.Owner.AvatarUrl
                 };
+            } else
+            {
+                Owner = new Owner
+                {
+                    Name = repository.Namespace,
+                    AvatarUrl = ""
+                };
             }
 
             Icon = repository.Icon;
