@@ -127,10 +127,10 @@
     <value>Suche</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
-    <value>Durchsuche</value>
+    <value>Durchsuchen</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Stornieren</value>
+    <value>Abbrechen</value>
   </data>
   <data name="Common_ChooseAGitIgnore" xml:space="preserve">
     <value>Fügen Sie einen .gitignore hinzu</value>
@@ -139,7 +139,7 @@
     <value>Fügen Sie eine Lizenz hinzu</value>
   </data>
   <data name="Common_Clone" xml:space="preserve">
-    <value>Klon</value>
+    <value>Klonen</value>
   </data>
   <data name="Common_CreateRepository" xml:space="preserve">
     <value>Erstellen</value>
@@ -151,7 +151,7 @@
     <value>Die maximale Länge der Beschreibung beträgt 500</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
-    <value>Git ignorieren</value>
+    <value>Git ignore</value>
   </data>
   <data name="Common_License" xml:space="preserve">
     <value>Lizenz</value>
@@ -172,7 +172,7 @@
     <value>Pfad</value>
   </data>
   <data name="Common_Private" xml:space="preserve">
-    <value>Privatgelände</value>
+    <value>Privat</value>
   </data>
   <data name="Common_Property" xml:space="preserve">
     <value>Eigentum</value>
@@ -181,7 +181,7 @@
     <value>Verlassen</value>
   </data>
   <data name="Confirm_Quit" xml:space="preserve">
-    <value>Sind Sie sicher, dass Sie aufhören wollen?</value>
+    <value>Sind Sie sicher, dass Sie abbrechen wollen?</value>
   </data>
   <data name="CreateView_NameIsRequired" xml:space="preserve">
     <value>Der Name ist obligatorisch</value>
