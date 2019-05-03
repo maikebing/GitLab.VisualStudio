@@ -114,9 +114,9 @@ namespace GitLab.VisualStudio.Services
                 System.IO.File.WriteAllText(_path, Newtonsoft.Json.JsonConvert.SerializeObject(user));
                 user.PrivateToken = pt;
             }
-            catch (Exception )
+            catch (Exception)
             {
- 
+
             }
         }
 
@@ -144,11 +144,13 @@ namespace GitLab.VisualStudio.Services
             try
             {
                 var _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs");
-                if (System.IO.File.Exists(_path))
+                if (!System.IO.File.Exists(_path))
                 {
-                    _user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(System.IO.File.ReadAllText(_path));
-                    _user.PrivateToken = GetToken(_user.Host);
+                    _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Strings.DefaultHost).Host}.gitlab4vs");
                 }
+
+                _user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(System.IO.File.ReadAllText(_path));
+                _user.PrivateToken = GetToken(_user.Host);
             }
             catch (Exception ex)
             {
@@ -222,11 +224,11 @@ namespace GitLab.VisualStudio.Services
             }
             result = HostVersionInfo.ContainsKey(host);
 
-            if (!result  && Uri.TryCreate(host, UriKind.Absolute, out Uri uri))
+            if (!result && Uri.TryCreate(host, UriKind.Absolute, out Uri uri))
             {
                 result = HostVersionInfo.ContainsKey(uri.Host);
             }
-            
+
             return result;
         }
 
