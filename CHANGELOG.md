@@ -12,11 +12,29 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
-##V1.0.160
-- Automatically detects the API version of Gitlab
+## V1.0.183
 
-## V1.0.154
-- Visual Studio 2019 support
+ - Fix for " cannot connect to custom gitlab server with different port #50"
+
+
+## V1.0.182
+
+- Fix Login issue within new visual studio project #43
+- Fixed some bugs
+
+## V1.0.168
+- Fix URL generation for master branch -- by FurkanKambay
+ - Fix Translation was wrong - by chrgraefe
+
+## V1.0.167
+-Fix #40 Publish option available while tracking remote repository.
+
+## V1.0.165
+
+Automatically detects the API version of Gitlab
+
+## V1.0.156
+ Visual Studio 2019 support
 
 ## V1.0.150
 -  [x] AddOpen URL from clipboard
