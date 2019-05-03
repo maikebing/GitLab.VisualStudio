@@ -110,7 +110,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private void OnBrowse()
         {
-            var browsed = _shell.BrowseFolder();
+            var browsed = _shell.BrowseFolder(selectedPath: BaseRepositoryPath);
             if (browsed != null)
             {
                 BaseRepositoryPath = browsed;
@@ -164,8 +164,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
                 Icon = SelectedRepository.Icon
             };
             _messenger.Send("OnClone", SelectedRepository.Url, repository);
-
             _dialog.Close();
+            _storage.AppSettings.BasePath = BaseRepositoryPath;
+            _storage.SaveConfig();
         }
 
         private void LoadRepositoriesAsync()

@@ -17,6 +17,10 @@ namespace GitLab.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class Storage : IStorage
     {
+        public Storage()
+        {
+            LoadConfig();
+        }
         public bool IsLogined
         {
             get
@@ -167,11 +171,44 @@ namespace GitLab.VisualStudio.Services
             }
         }
 
-        public string GetBaseRepositoryDirectory()
+        public string GetBaseRepositoryDirectory() => AppSettings?.BasePath;
+
+
+        public AppSettings AppSettings { get; set; }
+        public void LoadConfig()
         {
-            var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var _path = System.IO.Path.Combine(user, "Source", "Repos");
-            return _path;
+            try
+            {
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.cfg");
+                if (System.IO.File.Exists(filename))
+                {
+                    AppSettings = JsonConvert.DeserializeObject<AppSettings>(System.IO.File.ReadAllText(filename));
+                }
+            }
+            catch (Exception)
+            {
+            }
+            if (AppSettings==null)
+            {
+                AppSettings = new AppSettings();
+            }
+            if (string.IsNullOrEmpty(AppSettings.BasePath))
+            {
+                var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                AppSettings.BasePath = System.IO.Path.Combine(user, "Source", "Repos");
+            }
+        }
+        public void SaveConfig()
+        {
+            try
+            {
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.cfg");
+                System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(AppSettings));
+            }
+            catch (Exception)
+            {
+                OutputWindowHelper.WarningWriteLine("Can't save config!");
+            }
         }
 
         private Dictionary<string, ApiVersion> HostVersionInfo { get; set; }
@@ -223,7 +260,7 @@ namespace GitLab.VisualStudio.Services
             catch (Exception ex)
             {
                 HostVersionInfo = new Dictionary<string, ApiVersion>();
-                OutputWindowHelper.ExceptionWriteLine("LoadHostVersionInfo", ex);
+                OutputWindowHelper.WarningWriteLine("Can't load host version infos");
             }
             if (HostVersionInfo == null) HostVersionInfo = new Dictionary<string, ApiVersion>();
             if (HostVersionInfo.Count == 0)
@@ -268,7 +305,7 @@ namespace GitLab.VisualStudio.Services
             }
             catch (Exception ex)
             {
-                OutputWindowHelper.ExceptionWriteLine("SaveHostVersion", ex);
+                OutputWindowHelper.WarningWriteLine("Can't save host version info");
             }
         }
     }

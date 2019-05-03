@@ -21,7 +21,7 @@ namespace GitLab.VisualStudio.Services
             {
                 folderBrowser.RootFolder = System.Environment.SpecialFolder.Desktop;
                 folderBrowser.SelectedPath = selectedPath;
-                folderBrowser.ShowNewFolderButton = false;
+                folderBrowser.ShowNewFolderButton = true;
 
                 if (title != null)
                 {

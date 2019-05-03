@@ -188,7 +188,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private void OnBrowse()
         {
-            var browsed = _shell.BrowseFolder();
+            var browsed = _shell.BrowseFolder(selectedPath:Path);
             if (browsed != null)
             {
                 Path = browsed;
@@ -202,6 +202,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             string clonePath = null;
             IsBusy = true;
             string giturl = null;
+            _storage.AppSettings.BasePath = Path;
+            _storage.SaveConfig();
+
             Task.Run(() =>
             {
                 try

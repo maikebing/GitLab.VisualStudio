@@ -186,6 +186,7 @@
     <Compile Include="IViewFactory.cs" />
     <Compile Include="IShellService.cs" />
     <Compile Include="IWebService.cs" />
+    <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\CreateSnippetResult.cs" />
     <Compile Include="Models\NamespacesPath.cs" />

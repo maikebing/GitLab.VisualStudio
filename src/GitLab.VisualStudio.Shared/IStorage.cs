@@ -9,7 +9,7 @@ namespace GitLab.VisualStudio.Shared
         User GetUser();
 
         string Host { get; }
-        
+
 
         string GetPassword(string _host);
 
@@ -26,5 +26,8 @@ namespace GitLab.VisualStudio.Shared
         bool HaveHost(string host);
 
         void AddHostVersionInfo(string host, ApiVersion apiVersion);
+        void LoadConfig();
+        void SaveConfig();
+        AppSettings AppSettings { get; set; }
     }
 }
