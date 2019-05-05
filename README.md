@@ -52,6 +52,18 @@ If you create a personal access token (https://yourgitlaburl.com/profile/persona
 
 
 ## What's new ?
+
+**V1.0.189** 
+* Fix Groups and Subgroups missing in Namespace [#53](https://github.com/maikebing/GitLab.VisualStudio/issues/53)
+* Fix Exception on Project Create [#52](https://github.com/maikebing/GitLab.VisualStudio/issues/52)
+
+***Thanks [Rennerdo30](https://github.com/Rennerdo30)*** 
+
+
+**V1.0.183**
+
+* Fix for " cannot connect to custom gitlab server with different port [#50](https://github.com/maikebing/GitLab.VisualStudio/issues/50)
+
 **V1.0.160**
 
 * Automatically detects the API version of Gitlab
