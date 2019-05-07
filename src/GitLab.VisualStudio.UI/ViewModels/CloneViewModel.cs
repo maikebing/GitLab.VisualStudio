@@ -2,6 +2,7 @@
 using GitLab.VisualStudio.Shared.Helpers;
 using GitLab.VisualStudio.Shared.Helpers.Commands;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using Task = System.Threading.Tasks.Task;
 
 namespace GitLab.VisualStudio.UI.ViewModels
 {
@@ -45,6 +47,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _cloneCommand = new DelegateCommand(OnClone, CanClone);
             _browseCommand = new DelegateCommand(OnBrowse);
         }
+        internal IProgress<ServiceProgressData> Progress { get; set; } = null;
 
         public ICollectionView Repositories { get; }
 
@@ -68,6 +71,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
         public ICommand CloneCommand
         {
             get { return _cloneCommand; }
+            internal set { _cloneCommand =(DelegateCommand)value; }
         }
 
         private bool _isBusy;
@@ -156,7 +160,10 @@ namespace GitLab.VisualStudio.UI.ViewModels
         private void OnClone()
         {
             var path = System.IO.Path.Combine(BaseRepositoryPath, SelectedRepository.Name);
-
+            if (Progress!=null)
+            {
+                Progress.Report(new ServiceProgressData($"{Strings.Common_Clone}  {SelectedRepository.Name}..."));
+            }
             var repository = new Repository
             {
                 Name = SelectedRepository.Name,
@@ -166,6 +173,11 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _messenger.Send("OnClone", SelectedRepository.Url, repository);
             _dialog.Close();
             _storage.AppSettings.BasePath = BaseRepositoryPath;
+            _storage.SaveConfig();
+        }
+        public override void Save()
+        {
+            base.Save();
             _storage.SaveConfig();
         }
 

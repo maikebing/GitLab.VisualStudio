@@ -1,7 +1,13 @@
 ﻿using GitLab.VisualStudio.Shared;
+using GitLab.VisualStudio.Shared.Helpers.Commands;
+using GitLab.VisualStudio.Shared.Models;
 using GitLab.VisualStudio.UI;
 using GitLab.VisualStudio.UI.ViewModels;
 using GitLab.VisualStudio.UI.Views;
+using Microsoft.TeamFoundation.Git.Controls.Extensibility;
+using Microsoft.VisualStudio.Shell;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 
@@ -25,6 +31,7 @@ namespace GitLab.VisualStudio.Services
 
         [Import]
         private IWebService _web;
+       
 
         public T GetView<T>(ViewTypes type) where T : Control
         {
@@ -48,13 +55,41 @@ namespace GitLab.VisualStudio.Services
             }
             return null;
         }
-        public  void ShowCloneDialog(string name,string url)
-        {
-            var dlg = new  CloneView(_messenger, _shell, _storage, _web);
-            var vm = (CloneViewModel)dlg.DataContext;
-            vm.FilterText = name;
-            _shell.ShowDialog("Clone", dlg);
 
+
+
+        public CloneDialogResult ShowCloneDialog(IProgress<ServiceProgressData> downloadProgress)
+        {
+            CloneDialogResult result = null;
+            var dlg = this.GetView<Dialog>(ViewTypes.Clone);
+            var dc = (CloneViewModel)dlg.DataContext;
+            string path = null;
+            dc.CloneCommand = new DelegateCommand(() =>
+               {
+                   try
+                   {
+                       path = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
+                       Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+                       
+                       var gitExt = ServiceProvider.GlobalProvider.GetService<IGitRepositoriesExt>();
+                       gitExt.Clone(dc.SelectedRepository.Url, path, CloneOptions.RecurseSubmodule);
+                       dc.Save();
+                       dlg.Close();
+                   }
+                   catch (Exception)
+                   {
+ 
+                   }
+               });
+            dc.Progress = downloadProgress;
+            _shell.ShowDialog(Strings.Common_Clone, dlg);
+            if (dc.SelectedRepository!=null && !string.IsNullOrEmpty(path))
+            {
+                result= new CloneDialogResult(path, new Shared.Helpers.UriString(dc.SelectedRepository.Url)); 
+            }
+            return result;
         }
+
+
     }
 }

@@ -1,0 +1,19 @@
+﻿<ImageManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/VisualStudio/ImageManifestSchema/2014">
+
+  <Symbols>
+    <!-- We need to ensure that `GitLab.VisualStudio` has loaded before any of these resources are used. -->
+    <!-- This should happen when `AssemblyResolverPackage` auto-loads on `UICONTEXT.NoSolution`. -->
+    <String Name="Resources" Value="/GitLab.VisualStudio;component/Resources/icons" />
+    
+    <Guid Name="guidImages" Value="{8f9c3641-2f40-44ef-9a85-070adae23130}" />
+    <ID Name="logo" Value="1" />
+   
+  </Symbols>
+
+  <Images>
+    <Image Guid="$(guidImages)" ID="$(logo)">
+      <Source Uri="$(Resources)/mark_gitlab.xaml" />
+    </Image>
+    
+  </Images>
+</ImageManifest>

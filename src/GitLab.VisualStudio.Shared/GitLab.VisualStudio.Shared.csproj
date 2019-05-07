@@ -83,9 +83,9 @@
     <Compile Include="Extensions.collections.cs" />
     <Compile Include="Helpers\Behaviors\RepositionPopupBehavior.cs" />
     <Compile Include="Helpers\Bindable.cs" />
-    <Compile Include="Helpers\Class1.cs" />
-    <Compile Include="Helpers\Class2.cs" />
-    <Compile Include="Helpers\Class3.cs" />
+    <Compile Include="Helpers\UriString.cs" />
+    <Compile Include="Helpers\StringEquivalent.cs" />
+    <Compile Include="Helpers\UriExtensions.cs" />
     <Compile Include="Helpers\Commands\DelegateCommand.cs" />
     <Compile Include="Helpers\Commands\WeakEventHandlerManager.cs" />
     <Compile Include="Helpers\Validatable.cs" />

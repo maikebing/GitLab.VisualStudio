@@ -6,6 +6,7 @@ using GitLab.VisualStudio.Services;
 using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.UI.ViewModels;
 using GitLab.VisualStudio.UI.Views;
+using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
@@ -35,6 +36,7 @@ namespace GitLab.VisualStudio
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad )]
+    [ProvideService(typeof(IViewFactory), IsAsyncQueryable = true)]
     public class GitLabPackage : AsyncPackage, IVsInstalledProduct
     {
         [Import]
@@ -55,6 +57,7 @@ namespace GitLab.VisualStudio
             {
                 Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             }
+           
         }
 
         #region IVsInstalledProduct Members
@@ -126,6 +129,8 @@ namespace GitLab.VisualStudio
                 timer.Elapsed += Timer_Elapsed;
                 DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
                 DTE.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+                AddService(typeof(IViewFactory), CreateService, true);
+                
                 var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
                 CompositionContainer container = new CompositionContainer(assemblyCatalog);
                 container.ComposeParts(this);
@@ -170,6 +175,25 @@ namespace GitLab.VisualStudio
             });
        
         }
+
+        async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
+        {
+            if (serviceType == null)
+                return null;
+
+            if (container != this)
+                return null;
+
+            if (serviceType == typeof(IViewFactory))
+            {
+                return  _viewFactory;
+            }
+            else
+            {
+                return  this.TryGetService(serviceType);
+            }
+        }
+
         private GitLabToolWindow _issuesTool;
 
         public GitLabToolWindow IssuesTool => _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));

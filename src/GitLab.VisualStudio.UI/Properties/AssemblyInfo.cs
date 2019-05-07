@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following
@@ -14,3 +15,5 @@ using System.Windows;
                                               //(used if a resource is not found in the page,
                                               // app, or any theme specific resource dictionaries)
 )]
+[assembly: InternalsVisibleTo("GitLab.StartPage")]
+[assembly: InternalsVisibleTo("GitLab.VisualStudio")]

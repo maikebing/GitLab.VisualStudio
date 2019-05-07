@@ -94,7 +94,9 @@
         </Strings>
       </Button>
    
+      
     </Buttons>
+    
   </Commands>
   <CommandPlacements>
 
@@ -198,6 +200,13 @@
     </GuidSymbol>
     <GuidSymbol name="XamlEditorWindows" value="{4C87B692-1202-46AA-B64C-EF01FAEC53DA}">
       <IDSymbol name="IDMX_XAML_SOURCE_BASIC" value="0x0103" />
+    </GuidSymbol>
+  
+ 
+  
+    
+    <GuidSymbol value="{8f9c3641-2f40-44ef-9a85-070adae23130}" name="guidImages">
+      <IDSymbol name="logo" value="1" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
