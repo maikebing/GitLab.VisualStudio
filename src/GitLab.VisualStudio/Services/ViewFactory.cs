@@ -1,5 +1,6 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.UI;
+using GitLab.VisualStudio.UI.ViewModels;
 using GitLab.VisualStudio.UI.Views;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
@@ -46,6 +47,14 @@ namespace GitLab.VisualStudio.Services
                 return new CreateSnippet(_messenger, _shell, _storage, _web) as T;
             }
             return null;
+        }
+        public  void ShowCloneDialog(string name,string url)
+        {
+            var dlg = new  CloneView(_messenger, _shell, _storage, _web);
+            var vm = (CloneViewModel)dlg.DataContext;
+            vm.FilterText = name;
+            _shell.ShowDialog("Clone", dlg);
+
         }
     }
 }
