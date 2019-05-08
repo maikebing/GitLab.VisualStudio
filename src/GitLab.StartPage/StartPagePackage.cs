@@ -27,7 +27,10 @@ namespace GitLab.StartPage
         public StartPagePackage()
         {
             serviceProvider = this;
-         
+            var assemblyCatalog = new AssemblyCatalog(typeof(StartPagePackage).Assembly);
+            CompositionContainer container = new CompositionContainer(assemblyCatalog);
+            container.ComposeParts(this);
+
         }
     }
   

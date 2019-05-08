@@ -31,7 +31,8 @@ namespace GitLab.VisualStudio.Services
 
         [Import]
         private IWebService _web;
-       
+
+
 
         public T GetView<T>(ViewTypes type) where T : Control
         {
@@ -63,26 +64,28 @@ namespace GitLab.VisualStudio.Services
             CloneDialogResult result = null;
             var dlg = this.GetView<Dialog>(ViewTypes.Clone);
             var dc = (CloneViewModel)dlg.DataContext;
-            string path = null;
+
             dc.CloneCommand = new DelegateCommand(() =>
                {
                    try
                    {
-                       path = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
+
+                       ITeamExplorerServices _tes = ServiceProvider.GlobalProvider.GetService<ITeamExplorerServices>();
+                       string pathx = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
                        Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-                       
-                       var gitExt = ServiceProvider.GlobalProvider.GetService<IGitRepositoriesExt>();
-                       gitExt.Clone(dc.SelectedRepository.Url, path, CloneOptions.RecurseSubmodule);
+                       _tes.OnClone(dc.SelectedRepository.Url, pathx);
                        dc.Save();
                        dlg.Close();
                    }
                    catch (Exception)
                    {
- 
+
                    }
                });
+
             dc.Progress = downloadProgress;
             _shell.ShowDialog(Strings.Common_Clone, dlg);
+            string path = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
             if (dc.SelectedRepository!=null && !string.IsNullOrEmpty(path))
             {
                 result= new CloneDialogResult(path, new Shared.Helpers.UriString(dc.SelectedRepository.Url)); 

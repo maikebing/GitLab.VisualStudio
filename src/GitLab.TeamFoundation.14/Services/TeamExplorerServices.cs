@@ -2,6 +2,7 @@ using GitLab.TeamFoundation.Sync;
 using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Models;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -84,7 +85,11 @@ namespace GitLab.TeamFoundation
             manager = serviceProvider.TryGetService<ITeamExplorer>() as ITeamExplorerNotificationManager;
             manager?.ClearNotifications();
         }
-
+        public void OnClone(string url,  string path)
+        {
+            var gitExt = serviceProvider.GetService<IGitRepositoriesExt>();
+            gitExt.Clone(url, path, CloneOptions.RecurseSubmodule);
+        }
         public RepositoryInfo GetActiveRepository()
         {
             if (serviceProvider == null)

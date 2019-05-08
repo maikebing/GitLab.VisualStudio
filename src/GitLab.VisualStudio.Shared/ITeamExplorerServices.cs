@@ -31,8 +31,10 @@ namespace GitLab.VisualStudio.Shared
 
         string GetSolutionPath();
 
-         bool IsGitLabRepo();
+        bool IsGitLabRepo();
 
         Project Project { get; }
+        void OnClone(string url, string path);
+
     }
 }

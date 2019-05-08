@@ -51,6 +51,11 @@ namespace GitLab.VisualStudio
         [Import]
         private IStorage _storage;
 
+        [Import]
+        private ITeamExplorerServices  _tes;
+
+        
+
         public GitLabPackage()
         {
             if (Application.Current != null)
@@ -129,11 +134,13 @@ namespace GitLab.VisualStudio
                 timer.Elapsed += Timer_Elapsed;
                 DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
                 DTE.Events.SolutionEvents.Opened += SolutionEvents_Opened;
-                AddService(typeof(IViewFactory), CreateService, true);
+             
                 
                 var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
                 CompositionContainer container = new CompositionContainer(assemblyCatalog);
                 container.ComposeParts(this);
+                AddService(typeof(IViewFactory), CreateServiceAsync, true);
+                AddService(typeof(ITeamExplorerServices), CreateServiceAsync, true);
                 var mcs = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
                 if (mcs != null)
                 {
@@ -176,7 +183,7 @@ namespace GitLab.VisualStudio
        
         }
 
-        async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
+        async Task<object> CreateServiceAsync(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
             if (serviceType == null)
                 return null;
@@ -187,6 +194,10 @@ namespace GitLab.VisualStudio
             if (serviceType == typeof(IViewFactory))
             {
                 return  _viewFactory;
+            }
+            else if (serviceType==typeof(ITeamExplorerServices))
+            {
+                return _tes;
             }
             else
             {
