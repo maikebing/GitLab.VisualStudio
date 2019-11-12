@@ -11,7 +11,7 @@ namespace GitLab.VisualStudio
         public const string Name = "GitLab Extension for Visual Studio";
         public const string Description = @"A Visual Studio Extension that brings the GitLab Flow into Visual Studio.";
         public const string Language = "en-US";
-        public const string Version = "1.0.160";
+        public const string Version = "1.0.161";
         public const string Author = "MysticBoy";
         public const string Tags = "GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki";
     }

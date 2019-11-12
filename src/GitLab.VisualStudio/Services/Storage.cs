@@ -1,6 +1,6 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Models;
-using Microsoft.TeamFoundation.Git.Controls.Extensibility;
+
 using Microsoft.VisualStudio.Shell;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

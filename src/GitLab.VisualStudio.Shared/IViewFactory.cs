@@ -8,6 +8,6 @@ namespace GitLab.VisualStudio.Shared
     public interface IViewFactory
     {
         T GetView<T>(ViewTypes type) where T : Control;
-        CloneDialogResult ShowCloneDialog(IProgress<ServiceProgressData> downloadProgress);
+        CloneDialogResult ShowCloneDialog();
     }
 }

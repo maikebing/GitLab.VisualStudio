@@ -3,8 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace GitLab.VisualStudio.Shared
 {
-    [Guid("76909E1A-9D58-41AB-8957-C26B9550787B")]
-    public interface IUIProvider : IServiceProvider
+    [Guid("877FDB93-F5CC-4B63-9F8E-35FCA830CA23")]
+    public interface IGitLabServiceProvider : IServiceProvider
     {
         //ExportProvider ExportProvider { get; }
         //IServiceProvider GitServiceProvider { get; set; }
@@ -17,7 +17,7 @@ namespace GitLab.VisualStudio.Shared
 
         void AddService(Type t, object owner, object instance);
 
-        void AddService<T>(object owner, T instance);
+        void AddService<T>(object owner, T instance) where T : class;
 
         /// <summary>
         /// Removes a service from the catalog

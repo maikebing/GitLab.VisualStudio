@@ -5,7 +5,7 @@ namespace GitLab.VisualStudio.Shared
 {
     public static class IServiceProviderExtensions
     {
-        private static IUIProvider cachedUIProvider = null;
+        private static IGitLabServiceProvider cachedUIProvider = null;
 
         /// <summary>
         /// Safe variant of GetService that doesn't throw exceptions if the service is
@@ -14,10 +14,10 @@ namespace GitLab.VisualStudio.Shared
         /// <returns>The service, or null if not found</returns>
         public static object TryGetService(this IServiceProvider serviceProvider, Type type)
         {
-            if (cachedUIProvider != null && type == typeof(IUIProvider))
+            if (cachedUIProvider != null && type == typeof(IGitLabServiceProvider))
                 return cachedUIProvider;
 
-            var ui = serviceProvider as IUIProvider;
+            var ui = serviceProvider as IGitLabServiceProvider;
             return ui != null
                 ? ui.TryGetService(type)
                 : GetServiceAndCache(serviceProvider, type, ref cachedUIProvider);

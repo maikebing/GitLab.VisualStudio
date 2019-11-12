@@ -47,7 +47,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _cloneCommand = new DelegateCommand(OnClone, CanClone);
             _browseCommand = new DelegateCommand(OnBrowse);
         }
-        internal IProgress<ServiceProgressData> Progress { get; set; } = null;
 
         public ICollectionView Repositories { get; }
 
@@ -160,10 +159,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
         private void OnClone()
         {
             var path = System.IO.Path.Combine(BaseRepositoryPath, SelectedRepository.Name);
-            if (Progress!=null)
-            {
-                Progress.Report(new ServiceProgressData($"{Strings.Common_Clone}  {SelectedRepository.Name}..."));
-            }
             var repository = new Repository
             {
                 Name = SelectedRepository.Name,

@@ -4,7 +4,7 @@ using GitLab.VisualStudio.Shared.Models;
 using GitLab.VisualStudio.UI;
 using GitLab.VisualStudio.UI.ViewModels;
 using GitLab.VisualStudio.UI.Views;
-using Microsoft.TeamFoundation.Git.Controls.Extensibility;
+ 
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Collections.Generic;
@@ -31,8 +31,7 @@ namespace GitLab.VisualStudio.Services
 
         [Import]
         private IWebService _web;
-
-
+ 
 
         public T GetView<T>(ViewTypes type) where T : Control
         {
@@ -59,7 +58,7 @@ namespace GitLab.VisualStudio.Services
 
 
 
-        public CloneDialogResult ShowCloneDialog(IProgress<ServiceProgressData> downloadProgress)
+        public CloneDialogResult ShowCloneDialog()
         {
             CloneDialogResult result = null;
             var dlg = this.GetView<Dialog>(ViewTypes.Clone);
@@ -69,11 +68,8 @@ namespace GitLab.VisualStudio.Services
                {
                    try
                    {
-
-                       ITeamExplorerServices _tes = ServiceProvider.GlobalProvider.GetService<ITeamExplorerServices>();
+                       
                        string pathx = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
-                       Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-                       _tes.OnClone(dc.SelectedRepository.Url, pathx);
                        dc.Save();
                        dlg.Close();
                    }
@@ -83,7 +79,6 @@ namespace GitLab.VisualStudio.Services
                    }
                });
 
-            dc.Progress = downloadProgress;
             _shell.ShowDialog(Strings.Common_Clone, dlg);
             string path = System.IO.Path.Combine(dc.BaseRepositoryPath, dc.SelectedRepository.Name);
             if (dc.SelectedRepository!=null && !string.IsNullOrEmpty(path))

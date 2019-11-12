@@ -6,7 +6,7 @@ using GitLab.VisualStudio.Services;
 using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.UI.ViewModels;
 using GitLab.VisualStudio.UI.Views;
-using Microsoft.TeamFoundation.Git.Controls.Extensibility;
+
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
@@ -35,9 +35,9 @@ namespace GitLab.VisualStudio
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad )]
-    [ProvideService(typeof(IViewFactory), IsAsyncQueryable = true)]
-    public class GitLabPackage : AsyncPackage, IVsInstalledProduct
+    [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideService(typeof(IGitLabServiceProvider), IsAsyncQueryable = true)]
+    public class GitLabPackage : AsyncPackage, IVsInstalledProduct, IServiceProviderPackage
     {
         [Import]
         private IShellService _shell;
@@ -51,10 +51,9 @@ namespace GitLab.VisualStudio
         [Import]
         private IStorage _storage;
 
-        [Import]
-        private ITeamExplorerServices  _tes;
+    
 
-        
+
 
         public GitLabPackage()
         {
@@ -62,7 +61,14 @@ namespace GitLab.VisualStudio
             {
                 Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             }
-           
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+        }
+
+        private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+
+            return null;
         }
 
         #region IVsInstalledProduct Members
@@ -81,7 +87,7 @@ namespace GitLab.VisualStudio
 
         public int OfficialName(out string pbstrName)
         {
-            pbstrName =  GetResourceString("@101");
+            pbstrName = GetResourceString("@101");
             return VSConstants.S_OK;
         }
 
@@ -97,11 +103,11 @@ namespace GitLab.VisualStudio
             return VSConstants.S_OK;
         }
 
-        public  string   GetResourceString(string resourceName)
+        public string GetResourceString(string resourceName)
         {
             string resourceValue;
-           
-            var resourceManager =  (IVsResourceManager)GetService(typeof(SVsResourceManager));
+
+            var resourceManager = (IVsResourceManager)GetService(typeof(SVsResourceManager));
             if (resourceManager == null)
             {
                 throw new InvalidOperationException(
@@ -134,17 +140,23 @@ namespace GitLab.VisualStudio
                 timer.Elapsed += Timer_Elapsed;
                 DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
                 DTE.Events.SolutionEvents.Opened += SolutionEvents_Opened;
-             
-                
-                var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
-                CompositionContainer container = new CompositionContainer(assemblyCatalog);
-                container.ComposeParts(this);
-                AddService(typeof(IViewFactory), CreateServiceAsync, true);
-                AddService(typeof(ITeamExplorerServices), CreateServiceAsync, true);
+                try
+                {
+                    var assemblyCatalog = new AssemblyCatalog(typeof(GitLabPackage).Assembly);
+                    CompositionContainer container = new CompositionContainer(assemblyCatalog);
+                    container.ComposeParts(this);
+                    AddService(typeof(IGitLabServiceProvider), CreateService, true);
+                    AddService(typeof(IViewFactory), CreateService, true);
+            
+                }
+                catch (Exception ex)
+                {
+                    OutputWindowHelper.DiagnosticWriteLine(ex.Message);
+                }
                 var mcs = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
                 if (mcs != null)
                 {
-                 await     ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
                     try
                     {
                         foreach (var item in new[]
@@ -162,7 +174,7 @@ namespace GitLab.VisualStudio
                             var menuCommandID = new CommandID(PackageGuids.guidOpenOnGitLabCmdSet, (int)item);
                             var menuItem = new OleMenuCommand(ExecuteCommand, menuCommandID);
                             menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                             mcs.AddCommand(menuItem);
+                            mcs.AddCommand(menuItem);
                         }
                         var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
                         var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
@@ -172,37 +184,43 @@ namespace GitLab.VisualStudio
                     }
                     catch (Exception ex)
                     {
-                        OutputWindowHelper.DiagnosticWriteLine( ex.Message);
+                        OutputWindowHelper.DiagnosticWriteLine(ex.Message);
                     }
                 }
                 else
                 {
                     OutputWindowHelper.DiagnosticWriteLine("mcs 为空");
                 }
+
             });
-       
+
         }
 
-        async Task<object> CreateServiceAsync(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
+        async Task<object> CreateService(IAsyncServiceContainer container, CancellationToken cancellationToken, Type serviceType)
         {
+            object result = null;
             if (serviceType == null)
                 return null;
 
             if (container != this)
                 return null;
 
-            if (serviceType == typeof(IViewFactory))
+            if (serviceType == typeof(IGitLabServiceProvider))
             {
-                return  _viewFactory;
+                var provider = new GitLabServiceProvider(this, this);
+                await provider.Initialize();
+                //provider.AddService(provider, _viewFactory);
+                result = provider;
             }
-            else if (serviceType==typeof(ITeamExplorerServices))
+            else if (serviceType == typeof(IViewFactory))
             {
-                return _tes;
+                return _viewFactory;
             }
             else
             {
-                return  this.TryGetService(serviceType);
+                result = await Task.Run(() => this.TryGetService(serviceType));
             }
+            return result;
         }
 
         private GitLabToolWindow _issuesTool;
@@ -211,8 +229,8 @@ namespace GitLab.VisualStudio
 
         private void SolutionEvents_Opened()
         {
-           // timer.Start();
-           //TODO: 消息提示
+            // timer.Start();
+            //TODO: 消息提示
             //  var pjt = _webService.GetActiveProject();
         }
 
@@ -275,7 +293,7 @@ namespace GitLab.VisualStudio
             }
             return path;
         }
-   
+
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             var command = (OleMenuCommand)sender;
@@ -345,7 +363,7 @@ namespace GitLab.VisualStudio
         private void ExecuteCommand(object sender, EventArgs e)
         {
             var command = (OleMenuCommand)sender;
- 
+
             try
             {
                 switch ((uint)command.CommandID.ID)
@@ -379,7 +397,7 @@ namespace GitLab.VisualStudio
                                 }
                                 catch (Exception ex)
                                 {
-                                    OutputWindowHelper.ExceptionWriteLine(string.Format(GitLab.VisualStudio.Shared.Strings.Canotopenurl, match.Value,ex.Message), ex);
+                                    OutputWindowHelper.ExceptionWriteLine(string.Format(GitLab.VisualStudio.Shared.Strings.Canotopenurl, match.Value, ex.Message), ex);
                                 }
                             }
                         }
@@ -402,22 +420,22 @@ namespace GitLab.VisualStudio
             }
             catch (Exception ex)
             {
-                OutputWindowHelper.ExceptionWriteLine($"Command:{command.Text}，Message:{ex.Message}",ex);
+                OutputWindowHelper.ExceptionWriteLine($"Command:{command.Text}，Message:{ex.Message}", ex);
             }
         }
-        public void  TryOpenFile( string url)
+        public void TryOpenFile(string url)
         {
             Uri uri = new Uri(url);
             using (var git = new GitAnalysis(GetActiveFilePath()))
             {
                 if (git.IsDiscoveredGitRepository)
                 {
-                    var blob=Regex.Match(url, "/blob/(?<treeish>[^/]*)/");
+                    var blob = Regex.Match(url, "/blob/(?<treeish>[^/]*)/");
                     if (blob.Success)
                     {
                         string p1 = uri.GetComponents(UriComponents.Path, UriFormat.UriEscaped).ToString();
                         string p2 = p1.Substring(p1.IndexOf(blob.Value) + blob.Value.Length);
-                        var path = System.IO.Path.Combine(System.IO.Path.GetFullPath(System.IO.Path.Combine(git.RepositoryPath, "../")),  p2);
+                        var path = System.IO.Path.Combine(System.IO.Path.GetFullPath(System.IO.Path.Combine(git.RepositoryPath, "../")), p2);
                         var textView = OpenDocument(path);
                     }
                 }

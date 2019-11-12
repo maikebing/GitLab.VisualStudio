@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Models;
 using GitLab.VisualStudio.UI.Views;
+using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.CodeContainerManagement;
 using Microsoft.VisualStudio.Threading;
@@ -20,16 +21,16 @@ namespace GitLab.StartPage
     public class GitLabContainerProvider : ICodeContainerProvider
     {
 
-        readonly Lazy<IViewFactory> _viewFactoryProvider;
+        readonly Lazy<IGitLabServiceProvider> _gitLabServiceProvider;
 
         public GitLabContainerProvider() : this(
-            new Lazy<IViewFactory>(() => Package.GetGlobalService(typeof(IViewFactory)) as IViewFactory))
+            new Lazy<IGitLabServiceProvider>(() => Package.GetGlobalService(typeof(IGitLabServiceProvider)) as IGitLabServiceProvider))
         {
         }
 
-        public GitLabContainerProvider(Lazy<IViewFactory> viewFactoryProvider)
+        public GitLabContainerProvider(Lazy<IGitLabServiceProvider> gitLabServiceProvider)
         {
-            this._viewFactoryProvider = viewFactoryProvider;
+            this._gitLabServiceProvider = gitLabServiceProvider;
         }
 
         public async Task<CodeContainer> AcquireCodeContainerAsync(IProgress<ServiceProgressData> downloadProgress, CancellationToken cancellationToken)
@@ -48,8 +49,14 @@ namespace GitLab.StartPage
             CloneDialogResult request = null;
             try
             {
-                var _viewFactory = await Task.Run(() => _viewFactoryProvider.Value);
-                request = _viewFactory?.ShowCloneDialog(downloadProgress);
+                var glsp =await Task.Run(()=>_gitLabServiceProvider.Value);
+                var _viewFactory =glsp.GetService<IViewFactory>();
+                request = _viewFactory?.ShowCloneDialog();
+                if (request != null)
+                {
+                    var gitExt = glsp.GetService<IGitRepositoriesExt>();
+                    gitExt.Clone(request.Url, request.Path, CloneOptions.RecurseSubmodule);
+                }
             }
             catch (Exception e)
             {

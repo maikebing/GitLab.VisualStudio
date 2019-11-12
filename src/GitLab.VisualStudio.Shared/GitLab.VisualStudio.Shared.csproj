@@ -69,6 +69,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServiceProviderPackage.cs" />
     <Compile Include="Controls\BusyIndicator.cs" />
     <Compile Include="Controls\IconedTextBox.cs" />
     <Compile Include="Controls\Octicons\Octicon.cs" />
@@ -97,7 +98,7 @@
     <Compile Include="IServiceProviderExtensions.cs" />
     <Compile Include="IStorage.cs" />
     <Compile Include="ITeamExplorerServices.cs" />
-    <Compile Include="IUIProvider.cs" />
+    <Compile Include="IGitLabServiceProvider.cs" />
     <Compile Include="IViewFactory.cs" />
     <Compile Include="IShellService.cs" />
     <Compile Include="IWebService.cs" />
@@ -205,7 +206,7 @@
       <Version>15.8.132</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.2</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="NGitLab.Plus">
       <Version>2.0.36</Version>
