@@ -160,8 +160,29 @@ namespace GitLab.VisualStudio.Services
 
         public void Erase()
         {
-            EraseCredential($"git:{Host}");
-            EraseCredential($"token:{Host}");
+            try
+            {
+                List<FileInfo> files = new List<FileInfo>();
+                files.Add(new FileInfo(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs")));
+                files.Add(new FileInfo(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Strings.DefaultHost).Host}.gitlab4vs")));
+                files.Add(new FileInfo(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.cfg")));
+                files.ForEach(f =>
+                {
+                    try
+                    {
+                        f.Delete();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                });
+                EraseCredential($"git:{Host}");
+                EraseCredential($"token:{Host}");
+            }
+            catch (Exception ex)
+            {
+                OutputWindowHelper.WarningWriteLine("Erase"+ex.Message);
+            }
         }
 
         private static void EraseCredential(string key)
