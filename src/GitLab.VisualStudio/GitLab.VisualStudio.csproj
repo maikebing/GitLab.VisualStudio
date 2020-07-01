@@ -351,7 +351,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LibGit2Sharp, Version=0.26.0.0, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
+    <Reference Include="LibGit2Sharp, Version=0.26.0.2, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
       <HintPath>..\..\packages\LibGit2Sharp.0.26.2\lib\net46\LibGit2Sharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -363,7 +363,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.VisualStudio.ComponentModelHost.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Imaging, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.VisualStudio.Imaging, Version=14.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Imaging.14.3.25407\lib\net45\Microsoft.VisualStudio.Imaging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -443,7 +443,7 @@
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NGitLab, Version=2.0.36.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NGitLab, Version=2.0.42.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NGitLab.Plus.2.0.42\lib\net45\NGitLab.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -548,7 +548,6 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.VSSDK.BuildTools.16.7.3065\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.VSSDK.BuildTools.16.7.3065\build\Microsoft.VSSDK.BuildTools.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.targets')" />
-  <Import Project="..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.16\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.16\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
   <Import Project="..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.30\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.30\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
   <Import Project="..\..\packages\Microsoft.VSSDK.BuildTools.16.7.3065\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\..\packages\Microsoft.VSSDK.BuildTools.16.7.3065\build\Microsoft.VSSDK.BuildTools.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
