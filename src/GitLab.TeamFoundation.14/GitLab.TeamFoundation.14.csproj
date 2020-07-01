@@ -148,7 +148,7 @@
       <Version>14.3.25407</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.Embeddable">
-      <Version>14.3.25407</Version>
+      <Version>16.6.30107.105</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.Immutable.12.0">
       <Version>12.0.21003</Version>
