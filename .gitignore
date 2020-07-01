@@ -240,3 +240,4 @@ nunit-UnitTests.xml
 nunit-TrackingCollectionTests.xml
 GitHubVS.sln.DotSettings
 **/generated/*.cs
+/MigrationBackup
