@@ -98,6 +98,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GitLabPackage.cs" />
+    <Compile Include="source.extension1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
+    </Compile>
     <Compile Include="VSCommandTable.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,9 +126,6 @@
     <Compile Include="Services\Storage.cs" />
     <Compile Include="Services\ViewFactory.cs" />
     <Compile Include="Services\WebService.cs" />
-    <Compile Include="source.extension.cs">
-      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt">
