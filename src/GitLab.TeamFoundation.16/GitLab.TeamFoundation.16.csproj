@@ -212,7 +212,7 @@
       <Version>9.0.30730</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TextManager.Interop">
-      <Version>7.10.6071</Version>
+      <Version>16.8.30705.32</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading">
       <Version>16.5.132</Version>
