@@ -230,7 +230,7 @@
       <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="stdole">
-      <Version>7.0.3303</Version>
+      <Version>16.8.30705.32</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
