@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -124,22 +124,22 @@
     <value>Non ci sono progetti!</value>
   </data>
   <data name="CloneView_Search" xml:space="preserve">
-    <value>Cerca!</value>
+    <value>Cerca</value>
   </data>
   <data name="Common_Browse" xml:space="preserve">
     <value>Esplora</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Annullare</value>
+    <value>Annulla</value>
   </data>
   <data name="Common_ChooseAGitIgnore" xml:space="preserve">
-    <value>Aggiungi un gitignore!</value>
+    <value>Aggiungi un .gitignore</value>
   </data>
   <data name="Common_ChooseALicense" xml:space="preserve">
-    <value>Aggiungere una licenza!</value>
+    <value>Aggiungi una licenza</value>
   </data>
   <data name="Common_Clone" xml:space="preserve">
-    <value>Duplica</value>
+    <value>Clona</value>
   </data>
   <data name="Common_CreateRepository" xml:space="preserve">
     <value>Crea</value>
@@ -148,10 +148,10 @@
     <value>Descrizione</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Lunghezza massima della descrizione è di 500!</value>
+    <value>Lunghezza massima della descrizione è di 500</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
-    <value>Git ignorare!</value>
+    <value>gitignore</value>
   </data>
   <data name="Common_License" xml:space="preserve">
     <value>Licenza</value>
@@ -160,13 +160,13 @@
     <value>Caricamento</value>
   </data>
   <data name="Common_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nome</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Lunghezza massima del nome è di 64 caratteri!</value>
+    <value>Lunghezza massima del nome è di 64 caratteri</value>
   </data>
   <data name="Common_New" xml:space="preserve">
-    <value>Nuovo!</value>
+    <value>Nuovo</value>
   </data>
   <data name="Common_Path" xml:space="preserve">
     <value>Percorso</value>
@@ -178,19 +178,19 @@
     <value>Proprietà</value>
   </data>
   <data name="Common_Quit" xml:space="preserve">
-    <value>Sair</value>
+    <value>Esci</value>
   </data>
   <data name="Confirm_Quit" xml:space="preserve">
-    <value>Uscire veramente?</value>
+    <value>Confermi l'uscita?</value>
   </data>
   <data name="CreateView_NameIsRequired" xml:space="preserve">
-    <value>Il cognome è obbligatorio</value>
+    <value>Il nome è obbligatorio</value>
   </data>
   <data name="CreateView_PathIsRequired" xml:space="preserve">
-    <value>Percorso è obbligatorio!</value>
+    <value>Il percorso è obbligatorio</value>
   </data>
   <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
-    <value>Si tratta di un progetto fresco (facoltativo)!</value>
+    <value>Questo è un progetto nuovo (facoltativo)!</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>GitLab illimitato gratuito repository e collaboratori. Registrati. Repository pubblici &amp; privato e collaboratori illimitati gratuito.!</value>
@@ -199,25 +199,25 @@
     <value>Connetti</value>
   </data>
   <data name="Invitation_SignUp" xml:space="preserve">
-    <value>Registrati!</value>
+    <value>Registrati</value>
   </data>
   <data name="Items_builds" xml:space="preserve">
-    <value>Costruisce!</value>
+    <value></value>
   </data>
   <data name="Items_Graph" xml:space="preserve">
     <value>Grafici</value>
   </data>
   <data name="Items_Issues" xml:space="preserve">
-    <value>problemi quantificati</value>
+    <value>Problemi</value>
   </data>
   <data name="Items_Pipeline" xml:space="preserve">
-    <value>Condotte</value>
+    <value>Pipeline</value>
   </data>
   <data name="Items_MergeRequests" xml:space="preserve">
-    <value>Unire le richieste!</value>
+    <value>Effettua una Merge Request</value>
   </data>
   <data name="Items_Snippets" xml:space="preserve">
-    <value>Frammenti di codice!</value>
+    <value>Snippet</value>
   </data>
   <data name="Items_Wiki" xml:space="preserve">
     <value>Wiki</value>
@@ -226,7 +226,7 @@
     <value>Connetti a{0}</value>
   </data>
   <data name="Login_Email" xml:space="preserve">
-    <value>Nome utente o Email!</value>
+    <value>Nome utente o Email</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
     <value>Email non valida!</value>
@@ -238,7 +238,7 @@
     <value>Impossibile effettuare il login!</value>
   </data>
   <data name="Login_ForgetPassword" xml:space="preserve">
-    <value>Hai dimenticato la password?</value>
+    <value>Password dimenticata</value>
   </data>
   <data name="Login_Host" xml:space="preserve">
     <value>GitLab (https://gitlab.com)!</value>
@@ -250,19 +250,19 @@
     <value>Password</value>
   </data>
   <data name="Login_PasswordIsRequired" xml:space="preserve">
-    <value>Password è obbligatoria!</value>
+    <value>Password obbligatoria</value>
   </data>
   <data name="Login_PasswordMinTo" xml:space="preserve">
-    <value>Password deve essere almeno 6 caratteri!</value>
+    <value>La password deve contenere almeno 6 caratteri!</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
-    <value>Risentirsi e-mail ad account attivo!</value>
+    <value>Reinvia emal di conferma</value>
   </data>
   <data name="Login_SignUp" xml:space="preserve">
-    <value>Registrati!</value>
+    <value>Registrati</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>GitLab!</value>
+    <value>GitLab</value>
   </data>
   <data name="Provider" xml:space="preserve">
     <value>GitLab!</value>
@@ -274,13 +274,13 @@
     <value>o</value>
   </data>
   <data name="Publish_Publish" xml:space="preserve">
-    <value>Pubblica!</value>
+    <value>Pubblica</value>
   </data>
   <data name="Publish_SignUp" xml:space="preserve">
-    <value>Registrati!</value>
+    <value>Registrati</value>
   </data>
   <data name="Publish_Start" xml:space="preserve">
-    <value>Comincia!</value>
+    <value>Inizia</value>
   </data>
   <data name="Publish_Submiting" xml:space="preserve">
     <value>Invio in corso</value>
@@ -307,31 +307,31 @@
     <value>https://gitlab.com/</value>
   </data>
   <data name="WebService_CreateProject_NotLoginYet" xml:space="preserve">
-    <value>Non è ancora possibile accedere!</value>
+    <value>Non è ancora possibile accedere</value>
   </data>
   <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
     <value>Impossibile creare Snippet!</value>
   </data>
   <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
-    <value>La visibilità è richiesta!</value>
+    <value>La visibilità è obbligatoria</value>
   </data>
   <data name="CreateSnippetViewModel_DescriptorsIsRequired" xml:space="preserve">
-    <value>I descrittori è richiesto!</value>
+    <value>I descrittori sono obbligatori</value>
   </data>
   <data name="CreateSnippetViewModel_FileNameIsRequired" xml:space="preserve">
-    <value>Nome del file è richiesto!</value>
+    <value>Nome del file obbligatorio</value>
   </data>
   <data name="CreateSnippetViewModel_TitleIsRequired" xml:space="preserve">
     <value>Il titolo è richiesto</value>
   </data>
   <data name="CreateSnippetViewModel_CodeIsRequired" xml:space="preserve">
-    <value>IsRequired</value>
+    <value>obbligatorio</value>
   </data>
   <data name="CreatingASnippetPleaseWait" xml:space="preserve">
-    <value>Creazione di un frammento, si prega di attendere...</value>
+    <value>Creazione di un snippet, si prega di attendere...</value>
   </data>
   <data name="TheSnippetsIsNotEnabled" xml:space="preserve">
-    <value>I frammenti non è abilitato!</value>
+    <value>Gli snippet non sono abilitati</value>
   </data>
   <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
     <value>... (ID completo)!</value>
@@ -349,10 +349,10 @@
     <value>Commit</value>
   </data>
   <data name="OpenOnGitLabPackage_CreateSnippet" xml:space="preserve">
-    <value>Creare Snippet!</value>
+    <value>Creare Snippet</value>
   </data>
   <data name="CreateSnippetNoTitle" xml:space="preserve">
-    <value>nessun titolo</value>
+    <value>Nessun titolo</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Chiudi!</value>
@@ -370,7 +370,7 @@
     <value>Nome File</value>
   </data>
   <data name="AfterCreatedOpenInTheBrowser" xml:space="preserve">
-    <value>Dopo aver creato aperto nel browser</value>
+    <value>Dopo aver creato un repo, aprilo nel browser</value>
   </data>
   <data name="ProjectVisibility" xml:space="preserve">
     <value>Visibilità del progetto</value>
@@ -400,10 +400,10 @@
     <value>GitLab ApiV4 Oauth2</value>
   </data>
   <data name="AutoDiscovery" xml:space="preserve">
-    <value>DISCOVERY</value>
+    <value>Automatico</value>
   </data>
   <data name="Trying" xml:space="preserve">
-    <value>Continua a provarci.</value>
+    <value>Riprova</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Conferma</value>
