@@ -148,7 +148,7 @@
     <value>Descrizione</value>
   </data>
   <data name="Common_DescriptionMaxTo" xml:space="preserve">
-    <value>Lunghezza massima della descrizione è di 500</value>
+    <value>La lunghezza massima della descrizione è di 500 caratteri</value>
   </data>
   <data name="Common_GitIgnore" xml:space="preserve">
     <value>gitignore</value>
@@ -163,7 +163,7 @@
     <value>Nome</value>
   </data>
   <data name="Common_NameMaxTo" xml:space="preserve">
-    <value>Lunghezza massima del nome è di 64 caratteri</value>
+    <value>la lunghezza massima del nome è di 64 caratteri</value>
   </data>
   <data name="Common_New" xml:space="preserve">
     <value>Nuovo</value>
@@ -208,7 +208,7 @@
     <value>Grafici</value>
   </data>
   <data name="Items_Issues" xml:space="preserve">
-    <value>Problemi</value>
+    <value>Issues (problemi)</value>
   </data>
   <data name="Items_Pipeline" xml:space="preserve">
     <value>Pipeline</value>
