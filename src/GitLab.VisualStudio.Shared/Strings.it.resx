@@ -121,7 +121,7 @@
     <value>Caricamento fallito</value>
   </data>
   <data name="CloneView_NoProjects" xml:space="preserve">
-    <value>Non ci sono progetti</value>
+    <value>Non ci sono progetti!</value>
   </data>
   <data name="CloneView_Search" xml:space="preserve">
     <value>Cerca</value>
@@ -190,10 +190,10 @@
     <value>Il percorso è obbligatorio</value>
   </data>
   <data name="CreateView_ThisIsACoollProject" xml:space="preserve">
-    <value>Questo è un progetto nuovo (facoltativo)</value>
+    <value>Questo è un progetto nuovo (facoltativo)!</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Repository e collaboratori gratuiti e illimitati su GitLab. Registrati</value>
+    <value>GitLab illimitato gratuito repository e collaboratori. Registrati. Repository pubblici &amp; privato e collaboratori illimitati gratuito.!</value>
   </data>
   <data name="Invitation_Connect" xml:space="preserve">
     <value>Connetti</value>
@@ -229,19 +229,19 @@
     <value>Nome utente o Email</value>
   </data>
   <data name="Login_EmailIsInvalid" xml:space="preserve">
-    <value>Email non valida</value>
+    <value>Email non valida!</value>
   </data>
   <data name="Login_EmailIsRequired" xml:space="preserve">
-    <value>Email è obbligatorio</value>
+    <value>Email è obbligatorio!</value>
   </data>
   <data name="Login_FailedToLogin" xml:space="preserve">
-    <value>Impossibile effettuare il login</value>
+    <value>Impossibile effettuare il login!</value>
   </data>
   <data name="Login_ForgetPassword" xml:space="preserve">
     <value>Password dimenticata</value>
   </data>
   <data name="Login_Host" xml:space="preserve">
-    <value>GitLab (https://gitlab.com)</value>
+    <value>GitLab (https://gitlab.com)!</value>
   </data>
   <data name="Login_Login" xml:space="preserve">
     <value>Login</value>
@@ -253,7 +253,7 @@
     <value>Password obbligatoria</value>
   </data>
   <data name="Login_PasswordMinTo" xml:space="preserve">
-    <value>La password deve contenere almeno 6 caratteri</value>
+    <value>La password deve contenere almeno 6 caratteri!</value>
   </data>
   <data name="Login_ReSendEmail" xml:space="preserve">
     <value>Reinvia emal di conferma</value>
@@ -265,7 +265,7 @@
     <value>GitLab</value>
   </data>
   <data name="Provider" xml:space="preserve">
-    <value>GitLab</value>
+    <value>GitLab!</value>
   </data>
   <data name="Publish_Login" xml:space="preserve">
     <value>Login</value>
@@ -292,16 +292,16 @@
     <value>Name</value>
   </data>
   <data name="CreateViewModel_OnSave_TheProject0AlreadyExists" xml:space="preserve">
-    <value>Il progetto {0} esiste già</value>
+    <value>Il progetto {0} esiste già!!</value>
   </data>
   <data name="Login_HostIsInvalid" xml:space="preserve">
-    <value>Host non è valido</value>
+    <value>Host non è valido!</value>
   </data>
   <data name="GitLabInvitationSection_GitLabInvitationSection_NoLogin" xml:space="preserve">
-    <value>Nessun Login</value>
+    <value>Nessun Login!</value>
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
-    <value>Autenticazione a due fattori</value>
+    <value>Autenticazione a due fattori!</value>
   </data>
   <data name="DefaultHost" xml:space="preserve">
     <value>https://gitlab.com/</value>
@@ -310,7 +310,7 @@
     <value>Non è ancora possibile accedere</value>
   </data>
   <data name="CreateSnippetViewModel_FailedToCreateSnippet" xml:space="preserve">
-    <value>Impossibile creare Snippet</value>
+    <value>Impossibile creare Snippet!</value>
   </data>
   <data name="CreateSnippetViewModel_VisibilityIsRequired" xml:space="preserve">
     <value>La visibilità è obbligatoria</value>
@@ -334,7 +334,7 @@
     <value>Gli snippet non sono abilitati</value>
   </data>
   <data name="GitAnalysis_GetGitLabTargetDescription_FullID" xml:space="preserve">
-    <value>... (ID completo)</value>
+    <value>... (ID completo)!</value>
   </data>
   <data name="GitAnalysis_Revision" xml:space="preserve">
     <value>Revisione</value>
@@ -355,7 +355,7 @@
     <value>Nessun titolo</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Chiudi</value>
+    <value>Chiudi!</value>
   </data>
   <data name="CreateSnippet_Button" xml:space="preserve">
     <value>Crea</value>
@@ -364,7 +364,7 @@
     <value>Visibilità</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Titolo</value>
+    <value>Titolo!</value>
   </data>
   <data name="FileName" xml:space="preserve">
     <value>Nome File</value>
@@ -376,10 +376,10 @@
     <value>Visibilità del progetto</value>
   </data>
   <data name="Canotopenurl" xml:space="preserve">
-    <value>Impossibile aprire l&amp;#39;URL: {0}, {1}</value>
+    <value>Impossibile aprire l&amp;#39;URL: {0}, {1}!</value>
   </data>
   <data name="PleaseCodes" xml:space="preserve">
-    <value>Si prega di selezionare lo snippet di codice</value>
+    <value>Si prega di selezionare lo snippet di codice!</value>
   </data>
   <data name="OpenFormURL" xml:space="preserve">
     <value>Aperto dal</value>
@@ -418,6 +418,6 @@
     <value>Errore</value>
   </data>
   <data name="PleaseCheckYourUsernameOrPassword" xml:space="preserve">
-    <value>Si prega di controllare il nome utente o la password </value>
+    <value>Si prega di controllare il nome utente o la password !!</value>
   </data>
 </root>
