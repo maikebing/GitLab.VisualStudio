@@ -166,7 +166,7 @@
       <Version>12.0.30111</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.9.0">
-      <Version>9.0.30730</Version>
+      <Version>16.9.31023.347</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TextManager.Interop">
       <Version>7.10.6071</Version>
