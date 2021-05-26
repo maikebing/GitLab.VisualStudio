@@ -404,7 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EnvDTE100">
-      <Version>10.0.3</Version>
+      <Version>16.10.31320.204</Version>
     </PackageReference>
     <PackageReference Include="LibGit2Sharp">
       <Version>0.26.2</Version>
