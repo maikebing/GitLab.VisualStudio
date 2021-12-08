@@ -24,7 +24,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Task = System.Threading.Tasks.Task;
 
 namespace GitLab.VisualStudio
 {
