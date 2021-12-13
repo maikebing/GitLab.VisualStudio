@@ -27,6 +27,7 @@ namespace GitLab.TeamFoundation.Connect
         [ImportingConstructor]
         public GitLabConnectSection(IMessenger messenger, IShellService shell, IStorage storage, ITeamExplorerServices teamexplorer, IViewFactory viewFactory, IWebService web)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             _messenger = messenger;
             _shell = shell;
             _storage = storage;
@@ -39,7 +40,7 @@ namespace GitLab.TeamFoundation.Connect
             messenger.Register<string, Repository>("OnClone", OnClone);
             messenger.Register<string>("OnOpenSolution", OnOpenSolution);
             var gitExt = Microsoft.VisualStudio.Shell.ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
-            gitExt.PropertyChanged += GitExt_PropertyChanged;
+        if (gitExt!=null)  gitExt.PropertyChanged += GitExt_PropertyChanged;
         }
         private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -108,6 +109,7 @@ namespace GitLab.TeamFoundation.Connect
 
         public void OnOpenSolution(string path)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var x = ServiceProvider.GetService(typeof(SVsSolution)) as IVsSolution;
             if (x != null)
             {

@@ -48,12 +48,12 @@ namespace GitLab.TeamFoundation.ViewModels
             _createCommand = new DelegateCommand(OnCreate);
             _openRepositoryCommand = new DelegateCommand<Repository>(OnOpenRepository);
 
-            LoadRepositoriesAsync();
+            LoadRepositories();
         }
         public Visibility Visibility { get; set; }
         public void OnLogined()
         {
-            LoadRepositoriesAsync();
+            LoadRepositories();
         }
 
         private void OnRepositoriesChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -138,10 +138,10 @@ namespace GitLab.TeamFoundation.ViewModels
         }
         public void Refresh()
         {
-            LoadRepositoriesAsync();
+            LoadRepositories();
         }
 
-        private void LoadRepositoriesAsync()
+        private void LoadRepositories()
         {
             IReadOnlyList<Repository> known = null;
             IReadOnlyList<Project> remotes = null;

@@ -40,7 +40,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
             _baseRepositoryPath = _storage.GetBaseRepositoryDirectory();
 
-            LoadRepositoriesAsync();
+            LoadRepositories();
 
             _cloneCommand = new DelegateCommand(OnClone, CanClone);
             _browseCommand = new DelegateCommand(OnBrowse);
@@ -169,7 +169,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             _storage.SaveConfig();
         }
 
-        private void LoadRepositoriesAsync()
+        private void LoadRepositories()
         {
             string error = null;
             IEnumerable<Project> loaded = null;
@@ -179,7 +179,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
             {
                 try
                 {
-                    loaded = LoadRepositories();
+                    loaded =   _web.GetProjects();
                 }
                 catch (Exception)
                 {
@@ -214,9 +214,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
 
-        private IReadOnlyList<Project> LoadRepositories()
-        {
-            return _web.GetProjects();
-        }
+       
     }
 }

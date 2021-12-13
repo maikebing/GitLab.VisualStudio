@@ -22,10 +22,14 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Initialize(object sender, SectionInitializeEventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             IsVisible = false;
             base.Initialize(sender, e);
             var gitExt = Microsoft.VisualStudio.Shell.ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
-            gitExt.PropertyChanged += GitExt_PropertyChanged;
+            if (gitExt != null)
+            {
+                gitExt.PropertyChanged += GitExt_PropertyChanged;
+            }
         }
 
         private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

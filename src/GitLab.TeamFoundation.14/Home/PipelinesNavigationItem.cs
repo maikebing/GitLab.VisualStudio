@@ -13,6 +13,7 @@ namespace GitLab.TeamFoundation.Home
         public PipelinesNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
            : base(Octicon.zap, git, shell, storage, tes, ws)
         {
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             Text = Strings.Items_Pipeline;
             _tes = tes;
         }

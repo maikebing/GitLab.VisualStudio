@@ -1,6 +1,7 @@
 using GitLab.TeamFoundation.Sync;
 using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Models;
+using Microsoft;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
@@ -10,6 +11,7 @@ using Microsoft.VisualStudio.Threading;
 using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -38,7 +40,7 @@ namespace GitLab.TeamFoundation
         /// that instances of this type cannot be created if the TeamFoundation dlls are not available
         /// (otherwise we'll have multiple instances of ITeamExplorerServices exports, and that would be Bad(tm))
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         private ITeamExplorerNotificationManager manager;
 
         [ImportingConstructor]
@@ -118,23 +120,21 @@ namespace GitLab.TeamFoundation
 
         public string GetSolutionPath()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             if (serviceProvider == null)
             {
                 return null;
             }
+            string solutionDir=null, solutionFile, userFile;
             var solution = (IVsSolution)serviceProvider.GetService(typeof(SVsSolution));
-
-            string solutionDir, solutionFile, userFile;
-            if (!ErrorHandler.Succeeded(solution.GetSolutionInfo(out solutionDir, out solutionFile, out userFile)))
+            if (solution == null)
             {
-                return null;
+             
+                if (!ErrorHandler.Succeeded(solution.GetSolutionInfo(out solutionDir, out solutionFile, out userFile)))
+                {
+                    return null;
+                }
             }
-
-            if (solutionDir == null)
-            {
-                return null;
-            }
-
             return solutionDir;
         }
 

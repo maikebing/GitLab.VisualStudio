@@ -201,7 +201,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                         try
                         {
                             BusyContent = Strings.Trying + apiv.ToString();
-                            var user = _web.LoginAsync(Enable2FA, Host, Email, Password, apiv);
+                            var user = _web.Login(Enable2FA, Host, Email, Password, apiv);
                             if (user != null)
                             {
                                 BusyContent = null;

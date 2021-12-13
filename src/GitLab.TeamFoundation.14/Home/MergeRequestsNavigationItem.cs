@@ -15,6 +15,7 @@ namespace GitLab.TeamFoundation.Home
         public MergeRequestsNavigationItem(IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService ws)
            : base(Octicon.git_pull_request, git, shell, storage, tes, ws)
         {
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             _tes = tes;
             Text = Strings.Items_MergeRequests;
         }

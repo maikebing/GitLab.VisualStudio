@@ -24,7 +24,7 @@ namespace GitLab.VisualStudio.Shared
 
     public interface IWebService
     {
-        User LoginAsync(bool enable2fa, string host, string email, string password, ApiVersion apiVersion);
+        User Login(bool enable2fa, string host, string email, string password, ApiVersion apiVersion);
 
         IReadOnlyList<Project> GetProjects();
 
