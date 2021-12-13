@@ -3,6 +3,7 @@ using GitLab.TeamFoundation.Views;
 using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
+using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;

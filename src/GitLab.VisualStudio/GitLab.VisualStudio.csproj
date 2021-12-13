@@ -110,7 +110,6 @@
       <DependentUpon>VSCommandTable.vsct</DependentUpon>
     </Compile>
     <Compile Include="Helpers\OutputWindowHelper.cs" />
-    <Compile Include="GitLabToolWindow.cs" />
     <Compile Include="Services\GitAnalysis.cs" />
     <Compile Include="Services\GitService.cs" />
     <Compile Include="Services\ShellService.cs" />
@@ -346,6 +345,12 @@
     <Reference Include="System.Xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GitLab.TeamFoundation.17\GitLab.TeamFoundation.17.csproj">
+      <Project>{48B7CF42-9F19-4A4C-817D-2021D9A64BFD}</Project>
+      <Name>GitLab.TeamFoundation.17</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
     <ProjectReference Include="..\GitLab.VisualStudio.Shared\GitLab.VisualStudio.Shared.csproj">
       <Project>{c3150b82-8e79-4ff6-a9ff-e361c108384f}</Project>
       <Name>GitLab.VisualStudio.Shared</Name>
@@ -371,59 +376,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EnvDTE100">
-      <Version>17.0.31902.203</Version>
-    </PackageReference>
     <PackageReference Include="LibGit2Sharp">
       <Version>0.26.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost">
-      <Version>17.0.487</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.0.31902.203</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers">
-      <Version>16.10.10</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.SDK.EmbedInteropTypes">
-      <Version>15.0.36</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Shell.Embeddable">
-      <Version>16.10.31320.204</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Shell.Framework">
-      <Version>17.0.31902.203</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.9.0">
-      <Version>17.0.31902.203</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>17.0.64</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
-      <Version>17.0.64</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Utilities">
-      <Version>17.0.31902.203</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
-      <Version>17.0.5232</Version>
+      <Version>17.0.5233</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="NGitLab.Plus">
       <Version>2.0.44</Version>
-    </PackageReference>
-    <PackageReference Include="stdole">
-      <Version>17.0.31902.203</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.InteropServices">
       <Version>4.3.0</Version>

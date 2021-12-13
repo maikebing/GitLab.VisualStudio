@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:GitLab.VisualStudio.Shared.Controls;assembly=GitLab.VisualStudio.Shared"
              xmlns:shared="clr-namespace:GitLab.VisualStudio.Shared;assembly=GitLab.VisualStudio.Shared"
              d:DataContext="{d:DesignInstance Type=vms:PublishSectionViewModel, IsDesignTimeCreatable=False}"
-             xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
+             xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300">

@@ -32,7 +32,6 @@ namespace GitLab.VisualStudio
     [InstalledProductRegistration("#110", "#112", AssemblyVersionInformation.Version, IconResourceID = 400)]
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad )]
     public class GitLabPackage : AsyncPackage, IVsInstalledProduct
     {
@@ -151,11 +150,7 @@ namespace GitLab.VisualStudio
                             menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
                              mcs.AddCommand(menuItem);
                         }
-                        var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
-                        var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
-                        IssuesToolmenuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                        IssuesToolmenuItem.Enabled = false;
-                        mcs.AddCommand(IssuesToolmenuItem);
+                 
                     }
                     catch (Exception ex)
                     {
@@ -169,10 +164,7 @@ namespace GitLab.VisualStudio
             });
        
         }
-        private GitLabToolWindow _issuesTool;
-
-        public GitLabToolWindow IssuesTool => _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));
-
+     
         private void SolutionEvents_Opened()
         {
            // timer.Start();
@@ -292,19 +284,7 @@ namespace GitLab.VisualStudio
             }
         }
 
-        private void ShowToolWindow(object sender, EventArgs e)
-        {
-            // Get the instance number 0 of this tool window. This window is single instance so this instance
-            // is actually the only one.
-            // The last flag is set to true so that if the tool window does not exists it will be created.
-            ToolWindowPane window = FindToolWindow(typeof(GitLabToolWindow), 0, true);
-            if ((null == window) || (null == window.Frame))
-            {
-                throw new NotSupportedException("Cannot create tool window");
-            }
-            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
-        }
+      
 
         private void ExecuteCommand(object sender, EventArgs e)
         {
