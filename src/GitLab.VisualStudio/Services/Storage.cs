@@ -1,6 +1,5 @@
 ﻿using GitLab.VisualStudio.Shared;
 using GitLab.VisualStudio.Shared.Models;
-using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio.Shell;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -207,19 +206,21 @@ namespace GitLab.VisualStudio.Services
                 {
                     AppSettings = JsonConvert.DeserializeObject<AppSettings>(System.IO.File.ReadAllText(filename));
                 }
+                if (AppSettings == null)
+                {
+                    AppSettings = new AppSettings();
+                }
+                if (string.IsNullOrEmpty(AppSettings.BasePath))
+                {
+                    var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    AppSettings.BasePath = System.IO.Path.Combine(user, "Source", "Repos");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                OutputWindowHelper.WarningWriteLine($"Can't load config,{ex.Message}");
             }
-            if (AppSettings==null)
-            {
-                AppSettings = new AppSettings();
-            }
-            if (string.IsNullOrEmpty(AppSettings.BasePath))
-            {
-                var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                AppSettings.BasePath = System.IO.Path.Combine(user, "Source", "Repos");
-            }
+          
         }
         public void SaveConfig()
         {
@@ -228,9 +229,9 @@ namespace GitLab.VisualStudio.Services
                 var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "gitlab4vs.cfg");
                 System.IO.File.WriteAllText(filename, JsonConvert.SerializeObject(AppSettings));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                OutputWindowHelper.WarningWriteLine("Can't save config!");
+                OutputWindowHelper.WarningWriteLine($"Can't save config,{ex.Message}");
             }
         }
 

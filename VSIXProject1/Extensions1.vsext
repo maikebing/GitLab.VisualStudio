@@ -1,0 +1,14 @@
+{
+  "description": "Read about creating extension packs at https://aka.ms/vsextpack",
+  "version": "1.0.0.0",
+  "extensions": [
+    {
+      "vsixId": "41858b2d-ff0b-4a43-80b0-f1b2d6084935",
+      "name": "AlignAssignments"
+    },
+    {
+      "vsixId": "42374550-426a-400e-96f9-237682e8dea6",
+      "name": "CopyAsHtml"
+    }
+  ]
+}

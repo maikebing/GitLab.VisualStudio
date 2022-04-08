@@ -44,6 +44,7 @@ namespace GitLab.VisualStudio.Helpers
 
         private static IVsOutputWindowPane GetGitLabVsOutputWindowPane()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var outputWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             if (outputWindow == null) return null;
 
@@ -58,6 +59,7 @@ namespace GitLab.VisualStudio.Helpers
 
         private static void WriteLine(string category, string message)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var outputWindowPane = GitLabVSOutputWindowPane;
             if (outputWindowPane != null)
             {

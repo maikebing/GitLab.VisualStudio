@@ -25,6 +25,7 @@ namespace GitLab.TeamFoundation.Home
 
         public GitLabNavigationItem(Octicon icon, IGitService git, IShellService shell, IStorage storage, ITeamExplorerServices tes, IWebService web)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             _git = git;
             _shell = shell;
             _storage = storage;
@@ -41,7 +42,10 @@ namespace GitLab.TeamFoundation.Home
                 Invalidate();
             };
             var gitExt = ServiceProvider.GlobalProvider.GetService<Microsoft.VisualStudio.TeamFoundation.Git.Extensibility.IGitExt>();
-            gitExt.PropertyChanged += GitExt_PropertyChanged;
+            if (gitExt != null)
+            {
+                gitExt.PropertyChanged += GitExt_PropertyChanged;
+            }
         }
 
         private void GitExt_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

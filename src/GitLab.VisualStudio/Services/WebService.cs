@@ -105,7 +105,7 @@ namespace GitLab.VisualStudio.Services
             return lstpjt;
         }
 
-        public User LoginAsync(bool enable2fa, string host, string email, string password, ApiVersion apiVersion)
+        public User Login(bool enable2fa, string host, string email, string password, ApiVersion apiVersion)
         {
             NGitLab.GitLabClient client = null;
             User user = null;

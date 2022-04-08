@@ -23,7 +23,6 @@ namespace GitLab.TeamFoundation.Views
         {
             InitializeComponent();
             OnThemeChanged();
-
             VSColorTheme.ThemeChanged += OnThemeChanged;
         }
 

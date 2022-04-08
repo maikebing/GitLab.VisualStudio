@@ -33,7 +33,6 @@ namespace GitLab.VisualStudio
     [InstalledProductRegistration("#110", "#112", AssemblyVersionInformation.Version, IconResourceID = 400)]
     [Guid(PackageGuids.guidGitLabPackagePkgString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideToolWindow(typeof(GitLabToolWindow), MultiInstances = false, Height = 100, Width = 500, Style = Microsoft.VisualStudio.Shell.VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Bottom, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad )]
     public class GitLabPackage : AsyncPackage, IVsInstalledProduct
     {
@@ -91,6 +90,7 @@ namespace GitLab.VisualStudio
 
         public  string   GetResourceString(string resourceName)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             string resourceValue;
            
             var resourceManager =  (IVsResourceManager)GetService(typeof(SVsResourceManager));
@@ -122,6 +122,7 @@ namespace GitLab.VisualStudio
             await base.InitializeAsync(cancellationToken, progress);
             await JoinableTaskFactory.RunAsync(VsTaskRunContext.UIThreadNormalPriority, async delegate
             {
+                await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
                 timer = new System.Timers.Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
                 timer.Elapsed += Timer_Elapsed;
                 DTE.Events.SolutionEvents.AfterClosing += SolutionEvents_AfterClosing;
@@ -152,11 +153,7 @@ namespace GitLab.VisualStudio
                             menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
                              mcs.AddCommand(menuItem);
                         }
-                        var IssuesToolmenuCommandID = new CommandID(PackageGuids.guidIssuesToolWindowPackageCmdSet, (int)PackageIds.IssuesToolWindowCommandId);
-                        var IssuesToolmenuItem = new OleMenuCommand(this.ShowToolWindow, IssuesToolmenuCommandID);
-                        IssuesToolmenuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
-                        IssuesToolmenuItem.Enabled = false;
-                        mcs.AddCommand(IssuesToolmenuItem);
+                 
                     }
                     catch (Exception ex)
                     {
@@ -170,10 +167,7 @@ namespace GitLab.VisualStudio
             });
        
         }
-        private GitLabToolWindow _issuesTool;
-
-        public GitLabToolWindow IssuesTool => _issuesTool ?? (_issuesTool = (FindToolWindow(typeof(GitLabToolWindow), 0, false) as GitLabToolWindow));
-
+     
         private void SolutionEvents_Opened()
         {
            // timer.Start();
@@ -231,6 +225,7 @@ namespace GitLab.VisualStudio
 
         public string GetActiveFilePath()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             string path = "";
             if (DTE != null)
             {
@@ -293,22 +288,11 @@ namespace GitLab.VisualStudio
             }
         }
 
-        private void ShowToolWindow(object sender, EventArgs e)
-        {
-            // Get the instance number 0 of this tool window. This window is single instance so this instance
-            // is actually the only one.
-            // The last flag is set to true so that if the tool window does not exists it will be created.
-            ToolWindowPane window = FindToolWindow(typeof(GitLabToolWindow), 0, true);
-            if ((null == window) || (null == window.Frame))
-            {
-                throw new NotSupportedException("Cannot create tool window");
-            }
-            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
-        }
+      
 
         private void ExecuteCommand(object sender, EventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var command = (OleMenuCommand)sender;
  
             try
@@ -390,6 +374,7 @@ namespace GitLab.VisualStudio
         }
         IVsTextView OpenDocument(string fullPath)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var logicalView = VSConstants.LOGVIEWID.TextView_guid;
             IVsUIHierarchy hierarchy;
             uint itemID;
@@ -419,6 +404,7 @@ namespace GitLab.VisualStudio
 
         private Tuple<int, int> GetSelectionLineRange()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var selection = DTE.ActiveDocument.Selection as TextSelection;
             if (selection != null)
             {
@@ -450,6 +436,7 @@ namespace GitLab.VisualStudio
 
         public static string GetSolutionDirectory()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var det2 = (DTE2)GetGlobalService(typeof(DTE));
             var path = string.Empty;
             if (det2 != null && det2.Solution != null && det2.Solution.IsOpen)
