@@ -179,9 +179,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MessagePack.Annotations">
-      <Version>2.3.85</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.1.32210.191</Version>
     </PackageReference>

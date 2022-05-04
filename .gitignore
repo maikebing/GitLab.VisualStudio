@@ -241,3 +241,4 @@ nunit-TrackingCollectionTests.xml
 GitHubVS.sln.DotSettings
 **/generated/*.cs
 /MigrationBackup
+/src/GitLab.VisualStudio.UI/Properties/GitApp.cs

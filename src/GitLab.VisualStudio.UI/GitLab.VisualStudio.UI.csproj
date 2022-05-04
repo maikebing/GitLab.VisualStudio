@@ -68,6 +68,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\GitApp.cs" />
     <Compile Include="ViewModels\CloneViewModel.cs" />
     <Compile Include="ViewModels\CreateViewModel.cs" />
     <Compile Include="ViewModels\CreateSnippetViewModel.cs" />
@@ -138,8 +139,8 @@
     <Resource Include="Resources\images\host.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MessagePack.Annotations">
-      <Version>2.3.85</Version>
+    <PackageReference Include="EmbedIO">
+      <Version>3.4.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.1.32210.191</Version>

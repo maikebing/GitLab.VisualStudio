@@ -202,9 +202,6 @@
     <PackageReference Include="LibGit2Sharp">
       <Version>0.26.2</Version>
     </PackageReference>
-    <PackageReference Include="MessagePack.Annotations">
-      <Version>2.3.85</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.1.32210.191</Version>
     </PackageReference>
