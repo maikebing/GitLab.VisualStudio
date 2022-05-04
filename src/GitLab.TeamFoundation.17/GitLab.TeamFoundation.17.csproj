@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GitLab.TeamFoundation</RootNamespace>
-    <AssemblyName>GitLab.TeamFoundation.16</AssemblyName>
+    <AssemblyName>GitLab.TeamFoundation.17</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\build\$(Configuration)\</OutputPath>
@@ -49,22 +49,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.TeamFoundation.Client">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Client.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Common">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Common.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Controls">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Git">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Git.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Git.Client">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Git.Client.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Git.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Git.Contracts">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Git.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Git.Controls">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Git.Controls.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Git.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Git.Provider">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Git.Provider.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Git.Provider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TeamFoundation">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.VisualStudio.TeamFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TeamFoundation.InitializationPackage">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.VisualStudio.TeamFoundation.InitializationPackage.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TeamFoundation.VersionControl">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.VisualStudio.TeamFoundation.VersionControl.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -187,16 +202,25 @@
     <PackageReference Include="LibGit2Sharp">
       <Version>0.26.2</Version>
     </PackageReference>
+    <PackageReference Include="MessagePack.Annotations">
+      <Version>2.3.85</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>17.0.31902.203</Version>
+      <Version>17.1.32210.191</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.Framework">
-      <Version>17.0.31902.203</Version>
+      <Version>17.1.32210.191</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
-      <Version>17.0.5232</Version>
+      <Version>17.1.4057</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.39</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
