@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.IO;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
 using System.Windows.Media;
 
 namespace GitLab.TeamFoundation.Views

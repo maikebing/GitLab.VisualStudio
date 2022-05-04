@@ -3,9 +3,9 @@ using GitLab.TeamFoundation.Views;
 using GitLab.VisualStudio.Shared;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
-using Microsoft.TeamFoundation.Git.Controls.Extensibility;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using Microsoft.VisualStudio.Threading;
 using System;
 using System.ComponentModel.Composition;
@@ -103,8 +103,8 @@ namespace GitLab.TeamFoundation.Connect
 
         public void OnClone(string url, Repository repository)
         {
-            var gitExt = ServiceProvider.GetService<IGitRepositoriesExt>();
-            gitExt.Clone(url, repository.Path, CloneOptions.RecurseSubmodule);
+            var gitExt = ServiceProvider.GetService<IGitActionsExt>();
+            _ = gitExt.CloneAsync(url, repository.Path, true, System.Threading.CancellationToken.None, null);
         }
 
         public void OnOpenSolution(string path)
