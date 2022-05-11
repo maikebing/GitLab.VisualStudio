@@ -203,7 +203,7 @@
       <Version>0.26.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>17.1.32210.191</Version>
+      <Version>17.2.32505.173</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Shell.Framework">
       <Version>17.1.32210.191</Version>
