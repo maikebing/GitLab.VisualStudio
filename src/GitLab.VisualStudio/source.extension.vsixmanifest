@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="54803a44-49e0-4935-bba4-7d7d91682273" Version="1.3.1" Language="en-US" Publisher="MysticBoy" />
+        <Identity Id="54803a44-49e0-4935-bba4-7d7d91682273" Version="1.4.0" Language="en-US" Publisher="Starkxim" />
         <DisplayName>GitLab Extension for Visual Studio</DisplayName>
-        <Description xml:space="preserve">A Visual Studio Extension that brings the GitLab Flow into Visual Studio. Supports Visual Studio 2022 and 2026.</Description>
-        <MoreInfo>https://github.com/maikebing/GitLab.VisualStudio</MoreInfo>
+        <Description xml:space="preserve">A maintained Visual Studio extension for GitLab Flow. Supports Visual Studio 2022 and 2026, private GitLab servers, and in-IDE merge request / issue browsing.</Description>
+        <MoreInfo>https://github.com/Starkxim/GitLab.VisualStudio</MoreInfo>
         <License>LICENSE.txt</License>
-        <GettingStartedGuide>https://github.com/maikebing/GitLab.VisualStudio/wiki</GettingStartedGuide>
-        <ReleaseNotes>https://github.com/maikebing/GitLab.VisualStudio/blob/master/CHANGELOG.md</ReleaseNotes>
+        <GettingStartedGuide>https://github.com/Starkxim/GitLab.VisualStudio#readme</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/Starkxim/GitLab.VisualStudio/blob/master/CHANGELOG.md</ReleaseNotes>
         <Icon>Resources\GitLab4VS128X128.png</Icon>
         <PreviewImage>Resources\preview_200x200.png</PreviewImage>
-        <Tags>GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki</Tags>
+        <Tags>GitLab;git;open source;source control;branch;Issues;Merge Requests;Visual Studio 2026</Tags>
         <Preview>true</Preview>
     </Metadata>
     <Installation>
