@@ -27,7 +27,7 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Execute()
         {
-            OpenInBrowser("issues");
+            NavigateToGitLabWorkItemsPage(GitLabWorkItemsPageMode.Issues);
         }
     }
 }

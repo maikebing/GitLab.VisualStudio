@@ -8,6 +8,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using GitLab.VisualStudio.Helpers;
 
 namespace GitLab.VisualStudio.Services
@@ -16,6 +17,8 @@ namespace GitLab.VisualStudio.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class Storage : IStorage
     {
+        private User _user;
+
         public Storage()
         {
             LoadConfig();
@@ -90,11 +93,12 @@ namespace GitLab.VisualStudio.Services
         public void SaveUser(User user, string password)
         {
             SavePassword(user.Host, user.Username, password);
-            if (user.TwoFactorEnabled)
+            if (string.IsNullOrEmpty(user.PrivateToken))
             {
                 user.PrivateToken = password;
             }
             SaveToken(user.Host, user.Username, user.PrivateToken);
+            _user = user;
             SaveUserToLocal(user);
         }
 
@@ -102,7 +106,7 @@ namespace GitLab.VisualStudio.Services
         {
             try
             {
-                string _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs");
+                string _path = GetUserFilePath(user.Host);
                 var fi = new System.IO.FileInfo(_path);
                 if (!fi.Directory.Exists)
                 {
@@ -139,22 +143,49 @@ namespace GitLab.VisualStudio.Services
 
         private User LoadUser()
         {
-            User _user = null;
+            if (_user != null)
+            {
+                return _user;
+            }
+
+            User loadedUser = null;
             try
             {
-                var _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Host).Host}.gitlab4vs");
+                var _path = GetUserFilePath(Host);
                 if (!System.IO.File.Exists(_path))
                 {
-                    _path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(Strings.DefaultHost).Host}.gitlab4vs");
+                    _path = GetUserFilePath(Strings.DefaultHost);
+                }
+                if (!System.IO.File.Exists(_path))
+                {
+                    _path = GetLastUserFilePath();
                 }
 
-                _user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(System.IO.File.ReadAllText(_path));
-                _user.PrivateToken = GetToken(_user.Host);
+                loadedUser = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(System.IO.File.ReadAllText(_path));
+                loadedUser.PrivateToken = GetToken(loadedUser.Host);
+                _user = loadedUser;
             }
             catch (Exception ex)
             {
             }
-            return _user;
+            return loadedUser;
+        }
+
+        private static string GetUserFilePath(string host)
+        {
+            return System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), $"{new Uri(host).Host}.gitlab4vs");
+        }
+
+        private static string GetLastUserFilePath()
+        {
+            var directory = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            var latest = directory.GetFiles("*.gitlab4vs");
+            if (latest.Length == 0)
+            {
+                return null;
+            }
+
+            return latest.OrderByDescending(f => f.LastWriteTimeUtc).First().FullName;
         }
 
         public void Erase()
@@ -214,6 +245,10 @@ namespace GitLab.VisualStudio.Services
                 {
                     var user = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                     AppSettings.BasePath = System.IO.Path.Combine(user, "Source", "Repos");
+                }
+                if (string.IsNullOrEmpty(AppSettings.DefaultBranch))
+                {
+                    AppSettings.DefaultBranch = "develop";
                 }
             }
             catch (Exception ex)

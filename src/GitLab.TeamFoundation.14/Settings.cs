@@ -16,6 +16,10 @@ namespace GitLab.TeamFoundation
         public const string PublishSectionId = "3B5CEDDD-0AD3-469B-988A-9F8B71A5ACCF";
         public const int PublishSectionPriority = 10;
 
+        public const string GitLabWorkItemsPageId = "C4B0E9CC-3F0F-47DB-9DDE-3EF1A5936E7C";
+        public const string GitLabSettingsSectionId = "9959F3E9-4309-4C72-B3B7-7C22F559CA59";
+        public const int GitLabSettingsSectionPriority = 50;
+
         public const string IssuesNavigationItemId = "31cdaebc-bf79-424e-963a-5ee5eb72dfed";
         public const int Issues = TeamExplorerNavigationItemPriority.GitCommits - 1;
 

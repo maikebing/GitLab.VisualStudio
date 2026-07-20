@@ -102,6 +102,8 @@
     <Compile Include="IShellService.cs" />
     <Compile Include="IWebService.cs" />
     <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Models\GitLabWorkItem.cs" />
+    <Compile Include="Models\GitLabWorkItemQuery.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\CreateSnippetResult.cs" />
     <Compile Include="Models\NamespacesPath.cs" />
@@ -180,18 +182,20 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>17.1.32210.191</Version>
+      <Version>17.14.40265</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
-      <Version>17.1.4057</Version>
+      <Version>17.14.2142</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
-      <Version>1.1.39</Version>
+      <Version>1.1.142</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="NGitLab.Plus">
       <Version>2.0.44</Version>

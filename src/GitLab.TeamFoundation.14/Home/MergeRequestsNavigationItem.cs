@@ -29,7 +29,7 @@ namespace GitLab.TeamFoundation.Home
 
         public override void Execute()
         {
-            OpenInBrowser("merge_requests");
+            NavigateToGitLabWorkItemsPage(GitLabWorkItemsPageMode.MergeRequests);
         }
     }
 }

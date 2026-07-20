@@ -18,6 +18,7 @@ namespace GitLab.VisualStudio.Shared.Models
                     Owner = p.Owner,
                     Public = p.Public,
                     Path = p.Path,
+                    PathWithNamespace = p.PathWithNamespace,
                     MergeRequestsEnabled = p.MergeRequestsEnabled,
                     SnippetsEnabled = p.SnippetsEnabled,
                     SshUrl = p.SshUrl,
@@ -39,6 +40,7 @@ namespace GitLab.VisualStudio.Shared.Models
         public string Name { get; set; }
 
         public string Path { get; set; }
+        public string PathWithNamespace { get; set; }
 
         public bool Public { get; set; }
         public string SshUrl { get; set; }

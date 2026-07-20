@@ -303,7 +303,7 @@
     <value>No Login </value>
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
-    <value>Two Factor Authentication</value>
+    <value>Access Token</value>
   </data>
   <data name="DefaultHost" xml:space="preserve">
     <value>https://gitlab.com/</value>

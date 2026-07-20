@@ -239,6 +239,7 @@ namespace GitLab.VisualStudio
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             var command = (OleMenuCommand)sender;
+            command.Visible = true;
             Debug.WriteLine($"MenuItem_BeforeQueryStatus {command.Text} {command.CommandID.ID} ");
             try
             {
@@ -266,14 +267,15 @@ namespace GitLab.VisualStudio
                             return;
                         }
                         var type = ToGitLabUrlType(command.CommandID.ID);
-                        var targetPath = git.GetGitLabTargetPath(type);
-                        if (type == GitLabUrlType.CurrentBranch && targetPath == "master")
+                        var defaultBranch = GetDefaultBranch();
+                        var targetPath = git.GetGitLabTargetPath(type, defaultBranch);
+                        if (type == GitLabUrlType.CurrentBranch && string.Equals(targetPath, defaultBranch, StringComparison.OrdinalIgnoreCase))
                         {
                             command.Visible = false;
                         }
                         else
                         {
-                            command.Text = git.GetGitLabTargetDescription(type);
+                            command.Text = git.GetGitLabTargetDescription(type, defaultBranch);
                             command.Enabled = true;
                         }
                         break;
@@ -343,7 +345,7 @@ namespace GitLab.VisualStudio
                             }
                             var selectionLineRange = GetSelectionLineRange();
                             var type = ToGitLabUrlType(command.CommandID.ID);
-                            var GitLabUrl = git.BuildGitLabUrl(type, selectionLineRange);
+                            var GitLabUrl = git.BuildGitLabUrl(type, selectionLineRange, GetDefaultBranch());
                             System.Diagnostics.Process.Start(GitLabUrl); // open browser
                         }
                         break;
@@ -432,6 +434,16 @@ namespace GitLab.VisualStudio
             if (commandId == PackageIds.OpenBlame) return GitLabUrlType.Blame;
             if (commandId == PackageIds.OpenCommits) return GitLabUrlType.Commits;
             else return GitLabUrlType.Master;
+        }
+
+        private string GetDefaultBranch()
+        {
+            if (_storage != null && _storage.AppSettings != null && !string.IsNullOrWhiteSpace(_storage.AppSettings.DefaultBranch))
+            {
+                return _storage.AppSettings.DefaultBranch.Trim();
+            }
+
+            return "develop";
         }
 
         public static string GetSolutionDirectory()

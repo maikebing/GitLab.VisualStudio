@@ -9,5 +9,8 @@ namespace GitLab.VisualStudio.Shared.Models
     public class AppSettings
     {
         public string BasePath { get; set; }
+        public string DefaultBranch { get; set; }
+        public string IssuesProjectPath { get; set; }
+        public string MergeRequestsProjectPath { get; set; }
     }
 }

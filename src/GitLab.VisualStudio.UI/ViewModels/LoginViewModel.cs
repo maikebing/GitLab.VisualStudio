@@ -244,13 +244,6 @@ namespace GitLab.VisualStudio.UI.ViewModels
 
         private void OnLogin()
         {
-            string openurl = $"https://gitlab.com/oauth/authorize?client_id=60e86660b759079b66f429f506166fe1cd8cd5fd350476b06801ea973e46ac93&redirect_uri={REDIRECT_URI}&response_type=code&state=STATE&scope=api&code_challenge=CODE_CHALLENGE&code_challenge_method=S256";
-            var browser = new System.Diagnostics.Process()
-            {
-                StartInfo = new System.Diagnostics.ProcessStartInfo(openurl) { UseShellExecute = true }
-            };
-            browser.Start();
-
             Validate();
             if (HasErrors)
             {
@@ -263,9 +256,9 @@ namespace GitLab.VisualStudio.UI.ViewModels
             Task.Run(() =>
             {
                 bool ok = Enum.TryParse(SelectedApiVersion, true, out ApiVersion apiVersion);
-                if (ok || apiVersion == ApiVersion.AutoDiscovery)
+                if (ok)
                 {
-                    var arys = new ApiVersion[] { ApiVersion.V4_Oauth, ApiVersion.V4, ApiVersion.V3_Oauth, ApiVersion.V3, ApiVersion.V3_1 };
+                    var arys = GetLoginApiVersions(apiVersion, Enable2FA);
                     foreach (var apiv in arys)
                     {
                         try
@@ -277,7 +270,7 @@ namespace GitLab.VisualStudio.UI.ViewModels
                                 BusyContent = null;
                                 successed = true;
                                 user.Host = Host;
-                                _storage.AddHostVersionInfo(Host, apiv);
+                                _storage.AddHostVersionInfo(Host, user.ApiVersion);
                                 break;
                             }
                         }
@@ -304,19 +297,48 @@ namespace GitLab.VisualStudio.UI.ViewModels
             }, TaskScheduler.FromCurrentSynchronizationContext()).Forget();
         }
 
+        private static IEnumerable<ApiVersion> GetLoginApiVersions(ApiVersion apiVersion, bool enable2fa)
+        {
+            if (apiVersion == ApiVersion.AutoDiscovery)
+            {
+                if (enable2fa)
+                {
+                    yield return ApiVersion.V4;
+                    yield break;
+                }
+
+                yield return ApiVersion.V4_Oauth;
+                yield return ApiVersion.V4;
+                yield break;
+            }
+
+            if (enable2fa && apiVersion == ApiVersion.V4_Oauth)
+            {
+                yield return ApiVersion.V4;
+                yield break;
+            }
+
+            yield return apiVersion;
+        }
+
         private void OnForgetPassword()
         {
-            _shell.OpenUrl($"{Host}/users/password/new");
+            _shell.OpenUrl(BuildHostUrl("users/password/new"));
         }
 
         private void OnActiveAccount()
         {
-            _shell.OpenUrl($"{Host}/users/confirmation/new");
+            _shell.OpenUrl(BuildHostUrl("users/confirmation/new"));
         }
 
         private void OnSignup()
         {
-            _shell.OpenUrl($"{Host}users/sign_in#register-pane");
+            _shell.OpenUrl(BuildHostUrl("users/sign_in#register-pane"));
+        }
+
+        private string BuildHostUrl(string relativePath)
+        {
+            return new Uri(new Uri(Host), relativePath).ToString();
         }
     }
 }

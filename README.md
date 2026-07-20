@@ -1,168 +1,102 @@
-# GitLab  Extension for Visual Studio
+# GitLab Extension for Visual Studio
 
-You can log any of your favorite GitLab servers and start your great job!
+Maintained fork of `maikebing/GitLab.VisualStudio` with Visual Studio 2026 support and refreshed GitLab API flows.
 
-The GitLab Extension for Visual Studio provides GitLab integration in Visual Studio 2015/2017.
-Most of the extension UI lives in the Team Explorer pane, which is available from the View menu.
+This fork is intended for teams that still want the classic Team Explorer GitLab workflow inside Visual Studio, especially with private GitLab deployments. It is not the original Visual Studio Marketplace listing unless it is explicitly published from this repository.
 
-Appveyor:[![Build status](https://ci.appveyor.com/api/projects/status/qb510idi1wca2vet/branch/master?svg=true)](https://ci.appveyor.com/project/MaiKeBing/gitlab-visualstudio/branch/master)
+## Supported Visual Studio Versions
 
-The Visual Studio Extension is also available at the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionforVisualStudio), or by searching for GitLab4VS  in the Visual Studio extension manager.
-The latest build of the Visual Studio Extension is available at the [Open VsixGallery](http://vsixgallery.com/extension/54803a44-49e0-4935-bba4-7d7d91682273/)
+- Visual Studio 2022, 17.x
+- Visual Studio 2026, 18.x
 
-[![Join the chat at https://gitter.im/GitLab-VisualStudio/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GitLab-VisualStudio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+The current release package is smoke-tested on Visual Studio 2026. The VSIX install target is `[17.0,19.0)`.
 
+## Features
 
+- Connect to GitLab.com or a private GitLab server.
+- Sign in with GitLab OAuth password grant, or with a GitLab personal access token.
+- Browse merge requests inside Team Explorer.
+- Browse issues inside Team Explorer.
+- Filter merge requests and issues by state, scope, author, assignee, labels, search text, and target branch where applicable.
+- Configure separate projects for issues and merge requests. This supports setups where product issues live in a dedicated project such as `group/product-bugs`.
+- Configure the default branch used by the editor context menu, for example `develop` instead of `master`.
+- Open GitLab URLs for the selected file, current branch, configured default branch, revision, blame, commits, and selected line ranges.
+- Clone, publish, create projects, and create snippets from the existing extension workflow.
 
-### When you login with a user name and password.
-  
-For the new version of Gitlab：
-1. https//gitlab.com or your GitLab server 
-1. input your email address or username 
-1. your password (not the token)
-1. use "GitLab ApiV4 Oauth2" don't use "API v4" as the instructions direct
-1. Two-Factor : Off
+## Install
 
-For older versions of Gitlab
-1. Your GitLab server 
-1. input your email address or username 
-1. your password (not the token)
-1.use "GitLab ApiV3 Oauth2"  or  "API v3" 
+1. Download the `.vsix` package from the repository release.
+2. Close Visual Studio.
+3. Run the `.vsix` installer and select the target Visual Studio instance.
+4. Restart Visual Studio.
+5. Open Team Explorer and connect GitLab.
 
+For internal distribution, share the VSIX together with its SHA256 checksum so users can verify the package they received.
 
-***by Brett Winters***
+## Sign In
 
+Use the GitLab panel in Team Explorer.
 
-### When you login with  2FA :
+Recommended token flow:
 
-1) In GitLab, [top right] go to Settings then Access Tokens (left menu)
-2) Enter a name & expire time (optional).
-3) Check off "api" as the scope.
-4) Click "Create Personal Access Token". This will appear in a textbox at the TOP of the page.
-5) In Visual Studio, click "Connect" beside GitLab.
-6) Enter your GitLab Username and paste in the Access Token.
-7) Change it to "API v4" instead of "API v4 OAUTH2". 
-8) Make sure "Two Factor Authentication" is CHECKED.
-9) Save. You're DONE.
+1. In GitLab, create a personal access token.
+2. Use the private GitLab host URL, for example `https://gitlab.example.com`.
+3. Enter your GitLab username.
+4. Paste the personal access token into the password field.
+5. Check `Personal Access Token`.
+6. Sign in.
 
-### When you login with  LDAP credentials :
-If you create a personal access token (https://yourgitlaburl.com/profile/personal_access_tokens) and select 2fa and use your ldap username + your PAT you will be able to login and use the plug-in.
+Recommended token scopes:
 
-***by  dominicdejacomo***
+- `api`
+- `read_api`
+- `read_user`
+- `read_repository`
+- `write_repository`, if you use repository write operations from the extension
 
+Some GitLab versions treat `api` as the broad API permission, but the explicit read scopes make the intended usage clearer for managed deployments.
 
-## What's new ?
+## Settings
 
-**V1.0.189** 
-* Fix Groups and Subgroups missing in Namespace [#53](https://github.com/maikebing/GitLab.VisualStudio/issues/53)
-* Fix Exception on Project Create [#52](https://github.com/maikebing/GitLab.VisualStudio/issues/52)
+Open Team Explorer, select the GitLab home page, then open `Settings`.
 
-***Thanks [Rennerdo30](https://github.com/Rennerdo30)*** 
+Available settings:
 
+- `Default branch`: branch used by the GitLab context menu item for the default branch URL. Example: `develop`.
+- `Issues project`: project path or ID used when loading issues. Example: `prod_dev/etstudio-bugs`.
+- `Merge requests project`: project path or ID used when loading merge requests. Leave empty to use the current repository project.
 
-**V1.0.183**
+## Known Limitations
 
-* Fix for " cannot connect to custom gitlab server with different port [#50](https://github.com/maikebing/GitLab.VisualStudio/issues/50)
+- Merge request and issue detail pages still open in the browser.
+- Merge request creation is not implemented in the GitLab Team Explorer page yet.
+- Visual Studio built-in pull request UI integration is not wired to GitLab yet. GitLab merge requests are the equivalent workflow concept, but Visual Studio's built-in provider integration requires a deeper Git hosting provider implementation.
+- The VSIX is not signed unless a release explicitly says otherwise.
 
-**V1.0.160**
+## Build
 
-* Automatically detects the API version of Gitlab
+Build from a Developer PowerShell or normal PowerShell with Visual Studio 2026 installed:
 
-**V1.0.156**
+```powershell
+& 'D:\Program Files\VS18\MSBuild\Current\Bin\MSBuild.exe' GitLabVS.sln /restore /p:Configuration=Release /p:VsInstallRoot='D:\Program Files\VS18' /v:minimal
+```
 
-* Visual Studio 2019 support
+The release VSIX is produced at:
 
-**V1.0.150** 
+```text
+build\Release\GitLab.VisualStudio.vsix
+```
 
-   - AddOpen URL from clipboard
-   - Support Gitee.com 
-   - fix #35
+If the build fails with Team Explorer or Shell.Framework assembly version conflicts, rebuild with `/restore` and set `VsInstallRoot` to the Visual Studio instance you are targeting.
 
-**V1.0.0.122**
+## Release Notes
 
-Fix HttpUtility.UrlEncode processing username or email causing problems that cannot be logged in
+See [CHANGELOG.md](CHANGELOG.md).
 
-**V1.0.0.119**
+## License and Attribution
 
-Now update login mode is OAuth2, which can't be logon before because the new version of GitLab's API session has been discarded.
+This project remains under the MIT License.
 
-The two API login methods are supported in the login interface, and the old version of GitLab needs to be selected manually. The default is that the login mode is OAuth2 and V4 !
+Original project: [maikebing/GitLab.VisualStudio](https://github.com/maikebing/GitLab.VisualStudio)
 
-
-**V1.0.0.115**
-
-1.You can select GitLab Api version .
-
-**V1.0.0.112**
-
-1.modify "Open On GitLab" to "GitLab"
-
-**V1.0.0.95**
-
-1. French, Japanese, German and other languages have been added, but these are Google's translations, so we need human translation!
-2. Open on GitLab move to  submenu!
-3. Fixed issue #3,Thanks luky92!
-4. The selected code can create code snippets directly
-5. When you create a project, you can select namespases.
-6. GitLab's Api is updated from V3 to V4.
-
-
-**V1.0.0.70**
-
-1. GitLab login information associated with the solution, easy to switch GitLab server.
-2. Enter the password and press enter to login GitLab server.
-3. Now, We can login   with two  factor authentication.just enter the personal access token into the password field.
-
-**V1.0.0.58** 
-
-1. Support for Visual Studio 2017 
-2. Fix bus.
-
-
-**V1.0.0.40** 
- 1. Right click on editor, if repository is hosted on GitLab Server , you can jump to master/current branch/current revision's blob page and blame/commits page. If selecting line(single, range) in editor, jump with line number fragment.
- 2. Fix [#4](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/4) [#5](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/5) [#6](https://www.gitlab.com/maikebing/GitLab.VisualStudio/issues/6)
-Official builds of this extension are available at [the official website](http://visualstudio.gitclub.cn).
-
-**HomePage**
- http://visualstudio.gitclub.cn/
-
-### BUG And Issues
-
-https://github.com/maikebing/GitLab.VisualStudio/issues
-
-###    Visual Studio    |   Marketplace
-https://marketplace.visualstudio.com/items?itemName=MysticBoy.GitLabExtensionforVisualStudio
-
-### Thanks
-
-####  GitHub Extension for Visual Studio
-
-####  CodeCloud Extension for  Visual Studio
-
-https://gitee.com/GitGroup/CodeCloud.VisualStudio
-
-#### Visual Studio Extension for opening files on GitHub.com
-https://github.com/neuecc/Open-on-GitHub 
-
-#### NGitLab
-https://github.com/Xarlot/NGitLab
-https://github.com/Franklin89/NGitLab
-https://github.com/maikebing/NGitLab
-
-
-
-### Open On GitLab
-
-![image](./docs/images/OpenOnGitLab.png)
-###  Team Home Page
-
-![image](./docs/images/TeamHome.PNG)
-
-### Team Connct Page
-![image](./docs/images/TeamConnect.PNG)
-
-[![image](http://s07.flagcounter.com/map/7uzT/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/)](http://info.flagcounter.com/7uzT)
-[![image](http://ia.51.la/go1?id=19858017&pvFlag=1)](https://www.51.la/?19858017)
-
- 
+This fork preserves the original license and attribution while adding maintenance updates for modern Visual Studio and GitLab deployments.

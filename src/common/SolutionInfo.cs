@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyProduct("GitLab Extension for Visual Studio")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyCompany("MaikeBing")]
-[assembly: AssemblyCopyright("Copyright ? MaikeBing. 2018")]
+[assembly: AssemblyCompany("Starkxim")]
+[assembly: AssemblyCopyright("Copyright (c) 2017 MaikeBing; maintained by Starkxim, 2026")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -14,6 +14,6 @@ namespace System
 {
     internal static class AssemblyVersionInformation
     {
-        internal const string Version = "1.0.0.0";
+        internal const string Version = "1.4.0.0";
     }
 }

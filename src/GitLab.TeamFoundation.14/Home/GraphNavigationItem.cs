@@ -17,12 +17,17 @@ namespace GitLab.TeamFoundation.Home
         {
             _tes = tes;
             Text = Strings.Items_Graph;
+            IsVisible = false;
+        }
+
+        public override void Invalidate()
+        {
+            IsVisible = false;
         }
 
         public override void Execute()
         {
-            var repo = _tes.GetActiveRepository();
-            OpenInBrowser($"graphs/{repo.Branch}");
+            IsVisible = false;
         }
     }
 }

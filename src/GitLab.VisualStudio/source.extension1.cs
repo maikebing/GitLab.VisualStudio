@@ -9,10 +9,10 @@ namespace GitLab.VisualStudio
     {
         public const string Id = "54803a44-49e0-4935-bba4-7d7d91682273";
         public const string Name = "GitLab Extension for Visual Studio";
-        public const string Description = @"A Visual Studio Extension that brings the GitLab Flow into Visual Studio.";
+        public const string Description = @"A maintained Visual Studio extension for GitLab Flow. Supports Visual Studio 2022 and 2026, private GitLab servers, and in-IDE merge request / issue browsing.";
         public const string Language = "en-US";
-        public const string Version = "1.0.202";
-        public const string Author = "MysticBoy";
-        public const string Tags = "GitLab;git;open source;source control;branch;Pipelines;Registry;Graphs;IssuesMerge Requests;Wiki";
+        public const string Version = "1.4.0";
+        public const string Author = "Starkxim";
+        public const string Tags = "GitLab;git;open source;source control;branch;Issues;Merge Requests;Visual Studio 2026";
     }
 }

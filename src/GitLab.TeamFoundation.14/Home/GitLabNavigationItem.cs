@@ -80,6 +80,16 @@ namespace GitLab.TeamFoundation.Home
             _shell.OpenUrl(url);
         }
 
+        protected void NavigateToGitLabWorkItemsPage(GitLabWorkItemsPageMode mode)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var teamExplorer = ServiceProvider.GlobalProvider.GetService(typeof(ITeamExplorer)) as ITeamExplorer;
+            if (teamExplorer != null)
+            {
+                teamExplorer.NavigateToPage(new Guid(Settings.GitLabWorkItemsPageId), mode);
+            }
+        }
+
         protected void OpenHostUrlInBrowser(string endpoint)
         {
             var url = $"{_storage.Host}/{endpoint}";

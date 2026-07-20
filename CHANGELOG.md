@@ -12,6 +12,31 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## V1.4.0
+
+- Prepared the maintained fork release metadata for Visual Studio 2026 distribution.
+- Fixed private GitLab sign-in flows so the login dialog uses the configured host instead of opening `gitlab.com`.
+- Updated GitLab API usage for GitLab 17.x: API v4 OAuth token flow, personal access token authentication, and current-user validation.
+- Removed API v3 probing from automatic discovery because modern GitLab no longer supports API v3.
+- Added in-IDE Team Explorer pages for merge request and issue lists instead of only opening the corresponding web pages.
+- Added merge request and issue filters for project, state, scope, author, assignee, labels, search text, and target branch where applicable.
+- Added GitLab settings for default branch, issue project, and merge request project.
+- Hid the graph navigation item because it did not have a working in-IDE implementation.
+- Fixed the GitLab editor context menu default-branch label so it displays the configured branch such as `develop` instead of the static `master` text.
+- Removed an accidentally committed VSIX installer log from the repository.
+
+## V1.3.1
+
+- Fixed VSIX install failure on Visual Studio 2026 (`InstallByMsiException`): the manifest no longer sets `InstalledByMsi="true"`, so the extension can be installed directly through the Extensions installer / Manage Extensions instead of requiring an MSI.
+
+## V1.3.0
+
+- Visual Studio 2026 (18.x) support; installs on Visual Studio 2022 and 2026.
+- VSIX install targets updated to `[17.0,19.0)`; architectures switched to amd64 + arm64 (x86 removed).
+- Visual Studio SDK / VSSDK Build Tools upgraded to 17.14; Newtonsoft.Json 13.0.3, Microsoft.Xaml.Behaviors.Wpf 1.1.142, EmbedIO 3.5.2.
+- Team Explorer assemblies resolved from the building VS instance (`$(VsInstallRoot)`) instead of a hard-coded VS2022 path.
+- Fixed Newtonsoft.Json binding redirect (was pointing to 12.0.0.0).
+
 ## V1.0.183
 
  - Fix for " cannot connect to custom gitlab server with different port #50"

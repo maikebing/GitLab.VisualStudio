@@ -48,7 +48,7 @@ namespace GitLab.VisualStudio.Services
         public string RepositoryPath { get; private set; }
         public LibGit2Sharp.Repository Repository { get { return repository; } }
 
-        public string GetGitLabTargetPath(GitLabUrlType urlType)
+        public string GetGitLabTargetPath(GitLabUrlType urlType, string defaultBranch = null)
         {
             switch (urlType)
             {
@@ -63,11 +63,11 @@ namespace GitLab.VisualStudio.Services
 
                 case GitLabUrlType.Master:
                 default:
-                    return "master";
+                    return GetDefaultBranch(defaultBranch);
             }
         }
 
-        public string GetGitLabTargetDescription(GitLabUrlType urlType)
+        public string GetGitLabTargetDescription(GitLabUrlType urlType, string defaultBranch = null)
         {
             switch (urlType)
             {
@@ -88,11 +88,11 @@ namespace GitLab.VisualStudio.Services
 
                 case GitLabUrlType.Master:
                 default:
-                    return "master";
+                    return GetDefaultBranch(defaultBranch);
             }
         }
 
-        public string BuildGitLabUrl(GitLabUrlType urlType, Tuple<int, int> selectionLineRange)
+        public string BuildGitLabUrl(GitLabUrlType urlType, Tuple<int, int> selectionLineRange, string defaultBranch = null)
         {
             // https://GitLab.com/user/repo.git
             string urlRoot = GetRepoUrlRoot();
@@ -101,7 +101,7 @@ namespace GitLab.VisualStudio.Services
             var rootDir = repository.Info.WorkingDirectory;
             var fileIndexPath = targetFullPath.Substring(rootDir.Length).Replace("\\", "/");
 
-            var repositoryTarget = GetGitLabTargetPath(urlType);
+            var repositoryTarget = GetGitLabTargetPath(urlType, defaultBranch);
 
             // line selection
             var fragment = (selectionLineRange != null)
@@ -122,6 +122,11 @@ namespace GitLab.VisualStudio.Services
             var fileUrl = string.Format("{0}/{4}/{1}/{2}{3}", urlRoot.Trim('/'), WebUtility.UrlEncode(repositoryTarget.Trim('/')), fileIndexPath.Trim('/'), fragment, urlshowkind);
 
             return fileUrl;
+        }
+
+        private static string GetDefaultBranch(string defaultBranch)
+        {
+            return string.IsNullOrWhiteSpace(defaultBranch) ? "develop" : defaultBranch.Trim();
         }
 
         public string GetRepoUrlRoot()

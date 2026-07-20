@@ -31,6 +31,7 @@
 
       <Button guid="guidOpenOnGitLabCmdSet" id="OpenMaster" priority="0x0100" type="Button">
         <Parent guid="guidOpenOnGitLabCmdSet" id="SubMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>master</ButtonText>
           <CommandName>master</CommandName>

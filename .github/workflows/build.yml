@@ -1,0 +1,84 @@
+name: Build VSIX
+
+on:
+  push:
+    branches:
+      - upgrade/vs2026-support
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Locate Visual Studio and inspect Team Explorer assemblies
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsroot = (& $vswhere -latest -property installationPath).Trim()
+          Write-Host "VS install root: $vsroot"
+          "VSINSTALLROOT=$vsroot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+          $te = Join-Path $vsroot "Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer"
+          Write-Host "Team Explorer dir: $te"
+          if (Test-Path $te) {
+            Write-Host "Team Explorer assemblies found:"
+            Get-ChildItem $te -Filter *.dll | Select-Object -ExpandProperty Name | Sort-Object
+          } else {
+            Write-Host "##[warning] Team Explorer directory NOT FOUND on this runner"
+          }
+
+      - name: Generate placeholder GitApp.cs (real file is git-ignored)
+        shell: pwsh
+        run: |
+          $path = "src/GitLab.VisualStudio.UI/Properties/GitApp.cs"
+          if (-not (Test-Path $path)) {
+            $lines = @(
+              'namespace GitLab.VisualStudio.UI.Properties',
+              '{',
+              '    // Placeholder generated for CI build validation only.',
+              '    // The real GitApp.cs (GitLab OAuth credentials) is git-ignored and',
+              '    // must be supplied locally by developers. The client_id below is the',
+              '    // same public PKCE client id already present in LoginViewModel.cs.',
+              '    internal static class GitApp',
+              '    {',
+              '        public const string client_id = "60e86660b759079b66f429f506166fe1cd8cd5fd350476b06801ea973e46ac93";',
+              '        public const string client_secret = "ci-placeholder-secret";',
+              '    }',
+              '}'
+            )
+            Set-Content -Path $path -Value $lines -Encoding utf8
+            Write-Host "Created placeholder $path"
+          } else {
+            Write-Host "$path already exists; leaving it untouched"
+          }
+
+      - name: NuGet restore
+        run: nuget restore GitLabVS.sln
+
+      - name: Build (Release)
+        shell: pwsh
+        run: |
+          msbuild GitLabVS.sln `
+            /p:Configuration=Release `
+            /p:Platform="Any CPU" `
+            /p:DeployExtension=false `
+            /p:VsInstallRoot="$env:VSINSTALLROOT" `
+            /m /v:m
+
+      - name: Upload VSIX artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GitLab.VisualStudio-vsix
+          path: build/**/*.vsix
+          if-no-files-found: warn

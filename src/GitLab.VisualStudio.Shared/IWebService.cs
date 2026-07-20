@@ -45,5 +45,9 @@ namespace GitLab.VisualStudio.Shared
         Project GetProject(string namespacedpath);
 
         IReadOnlyList<NamespacesPath> GetNamespacesPathList();
+
+        IReadOnlyList<GitLabWorkItem> GetIssues(GitLabWorkItemQuery query);
+
+        IReadOnlyList<GitLabWorkItem> GetMergeRequests(GitLabWorkItemQuery query);
     }
 }

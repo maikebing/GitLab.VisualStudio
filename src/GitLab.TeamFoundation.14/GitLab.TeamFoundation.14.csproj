@@ -93,8 +93,11 @@
     <Compile Include="Connect\GitLabInvitationSection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Home\PipelinesNavigationItem.cs" />
+    <Compile Include="Home\GitLabSettingsSection.cs" />
     <Compile Include="Home\GitLabHomeSection.cs" />
     <Compile Include="Home\GitLabNavigationItem.cs" />
+    <Compile Include="Home\GitLabWorkItemsPage.cs" />
+    <Compile Include="Home\GitLabWorkItemsPageMode.cs" />
     <Compile Include="Home\IssuesNavigationItem.cs" />
     <Compile Include="Home\MergeRequestsNavigationItem.cs" />
     <Compile Include="Home\GraphNavigationItem.cs" />
@@ -106,6 +109,8 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Sync\GitLabPublishSection.cs" />
     <Compile Include="ViewModels\ConnectSectionViewModel.cs" />
+    <Compile Include="ViewModels\GitLabSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GitLabWorkItemsViewModel.cs" />
     <Compile Include="ViewModels\PublishSectionViewModel.cs" />
     <Compile Include="Views\ConnectSectionView.xaml.cs">
       <DependentUpon>ConnectSectionView.xaml</DependentUpon>
@@ -113,6 +118,8 @@
     <Compile Include="Views\PublishSectionView.xaml.cs">
       <DependentUpon>PublishSectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GitLabSettingsView.cs" />
+    <Compile Include="Views\GitLabWorkItemsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ConnectSectionView.xaml">
